@@ -63,6 +63,17 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    if([UIImagePickerController isSourceTypeAvailable:(UIImagePickerControllerSourceTypeCamera)])
+    {
+       // _imagePicker =
+    }
+    
+    NSArray *list = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerCameraDeviceRear];
+    NSLog(@"%@", list);
+    
+    _imagePicker.mediaTypes = list;
+    //[_imagePicker present]
 }
 
 - (void)viewWillAppear:(BOOL)animated

@@ -148,6 +148,7 @@
         
     } failure:^(RKObjectRequestOperation *operation, NSError *error) {
         NSLog(@"loginRequest is Failure");
+        failure(operation, error);
     }];
 }
 

@@ -10,6 +10,10 @@
 #import "CGMenuViewController.h"
 #import "CGTextField.h"
 #import "CGUtilHelper.h"
+#import "AppInfo.h"
+
+#define kEmailTextGap -100
+#define kPasswordTextGap -100
 
 @implementation CGMainViewController
 
@@ -27,35 +31,46 @@
 {
     [super loadView];
 
+    _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, kWindowWidth, kWindowHeight)];
+    _scrollView.contentSize = CGSizeMake(kWindowWidth, kWindowWidth + 300);
+    _scrollView.scrollEnabled = FALSE;
+    [self.view addSubview:_scrollView];
+    
     _logoView = [[UIImageView alloc] initWithImage:kApplicationImage(kResLogo)];
+    
     _logoView.frame = CGRectMake(91, 40, 140, 165);
-    [self.view addSubview:_logoView];
+    [_scrollView addSubview:_logoView];
     
     _emailTextField = [[CGTextField alloc] initWithFrame:CGRectMake(35, 235, 250, 46)];
     _emailTextField.placeholder = @"ePosta Adresi";
     _emailTextField.delegate    = self;
-    [self.view addSubview:_emailTextField];
+    [_scrollView addSubview:_emailTextField];
     
     _passwordTextField = [[CGTextField alloc] initWithFrame:CGRectMake(35, 291, 250, 46)];
     _passwordTextField.placeholder = @"Şifre";
     _passwordTextField.delegate    = self;
-    [self.view addSubview:_passwordTextField];
+    [_scrollView addSubview:_passwordTextField];
     
     _errorLabel = [[CGLabel alloc] initWithFrame:CGRectMake(80, 336, 250, 46)];
     _errorLabel.textColor = kColorRed;
     _errorLabel.text = @"Yanlış email veya şifre girdiniz!";
     _errorLabel.hidden = YES;
-    [self.view addSubview:_errorLabel];
+    [_scrollView addSubview:_errorLabel];
     
     _enteranceButton = [[UIButton alloc] initWithFrame:CGRectMake(31, 377, 258, 53)];
     [_enteranceButton setBackgroundImage:kApplicationImage(kResButtonBlue) forState:UIControlStateNormal];
     [_enteranceButton setTitle:@"Giriş Yap" forState:UIControlStateNormal];
     [_enteranceButton.titleLabel setFont:kApplicationFontBold(19.0f)];
     [_enteranceButton addTarget:self action:@selector(enterance_button:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:_enteranceButton];
+    [_scrollView addSubview:_enteranceButton];
 }
 
--(void)viewWillAppear:(BOOL)animated
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+}
+
+- (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
 
@@ -108,7 +123,10 @@
         
     } failure:^(RKObjectRequestOperation *operation, NSError *error) {
         [self loadingHiddenState:NO];
+        _errorLabel.hidden = TRUE;
         [self stopSpinner];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Login" message:@"Server is not responding.." delegate:self cancelButtonTitle:@"cancel" otherButtonTitles:nil, nil];
+        [alert show];
     }];
     
 }
@@ -120,4 +138,19 @@
     
     return YES;
 }
+
+-(void) textFieldDidBeginEditing:(UITextField *)textField
+{
+    [UIView animateWithDuration:0.25f animations:^{
+        self.view.frame =CGRectMake(0, kEmailTextGap, kWindowWidth, kWindowHeight);
+    }];
+}
+
+-(void) textFieldDidEndEditing:(UITextField *)textField
+{
+    [UIView animateWithDuration:0.25f animations:^{
+        self.view.frame =CGRectMake(0, 0, kWindowWidth, kWindowHeight);
+    }];
+}
+
 @end

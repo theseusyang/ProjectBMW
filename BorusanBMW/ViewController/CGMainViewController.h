@@ -13,6 +13,7 @@
 
 @interface CGMainViewController : CGBaseViewController<UITextFieldDelegate>
 {
+    UIScrollView *_scrollView;
     UIImageView *_logoView;
     UITextField *_emailTextField;
     UITextField *_passwordTextField;

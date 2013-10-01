@@ -14,8 +14,8 @@
 
 #define append(A,B) [(A) stringByAppendingString:(B)]
 
-#define kStatusBarHeight 20.0f;
-#define kNavigationBarHeight 44.0f;
+#define kStatusBarHeight 20.0f
+#define kNavigationBarHeight 44.0f
 
 #define kWindowHeight ([[UIScreen mainScreen] bounds].size.height - kStatusBarHeight)
 #define kWindowWidth [[UIScreen mainScreen] bounds].size.width
