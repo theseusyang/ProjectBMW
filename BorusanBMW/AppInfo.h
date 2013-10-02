@@ -36,4 +36,6 @@
 
 #define kNotificationList [NSArray arrayWithObjects:@"Hasar Var", @"Araç Çekiliyor", @"Camlar Açık", @"Bagaj Açık", @"Lastik Patlak",nil]
 
+#define kTextTopScrollGap 10
+
 #endif

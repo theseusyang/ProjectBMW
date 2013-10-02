@@ -133,6 +133,18 @@
     return YES;
 }
 
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    _groupView.scrollEnabled = YES;
+    [_groupView setContentOffset:CGPointMake(0, textField.frame.origin.y - kTextTopScrollGap) animated:YES];
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    _groupView.scrollEnabled = NO;
+    [_groupView setContentOffset:CGPointMake(0, 0) animated:YES];
+}
+
 #pragma mark UIScrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {

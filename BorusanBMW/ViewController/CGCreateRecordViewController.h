@@ -16,6 +16,7 @@
 
 @interface CGCreateRecordViewController : CGBaseViewController<UITextFieldDelegate>
 {
+    UIScrollView *_groupScrollView;
     UIImageView *_locationIcon;
     CGLabel     *_dataLabel;
     CGLabel     *_addressLabel;

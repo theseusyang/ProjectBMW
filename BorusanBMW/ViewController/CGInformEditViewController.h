@@ -18,7 +18,7 @@
 {
     UIView *_photoListView;
     
-    UIScrollView      *_groupView;
+    UIScrollView *_groupView;
     UIImageView *_locationIcon;
     CGLabel     *_dataLabel;
     CGLabel     *_addressLabel;

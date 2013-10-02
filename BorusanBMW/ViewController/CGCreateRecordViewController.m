@@ -10,6 +10,7 @@
 #import "CGTransitionViewController.h"
 
 #define kTextFieldPaddingX 48.0f;
+#define kScrollBar
 
 @interface CGCreateRecordViewController ()
 
@@ -33,14 +34,19 @@
     NSString* currentDateString = [CGUtilHelper currentDate];
     NSString* currentLocation = [[LocationManager shared] location];
     
+    _groupScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, kWindowWidth, kWindowHeightWithNav)];
+    _groupScrollView.contentSize = CGSizeMake(kWindowWidth, kWindowHeightWithNav);
+    _groupScrollView.scrollEnabled = NO;
+    [self.view addSubview:_groupScrollView];
+    
     _locationIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"IconLocationDarkLarge.png"]];
     _locationIcon.frame = CGRectMake(35, 37, 61, 46);
-    [self.view addSubview:_locationIcon];
+    [_groupScrollView addSubview:_locationIcon];
 
     _dataLabel = [[CGLabel alloc] initWithFrame:CGRectMake(107, 45, 100, 20)];
     [_dataLabel setText:currentDateString];
     [_dataLabel sizeToFit];
-    [self.view addSubview:_dataLabel];
+    [_groupScrollView addSubview:_dataLabel];
     
     _addressLabel = [[CGLabel alloc] initWithFrame:CGRectMake(107, 63, 220, 60)];
     _addressLabel.font = kApplicationFont(13.0f);
@@ -48,7 +54,7 @@
     _addressLabel.numberOfLines = 0;
     [_addressLabel setText:currentLocation];
     [_addressLabel sizeToFit];
-    [self.view addSubview:_addressLabel];
+    [_groupScrollView addSubview:_addressLabel];
     
     // UITextFields
     _licensePlate = [[CGTextField alloc] initWithFrame:CGRectMake(35, 98, 250, 46)];
@@ -58,7 +64,7 @@
     _licensePlate.leftViewMode = UITextFieldViewModeAlways;
     _licensePlate.paddingX = kTextFieldPaddingX;
     [_licensePlate setDelegate:self];
-    [self.view addSubview:_licensePlate];
+    [_groupScrollView addSubview:_licensePlate];
     
     _serviceName = [[CGTextField alloc] initWithFrame:CGRectMake(35, 148, 250, 46)];
     _serviceName.placeholder = @"Servis Adı"; //TODO: Dummy data
@@ -67,7 +73,7 @@
     _serviceName.leftViewMode = UITextFieldViewModeAlways;
     _serviceName.paddingX = kTextFieldPaddingX;
     [_serviceName setDelegate:self];
-    [self.view addSubview:_serviceName];
+    [_groupScrollView addSubview:_serviceName];
     
     _notificationType = [[CGTextField alloc] initWithFrame:CGRectMake(35, 200, 250, 46)];
     _notificationType.placeholder = @"Bildirim Tipi"; //TODO: Dummy data
@@ -76,7 +82,7 @@
     _notificationType.leftViewMode = UITextFieldViewModeAlways;
     _notificationType.paddingX = kTextFieldPaddingX;
     [_notificationType setDelegate:self];
-    [self.view addSubview:_notificationType];
+    [_groupScrollView addSubview:_notificationType];
     
     _description = [[CGTextField alloc] initWithFrame:CGRectMake(35, 248, 250, 86)];
     _description.placeholder = @"Açıklama"; //TODO: Dummy data
@@ -85,14 +91,14 @@
     _description.leftViewMode = UITextFieldViewModeAlways;
     _description.paddingX = kTextFieldPaddingX;
     [_description setDelegate:self];
-    [self.view addSubview:_description];
+    [_groupScrollView addSubview:_description];
     
     _sendButton = [[UIButton alloc] initWithFrame:CGRectMake(28, 350, 258, 52)];
     _sendButton.titleLabel.font = kApplicationFontBold(19.0f);
     [_sendButton setBackgroundImage:[UIImage imageNamed:@"ButtonBlue"] forState:UIControlStateNormal];
     [_sendButton setTitle:@"Gönder" forState:UIControlStateNormal];
     [_sendButton addTarget:self action:@selector(sendAction:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:_sendButton];
+    [_groupScrollView addSubview:_sendButton];
     
 }
 
@@ -128,6 +134,18 @@
     [textField resignFirstResponder];
     
     return YES;
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    _groupScrollView.scrollEnabled = YES;
+    [_groupScrollView setContentOffset:CGPointMake(0, textField.frame.origin.y - kTextTopScrollGap) animated:YES];
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    _groupScrollView.scrollEnabled = NO;
+    [_groupScrollView setContentOffset:CGPointMake(0, 0) animated:YES];
 }
 
 #pragma mark Button Actions

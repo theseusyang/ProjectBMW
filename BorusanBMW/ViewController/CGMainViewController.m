@@ -15,6 +15,8 @@
 #define kEmailTextGap -100
 #define kPasswordTextGap -100
 
+#define kScrollHeight 400
+
 @implementation CGMainViewController
 
 -(id) init
@@ -31,38 +33,40 @@
 {
     [super loadView];
 
-    _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, kWindowWidth, kWindowHeight)];
-    _scrollView.contentSize = CGSizeMake(kWindowWidth, kWindowWidth + 300);
-    _scrollView.scrollEnabled = FALSE;
-    [self.view addSubview:_scrollView];
+    _groupScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, kWindowWidth, kWindowHeight)];
+    _groupScrollView.contentSize = CGSizeMake(kWindowWidth, kWindowWidth + kScrollHeight);
+    _groupScrollView.scrollEnabled = FALSE;
+    [self.view addSubview:_groupScrollView];
     
     _logoView = [[UIImageView alloc] initWithImage:kApplicationImage(kResLogo)];
     
     _logoView.frame = CGRectMake(91, 40, 140, 165);
-    [_scrollView addSubview:_logoView];
+    [_groupScrollView addSubview:_logoView];
     
     _emailTextField = [[CGTextField alloc] initWithFrame:CGRectMake(35, 235, 250, 46)];
     _emailTextField.placeholder = @"ePosta Adresi";
     _emailTextField.delegate    = self;
-    [_scrollView addSubview:_emailTextField];
+    _passwordTextField.returnKeyType = UIReturnKeyDone;
+    [_groupScrollView addSubview:_emailTextField];
     
     _passwordTextField = [[CGTextField alloc] initWithFrame:CGRectMake(35, 291, 250, 46)];
     _passwordTextField.placeholder = @"Şifre";
     _passwordTextField.delegate    = self;
-    [_scrollView addSubview:_passwordTextField];
+    _passwordTextField.returnKeyType = UIReturnKeyDone;
+    [_groupScrollView addSubview:_passwordTextField];
     
     _errorLabel = [[CGLabel alloc] initWithFrame:CGRectMake(80, 336, 250, 46)];
     _errorLabel.textColor = kColorRed;
     _errorLabel.text = @"Yanlış email veya şifre girdiniz!";
     _errorLabel.hidden = YES;
-    [_scrollView addSubview:_errorLabel];
+    [_groupScrollView addSubview:_errorLabel];
     
     _enteranceButton = [[UIButton alloc] initWithFrame:CGRectMake(31, 377, 258, 53)];
     [_enteranceButton setBackgroundImage:kApplicationImage(kResButtonBlue) forState:UIControlStateNormal];
     [_enteranceButton setTitle:@"Giriş Yap" forState:UIControlStateNormal];
     [_enteranceButton.titleLabel setFont:kApplicationFontBold(19.0f)];
     [_enteranceButton addTarget:self action:@selector(enterance_button:) forControlEvents:UIControlEventTouchUpInside];
-    [_scrollView addSubview:_enteranceButton];
+    [_groupScrollView addSubview:_enteranceButton];
 }
 
 - (void)viewDidLoad
@@ -141,16 +145,14 @@
 
 -(void) textFieldDidBeginEditing:(UITextField *)textField
 {
-    [UIView animateWithDuration:0.25f animations:^{
-        self.view.frame =CGRectMake(0, kEmailTextGap, kWindowWidth, kWindowHeight);
-    }];
+    _groupScrollView.scrollEnabled = YES;
+    [_groupScrollView setContentOffset:CGPointMake(0, textField.frame.origin.y - kTextTopScrollGap) animated:YES];
 }
 
 -(void) textFieldDidEndEditing:(UITextField *)textField
 {
-    [UIView animateWithDuration:0.25f animations:^{
-        self.view.frame =CGRectMake(0, 0, kWindowWidth, kWindowHeight);
-    }];
+    [_groupScrollView setContentOffset:CGPointMake(0, 0) animated:YES];
+    _groupScrollView.scrollEnabled = NO;
 }
 
 @end
