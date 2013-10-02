@@ -35,7 +35,7 @@ typedef NS_ENUM(NSInteger, kNotificationType){
             notificationType:(NSNumber*)notificationType
                  description:(NSString*)description
                     location:(NSString*)location
-                   imageList:(NSString*)imageList
+                   imageList:(NSArray*)imageList
                      success:(void (^)(RKObjectRequestOperation *operation, RKMappingResult *mappingResult))success
                      failure:(void (^)(RKObjectRequestOperation *operation, NSError *error))failure;
 

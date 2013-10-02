@@ -19,7 +19,8 @@
                                                         @"Location": @"location",
                                                         @"NotificationType": @"notificationType",
                                                         @"Plate": @"licensePlate",
-                                                        @"ServiceType": @"serviceType"}];
+                                                        @"ServiceType": @"serviceType",
+                                                        @"ImageList": @"imageList"}];
     
     return objectMapping;
 }

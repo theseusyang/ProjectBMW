@@ -14,6 +14,7 @@
 #import "VehicleListResponse.h"
 
 #import "Server.h"
+#import "Base64.h"
 
 @interface CGInformHistoryViewController : CGBaseViewController<UITableViewDataSource, UITableViewDelegate>
 {

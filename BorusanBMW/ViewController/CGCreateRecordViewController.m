@@ -151,11 +151,13 @@
 #pragma mark Button Actions
 - (void)sendAction:(id)sender
 {
-    //TODO: Try Base64
+    //TODO: Try Base64 - Delete!!!
     [Base64 initialize];
     UIImage *testImage = [UIImage imageNamed:@"Photo1.png"];
     NSData *imageData = UIImagePNGRepresentation(testImage);
     NSString *imageEncoded = [Base64 encode:imageData];
+    
+    NSArray *imageList = [NSArray arrayWithObjects:imageEncoded, nil];
     
     // Set data that will be send to backend
     NSString *location         = _addressLabel.text;
@@ -169,7 +171,7 @@
                            notificationType:notificationType
                                 description:description
                                    location:location
-                                  imageList:imageEncoded
+                                  imageList:imageList
                                     success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
                                         
                                         UIViewController *vc = [[CGTransitionViewController alloc] initWith:[CGMenuViewController class]];

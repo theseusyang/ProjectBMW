@@ -94,12 +94,26 @@
     cell = [[CGInformHistoryCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier vehicleListResponse:vehicle];
     //}
 
-    // Adding dummy graph
-    NSArray *array = kCarList;
-    int indexImage = arc4random() % [array count];
-    NSString *imageName = [array objectAtIndex:indexImage];
-    [cell.pic addSubview:[[UIImageView alloc] initWithImage:kApplicationImage(imageName)]];
-    // cell at indexed path
+    NSLog(@"%d", indexPath.row);
+    
+    if (indexPath.row == 4) {
+        
+        NSString *str = [NSString stringWithString:vehicle.imageList[0]];
+        
+        NSData *imageDecoded = [Base64 decode:str];
+        UIImage *image = [UIImage imageWithData:imageDecoded];
+        [cell.pic addSubview:[[UIImageView alloc] initWithImage:image]];
+       
+    }else
+    {
+        // Adding dummy graph
+        NSArray *array = kCarList;
+        int indexImage = arc4random() % [array count];
+        NSString *imageName = [array objectAtIndex:indexImage];
+        [cell.pic addSubview:[[UIImageView alloc] initWithImage:kApplicationImage(imageName)]];
+        // cell at indexed path
+    }
+    
     return cell;
 }
 
