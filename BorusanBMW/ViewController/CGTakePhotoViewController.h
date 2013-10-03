@@ -15,6 +15,9 @@
     UIView *_photoView;
     UIImageView *_captureGuide;
     
+    //MBB
+    NSMutableArray *_imageList;
+    
     //Footer
     UIView *_footerView;
     UIImageView *_footerImage;

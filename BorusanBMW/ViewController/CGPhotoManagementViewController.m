@@ -23,6 +23,18 @@
     return self;
 }
 
+- (id)initWithImageList:(NSArray*)imageLlist
+{
+    self = [super init];
+    if (self) {
+        
+        _imageList = [NSArray arrayWithArray:imageLlist];
+        
+    }
+    
+    return self;
+}
+
 - (void)loadView
 {
     [super loadView];
@@ -44,6 +56,9 @@
     [_continueButton.titleLabel setFont:kApplicationFontBold(19.0f)];
     [_continueButton addTarget:self action:@selector(continueAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_continueButton];
+    
+    //MBB
+    _imageList = [[NSArray alloc]init];
 }
 
 - (void)viewDidLoad

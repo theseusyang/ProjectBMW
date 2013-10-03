@@ -9,10 +9,18 @@
 #import "CGBaseViewController.h"
 #import "CGMenuViewController.h"
 
+
 @interface CGPhotoManagementViewController : CGBaseViewController
 {
+    
+    //MBB
+    NSArray *_imageList;
+    
     UIView *_photoListView;
     UIButton *_addPhotoButton;
     UIButton *_continueButton;
 }
+
+- (id)initWithImageList:(NSArray*)imageLlist;
+
 @end
