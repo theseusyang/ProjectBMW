@@ -62,18 +62,20 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+
     
     if([UIImagePickerController isSourceTypeAvailable:(UIImagePickerControllerSourceTypeCamera)])
     {
-       // _imagePicker =
+        _imagePicker = [[UIImagePickerController alloc] init];
+        _imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        NSArray *availableMediaTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeCamera];
+        _imagePicker.mediaTypes = [NSArray arrayWithArray:availableMediaTypes];
+        
+        [self presentViewController:_imagePicker animated:YES completion:^{
+            NSLog(@"LOGLOG");
+        }];
     }
-    
-    NSArray *list = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerCameraDeviceRear];
-    NSLog(@"%@", list);
-    
-    _imagePicker.mediaTypes = list;
-    //[_imagePicker present]
+
 }
 
 - (void)viewWillAppear:(BOOL)animated

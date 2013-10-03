@@ -15,6 +15,9 @@
     UIImageView *_logoView;
     UIButton    *_newInformButton;
     UIButton    *_informHistory;
+    
+    //Photo Picker
+    UIImagePickerController *_imagePicker;
 }
 
 @end

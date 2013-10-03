@@ -10,7 +10,7 @@
 #import "CGMenuViewController.h"
 #import "Tesseract.h"
 
-@interface CGTakePhotoViewController : CGBaseViewController<UIImagePickerControllerDelegate>
+@interface CGTakePhotoViewController : CGBaseViewController<UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 {
     UIView *_photoView;
     UIImageView *_captureGuide;

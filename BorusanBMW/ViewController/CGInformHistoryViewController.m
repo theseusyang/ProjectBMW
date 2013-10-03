@@ -89,10 +89,7 @@
     VehicleListResponse *vehicle = (VehicleListResponse*)[_vehicleList objectAtIndex:[indexPath row]];
     
     CGInformHistoryCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    //if (cell == nil)
-    //{
     cell = [[CGInformHistoryCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier vehicleListResponse:vehicle];
-    //}
 
     if ([vehicle.imageList count] > 0) {
         NSString *str = [NSString stringWithString:vehicle.imageList[0]];
@@ -104,9 +101,8 @@
         
         [cell.pic addSubview:imageView];
     }
-    else{
+    else
         NSLog(@"[CGInformHistoryViewController] tableView: There is no photo for row %d", [indexPath row]+1);
-    }
 
     return cell;
 }
