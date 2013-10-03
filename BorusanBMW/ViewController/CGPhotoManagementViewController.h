@@ -8,9 +8,12 @@
 
 #import "CGBaseViewController.h"
 #import "CGMenuViewController.h"
+#import "CGPhotoGalleryView.h"
 
 @interface CGPhotoManagementViewController : CGBaseViewController
 {
+    
+    CGPhotoGalleryView *_photoGallery;
     UIView *_photoListView;
     UIButton *_addPhotoButton;
     UIButton *_continueButton;

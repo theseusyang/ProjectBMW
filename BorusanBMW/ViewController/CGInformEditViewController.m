@@ -141,7 +141,6 @@
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
-    _groupView.scrollEnabled = NO;
     [_groupView setContentOffset:CGPointMake(0, 0) animated:YES];
 }
 

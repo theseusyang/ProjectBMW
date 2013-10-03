@@ -127,6 +127,7 @@
 		62C905F217DF3E6F009E1253 /* CGInformEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62C905F117DF3E6F009E1253 /* CGInformEditViewController.m */; };
 		62C9060717E07199009E1253 /* CGUtilHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 62C9060617E07199009E1253 /* CGUtilHelper.m */; };
 		62C9060E17E095A5009E1253 /* CGLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 62C9060D17E095A5009E1253 /* CGLabel.m */; };
+		62CEEB8917FD94F60074638C /* CGPhotoGalleryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 62CEEB8817FD94F50074638C /* CGPhotoGalleryView.m */; };
 		62CEEE2617F1BD1400A00F81 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62CEEE2517F1BD1400A00F81 /* CoreLocation.framework */; };
 		62CEEE2C17F1BDEA00A00F81 /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 62CEEE2B17F1BDEA00A00F81 /* LocationManager.m */; };
 		62CEEE3017F327FB00A00F81 /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 62CEEE2F17F327FA00A00F81 /* Base64.m */; };
@@ -349,6 +350,8 @@
 		62C9060617E07199009E1253 /* CGUtilHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CGUtilHelper.m; path = Utils/CGUtilHelper.m; sourceTree = "<group>"; };
 		62C9060C17E095A5009E1253 /* CGLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CGLabel.h; path = UI/CGLabel.h; sourceTree = "<group>"; };
 		62C9060D17E095A5009E1253 /* CGLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CGLabel.m; path = UI/CGLabel.m; sourceTree = "<group>"; };
+		62CEEB8717FD94F50074638C /* CGPhotoGalleryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CGPhotoGalleryView.h; path = View/CGPhotoGalleryView.h; sourceTree = "<group>"; };
+		62CEEB8817FD94F50074638C /* CGPhotoGalleryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CGPhotoGalleryView.m; path = View/CGPhotoGalleryView.m; sourceTree = "<group>"; };
 		62CEEE2517F1BD1400A00F81 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		62CEEE2A17F1BDEA00A00F81 /* LocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocationManager.h; path = Model/LocationManager.h; sourceTree = "<group>"; };
 		62CEEE2B17F1BDEA00A00F81 /* LocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LocationManager.m; path = Model/LocationManager.m; sourceTree = "<group>"; };
@@ -828,6 +831,8 @@
 				62C905D617DDBCB7009E1253 /* Cell */,
 				62C905EA17DF1742009E1253 /* CGInformHistoryTableView.h */,
 				62C905EB17DF1742009E1253 /* CGInformHistoryTableView.m */,
+				62CEEB8717FD94F50074638C /* CGPhotoGalleryView.h */,
+				62CEEB8817FD94F50074638C /* CGPhotoGalleryView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -1353,6 +1358,7 @@
 				6224448A17D8B01F002A2482 /* CGTextField.m in Sources */,
 				6224454717D8D578002A2482 /* CGTakePhotoViewController.m in Sources */,
 				6284CF8217EC38BF00A0EDFA /* LoginResponse.m in Sources */,
+				62CEEB8917FD94F60074638C /* CGPhotoGalleryView.m in Sources */,
 				6245CBD817EC4CFE009A2630 /* DataService.m in Sources */,
 				62CEEE3017F327FB00A00F81 /* Base64.m in Sources */,
 				6245CBE117EC917C009A2630 /* RecordResponse.m in Sources */,

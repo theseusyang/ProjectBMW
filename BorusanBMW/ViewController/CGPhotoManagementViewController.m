@@ -27,18 +27,27 @@
 {
     [super loadView];
 
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Photo1.png"]];
+    UIImageView *imageView1 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Photo2.png"]];
+    UIImageView *imageView2 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Photo3.png"]];
+    
+    _photoGallery = [[CGPhotoGalleryView alloc] initWithImageList:@[imageView, imageView1, imageView2]];
+    [self.view addSubview:_photoGallery];
+    
+    /*
     _photoListView = [[UIView alloc] initWithFrame:CGRectMake(160 - 80, 58, 160, 160)];
     [_photoListView addSubview:[[UIImageView alloc] initWithImage:kApplicationImage(@"Photo1.png")]];
     [self.view addSubview:_photoListView];
+    */
     
-    _addPhotoButton = [[UIButton alloc] initWithFrame:CGRectMake(31, 243, 258, 53)];
+    _addPhotoButton = [[UIButton alloc] initWithFrame:CGRectMake(31, 243 + 36, 258, 53)];
     [_addPhotoButton setBackgroundImage:kApplicationImage(kResButtonBlue) forState:UIControlStateNormal];
     [_addPhotoButton setTitle:@"Bir Fotograf Daha Ekle" forState:UIControlStateNormal];
     [_addPhotoButton.titleLabel setFont:kApplicationFontBold(19.0f)];
     [_addPhotoButton addTarget:self action:@selector(addPhotoAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_addPhotoButton];
     
-    _continueButton = [[UIButton alloc] initWithFrame:CGRectMake(31, 300, 258, 53)];
+    _continueButton = [[UIButton alloc] initWithFrame:CGRectMake(31, 300 + 36, 258, 53)];
     [_continueButton setBackgroundImage:kApplicationImage(kResButtonDark) forState:UIControlStateNormal];
     [_continueButton setTitle:@"Devam Et" forState:UIControlStateNormal];
     [_continueButton.titleLabel setFont:kApplicationFontBold(19.0f)];
