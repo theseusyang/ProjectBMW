@@ -94,26 +94,20 @@
     cell = [[CGInformHistoryCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier vehicleListResponse:vehicle];
     //}
 
-    NSLog(@"%d", indexPath.row);
-    
-    if (indexPath.row == 4) {
-        
+    if ([vehicle.imageList count] > 0) {
         NSString *str = [NSString stringWithString:vehicle.imageList[0]];
         
         NSData *imageDecoded = [Base64 decode:str];
         UIImage *image = [UIImage imageWithData:imageDecoded];
-        [cell.pic addSubview:[[UIImageView alloc] initWithImage:image]];
-       
-    }else
-    {
-        // Adding dummy graph
-        NSArray *array = kCarList;
-        int indexImage = arc4random() % [array count];
-        NSString *imageName = [array objectAtIndex:indexImage];
-        [cell.pic addSubview:[[UIImageView alloc] initWithImage:kApplicationImage(imageName)]];
-        // cell at indexed path
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 70, 70)];
+        imageView.image = image;
+        
+        [cell.pic addSubview:imageView];
     }
-    
+    else{
+        NSLog(@"[CGInformHistoryViewController] tableView: There is no photo for row %d", [indexPath row]+1);
+    }
+
     return cell;
 }
 

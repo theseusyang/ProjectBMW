@@ -157,14 +157,13 @@
     NSData *imageData = UIImagePNGRepresentation(testImage);
     NSString *imageEncoded = [Base64 encode:imageData];
     
-    NSArray *imageList = [NSArray arrayWithObjects:imageEncoded, nil];
-    
     // Set data that will be send to backend
     NSString *location         = _addressLabel.text;
     NSString *licencePlate     = _licensePlate.text;
     NSString *serviceName      = _serviceName.text;
     NSNumber *notificationType = [NSNumber numberWithInteger:[_notificationType.text integerValue]];
     NSString *description      = _description.text;
+    NSArray *imageList         = [NSArray arrayWithObjects:imageEncoded, nil];
     
     [[Server shared] insertVehicleWithPlate:licencePlate
                                 serviceType:serviceName

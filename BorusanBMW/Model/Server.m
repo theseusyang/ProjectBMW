@@ -85,7 +85,6 @@
                        success:(void (^)(RKObjectRequestOperation *operation, RKMappingResult *mappingResult))success
                        failure:(void (^)(RKObjectRequestOperation *operation, NSError *error))failure
 {
-    
     NSDictionary *recordRequest = @{@"Plate": plate,
                                     @"ServiceType": serviceType,
                                     @"NotificationType": [notificationType stringValue],
