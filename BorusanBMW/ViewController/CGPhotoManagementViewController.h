@@ -10,12 +10,20 @@
 #import "CGMenuViewController.h"
 #import "CGPhotoGalleryView.h"
 
+
 @interface CGPhotoManagementViewController : CGBaseViewController
 {
     
     CGPhotoGalleryView *_photoGallery;
+    
+    //MBB
+    NSArray *_imageList;
+    
     UIView *_photoListView;
     UIButton *_addPhotoButton;
     UIButton *_continueButton;
 }
+
+- (id)initWithImageList:(NSArray*)imageLlist;
+
 @end

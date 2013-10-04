@@ -27,6 +27,15 @@
     return self;
 }
 
+- (id)initWithImageList:(NSArray *)imageList
+{
+    self = [super init];
+    if (self) {
+        _imageList = [NSArray arrayWithArray:imageList];
+    }
+    return self;
+}
+
 - (void)loadView
 {
     [super loadView];
@@ -153,24 +162,38 @@
 {
     //TODO: Try Base64 - Delete!!!
     [Base64 initialize];
-    UIImage *testImage = [UIImage imageNamed:@"Photo1.png"];
-    NSData *imageData = UIImagePNGRepresentation(testImage);
-    NSString *imageEncoded = [Base64 encode:imageData];
     
+    NSMutableArray *imageList = [[NSMutableArray alloc] init];
+    for (int i=0; i < [_imageList count]; ++i) {
+        
+        UIImageView *imageView = [_imageList objectAtIndex:i];
+        
+        
+        UIGraphicsBeginImageContext(CGSizeMake(70, 70));
+        [imageView.image drawInRect:CGRectMake(0,0,70,70)];
+        UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        
+        NSData *imageData = UIImagePNGRepresentation(newImage);
+        NSString *imageEncoded = [Base64 encode:imageData];
+        [imageList addObject:imageEncoded];
+    }
+    
+    NSArray *imageListFinal = [NSArray arrayWithArray:imageList];
     // Set data that will be send to backend
     NSString *location         = _addressLabel.text;
     NSString *licencePlate     = _licensePlate.text;
     NSString *serviceName      = _serviceName.text;
     NSNumber *notificationType = [NSNumber numberWithInteger:[_notificationType.text integerValue]];
     NSString *description      = _description.text;
-    NSArray *imageList         = [NSArray arrayWithObjects:imageEncoded, nil];
+    
     
     [[Server shared] insertVehicleWithPlate:licencePlate
                                 serviceType:serviceName
                            notificationType:notificationType
                                 description:description
                                    location:location
-                                  imageList:imageList
+                                  imageList:imageListFinal
                                     success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
                                         
                                         UIViewController *vc = [[CGTransitionViewController alloc] initWith:[CGMenuViewController class]];

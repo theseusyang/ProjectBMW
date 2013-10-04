@@ -19,6 +19,7 @@
     self = [super init];
     if (self) {
         _vehicle = vehicle;
+        _imageList = vehicle.imageList;
     }
     return self;
 }
@@ -34,6 +35,10 @@
     _textGroupView = [[UIView alloc] initWithFrame:CGRectMake(17, 217, 320, 205)];
     [_groupView addSubview:_textGroupView];
     
+    /*
+    _photoGallery = [[CGPhotoGalleryView alloc] initWithImageList:_imageList];
+    [self.view addSubview:_photoGallery];
+    */
     _photoListView = [[UIView alloc] initWithFrame:CGRectMake(160 - 80, 38, 160, 160)];
     [_photoListView addSubview:[[UIImageView alloc] initWithImage:kApplicationImage(@"Photo1.png")]];
     [_groupView addSubview:_photoListView];

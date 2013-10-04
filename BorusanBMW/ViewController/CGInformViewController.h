@@ -12,9 +12,14 @@
 #import "CGMenuViewController.h"
 #import "CGLabel.h"
 #import "VehicleListResponse.h"
+#import "CGPhotoGalleryView.h"
 
 @interface CGInformViewController : CGBaseViewController
 {
+    CGPhotoGalleryView *_photoGallery;
+    
+    NSArray *_imageList;
+    
     UIView *_photoListView;
     
     UIScrollView *_groupView;

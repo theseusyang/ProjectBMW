@@ -23,15 +23,29 @@
     return self;
 }
 
+- (id)initWithImageList:(NSArray*)imageLlist
+{
+    self = [super init];
+    if (self) {
+        
+        _imageList = [NSArray arrayWithArray:imageLlist];
+        
+    }
+    
+    return self;
+}
+
 - (void)loadView
 {
     [super loadView];
 
+    /*
     UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Photo1.png"]];
     UIImageView *imageView1 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Photo2.png"]];
     UIImageView *imageView2 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Photo3.png"]];
+    */
     
-    _photoGallery = [[CGPhotoGalleryView alloc] initWithImageList:@[imageView, imageView1, imageView2]];
+    _photoGallery = [[CGPhotoGalleryView alloc] initWithImageList:_imageList];
     [self.view addSubview:_photoGallery];
     
     /*
@@ -53,6 +67,7 @@
     [_continueButton.titleLabel setFont:kApplicationFontBold(19.0f)];
     [_continueButton addTarget:self action:@selector(continueAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_continueButton];
+
 }
 
 - (void)viewDidLoad
@@ -89,7 +104,7 @@
 
 - (void)continueAction:(id)sender
 {
-    UIViewController *vc = [[CGCreateRecordViewController alloc] init];
+    UIViewController *vc = [[CGCreateRecordViewController alloc] initWithImageList:_imageList];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

@@ -16,6 +16,8 @@
 
 @interface CGCreateRecordViewController : CGBaseViewController<UITextFieldDelegate>
 {
+    NSArray *_imageList;
+    
     UIScrollView *_groupScrollView;
     UIImageView *_locationIcon;
     CGLabel     *_dataLabel;
@@ -28,4 +30,7 @@
     
     UIButton    *_sendButton;
 }
+
+- (id)initWithImageList:(NSArray *)imageList;
+
 @end
