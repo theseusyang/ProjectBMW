@@ -34,6 +34,7 @@
     
     _loadingImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Loader.png"]];
     _loadingImage.frame = CGRectMake(118, 130, 84, 84);
+    
     [self.view addSubview:_loadingImage];
     
     _iconSucceededImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"IconSucceeded.png"]];
@@ -56,6 +57,16 @@
     
     NSNumber *value = [NSNumber numberWithInt:TransitionStateSucceeded];
     id state = value;
+    
+    if( !_timer.isValid ){
+        _timer = [NSTimer timerWithTimeInterval:0.06f target:self selector:(@selector(rotateImage:)) userInfo:(nil) repeats:YES];
+    }
+    _count = 0;
+    
+    NSRunLoop *runner =[NSRunLoop currentRunLoop];
+    [runner addTimer:_timer forMode:NSDefaultRunLoopMode];
+    
+    
     [self performSelector:@selector(changeTransitionState:) withObject:state afterDelay:2.0f];
 }
 
@@ -80,6 +91,13 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)rotateImage:(id)sender
+{
+    _loadingImage.transform = CGAffineTransformMakeRotation(_count * M_PI/6);
+    _count++;
+}
+
+
 #pragma mark Change Transition State
 - (void)changeTransitionState:(id)transitionState
 {
@@ -100,13 +118,19 @@
             _bottomLabel.text = @"Teşekkürler.";
             [_topLabel sizeToFit];
             [_bottomLabel sizeToFit];
+       
             break;
     }
+    
+    
+    [_timer invalidate];
+    _timer = nil;
     
     [_loadingImage setHidden:!_loadingImage.isHidden];
     [_iconSucceededImage setHidden:!_iconSucceededImage.isHidden];
     
     [self performSelector:@selector(backToMenu) withObject:nil afterDelay:2.0f];
+    
 }
 
 - (void)backToMenu

@@ -162,6 +162,8 @@
 {
     //TODO: Try Base64 - Delete!!!
     [Base64 initialize];
+    NSLog(@"Sending Message");
+    [_sendButton removeTarget:self action:@selector(sendAction:) forControlEvents:UIControlEventTouchUpInside];
     
     NSMutableArray *imageList = [[NSMutableArray alloc] init];
     for (int i=0; i < [_imageList count]; ++i) {
@@ -187,7 +189,6 @@
     NSNumber *notificationType = [NSNumber numberWithInteger:[_notificationType.text integerValue]];
     NSString *description      = _description.text;
     
-    
     [[Server shared] insertVehicleWithPlate:licencePlate
                                 serviceType:serviceName
                            notificationType:notificationType
@@ -206,6 +207,7 @@
                                     }];
     
     
-    }
+    
+}
 
 @end
