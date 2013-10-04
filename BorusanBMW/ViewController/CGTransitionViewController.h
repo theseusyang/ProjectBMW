@@ -12,6 +12,9 @@
 
 @interface CGTransitionViewController : CGBaseViewController
 {
+    NSTimer *_timer;
+    int _count;
+    
     UIImageView *_loadingImage;
     UIImageView *_iconSucceededImage;
     CGLabel *_topLabel;

@@ -44,7 +44,7 @@
     NSString* currentLocation = [[LocationManager shared] location];
     
     _groupScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, kWindowWidth, kWindowHeightWithNav)];
-    _groupScrollView.contentSize = CGSizeMake(kWindowWidth, kWindowHeightWithNav);
+    _groupScrollView.contentSize = CGSizeMake(kWindowWidth, kWindowHeightWithNav + 200);
     _groupScrollView.scrollEnabled = NO;
     [self.view addSubview:_groupScrollView];
     
@@ -160,11 +160,14 @@
 #pragma mark Button Actions
 - (void)sendAction:(id)sender
 {
+    [_sendButton removeTarget:self action:@selector(sendAction:) forControlEvents:UIControlEventTouchUpInside];
+    
     NSMutableArray *imageList = [[NSMutableArray alloc] init];
     for (int i=0; i < [_imageList count]; ++i) {
         
         UIImageView *imageView = [_imageList objectAtIndex:i];
         
+        // Make small the pic
         UIGraphicsBeginImageContext(CGSizeMake(70, 70));
         [imageView.image drawInRect:CGRectMake(0,0,70,70)];
         UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
@@ -182,7 +185,6 @@
     NSString *serviceName      = _serviceName.text;
     NSNumber *notificationType = [NSNumber numberWithInteger:[_notificationType.text integerValue]];
     NSString *description      = _description.text;
-    
     
     [[Server shared] insertVehicleWithPlate:licencePlate
                                 serviceType:serviceName
