@@ -10,6 +10,7 @@
 #import "CGBaseViewController.h"
 #import "CGLabel.h"
 #import "LoginResponse.h"
+#import "Base64.h"
 
 @interface CGMainViewController : CGBaseViewController<UITextFieldDelegate>
 {

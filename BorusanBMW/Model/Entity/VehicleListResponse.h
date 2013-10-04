@@ -18,7 +18,7 @@
 @property (nonatomic, strong) NSNumber* notificationType;
 @property (nonatomic, strong) NSString* licensePlate;
 @property (nonatomic, strong) NSString* serviceType;
-@property (nonatomic, strong) NSArray*  imageList;
+@property (nonatomic, strong) NSMutableArray*  imageList;
 
 + (RKObjectMapping *)objectMapping;
 

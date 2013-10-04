@@ -20,6 +20,7 @@
 {
     CGInformHistoryTableView *_informHistoryTableView;
     NSArray *_vehicleList;
+    NSMutableArray *_vehicleImageList;
     UIRefreshControl *_refreshControl;
 }
 

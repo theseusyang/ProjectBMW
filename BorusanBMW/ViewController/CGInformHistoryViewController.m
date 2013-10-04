@@ -57,8 +57,28 @@
     //Get vehice list
     [[Server shared] getVehicleListWithHash:[[DataService shared] getHash] success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
         
-        _vehicleList = [mappingResult array];
+        _vehicleList = [[mappingResult array] mutableCopy];
+        _vehicleImageList = [[NSMutableArray alloc] init];
         
+        for (VehicleListResponse* vehicle in _vehicleList) {
+            if (vehicle.imageList.count <= 0)
+                continue;
+            
+            // Create appropriate image list for each vehicle element in vehicleList
+            NSArray *base64List = vehicle.imageList;
+            for (int i=0; i < [base64List count]; ++i) {
+                
+                NSString *imageStr = (NSString*)base64List[i];
+                NSData *data = [Base64 decode:imageStr];
+                UIImage *image = [UIImage imageWithData:data];
+                
+                [_vehicleImageList addObject:image];
+            }
+            
+            vehicle.imageList = [NSMutableArray arrayWithArray:_vehicleImageList];
+            [_vehicleImageList removeAllObjects];
+        }
+
         [self stopSpinner];
         [self createTableView];
         
@@ -92,12 +112,10 @@
     cell = [[CGInformHistoryCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier vehicleListResponse:vehicle];
 
     if ([vehicle.imageList count] > 0) {
-        NSString *str = [NSString stringWithString:vehicle.imageList[0]];
-        
-        NSData *imageDecoded = [Base64 decode:str];
-        UIImage *image = [UIImage imageWithData:imageDecoded];
-        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 70, 70)];
-        imageView.image = image;
+       
+        UIImage *image = vehicle.imageList[0];
+        UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+        imageView.frame = CGRectMake(0, 0, 70, 70);
         
         [cell.pic addSubview:imageView];
     }

@@ -13,6 +13,7 @@
 @end
 
 #define kTextFieldPaddingX 48.0f;
+#define kPhotoGalleryHeightGap 20
 
 @implementation CGInformEditViewController
 
@@ -33,10 +34,9 @@
     _groupView.contentSize = CGSizeMake(320, 600);
     [self.view addSubview:_groupView];
     
-    _photoListView = [[UIView alloc] initWithFrame:CGRectMake(160 - 80, 38, 160, 160)];
-    [_photoListView addSubview:[[UIImageView alloc] initWithImage:kApplicationImage(@"Photo1.png")]];
-    [_groupView addSubview:_photoListView];
-    
+    _photoGallery = [[CGPhotoGalleryView alloc] initWithPoint:CGPointMake(0, kPhotoGalleryHeightGap) andList:[NSArray arrayWithArray:_vehicle.imageList]];
+    [_groupView addSubview:_photoGallery];
+        
     _locationIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"IconLocationDarkLarge.png"]];
     _locationIcon.frame = CGRectMake(35, 228, 61, 46);
     [_groupView  addSubview:_locationIcon];

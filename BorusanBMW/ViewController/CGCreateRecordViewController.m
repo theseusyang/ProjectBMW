@@ -160,14 +160,10 @@
 #pragma mark Button Actions
 - (void)sendAction:(id)sender
 {
-    //TODO: Try Base64 - Delete!!!
-    [Base64 initialize];
-    
     NSMutableArray *imageList = [[NSMutableArray alloc] init];
     for (int i=0; i < [_imageList count]; ++i) {
         
         UIImageView *imageView = [_imageList objectAtIndex:i];
-        
         
         UIGraphicsBeginImageContext(CGSizeMake(70, 70));
         [imageView.image drawInRect:CGRectMake(0,0,70,70)];
@@ -206,6 +202,6 @@
                                     }];
     
     
-    }
+}
 
 @end

@@ -39,20 +39,9 @@
 {
     [super loadView];
 
-    /*
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Photo1.png"]];
-    UIImageView *imageView1 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Photo2.png"]];
-    UIImageView *imageView2 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Photo3.png"]];
-    */
     
-    _photoGallery = [[CGPhotoGalleryView alloc] initWithImageList:_imageList];
+    _photoGallery = [[CGPhotoGalleryView alloc] initWithPoint:CGPointMake(0, 53) andList:_imageList];
     [self.view addSubview:_photoGallery];
-    
-    /*
-    _photoListView = [[UIView alloc] initWithFrame:CGRectMake(160 - 80, 58, 160, 160)];
-    [_photoListView addSubview:[[UIImageView alloc] initWithImage:kApplicationImage(@"Photo1.png")]];
-    [self.view addSubview:_photoListView];
-    */
     
     _addPhotoButton = [[UIButton alloc] initWithFrame:CGRectMake(31, 243 + 36, 258, 53)];
     [_addPhotoButton setBackgroundImage:kApplicationImage(kResButtonBlue) forState:UIControlStateNormal];

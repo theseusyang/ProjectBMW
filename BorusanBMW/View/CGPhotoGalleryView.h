@@ -23,7 +23,7 @@
     NSInteger _photoCount;
 }
 
-- (id)initWithImageList:(NSArray*)imageList;
+- (id)initWithPoint:(CGPoint)pos andList:(NSArray*)imageList;
 - (void)setGallery;
 
 @end

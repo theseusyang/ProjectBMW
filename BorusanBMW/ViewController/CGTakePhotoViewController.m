@@ -106,7 +106,6 @@
         */
         //[[NSBundle mainBundle] loadNibNamed:@"OverlayView" owner:self options:nil];
         
-        
         [self presentViewController:_imagePicker animated:YES completion:^{
             NSLog(@"LOGLOG");
         }];
@@ -158,10 +157,7 @@
 }
 
 
-
 #pragma mark UIImagePickerControlDelegate
-
-
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     UIImage *image;
@@ -176,8 +172,6 @@
     
     //MBB
     [_imageList addObject:imageView];
-    
-    
     
     NSLog(@"Took Picture");
     [self dismissViewControllerAnimated:YES completion:nil];

@@ -72,6 +72,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    // Init Base64 starting point of the app.
+    [Base64 initialize];
 }
 
 - (void)viewWillAppear:(BOOL)animated

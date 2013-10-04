@@ -16,13 +16,14 @@
 
 @implementation CGPhotoGalleryView
 
-- (id)initWithImageList:(NSArray*)imageList
+- (id)initWithPoint:(CGPoint)pos andList:(NSArray*)imageList
 {
-    self = [super initWithFrame:CGRectMake(0, 53, kGalleryWidth, kGalleryHeight)];
+    
+    self = [super initWithFrame:CGRectMake(pos.x, pos.y, kGalleryWidth, kGalleryHeight)];
     if (self) {
         
         _galleryList = [[NSMutableArray alloc] init];
-        _bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kGalleryWidth, kGalleryHeight)];
+        _bgView = [[UIView alloc] initWithFrame:CGRectMake(0 , 0, kGalleryWidth, kGalleryHeight)];
         
         _photoCount = [imageList count];
         
@@ -33,7 +34,8 @@
             UIView *elementView = [[UIView alloc] initWithFrame:CGRectMake(posX, 13, 170, 170)];
             elementView.backgroundColor = kColorGray;
             
-            UIImageView *photo = imageList[i];
+            UIImage *image = imageList[i];
+            UIImageView *photo = [[UIImageView alloc] initWithImage:image];
             photo.frame = CGRectMake(5, 5, 160, 160);
             
             [elementView addSubview:photo];

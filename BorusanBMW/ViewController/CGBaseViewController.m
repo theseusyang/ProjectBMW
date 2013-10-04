@@ -55,7 +55,6 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_rightButtonView];
 }
 
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];

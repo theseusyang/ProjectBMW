@@ -657,8 +657,7 @@
 				62A70B3A17F9C53000098F47 /* iPhoneIcon.png */,
 				62A70B3B17F9C53000098F47 /* iPhoneIcon@2x.png */,
 			);
-			name = AppIcons;
-			path = BorusanBMW/AppIcons;
+			path = AppIcons;
 			sourceTree = "<group>";
 		};
 		62B0A44A17E9C1F60042F199 /* Entity */ = {
@@ -679,7 +678,6 @@
 		62B7C52217D6151A00257C95 = {
 			isa = PBXGroup;
 			children = (
-				62A70B3817F9C53000098F47 /* AppIcons */,
 				62CEEE2D17F327FA00A00F81 /* Base64 */,
 				62B7C60A17D61A0B00257C95 /* Resources */,
 				62B7C53417D6151A00257C95 /* BorusanBMW */,
@@ -854,6 +852,7 @@
 		62B7C67517D6224F00257C95 /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				62A70B3817F9C53000098F47 /* AppIcons */,
 				62D78E7D17E72BC100BDB445 /* tesseract-ios-lib */,
 			);
 			name = lib;

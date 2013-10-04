@@ -8,6 +8,8 @@
 
 #import "CGInformViewController.h"
 
+#define kPhotoGalleryHeightGap 20
+
 @interface CGInformViewController ()
 
 @end
@@ -19,7 +21,6 @@
     self = [super init];
     if (self) {
         _vehicle = vehicle;
-        _imageList = vehicle.imageList;
     }
     return self;
 }
@@ -35,14 +36,9 @@
     _textGroupView = [[UIView alloc] initWithFrame:CGRectMake(17, 217, 320, 205)];
     [_groupView addSubview:_textGroupView];
     
-    /*
-    _photoGallery = [[CGPhotoGalleryView alloc] initWithImageList:_imageList];
-    [self.view addSubview:_photoGallery];
-    */
-    _photoListView = [[UIView alloc] initWithFrame:CGRectMake(160 - 80, 38, 160, 160)];
-    [_photoListView addSubview:[[UIImageView alloc] initWithImage:kApplicationImage(@"Photo1.png")]];
-    [_groupView addSubview:_photoListView];
-    
+    _photoGallery = [[CGPhotoGalleryView alloc] initWithPoint:CGPointMake(0, kPhotoGalleryHeightGap) andList:[NSArray arrayWithArray:_vehicle.imageList]];
+    [_groupView addSubview:_photoGallery];
+
     // Labels
     _addressLabel = [[UILabel alloc] initWithFrame:CGRectMake(37, 0, 200, 20)];
     _addressLabel.text = _vehicle.location;
@@ -63,8 +59,7 @@
     _serviceLabel.backgroundColor = [UIColor clearColor];
     [_serviceLabel sizeToFit];
     [_textGroupView addSubview:_serviceLabel];
-    
-    
+
     NSArray *notificationList = kNotificationList;
     _notificationType = [[UILabel alloc] initWithFrame:CGRectMake(37, 121, 200, 20)];
     _notificationType.text = [notificationList objectAtIndex:[_vehicle.notificationType integerValue]];

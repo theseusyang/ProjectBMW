@@ -18,8 +18,6 @@
 {
     CGPhotoGalleryView *_photoGallery;
     
-    NSArray *_imageList;
-    
     UIView *_photoListView;
     
     UIScrollView *_groupView;

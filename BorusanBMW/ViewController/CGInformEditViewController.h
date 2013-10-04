@@ -13,9 +13,11 @@
 #import "CGLabel.h"
 #import "CGInformHistoryViewController.h"
 #import "CGUtilHelper.h"
+#import "CGPhotoGalleryView.h"
 
 @interface CGInformEditViewController : CGBaseViewController<UITextFieldDelegate, UIScrollViewDelegate>
 {
+    CGPhotoGalleryView *_photoGallery;
     UIView *_photoListView;
     
     UIScrollView *_groupView;
