@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 Baris YILMAZ. All rights reserved.
 //
 
+#import <Security/Security.h>
 #import <Foundation/Foundation.h>
 #import "CGBaseViewController.h"
 #import "CGLabel.h"
@@ -14,6 +15,8 @@
 
 @interface CGMainViewController : CGBaseViewController<UITextFieldDelegate>
 {
+    
+    
     UIScrollView *_groupScrollView;
     UIImageView *_logoView;
     UITextField *_emailTextField;

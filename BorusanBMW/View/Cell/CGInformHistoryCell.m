@@ -40,6 +40,7 @@
         [_groupView addSubview:_locationIcon];
         
         // Dynamic data
+        /*
         _dateLabel = [[CGLabel alloc] initWithFrame:CGRectMake(111, 21, 0, 0)];
         _dateLabel.font = kApplicationFontBold(15.0f);
         _dateLabel.text = [CGUtilHelper dateFromJSONStringWith:vehicleListResponse.createdDate];
@@ -47,7 +48,25 @@
         _dateLabel.numberOfLines = 2;
         [_dateLabel sizeToFit];
         [_groupView addSubview:_dateLabel];
+        */
         
+        _dateView = [[UITextView alloc] initWithFrame:CGRectMake(100, 15, 190, 25)];
+        _dateView.font = kApplicationFontBold(15.0f);
+        //_dateView.backgroundColor = kColorRed;
+        _dateView.text = [CGUtilHelper dateFromJSONStringWith:vehicleListResponse.createdDate];
+        [_dateView setUserInteractionEnabled:NO];
+        [_groupView addSubview:_dateView];
+        
+        
+        _addressView = [[UITextView alloc] initWithFrame:CGRectMake(135,40,155,40)];
+        //_addressView.backgroundColor = kColorBlue;
+        _addressView.font = kApplicationFont(9.0f);
+        _addressView.text = vehicleListResponse.location;
+        [_addressView setUserInteractionEnabled:NO];
+        [_groupView addSubview:_addressView];
+        
+        
+        /*
         _addressLabel = [[CGLabel alloc] initWithFrame:CGRectMake(142, 46, 0, 0)];
         _addressLabel.font = kApplicationFont(13.0f);
         _addressLabel.text = vehicleListResponse.location;
@@ -55,6 +74,7 @@
         _addressLabel.numberOfLines = 2;
         [_addressLabel sizeToFit];
         [_groupView addSubview:_addressLabel];
+        */
         
         self.accessoryView = [[UIImageView alloc] initWithImage:kApplicationImage(kResIconArrowDark)];
     }

@@ -58,9 +58,11 @@
     [_groupScrollView addSubview:_dataLabel];
     
     _addressLabel = [[CGLabel alloc] initWithFrame:CGRectMake(107, 63, 220, 60)];
+    
     _addressLabel.font = kApplicationFont(13.0f);
     _addressLabel.lineBreakMode = NSLineBreakByWordWrapping;
     _addressLabel.numberOfLines = 0;
+    _addressLabel.backgroundColor = kColorRed;
     [_addressLabel setText:currentLocation];
     [_addressLabel sizeToFit];
     [_groupScrollView addSubview:_addressLabel];
@@ -72,6 +74,7 @@
     _licensePlate.leftView.frame  = CGRectMake(14, 14, 24, 19);
     _licensePlate.leftViewMode = UITextFieldViewModeAlways;
     _licensePlate.paddingX = kTextFieldPaddingX;
+    _licensePlate.backgroundColor = kColorBlue;
     [_licensePlate setDelegate:self];
     [_groupScrollView addSubview:_licensePlate];
     
