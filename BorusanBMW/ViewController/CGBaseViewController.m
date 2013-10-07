@@ -35,23 +35,19 @@
     [self.view addSubview:_spinner];
     
     _leftButtonView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 120, 54)];
-    
     _leftButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 8, 120, 50)];
     [_leftButton setBackgroundImage:[UIImage imageNamed:kResLabelBack] forState:UIControlStateNormal];
     [_leftButton setBackgroundImage:kApplicationImage(kResLabelBackPressed) forState:UIControlStateHighlighted];
     [_leftButton addTarget:self action:@selector(leftAction:) forControlEvents:UIControlEventTouchUpInside];
     [_leftButtonView addSubview:_leftButton];
-    
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_leftButtonView];
     
     _rightButtonView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 120, 54)];
-    
     _rightButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 8, 120, 50)];
     [_rightButton setBackgroundImage:[UIImage imageNamed:kResLabelEdit] forState:UIControlStateNormal];
     [_rightButton setBackgroundImage:[UIImage imageNamed:kResLabelEditPressed] forState:UIControlStateHighlighted];
     [_rightButton addTarget:self action:@selector(rightAction:) forControlEvents:UIControlEventTouchUpInside];
     [_rightButtonView addSubview:_rightButton];
-    
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_rightButtonView];
 }
 

@@ -46,7 +46,8 @@
     _emailTextField = [[CGTextField alloc] initWithFrame:CGRectMake(35, 235, 250, 46)];
     _emailTextField.placeholder = @"ePosta Adresi";
     _emailTextField.delegate    = self;
-    _passwordTextField.returnKeyType = UIReturnKeyDone;
+    _emailTextField.keyboardType = UIKeyboardTypeEmailAddress;
+    _emailTextField.returnKeyType = UIReturnKeyDone;
     [_groupScrollView addSubview:_emailTextField];
     
     _passwordTextField = [[CGTextField alloc] initWithFrame:CGRectMake(35, 291, 250, 46)];
@@ -75,6 +76,13 @@
     
     // Init Base64 starting point of the app.
     [Base64 initialize];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onKeyboardWillShown:) name:UIKeyboardWillShowNotification object:nil];
+}
+    
+- (void)onKeyboardWillShown:(NSNotification *)notif
+{
+    // NotificationCenter wil send message to the observers who is listening the UIKeyboardWillShowNotification method.
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -105,6 +113,10 @@
 -(void) enterance_button:(id)sender
 {
     [self loadingHiddenState:YES];
+    
+    // When Send button is clicked, make dissapear the virtual keyboard
+    [_emailTextField resignFirstResponder];
+    [_passwordTextField resignFirstResponder];
     
     // Set data that will be send to backend
     NSString *username = _emailTextField.text;
@@ -157,5 +169,7 @@
     [_groupScrollView setContentOffset:CGPointMake(0, 0) animated:YES];
     _groupScrollView.scrollEnabled = NO;
 }
+
+#pragma mark UITextFieldTraits
 
 @end
