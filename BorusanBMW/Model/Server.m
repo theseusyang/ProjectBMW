@@ -161,10 +161,12 @@
 }
 
 - (void)getVehicleListWithHash:(NSString*)hash
+                     pageIndex:(int)pageIndex
                        success:(void (^)(RKObjectRequestOperation *operation, RKMappingResult *mappingResult))success
                        failure:(void (^)(RKObjectRequestOperation *operation, NSError *error))failure
 {
-    NSDictionary *vehicleListRequest = @{@"Hash": hash};
+    NSDictionary *vehicleListRequest = @{@"Hash": hash,
+                                         @"PageIndex": [NSNumber numberWithInt:pageIndex]};
     
     [[RKObjectManager sharedManager] getObject:nil path:kFuncGetVechicleList parameters:vehicleListRequest success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
         success(operation, mappingResult);

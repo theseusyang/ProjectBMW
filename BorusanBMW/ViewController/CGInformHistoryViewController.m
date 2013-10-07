@@ -55,9 +55,9 @@
     [self startSpinner];
     
     //Get vehice list
-    [[Server shared] getVehicleListWithHash:[[DataService shared] getHash] success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+    [[Server shared] getVehicleListWithHash:[[DataService shared] getHash] pageIndex:1 success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
         
-        _vehicleList = [[mappingResult array] mutableCopy];
+        _vehicleList      = [[mappingResult array] mutableCopy];
         _vehicleImageList = [[NSMutableArray alloc] init];
         
         for (VehicleListResponse* vehicle in _vehicleList) {

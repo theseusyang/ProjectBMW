@@ -7,10 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <RestKit/ObjectMapping.h>
+#import "Server.h"
 
 @interface DataService : NSObject
 {
     NSString *_hash;
+    
+    NSMutableArray *_vehicleDataList;
+    int _vehiclePageIndex;
 }
 
 + (DataService*)shared;

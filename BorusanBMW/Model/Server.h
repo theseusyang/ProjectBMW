@@ -59,6 +59,7 @@ typedef NS_ENUM(NSInteger, kNotificationType){
                  failure:(void (^)(RKObjectRequestOperation *operation, NSError *error))failure;
 
 - (void)getVehicleListWithHash:(NSString*)hash
+                     pageIndex:(int)pageIndex
                        success:(void (^)(RKObjectRequestOperation *operation, RKMappingResult *mappingResult))success
                        failure:(void (^)(RKObjectRequestOperation *operation, NSError *error))failure;
 
