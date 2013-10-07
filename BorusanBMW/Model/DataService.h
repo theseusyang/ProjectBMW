@@ -10,16 +10,25 @@
 #import <RestKit/ObjectMapping.h>
 #import "Server.h"
 
+#define kDataPackageSize 20
+
 @interface DataService : NSObject
 {
     NSString *_hash;
     
     NSMutableArray *_vehicleDataList;
-    int _vehiclePageIndex;
 }
+
+@property int vehiclePageIndex;
+@property BOOL isLastPageReached;
 
 + (DataService*)shared;
 
+- (NSMutableArray*)getVehicleListWithSuccess:(void (^)(NSArray *vehicleList))success
+                                     failure:(void (^)(NSError* error))failure;
+- (NSMutableArray*)updateVehicleListWithSuccess:(void (^)(NSArray *vehicleList))success
+                                        failure:(void (^)(NSError* error))failure;
+- (NSMutableArray*)getVehicleList;
 - (void)setHash:(NSString*)hash;
 - (NSString*)getHash;
 

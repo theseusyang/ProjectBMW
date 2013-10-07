@@ -82,7 +82,6 @@
     [UIView animateWithDuration:0.4f animations:^{
         _bgView.frame = CGRectMake((kImageIterate * _pageIndex), 0, kGalleryWidth, kGalleryHeight);
     }];
-    
 }
 
 - (void)swipeLeft:(UISwipeGestureRecognizer *)sender

@@ -20,8 +20,8 @@
     UIImageView *_checkIcon;
     UIImageView *_locationIcon;
     
-    UILabel *_dateLabel;
-    UILabel *_addressLabel;
+    CGLabel *_dateLabel;
+    CGLabel *_addressLabel;
 }
 
 @property (nonatomic, strong) UIImageView *pic;

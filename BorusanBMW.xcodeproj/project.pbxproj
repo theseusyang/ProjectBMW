@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		621F1D5A1802E054003356EC /* CGMoreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 621F1D591802E054003356EC /* CGMoreCell.m */; };
 		6224448617D87220002A2482 /* CGMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6224448517D87220002A2482 /* CGMenuViewController.m */; };
 		6224448A17D8B01F002A2482 /* CGTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 6224448917D8B01F002A2482 /* CGTextField.m */; };
 		622444E517D8D1E7002A2482 /* Background.png in Resources */ = {isa = PBXBuildFile; fileRef = 6224448B17D8D1E7002A2482 /* Background.png */; };
@@ -203,6 +204,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		621F1D581802E053003356EC /* CGMoreCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CGMoreCell.h; path = View/Cell/CGMoreCell.h; sourceTree = "<group>"; };
+		621F1D591802E054003356EC /* CGMoreCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CGMoreCell.m; path = View/Cell/CGMoreCell.m; sourceTree = "<group>"; };
 		6224448417D87220002A2482 /* CGMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CGMenuViewController.h; path = ViewController/CGMenuViewController.h; sourceTree = "<group>"; };
 		6224448517D87220002A2482 /* CGMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CGMenuViewController.m; path = ViewController/CGMenuViewController.m; sourceTree = "<group>"; };
 		6224448817D8B01F002A2482 /* CGTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CGTextField.h; path = UI/CGTextField.h; sourceTree = "<group>"; };
@@ -875,6 +878,8 @@
 			children = (
 				62C905D717DDBF6D009E1253 /* CGInformHistoryCell.h */,
 				62C905D817DDBF6D009E1253 /* CGInformHistoryCell.m */,
+				621F1D581802E053003356EC /* CGMoreCell.h */,
+				621F1D591802E054003356EC /* CGMoreCell.m */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -1351,6 +1356,7 @@
 				629703D017F175C6000D159F /* VehicleListResponse.m in Sources */,
 				62B7C53B17D6151A00257C95 /* main.m in Sources */,
 				62B7C53F17D6151A00257C95 /* CGAppDelegate.m in Sources */,
+				621F1D5A1802E054003356EC /* CGMoreCell.m in Sources */,
 				62B7C67A17D6239500257C95 /* CGMainViewController.m in Sources */,
 				629B0BA817D74A8A009595F9 /* CGBaseViewController.m in Sources */,
 				6224448617D87220002A2482 /* CGMenuViewController.m in Sources */,

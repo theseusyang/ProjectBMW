@@ -112,7 +112,7 @@
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
 {
-    NSLog(@"Location Manager has been zortladi!");
+    NSLog(@"Location Manager has been zortladi! - error:%@", error);
     [_manager stopUpdatingLocation];
 }
 

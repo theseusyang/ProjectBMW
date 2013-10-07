@@ -34,6 +34,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    _vehicleList = [[DataService shared] getVehicleList];
+    
+    if (![self isLastPageReached]) {
+        _moreCell = [[CGMoreCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"MoreCellIdentifier"];
+        _moreCell.textLabel.text = @"See More...";
+    }
+    
     /*
     _refreshControl = [[UIRefreshControl alloc] init];
     [_refreshControl addTarget:self action:@selector(refreshTable) forControlEvents:UIControlEventValueChanged];
@@ -51,21 +59,43 @@
     
     [self.navigationController setNavigationBarHidden:NO];
     [self setRightButtonHidden:YES];
-    
     [self startSpinner];
     
-    //Get vehice list
-    [[Server shared] getVehicleListWithHash:[[DataService shared] getHash] pageIndex:1 success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
-        
-        _vehicleList      = [[mappingResult array] mutableCopy];
-        _vehicleImageList = [[NSMutableArray alloc] init];
-        
-        for (VehicleListResponse* vehicle in _vehicleList) {
-            if (vehicle.imageList.count <= 0)
-                continue;
+    if (_vehicleList.count <= 0) {
+        // New Get List Method
+        [[DataService shared] getVehicleListWithSuccess:^(NSArray *vehicleList) {
             
-            // Create appropriate image list for each vehicle element in vehicleList
-            NSArray *base64List = vehicle.imageList;
+            _vehicleImageList = [NSMutableArray array];
+            _vehicleList = [NSArray arrayWithArray:vehicleList];
+            
+            [self setVehicleImageList];
+            [self stopSpinner];
+            [self createTableView];
+            
+        } failure:^(NSError *error) {
+            NSLog(@"%@", error);
+        }];
+    }else
+    {
+        // Data is already in DataService
+        [self stopSpinner];
+        [self createTableView];
+    }
+}
+
+- (void)setVehicleImageList
+{
+    for (VehicleListResponse* vehicle in _vehicleList) {
+        if (vehicle.imageList.count <= 0)
+            continue;
+        
+        // Create appropriate image list for each vehicle element in vehicleList
+        NSArray *base64List = vehicle.imageList;
+        if([base64List[0] isKindOfClass:[UIImage class]]){
+            for (int i=0; i < [base64List count]; ++i)
+                [_vehicleImageList addObject:base64List[i]];
+        }
+        else{
             for (int i=0; i < [base64List count]; ++i) {
                 
                 NSString *imageStr = (NSString*)base64List[i];
@@ -74,17 +104,12 @@
                 
                 [_vehicleImageList addObject:image];
             }
-            
-            vehicle.imageList = [NSMutableArray arrayWithArray:_vehicleImageList];
-            [_vehicleImageList removeAllObjects];
         }
-
-        [self stopSpinner];
-        [self createTableView];
         
-    } failure:^(RKObjectRequestOperation *operation, NSError *error) {
-        //
-    }];
+        vehicle.imageList = [NSMutableArray arrayWithArray:_vehicleImageList];
+        [_vehicleImageList removeAllObjects];
+    }
+
 }
 
 - (void)createTableView
@@ -98,12 +123,22 @@
 #pragma mark UITableViewDataSource
  - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    int additionalCell = 0;
+    if (![self isLastPageReached]) {
+        additionalCell++;
+    }
+    
+    
     // Rows number in section
-    return [_vehicleList count];
+    return (_vehicleList.count + additionalCell);
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if ([self isMoreCell:indexPath]) {
+        return _moreCell;
+    }
+    
     static NSString *CellIdentifier = @"CellIdentifier";
     
     VehicleListResponse *vehicle = (VehicleListResponse*)[_vehicleList objectAtIndex:[indexPath row]];
@@ -131,6 +166,24 @@
     return 1.0f;
 }
 
+- (BOOL)isMoreCell:(NSIndexPath *)indexPath
+{
+    if (indexPath.row == (_vehicleList.count)) {
+        return YES;
+    }
+    
+    return NO;
+}
+
+- (BOOL)isLastPageReached
+{
+    if ([DataService shared].isLastPageReached) {
+        return YES;
+    }
+    
+    return NO;
+}
+
 #pragma mark UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -146,6 +199,13 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if ([self isMoreCell:indexPath]) {
+        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        [cell setSelected:NO animated:YES];
+        [self moreCellTouched];
+        return;
+    }
+    
     // selected row by index path
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     VehicleListResponse *vehicle = (VehicleListResponse*)[_vehicleList objectAtIndex:[indexPath row]];
@@ -155,4 +215,25 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+#pragma mark MoreCellTouched
+- (void)moreCellTouched
+{
+    [_moreCell startAnimation];
+    [self performSelector:@selector(updateData) withObject:nil afterDelay:1.5f];
+}
+    
+- (void)updateData
+{
+    [[DataService shared] updateVehicleListWithSuccess:^(NSArray *vehicleList) {
+        
+        _vehicleList = [[DataService shared] getVehicleList];
+        
+        [self setVehicleImageList];
+        [_moreCell stopAnimation];
+        [_informHistoryTableView reloadData];
+    } failure:^(NSError *error) {
+        NSLog(@"Error: %@", error);
+    }];
+}
+     
 @end
