@@ -194,13 +194,14 @@
         }
         else
         {
+            [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"hasPin"];
             [self loadingHiddenState:NO];
             [self stopSpinner];
         }
         
         
     } failure:^(RKObjectRequestOperation *operation, NSError *error) {
-        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"hasPin"];
+        
         [self loadingHiddenState:NO];
         _errorLabel.hidden = TRUE;
         [self stopSpinner];

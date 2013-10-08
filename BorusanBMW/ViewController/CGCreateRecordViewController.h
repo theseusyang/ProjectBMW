@@ -9,12 +9,13 @@
 #import "CGBaseViewController.h"
 #import "CGMenuViewController.h"
 #import "CGTextField.h"
+#import "CGUIView.h"
 #import "CGLabel.h"
 #import "CGUtilHelper.h"
 #import "LocationManager.h"
 #import "Base64.h"
 
-@interface CGCreateRecordViewController : CGBaseViewController<UITextFieldDelegate>
+@interface CGCreateRecordViewController : CGBaseViewController<UITextFieldDelegate, UITextViewDelegate >
 {
     NSArray *_imageList;
     
@@ -26,7 +27,7 @@
     CGTextField *_licensePlate;
     CGTextField *_serviceName;
     CGTextField *_notificationType;
-    CGTextField *_description;
+    CGUIView *_description;
     
     UIButton    *_sendButton;
 }

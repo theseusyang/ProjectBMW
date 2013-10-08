@@ -47,7 +47,7 @@
     [_groupView addSubview:_dataLabel];
     
     _addressLabel = [[CGLabel alloc] initWithFrame:CGRectMake(107, 256, 200, 20)];
-    _addressLabel.backgroundColor = kColorBlue;
+    _addressLabel.backgroundColor = [UIColor clearColor];
     _addressLabel.font = kApplicationFont(13.0f);
     [_addressLabel setNumberOfLines:1];
     [_addressLabel setText:_vehicle.location];
@@ -83,6 +83,12 @@
     _notificationType.paddingX = kTextFieldPaddingX;
     [_groupView addSubview:_notificationType];
     
+    
+    _description = [[CGUIView alloc] initWithFrame:CGRectMake(35, 439, 250, 86) andBackground:@"TextArea.png" andIcon:@"IconCommentDark.png" andText:Nil];
+    [_description.textView setDelegate:self];
+    [_groupView addSubview:_description];
+    
+    /*
     _description = [[CGTextField alloc] initWithFrame:CGRectMake(35, 439, 250, 86)];
     [_description setText:_vehicle.description];
     [_description setDelegate:self];
@@ -91,7 +97,9 @@
     _description.leftViewMode = UITextFieldViewModeAlways;
     _description.paddingX = kTextFieldPaddingX;
     [_groupView  addSubview:_description];
-    
+    */
+     
+     
     _saveButton = [[UIButton alloc] initWithFrame:CGRectMake(31, 540, 258, 52)];
     _saveButton.titleLabel.font = kApplicationFontBold(19.0f);
     [_saveButton setBackgroundImage:[UIImage imageNamed:@"ButtonBlue"] forState:UIControlStateNormal];
@@ -126,6 +134,32 @@
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
+
+
+#pragma mark UITextViewDelegate
+
+- (void)textViewDidBeginEditing:(UITextView *)textView
+{
+
+    [_groupView setContentOffset:CGPointMake(0, textView.superview.frame.origin.y - kTextTopScrollGap) animated:YES];
+}
+
+- (void)textViewDidEndEditing:(UITextView *)textView{
+
+    [_groupView setContentOffset:CGPointMake(0, 0) animated:YES];
+}
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+    if([text isEqualToString:@"\n"]) {
+        
+        [textView resignFirstResponder];
+        return NO;
+    }
+    
+    return YES;
+}
+
 
 #pragma mark UITextFieldDelegete
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -171,7 +205,7 @@
     [[Server shared] updateVehicleWithPlate:_licensePlate.text
                                 serviceType:_serviceName.text
                            notificationType:[NSNumber numberWithInt:notificationIndex]
-                                description:_description.text
+                                description:_description.textView.text
                                    location:_addressLabel.text
                                          ID:_vehicle.ID
                                     success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {

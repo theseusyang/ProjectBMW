@@ -57,12 +57,12 @@
     [_dataLabel sizeToFit];
     [_groupScrollView addSubview:_dataLabel];
     
-    _addressLabel = [[CGLabel alloc] initWithFrame:CGRectMake(107, 63, 220, 60)];
+    _addressLabel = [[CGLabel alloc] initWithFrame:CGRectMake(107, 63, 200, 60)];
     
     _addressLabel.font = kApplicationFont(13.0f);
     _addressLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    _addressLabel.numberOfLines = 0;
-    _addressLabel.backgroundColor = kColorRed;
+    _addressLabel.numberOfLines = 2;
+    _addressLabel.backgroundColor = [UIColor clearColor];
     [_addressLabel setText:currentLocation];
     [_addressLabel sizeToFit];
     [_groupScrollView addSubview:_addressLabel];
@@ -96,15 +96,37 @@
     [_notificationType setDelegate:self];
     [_groupScrollView addSubview:_notificationType];
     
+    _description = [[CGUIView alloc] initWithFrame:CGRectMake(35, 248, 250, 86) andBackground:@"TextArea.png" andIcon:@"IconCommentDark.png" andText:Nil];
+    [_description.textView setDelegate:self];
+    [_groupScrollView addSubview:_description];
+    
+    /*
     _description = [[CGTextField alloc] initWithFrame:CGRectMake(35, 248, 250, 86)];
     _description.placeholder = @"Açıklama"; //TODO: Dummy data
+    
     _description.leftView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"IconCommentDark.png"]];
     _description.leftView.frame  = CGRectMake(14, 12, 20, 19);
     _description.leftViewMode = UITextFieldViewModeAlways;
-    _description.paddingX = kTextFieldPaddingX;
+    //_description.paddingX = kTextFieldPaddingX;
     [_description setDelegate:self];
     [_groupScrollView addSubview:_description];
+    */
     
+    /*
+    _description = [[UITextView alloc] initWithFrame:CGRectMake(35, 248, 250, 86)];
+    _description.text = @"Açıklama"; //TODO: Dummy data
+    UIImageView *icon =[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"IconCommentDark.png"]];
+    UIImageView *textBackground = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"TextArea@2x.png"]];
+    icon.frame = CGRectMake(14, 12, 20, 19);
+    textBackground.frame = CGRectMake(35, 248, 250, 86);
+    [_description addSubview:icon];
+    [_groupScrollView addSubview:textBackground];
+    _description.backgroundColor = [UIColor clearColor];
+    
+    [_description setDelegate:self];
+    [_groupScrollView addSubview:_description];
+    */
+     
     _sendButton = [[UIButton alloc] initWithFrame:CGRectMake(28, 350, 258, 52)];
     _sendButton.titleLabel.font = kApplicationFontBold(19.0f);
     [_sendButton setBackgroundImage:[UIImage imageNamed:@"ButtonBlue"] forState:UIControlStateNormal];
@@ -139,6 +161,39 @@
 {
     [self backToController:[CGMenuViewController class]];
 }
+
+#pragma mark UITextViewDelegate
+
+- (void)textViewDidBeginEditing:(UITextView *)textView
+{
+    _groupScrollView.scrollEnabled = YES;
+    [_groupScrollView setContentOffset:CGPointMake(0, textView.superview.frame.origin.y - kTextTopScrollGap) animated:YES];
+}
+
+- (void)textViewDidEndEditing:(UITextView *)textView{
+    _groupScrollView.scrollEnabled = NO;
+    [_groupScrollView setContentOffset:CGPointMake(0, 0) animated:YES];
+}
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+    if([text isEqualToString:@"\n"]) {
+        [textView resignFirstResponder];
+        return NO;
+    }
+    
+    return YES;
+}
+/*
+- (BOOL)textViewShouldEndEditing:(UITextView *)textView
+{
+    if(){
+        return YES;
+    } else {
+        return NO;
+    }
+}
+*/
 
 #pragma mark UITextFieldDelegete
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -187,7 +242,7 @@
     NSString *licencePlate     = _licensePlate.text;
     NSString *serviceName      = _serviceName.text;
     NSNumber *notificationType = [NSNumber numberWithInteger:[_notificationType.text integerValue]];
-    NSString *description      = _description.text;
+    NSString *description      = _description.textView.text;
     
     [[Server shared] insertVehicleWithPlate:licencePlate
                                 serviceType:serviceName

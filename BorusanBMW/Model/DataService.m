@@ -26,42 +26,74 @@
     if (self) {
         
         _vehiclePageIndex = 1;
-        
+        _vehicleDataList = [NSMutableArray arrayWithCapacity:200];
+       self.isLastPageReached = NO;
     }
     
     return self;
 }
 
+- (NSMutableArray*)getVehicleListWithSuccess:(void (^)(NSArray *vehicleList))success
+                                     failure:(void (^)(NSError* error))failure
+{
+    
+    [[Server shared] getVehicleListWithHash:[self getHash] pageIndex:_vehiclePageIndex success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+
+        if (!_vehicleDataList || _vehicleDataList.count <= 0) {
+             _vehicleDataList = [NSMutableArray arrayWithArray:[mappingResult array]];
+        }
+        else{
+            NSArray *array = [mappingResult array];
+            _vehicleDataList = (NSMutableArray*)[_vehicleDataList arrayByAddingObjectsFromArray:array];
+        }
+        
+        if ([mappingResult array].count < kDataPackageSize) {
+            self.isLastPageReached = YES;
+        }
+        
+        _vehiclePageIndex++;
+        success(_vehicleDataList);
+        
+    } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+        failure(error);
+    }];
+    
+    return nil;
+}
+
+- (NSMutableArray*)updateVehicleListWithSuccess:(void (^)(NSArray *vehicleList))success
+                                     failure:(void (^)(NSError* error))failure
+{
+    
+    [[Server shared] getVehicleListWithHash:[self getHash] pageIndex:_vehiclePageIndex success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+        
+        if (!_vehicleDataList || _vehicleDataList.count <= 0) {
+            _vehicleDataList = [NSMutableArray arrayWithArray:[mappingResult array]];
+        }
+        else{
+            NSArray *array = [mappingResult array];
+            _vehicleDataList = (NSMutableArray*)[_vehicleDataList arrayByAddingObjectsFromArray:array];
+        }
+        
+        if ([mappingResult array].count < kDataPackageSize) {
+            self.isLastPageReached = YES;
+        }
+        
+        _vehiclePageIndex++;
+        success(_vehicleDataList);
+        
+    } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+        failure(error);
+    }];
+    
+    return nil;
+}
+
+#pragma mark GETTER & SETTER
+
 - (NSMutableArray*)getVehicleList
 {
-    /*
-    //Get vehice list
-    [[Server shared] getVehicleListWithHash:[self getHash] success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
-
-        _vehicleList = [[mappingResult array] mutableCopy];
-        _vehicleImageList = [[NSMutableArray alloc] init];
-        
-        for (VehicleListResponse* vehicle in _vehicleList) {
-            if (vehicle.imageList.count <= 0)
-                continue;
-            
-            // Create appropriate image list for each vehicle element in vehicleList
-            NSArray *base64List = vehicle.imageList;
-            for (int i=0; i < [base64List count]; ++i) {
-                
-                NSString *imageStr = (NSString*)base64List[i];
-                NSData *data = [Base64 decode:imageStr];
-                UIImage *image = [UIImage imageWithData:data];
-                
-                [_vehicleImageList addObject:image];
-            }
-            
-            vehicle.imageList = [NSMutableArray arrayWithArray:_vehicleImageList];
-            [_vehicleImageList removeAllObjects];
-     
-    }];
-    */
-    return nil;
+    return _vehicleDataList;
 }
 
 - (void)setHash:(NSString*)hash
