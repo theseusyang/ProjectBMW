@@ -60,14 +60,20 @@
     [_serviceLabel sizeToFit];
     [_textGroupView addSubview:_serviceLabel];
 
-    NSArray *notificationList = kNotificationList;
     _notificationType = [[UILabel alloc] initWithFrame:CGRectMake(37, 121, 200, 20)];
-    _notificationType.text = [notificationList objectAtIndex:[_vehicle.notificationType integerValue]];
+    NSArray *_list = [DataService shared].notificationTypeList;
+    for (NotificationTypeResponse* notif in _list) {
+        if ([_vehicle.notificationType isEqual:notif.ID]) {
+            _notificationType.text = notif.notificationType;
+            NSLog(@"NotificationType=%@", _notificationType.text);
+            break;
+        }
+    }
     _notificationType.lineBreakMode = NSLineBreakByWordWrapping;
     _notificationType.numberOfLines = 0;
     _notificationType.backgroundColor = [UIColor clearColor];
-    [_notificationType sizeToFit];
     [_textGroupView addSubview:_notificationType];
+    [_notificationType sizeToFit];
     
     _descriptionLabel = [[UILabel alloc] initWithFrame:CGRectMake(37, 154, 200, 60)];
     _descriptionLabel.text = _vehicle.description;
@@ -97,7 +103,6 @@
     _descriptionIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"IconCommentLight.png"]];
     _descriptionIcon.frame = CGRectMake(3, 155, 20, 19);
     [_textGroupView addSubview:_descriptionIcon];
-    
 }
 
 - (void)viewDidLoad
@@ -111,7 +116,6 @@
     [super viewWillAppear:animated];
     
     [self.navigationController setNavigationBarHidden:NO];
-
 }
 
 - (void)didReceiveMemoryWarning

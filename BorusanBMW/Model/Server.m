@@ -12,15 +12,18 @@
 #define kServerPath @"http://wecareservice.ogoodigital.com/Services/Mobile.svc/"
 
 // BACKEND SERVICE
+#define kFuncLogin @"Login"
 #define kFuncInsertVecihle @"InsertVehicle"
 #define kFuncUpdateVecihle @"UpdateVehicle"
-#define kFuncLogin @"Login"
 #define kFuncGetVehicle @"GetVehicle"
 #define kFuncGetVechicleList @"GetVehicleList"
+#define kFuncGetNotificationTypes @"GetNotificationType"
 
 /*Response KeyPaths*/
 #define kPathLoginResponse @"LoginResult"
 #define kPathGetVehicleListResponse @"GetVehicleListResult"
+#define kPathGetNotificationTypeResponse @"GetNotificationTypeResult"
+#define kPathUpdateVehicleResponse @"UpdateVehicleResult"
 
 @implementation Server
 
@@ -73,7 +76,19 @@
                                                                                        keyPath:kPathGetVehicleListResponse
                                                                                    statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
     
-    [_manager addResponseDescriptorsFromArray:@[loginDesc, recordDesc, getVehicleDesc]];
+    RKResponseDescriptor *getVehicleNotificationType = [RKResponseDescriptor responseDescriptorWithMapping:[NotificationTypeResponse objectMapping]
+                                                                                                    method:RKRequestMethodAny
+                                                                                               pathPattern:nil
+                                                                                                   keyPath:kPathGetNotificationTypeResponse
+                                                                                               statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
+    
+    RKResponseDescriptor *updateResponseDec = [RKResponseDescriptor responseDescriptorWithMapping:[UpdateResponse objectMapping]
+                                                                                                    method:RKRequestMethodAny
+                                                                                               pathPattern:nil
+                                                                                                   keyPath:nil
+                                                                                               statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
+    
+    [_manager addResponseDescriptorsFromArray:@[loginDesc, recordDesc, getVehicleDesc, getVehicleNotificationType, updateResponseDec]];
 }
 
 - (void)insertVehicleWithPlate:(NSString*)plate
@@ -87,7 +102,7 @@
 {
     NSDictionary *recordRequest = @{@"Plate": plate,
                                     @"ServiceType": serviceType,
-                                    @"NotificationType": [notificationType stringValue],
+                                    @"NotificationType": notificationType,
                                     @"Explanation": description,
                                     @"Location": location,
                                     @"Hash": [[DataService shared] getHash],
@@ -115,17 +130,18 @@
 {
     NSDictionary *recordUpdateRequest = @{@"Plate": plate,
                                           @"ServiceType": serviceType,
-                                          @"NotificationType": [notificationType stringValue],
+                                          @"NotificationType": notificationType,
                                           @"Explanation": description,
                                           @"Location": location,
                                           @"ID": ID,
                                           @"Hash": [[DataService shared] getHash]};
     
     
-    [[RKObjectManager sharedManager] getObject:nil path:kFuncUpdateVecihle parameters:recordUpdateRequest success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+    [[RKObjectManager sharedManager] postObject:nil path:kFuncUpdateVecihle parameters:recordUpdateRequest success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
         success(operation, mappingResult);
     } failure:^(RKObjectRequestOperation *operation, NSError *error) {
         NSLog(@"insertVehicleWithPlate is Failure");
+        failure(operation, error);
     }];
 }
 
@@ -172,7 +188,18 @@
         success(operation, mappingResult);
         
     } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+        failure(operation, error);
         NSLog(@"vehicleListRequest is Failure");
+    }];
+}
+
+- (void)getNotificationTypesWithSuccess:(void (^)(RKObjectRequestOperation *operation, RKMappingResult *mappingResult))success
+                     failure:(void (^)(RKObjectRequestOperation *operation, NSError *error))failure
+{
+    [[RKObjectManager sharedManager] getObjectsAtPath:kFuncGetNotificationTypes parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+        success(operation, mappingResult);
+    } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+        failure(operation, error);
     }];
 }
 

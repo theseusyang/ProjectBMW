@@ -48,11 +48,6 @@
      */
 }
 
-- (void)refreshTable
-{
-    // Will be implemented after this class is subclassed from UITableViewController
-}
-
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -154,8 +149,6 @@
         
         [cell.pic addSubview:imageView];
     }
-    else
-        NSLog(@"[CGInformHistoryViewController] tableView: There is no photo for row %d", [indexPath row]+1);
 
     return cell;
 }
@@ -219,7 +212,7 @@
 - (void)moreCellTouched
 {
     [_moreCell startAnimation];
-    [self performSelector:@selector(updateData) withObject:nil afterDelay:1.5f];
+    [self updateData];
 }
     
 - (void)updateData

@@ -12,6 +12,16 @@
 #define kTextFieldPaddingX 48.0f;
 #define kScrollBar
 
+#define kPickerViewWidth 320
+#define kPickerViewHeight 217
+#define kPickerViewRowWidth 320
+#define kPickerViewRowHeight 45
+
+#define kLabelPaddingX 70
+#define kCheckIconPaddingX 32
+#define kCheckIconSize 24
+#define kCheckIconHeight (kPickerViewRowHeight - kCheckIconSize) / 2
+
 @interface CGCreateRecordViewController ()
 
 @end
@@ -42,6 +52,7 @@
     
     NSString* currentDateString = [CGUtilHelper currentDate];
     NSString* currentLocation = [[LocationManager shared] location];
+    _notificationTypeList = [DataService shared].notificationTypeList;
     
     _groupScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, kWindowWidth, kWindowHeightWithNav)];
     _groupScrollView.contentSize = CGSizeMake(kWindowWidth, kWindowHeightWithNav + 200);
@@ -84,6 +95,7 @@
     [_serviceName setDelegate:self];
     [_groupScrollView addSubview:_serviceName];
     
+    // TODO: When touched, UIPickerWheel should appear.
     _notificationType = [[CGTextField alloc] initWithFrame:CGRectMake(35, 200, 250, 46)];
     _notificationType.placeholder = @"Bildirim Tipi"; //TODO: Dummy data
     _notificationType.leftView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"IconNotificationTypeDark.png"]];
@@ -109,6 +121,13 @@
     [_sendButton addTarget:self action:@selector(sendAction:) forControlEvents:UIControlEventTouchUpInside];
     [_groupScrollView addSubview:_sendButton];
     
+    _imagePicker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, kWindowHeightWithNav, kPickerViewWidth, kPickerViewHeight)];
+    _imagePicker.delegate = self;
+    _imagePicker.dataSource = self;
+    _imagePicker.showsSelectionIndicator = YES;
+    _imagePicker.hidden = NO;
+
+    [self.view addSubview:_imagePicker];
 }
 
 - (void)viewDidLoad
@@ -140,6 +159,7 @@
 #pragma mark UITextFieldDelegete
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
+    [self instantHidePickerWheel];
     [textField resignFirstResponder];
     
     return YES;
@@ -147,8 +167,21 @@
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
+    if ([textField isEqual:_notificationType]) {
+        [self performSelector:@selector(hideKeyboard:) withObject:textField afterDelay:0.1f];
+    }
+    
     _groupScrollView.scrollEnabled = YES;
     [_groupScrollView setContentOffset:CGPointMake(0, textField.frame.origin.y - kTextTopScrollGap) animated:YES];
+}
+
+//TODO: Saçma sapan bir çözüm, nedenini araştır!
+-(void)hideKeyboard:(id)sender
+{
+    [self showPickerWheel];
+    UITextField *text = (UITextField*)sender;
+    [self.view endEditing:YES];
+    [text resignFirstResponder];
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
@@ -183,12 +216,22 @@
     NSString *location         = _addressLabel.text;
     NSString *licencePlate     = _licensePlate.text;
     NSString *serviceName      = _serviceName.text;
-    NSNumber *notificationType = [NSNumber numberWithInteger:[_notificationType.text integerValue]];
+    //NSString *notificationType = _notificationType.text;
     NSString *description      = _description.text;
+    
+    NSNumber *notifID;
+    
+    for (NotificationTypeResponse* notif in _notificationTypeList) {
+        if ([_notificationType.text isEqualToString:notif.notificationType]) {
+            notifID = notif.ID;
+            break;
+        }
+    }
+    
     
     [[Server shared] insertVehicleWithPlate:licencePlate
                                 serviceType:serviceName
-                           notificationType:notificationType
+                           notificationType:notifID
                                 description:description
                                    location:location
                                   imageList:imageListFinal
@@ -204,6 +247,92 @@
                                     }];
     
     
+}
+
+#pragma mark UIPickerViewDataSource
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+    return _notificationTypeList.count;
+}
+
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+    return 1;
+}
+
+#pragma mark UIPickerViewDelegate
+
+- (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component
+{
+    return kPickerViewRowHeight;
+}
+
+- (UIView*)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
+{
+    NotificationTypeResponse* notificationType = (NotificationTypeResponse*)[_notificationTypeList objectAtIndex:row];
+
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(kLabelPaddingX, 0, kPickerViewWidth, kPickerViewRowHeight)];
+    label.textColor         = kTextColorLight;
+    label.font              = kApplicationFontBold(26.0f);
+    label.backgroundColor   = kColorClear;
+    label.textAlignment     = NSTextAlignmentLeft;
+    label.text = notificationType.notificationType;
+    
+    UIView *rowView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kPickerViewWidth, kPickerViewRowHeight)];
+    [rowView addSubview:label];
+    
+    return rowView;
+}
+
+/*
+- (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component
+{
+    return kPickerViewWidth;
+}
+*/
+/*
+- (NSString*)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    NotificationTypeResponse* notificationType = (NotificationTypeResponse*)[_notificationTypeList objectAtIndex:row];
+    
+    return notificationType.notificationType;
+}
+*/
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
+    UIView *view = [pickerView viewForRow:row forComponent:component];
+    UILabel *label = view.subviews[0];
+    _notificationType.text = label.text;
+    
+    [self hidePickerWheel];
+}
+     
+#pragma mark
+- (void)showPickerWheel
+{
+    [UIView animateWithDuration:0.1f animations:^{
+        _imagePicker.frame = CGRectMake(0, kWindowHeightWithNav - kPickerViewHeight, kPickerViewWidth, kPickerViewHeight);
+    } completion:^(BOOL finished) {
+        _imagePicker.hidden = NO;
+    }];
+}
+
+- (void)hidePickerWheel
+{
+    [UIView animateWithDuration:1.0f animations:^{
+        _imagePicker.frame = CGRectMake(0, kWindowHeightWithNav, kPickerViewWidth, kPickerViewHeight);
+    } completion:^(BOOL finished) {
+        _imagePicker.hidden = YES;
+    }];
+}
+
+- (void)instantHidePickerWheel
+{
+    [UIView animateWithDuration:0.1f animations:^{
+        _imagePicker.frame = CGRectMake(0, kWindowHeightWithNav, kPickerViewWidth, kPickerViewHeight);
+    } completion:^(BOOL finished) {
+        _imagePicker.hidden = YES;
+    }];
 }
 
 @end

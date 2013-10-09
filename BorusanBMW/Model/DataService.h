@@ -15,12 +15,12 @@
 @interface DataService : NSObject
 {
     NSString *_hash;
-    
     NSMutableArray *_vehicleDataList;
 }
 
 @property int vehiclePageIndex;
 @property BOOL isLastPageReached;
+@property (nonatomic, strong) NSArray *notificationTypeList;
 
 + (DataService*)shared;
 

@@ -19,6 +19,9 @@
         self.textLabel.textAlignment = NSTextAlignmentCenter;
         self.textLabel.textColor = kTextColor;
         
+        UIImageView *bgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:kResButtonLoadMore]];
+        self.backgroundView = bgView;
+        
         _activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
         [self.contentView addSubview:_activityIndicator];
         

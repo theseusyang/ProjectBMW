@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		621F1D5A1802E054003356EC /* CGMoreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 621F1D591802E054003356EC /* CGMoreCell.m */; };
+		621F1D5F1803F0F3003356EC /* NotificationTypeResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 621F1D5E1803F0F3003356EC /* NotificationTypeResponse.m */; };
 		6224448617D87220002A2482 /* CGMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6224448517D87220002A2482 /* CGMenuViewController.m */; };
 		6224448A17D8B01F002A2482 /* CGTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 6224448917D8B01F002A2482 /* CGTextField.m */; };
 		622444E517D8D1E7002A2482 /* Background.png in Resources */ = {isa = PBXBuildFile; fileRef = 6224448B17D8D1E7002A2482 /* Background.png */; };
@@ -118,8 +119,6 @@
 		62B7C53917D6151A00257C95 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 62B7C53717D6151A00257C95 /* InfoPlist.strings */; };
 		62B7C53B17D6151A00257C95 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 62B7C53A17D6151A00257C95 /* main.m */; };
 		62B7C53F17D6151A00257C95 /* CGAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 62B7C53E17D6151A00257C95 /* CGAppDelegate.m */; };
-		62B7C66A17D61DF300257C95 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 62B7C66917D61DF300257C95 /* Default.png */; };
-		62B7C66C17D61E0100257C95 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 62B7C66B17D61E0000257C95 /* Default@2x.png */; };
 		62B7C67A17D6239500257C95 /* CGMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62B7C67917D6239500257C95 /* CGMainViewController.m */; };
 		62C905D417DDBC96009E1253 /* CGInformHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62C905D317DDBC96009E1253 /* CGInformHistoryViewController.m */; };
 		62C905D917DDBF6D009E1253 /* CGInformHistoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 62C905D817DDBF6D009E1253 /* CGInformHistoryCell.m */; };
@@ -145,6 +144,11 @@
 		62D790C317E9A09A00BDB445 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62D790BE17E9A09A00BDB445 /* MobileCoreServices.framework */; };
 		62D790C417E9A09A00BDB445 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62D790BF17E9A09A00BDB445 /* Security.framework */; };
 		62D790C517E9A09A00BDB445 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62D790C017E9A09A00BDB445 /* SystemConfiguration.framework */; };
+		62E988BB18054C6D000F3C8D /* UpdateResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E988BA18054C6D000F3C8D /* UpdateResponse.m */; };
+		62E988C1180585A3000F3C8D /* ButtonLoadMore.png in Resources */ = {isa = PBXBuildFile; fileRef = 62E988BF180585A2000F3C8D /* ButtonLoadMore.png */; };
+		62E988C2180585A3000F3C8D /* ButtonLoadMore@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 62E988C0180585A3000F3C8D /* ButtonLoadMore@2x.png */; };
+		62E988C5180585DE000F3C8D /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 62E988C3180585DE000F3C8D /* Default.png */; };
+		62E988C6180585DE000F3C8D /* Default~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 62E988C4180585DE000F3C8D /* Default~iphone.png */; };
 		62FFD63B17E195FC00438CA0 /* TakePhoto.png in Resources */ = {isa = PBXBuildFile; fileRef = 62FFD63A17E195FC00438CA0 /* TakePhoto.png */; };
 		62FFD64017E1960700438CA0 /* Element1.png in Resources */ = {isa = PBXBuildFile; fileRef = 62FFD63C17E1960700438CA0 /* Element1.png */; };
 		62FFD64117E1960700438CA0 /* Element2.png in Resources */ = {isa = PBXBuildFile; fileRef = 62FFD63D17E1960700438CA0 /* Element2.png */; };
@@ -206,6 +210,8 @@
 /* Begin PBXFileReference section */
 		621F1D581802E053003356EC /* CGMoreCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CGMoreCell.h; path = View/Cell/CGMoreCell.h; sourceTree = "<group>"; };
 		621F1D591802E054003356EC /* CGMoreCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CGMoreCell.m; path = View/Cell/CGMoreCell.m; sourceTree = "<group>"; };
+		621F1D5D1803F0F3003356EC /* NotificationTypeResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NotificationTypeResponse.h; path = Model/Entity/NotificationTypeResponse.h; sourceTree = "<group>"; };
+		621F1D5E1803F0F3003356EC /* NotificationTypeResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NotificationTypeResponse.m; path = Model/Entity/NotificationTypeResponse.m; sourceTree = "<group>"; };
 		6224448417D87220002A2482 /* CGMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CGMenuViewController.h; path = ViewController/CGMenuViewController.h; sourceTree = "<group>"; };
 		6224448517D87220002A2482 /* CGMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CGMenuViewController.m; path = ViewController/CGMenuViewController.m; sourceTree = "<group>"; };
 		6224448817D8B01F002A2482 /* CGTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CGTextField.h; path = UI/CGTextField.h; sourceTree = "<group>"; };
@@ -331,8 +337,6 @@
 		62B7C53C17D6151A00257C95 /* BorusanBMW-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BorusanBMW-Prefix.pch"; sourceTree = "<group>"; };
 		62B7C53D17D6151A00257C95 /* CGAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGAppDelegate.h; sourceTree = "<group>"; };
 		62B7C53E17D6151A00257C95 /* CGAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CGAppDelegate.m; sourceTree = "<group>"; };
-		62B7C66917D61DF300257C95 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
-		62B7C66B17D61E0000257C95 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../Default@2x.png"; sourceTree = "<group>"; };
 		62B7C66D17D61E1E00257C95 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
 		62B7C67817D6239500257C95 /* CGMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CGMainViewController.h; path = ViewController/CGMainViewController.h; sourceTree = "<group>"; };
 		62B7C67917D6239500257C95 /* CGMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CGMainViewController.m; path = ViewController/CGMainViewController.m; sourceTree = "<group>"; };
@@ -519,6 +523,12 @@
 		62D790BE17E9A09A00BDB445 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		62D790BF17E9A09A00BDB445 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		62D790C017E9A09A00BDB445 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		62E988B918054C6D000F3C8D /* UpdateResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UpdateResponse.h; path = Model/Entity/UpdateResponse.h; sourceTree = "<group>"; };
+		62E988BA18054C6D000F3C8D /* UpdateResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UpdateResponse.m; path = Model/Entity/UpdateResponse.m; sourceTree = "<group>"; };
+		62E988BF180585A2000F3C8D /* ButtonLoadMore.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ButtonLoadMore.png; sourceTree = "<group>"; };
+		62E988C0180585A3000F3C8D /* ButtonLoadMore@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ButtonLoadMore@2x.png"; sourceTree = "<group>"; };
+		62E988C3180585DE000F3C8D /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = Resources/Default.png; sourceTree = "<group>"; };
+		62E988C4180585DE000F3C8D /* Default~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default~iphone.png"; path = "Resources/Default~iphone.png"; sourceTree = "<group>"; };
 		62FFD63A17E195FC00438CA0 /* TakePhoto.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TakePhoto.png; path = Dummy/TakePhoto.png; sourceTree = "<group>"; };
 		62FFD63C17E1960700438CA0 /* Element1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Element1.png; path = Dummy/InformHistory/Element1.png; sourceTree = "<group>"; };
 		62FFD63D17E1960700438CA0 /* Element2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Element2.png; path = Dummy/InformHistory/Element2.png; sourceTree = "<group>"; };
@@ -584,6 +594,8 @@
 		629ABD4617E6E3D500A0F0F6 /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
+				62E988BF180585A2000F3C8D /* ButtonLoadMore.png */,
+				62E988C0180585A3000F3C8D /* ButtonLoadMore@2x.png */,
 				6224449117D8D1E7002A2482 /* ButtonBlue.png */,
 				6224449217D8D1E7002A2482 /* ButtonBlue@2x.png */,
 				6224449317D8D1E7002A2482 /* ButtonCapture.png */,
@@ -674,6 +686,10 @@
 				629703CF17F175C6000D159F /* VehicleListResponse.m */,
 				62A70B3217F9A2FB00098F47 /* LoginRequest.h */,
 				62A70B3317F9A2FB00098F47 /* LoginRequest.m */,
+				621F1D5D1803F0F3003356EC /* NotificationTypeResponse.h */,
+				621F1D5E1803F0F3003356EC /* NotificationTypeResponse.m */,
+				62E988B918054C6D000F3C8D /* UpdateResponse.h */,
+				62E988BA18054C6D000F3C8D /* UpdateResponse.m */,
 			);
 			name = Entity;
 			sourceTree = "<group>";
@@ -734,9 +750,9 @@
 		62B7C53517D6151A00257C95 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				62E988C3180585DE000F3C8D /* Default.png */,
+				62E988C4180585DE000F3C8D /* Default~iphone.png */,
 				62B7C66D17D61E1E00257C95 /* Default-568h@2x.png */,
-				62B7C66B17D61E0000257C95 /* Default@2x.png */,
-				62B7C66917D61DF300257C95 /* Default.png */,
 				62B7C53617D6151A00257C95 /* BorusanBMW-Info.plist */,
 				62B7C53717D6151A00257C95 /* InfoPlist.strings */,
 				62B7C53A17D6151A00257C95 /* main.m */,
@@ -1227,12 +1243,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				62B7C53917D6151A00257C95 /* InfoPlist.strings in Resources */,
-				62B7C66A17D61DF300257C95 /* Default.png in Resources */,
-				62B7C66C17D61E0100257C95 /* Default@2x.png in Resources */,
 				622444E517D8D1E7002A2482 /* Background.png in Resources */,
 				622444E617D8D1E7002A2482 /* Background@2x.png in Resources */,
 				622444E717D8D1E7002A2482 /* BadgePending.png in Resources */,
 				622444E817D8D1E7002A2482 /* BadgePending@2x.png in Resources */,
+				62E988C6180585DE000F3C8D /* Default~iphone.png in Resources */,
 				622444E917D8D1E7002A2482 /* BadgeSent.png in Resources */,
 				622444EA17D8D1E7002A2482 /* BadgeSent@2x.png in Resources */,
 				622444EB17D8D1E7002A2482 /* ButtonBlue.png in Resources */,
@@ -1251,6 +1266,7 @@
 				622444F817D8D1E7002A2482 /* ButtonSmallPressed@2x.png in Resources */,
 				622444F917D8D1E7002A2482 /* ButtonSquare.png in Resources */,
 				622444FA17D8D1E7002A2482 /* ButtonSquare@2x.png in Resources */,
+				62E988C2180585A3000F3C8D /* ButtonLoadMore@2x.png in Resources */,
 				622444FB17D8D1E7002A2482 /* ButtonSquarePressed.png in Resources */,
 				62A70B3E17F9C53000098F47 /* iPhoneIcon@2x.png in Resources */,
 				622444FC17D8D1E7002A2482 /* ButtonSquarePressed@2x.png in Resources */,
@@ -1306,6 +1322,7 @@
 				6224452D17D8D1E7002A2482 /* LabelBack.png in Resources */,
 				6224452E17D8D1E7002A2482 /* LabelBack@2x.png in Resources */,
 				6224452F17D8D1E7002A2482 /* LabelCancel.png in Resources */,
+				62E988C5180585DE000F3C8D /* Default.png in Resources */,
 				6224453017D8D1E7002A2482 /* LabelCancel@2x.png in Resources */,
 				6224453117D8D1E7002A2482 /* LabelEdit.png in Resources */,
 				6224453217D8D1E7002A2482 /* LabelEdit@2x.png in Resources */,
@@ -1319,6 +1336,7 @@
 				6224453A17D8D1E7002A2482 /* TextAreaFocused@2x.png in Resources */,
 				6224453B17D8D1E7002A2482 /* Textbox.png in Resources */,
 				6224453C17D8D1E7002A2482 /* Textbox@2x.png in Resources */,
+				62E988C1180585A3000F3C8D /* ButtonLoadMore.png in Resources */,
 				6224453D17D8D1E7002A2482 /* TextboxFocused.png in Resources */,
 				6224453E17D8D1E7002A2482 /* TextboxFocused@2x.png in Resources */,
 				62FFD63B17E195FC00438CA0 /* TakePhoto.png in Resources */,
@@ -1355,6 +1373,7 @@
 				62CEEE2C17F1BDEA00A00F81 /* LocationManager.m in Sources */,
 				629703D017F175C6000D159F /* VehicleListResponse.m in Sources */,
 				62B7C53B17D6151A00257C95 /* main.m in Sources */,
+				62E988BB18054C6D000F3C8D /* UpdateResponse.m in Sources */,
 				62B7C53F17D6151A00257C95 /* CGAppDelegate.m in Sources */,
 				621F1D5A1802E054003356EC /* CGMoreCell.m in Sources */,
 				62B7C67A17D6239500257C95 /* CGMainViewController.m in Sources */,
@@ -1378,6 +1397,7 @@
 				62C905F217DF3E6F009E1253 /* CGInformEditViewController.m in Sources */,
 				62C9060717E07199009E1253 /* CGUtilHelper.m in Sources */,
 				62C9060E17E095A5009E1253 /* CGLabel.m in Sources */,
+				621F1D5F1803F0F3003356EC /* NotificationTypeResponse.m in Sources */,
 				62D78F1C17E72D3700BDB445 /* Tesseract.mm in Sources */,
 				62B0A44D17E9C2240042F199 /* Server.m in Sources */,
 			);

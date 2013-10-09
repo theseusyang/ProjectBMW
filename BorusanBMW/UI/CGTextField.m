@@ -48,9 +48,4 @@
     return bounds;
 }
 
-- (void)layoutSubviews
-{
-    [super layoutSubviews];
-}
-
 @end
