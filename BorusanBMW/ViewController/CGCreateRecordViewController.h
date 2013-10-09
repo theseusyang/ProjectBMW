@@ -9,12 +9,13 @@
 #import "CGBaseViewController.h"
 #import "CGMenuViewController.h"
 #import "CGTextField.h"
+#import "CGUIView.h"
 #import "CGLabel.h"
 #import "CGUtilHelper.h"
 #import "LocationManager.h"
 #import "Base64.h"
 
-@interface CGCreateRecordViewController : CGBaseViewController<UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate>
+@interface CGCreateRecordViewController : CGBaseViewController<UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate, UITextViewDelegate>
 {
     NSArray *_imageList;
     
@@ -27,13 +28,12 @@
     CGTextField *_licensePlate;
     CGTextField *_serviceName;
     CGTextField *_notificationType;
-    CGTextField *_description;
-
-    UIButton    *_sendButton;
+    CGUIView *_description;
     
     //Photo Picker
     UIPickerView *_imagePicker;
     NSArray* _notificationTypeList;
+    UIButton    *_sendButton;
 }
 
 - (id)initWithImageList:(NSArray *)imageList;

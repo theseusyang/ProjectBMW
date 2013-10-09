@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 Baris YILMAZ. All rights reserved.
 //
 
+#import <Security/Security.h>
 #import "CGMainViewController.h"
 #import "CGMenuViewController.h"
 #import "CGTextField.h"
@@ -75,6 +76,13 @@
     [_enteranceButton.titleLabel setFont:kApplicationFontBold(19.0f)];
     [_enteranceButton addTarget:self action:@selector(enterance_button:) forControlEvents:UIControlEventTouchUpInside];
     [_groupScrollView addSubview:_enteranceButton];
+    
+    bool hasPin = [[NSUserDefaults standardUserDefaults] boolForKey:@"hasPin"];
+    if(hasPin){
+        _emailTextField.text = [[NSUserDefaults standardUserDefaults] stringForKey:@"userName"];
+        _passwordTextField.text = [[NSUserDefaults standardUserDefaults] stringForKey:@"password"];
+        [self enterance_button:nil];
+    }
 }
 
 - (void)viewDidLoad
@@ -97,6 +105,7 @@
     [super viewWillAppear:animated];
 
     [self.navigationController setNavigationBarHidden:YES];
+
 }
 
 - (void)loadingHiddenState:(BOOL)hidden
@@ -115,11 +124,50 @@
     _errorLabel.text = errorMessage;
     return FALSE;
 }
-    
+
+
+////////////////////////////////////////
+/*
+//Password Test
+- (void)passwordCheck:(NSString*) userName withPassword:(NSString*) password
+{
+    //NSString *appName = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleIdentifier"];
+
+    bool hasPin = [[NSUserDefaults standardUserDefaults] boolForKey:@"hasPin"];
+
+
+    if(hasPin){
+        _emailTextField.text = [[NSUserDefaults standardUserDefaults] stringForKey:@"userName"];
+        _passwordTextField.text = [[NSUserDefaults standardUserDefaults] stringForKey:@"password"];
+        
+    } else {
+        [[NSUserDefaults standardUserDefaults] setObject:userName forKey:@"userName"];
+        [[NSUserDefaults standardUserDefaults] setObject:password forKey:@"password"];
+    }
+}
+*/
+////////////////////////////////////////
+
 #pragma mark Actions
 -(void) enterance_button:(id)sender
 {
     [self loadingHiddenState:YES];
+    
+    /*
+    bool hasPin = [[NSUserDefaults standardUserDefaults] boolForKey:@"hasPin"];
+    
+    
+    if(hasPin){
+        _emailTextField.text = [[NSUserDefaults standardUserDefaults] stringForKey:@"userName"];
+        _passwordTextField.text = [[NSUserDefaults standardUserDefaults] stringForKey:@"password"];
+        
+    } else {
+        [[NSUserDefaults standardUserDefaults] setObject:_emailTextField.text forKey:@"userName"];
+        [[NSUserDefaults standardUserDefaults] setObject:_passwordTextField.text forKey:@"password"];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"hasPin"];
+        
+    }
+    */
     
     // When Send button is clicked, make dissapear the virtual keyboard
     [_emailTextField resignFirstResponder];
@@ -129,9 +177,15 @@
     NSString *username = _emailTextField.text;
     NSString *password = _passwordTextField.text;
     
+    
+    
     [self startSpinner];
     
     [[Server shared] loginWithUsername:username password:password success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+        
+        [[NSUserDefaults standardUserDefaults] setObject:_emailTextField.text forKey:@"userName"];
+        [[NSUserDefaults standardUserDefaults] setObject:_passwordTextField.text forKey:@"password"];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"hasPin"];
         
         LoginResponse *loginResponse = (LoginResponse*)[mappingResult array][0];
         if([self checkUserWithErrorCode:loginResponse.errorCode errorMessage:loginResponse.errorMessage])
@@ -142,12 +196,14 @@
         }
         else
         {
+            [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"hasPin"];
             [self loadingHiddenState:NO];
             [self stopSpinner];
         }
         
         
     } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+        
         [self loadingHiddenState:NO];
         _errorLabel.hidden = TRUE;
         [self stopSpinner];

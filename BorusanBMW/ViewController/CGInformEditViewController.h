@@ -10,12 +10,14 @@
 #import "CGBaseViewController.h"
 #import "CGTransitionViewController.h"
 #import "CGTextField.h"
+#import "CGUIView.h"
+#import "CGUIView.h"
 #import "CGLabel.h"
 #import "CGInformHistoryViewController.h"
 #import "CGUtilHelper.h"
 #import "CGPhotoGalleryView.h"
 
-@interface CGInformEditViewController : CGBaseViewController<UITextFieldDelegate, UIScrollViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource>
+@interface CGInformEditViewController : CGBaseViewController<UITextFieldDelegate, UIScrollViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UITextViewDelegate>
 {
     CGPhotoGalleryView *_photoGallery;
     UIView *_photoListView;
@@ -28,7 +30,8 @@
     CGTextField *_licensePlate;
     CGTextField *_serviceName;
     CGTextField *_notificationType;
-    CGTextField *_description;
+    //CGTextField *_description;
+    CGUIView *_description;
     
     UIButton    *_saveButton;
     
