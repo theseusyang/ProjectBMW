@@ -29,7 +29,7 @@
         
         _vehiclePageIndex = 1;
         
-        _vehicleDataList = [NSMutableArray arrayWithCapacity:kMaxVehicleCapacity];
+        _vehicleDataList = [[NSMutableArray array] mutableCopy];
         
        self.isLastPageReached = NO;
     }
@@ -40,7 +40,6 @@
 - (NSMutableArray*)getVehicleListWithSuccess:(void (^)(NSArray *vehicleList))success
                                      failure:(void (^)(NSError* error))failure
 {
-    
     [[Server shared] getVehicleListWithHash:[self getHash] pageIndex:_vehiclePageIndex success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
 
         if (!_vehicleDataList || _vehicleDataList.count <= 0) {
@@ -91,6 +90,16 @@
     }];
     
     return nil;
+}
+
+- (void)addRecord:(VehicleListResponse*)vehicleRecord
+{
+    if (vehicleRecord == nil) {
+        NSLog(@"[DataService] addRecord: Vehicle is null!");
+        return;
+    }
+    
+    _vehicleDataList = (NSMutableArray*)[_vehicleDataList arrayByAddingObjectsFromArray:@[vehicleRecord]];
 }
 
 #pragma mark GETTER & SETTER

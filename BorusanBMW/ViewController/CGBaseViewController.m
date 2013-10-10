@@ -34,6 +34,7 @@
     _spinner.center = self.view.center;
     [self.view addSubview:_spinner];
     
+    
     _leftButtonView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 120, 54)];
     _leftButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 8, 120, 50)];
     [_leftButton setBackgroundImage:[UIImage imageNamed:kResLabelBack] forState:UIControlStateNormal];

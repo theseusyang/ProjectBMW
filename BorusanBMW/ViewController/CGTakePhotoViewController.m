@@ -79,7 +79,6 @@
         
         _imagePicker.delegate = self;
         
-        
         //MBB
         /*
         UIView *_newView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 365) ];

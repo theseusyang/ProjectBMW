@@ -116,7 +116,6 @@
     [_groupView  addSubview:_description];
     */
      
-     
     _saveButton = [[UIButton alloc] initWithFrame:CGRectMake(31, 540, 258, 52)];
     _saveButton.titleLabel.font = kApplicationFontBold(19.0f);
     [_saveButton setBackgroundImage:[UIImage imageNamed:@"ButtonBlue"] forState:UIControlStateNormal];
@@ -160,7 +159,6 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-
 #pragma mark UITextViewDelegate
 
 - (void)textViewDidBeginEditing:(UITextView *)textView
@@ -184,7 +182,6 @@
     
     return YES;
 }
-
 
 #pragma mark UITextFieldDelegete
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -245,12 +242,6 @@
         }
     }
     
-    // Update the client-side vehicle data
-    _vehicle.licensePlate = _licensePlate.text;
-    _vehicle.serviceType = _serviceName.text;
-    _vehicle.notificationType = [NSNumber numberWithInteger:[notifID integerValue]];
-    _vehicle.description = _description.textView.text;
-
     [[Server shared] updateVehicleWithPlate:_licensePlate.text
                                 serviceType:_serviceName.text
                            notificationType:notifID
@@ -259,6 +250,7 @@
                                          ID:_vehicle.ID
                                     success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
                                         
+                                        [self updateClientData: notifID];
                                         UIViewController *vc = [[CGTransitionViewController alloc] initWith:[CGInformHistoryViewController class]];
                                         [self.navigationController pushViewController:vc animated:YES];
                                         
@@ -312,7 +304,7 @@
     [self hidePickerWheel];
 }
 
-#pragma mark
+#pragma mark PickerWheel
 - (void)showPickerWheel
 {
     [UIView animateWithDuration:0.1f animations:^{
@@ -338,6 +330,15 @@
     } completion:^(BOOL finished) {
         _imagePicker.hidden = YES;
     }];
+}
+
+- (void)updateClientData:(NSNumber*)notifID
+{
+    // Update the client-side vehicle data
+    _vehicle.licensePlate = _licensePlate.text;
+    _vehicle.serviceType = _serviceName.text;
+    _vehicle.notificationType = [NSNumber numberWithInteger:[notifID integerValue]];
+    _vehicle.description = _description.textView.text;
 }
 
 @end

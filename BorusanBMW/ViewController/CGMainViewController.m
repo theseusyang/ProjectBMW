@@ -41,7 +41,7 @@
 {
     [super loadView];
 
-    _groupScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, kWindowWidth, kWindowHeight)];
+    _groupScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, kWindowWidth, kWindowHeightWithStatus)];
     _groupScrollView.contentSize = CGSizeMake(kWindowWidth, kWindowWidth + kScrollHeight);
     _groupScrollView.scrollEnabled = FALSE;
     [self.view addSubview:_groupScrollView];

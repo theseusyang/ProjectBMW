@@ -31,7 +31,7 @@
     CGMainViewController *mainViewController = [[CGMainViewController alloc] init];
     
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:mainViewController];
-    
+
     UIImage *navbarBg = [UIImage imageNamed:@"ContentHeader.png"];
 	
     if ([navController.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)])

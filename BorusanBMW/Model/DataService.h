@@ -28,6 +28,7 @@
                                      failure:(void (^)(NSError* error))failure;
 - (NSMutableArray*)updateVehicleListWithSuccess:(void (^)(NSArray *vehicleList))success
                                         failure:(void (^)(NSError* error))failure;
+- (void)addRecord:(VehicleListResponse*)vehicleRecord;
 - (NSMutableArray*)getVehicleList;
 - (void)setHash:(NSString*)hash;
 - (NSString*)getHash;

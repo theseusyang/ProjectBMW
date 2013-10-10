@@ -25,6 +25,8 @@
 #define kPathGetNotificationTypeResponse @"GetNotificationTypeResult"
 #define kPathUpdateVehicleResponse @"UpdateVehicleResult"
 
+#define kPathInsertVehicleResponse @"InsertVehicleResult"
+
 @implementation Server
 
 + (Server *)shared
@@ -64,10 +66,10 @@
                                                                                            keyPath:kPathLoginResponse
                                                                                        statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
     
-    RKResponseDescriptor *recordDesc = [RKResponseDescriptor responseDescriptorWithMapping:[RecordResponse objectMapping]
+    RKResponseDescriptor *recordDesc = [RKResponseDescriptor responseDescriptorWithMapping:[VehicleListResponse objectMapping]
                                                                                    method:RKRequestMethodAny
                                                                               pathPattern:nil
-                                                                                  keyPath:nil
+                                                                                  keyPath:kPathInsertVehicleResponse
                                                                               statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
     
     RKResponseDescriptor *getVehicleDesc = [RKResponseDescriptor responseDescriptorWithMapping:[VehicleListResponse objectMapping]
@@ -100,6 +102,11 @@
                        success:(void (^)(RKObjectRequestOperation *operation, RKMappingResult *mappingResult))success
                        failure:(void (^)(RKObjectRequestOperation *operation, NSError *error))failure
 {
+    if (location == nil) {
+        NSLog(@"Location is nil! Use default location data.");
+        location = @"Default Location";
+    }
+    
     NSDictionary *recordRequest = @{@"Plate": plate,
                                     @"ServiceType": serviceType,
                                     @"NotificationType": notificationType,
