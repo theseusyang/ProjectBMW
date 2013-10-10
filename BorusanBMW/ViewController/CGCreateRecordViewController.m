@@ -151,6 +151,7 @@
     _imagePicker.dataSource = self;
     _imagePicker.showsSelectionIndicator = YES;
     _imagePicker.hidden = NO;
+    
 
     [self.view addSubview:_imagePicker];
 }
@@ -256,7 +257,8 @@
     NSMutableArray *imageList = [[NSMutableArray alloc] init];
     for (int i=0; i < [_imageList count]; ++i) {
         
-        UIImageView *imageView = [_imageList objectAtIndex:i];
+        UIImage *image = [_imageList objectAtIndex:i];
+        UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
         
         // Make small the pic
         UIGraphicsBeginImageContext(CGSizeMake(70, 70));

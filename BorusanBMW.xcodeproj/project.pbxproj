@@ -309,7 +309,7 @@
 		622444E317D8D1E7002A2482 /* TextboxFocused.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TextboxFocused.png; sourceTree = "<group>"; };
 		622444E417D8D1E7002A2482 /* TextboxFocused@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TextboxFocused@2x.png"; sourceTree = "<group>"; };
 		6224454517D8D578002A2482 /* CGTakePhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CGTakePhotoViewController.h; path = ViewController/CGTakePhotoViewController.h; sourceTree = "<group>"; };
-		6224454617D8D578002A2482 /* CGTakePhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CGTakePhotoViewController.m; path = ViewController/CGTakePhotoViewController.m; sourceTree = "<group>"; };
+		6224454617D8D578002A2482 /* CGTakePhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CGTakePhotoViewController.m; path = ViewController/CGTakePhotoViewController.m; sourceTree = "<group>"; usesTabs = 0; };
 		6245CBD617EC4CFE009A2630 /* DataService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataService.h; path = Model/DataService.h; sourceTree = "<group>"; };
 		6245CBD717EC4CFE009A2630 /* DataService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataService.m; path = Model/DataService.m; sourceTree = "<group>"; };
 		6245CBDF17EC917C009A2630 /* RecordResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RecordResponse.h; path = Model/Entity/RecordResponse.h; sourceTree = "<group>"; };

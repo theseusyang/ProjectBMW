@@ -32,6 +32,7 @@
         } failure:^(RKObjectRequestOperation *operation, NSError *error) {
             NSLog(@"Failure");
         }];
+        
     }
     
     return self;
@@ -76,6 +77,7 @@
     [_enteranceButton.titleLabel setFont:kApplicationFontBold(19.0f)];
     [_enteranceButton addTarget:self action:@selector(enterance_button:) forControlEvents:UIControlEventTouchUpInside];
     [_groupScrollView addSubview:_enteranceButton];
+    
 }
 
 - (void)viewDidLoad
