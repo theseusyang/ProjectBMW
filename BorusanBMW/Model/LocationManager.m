@@ -51,11 +51,11 @@
         _placemark = [placemarks lastObject];
         
         NSString *strAdd = nil;
-        
+        /*
         if ([_placemark.subThoroughfare length] != 0) {
             strAdd = _placemark.subThoroughfare;
         }
-        
+        */
         
         if ([_placemark.thoroughfare length] != 0) {
             if ([strAdd length] != 0) {
@@ -66,7 +66,7 @@
                 strAdd = _placemark.thoroughfare;
             }
         }
-        
+        /*
         if ([_placemark.postalCode length] != 0) {
             if ([strAdd length] != 0) {
                 strAdd = [NSString stringWithFormat:@"%@, %@", strAdd, [_placemark postalCode]];
@@ -76,7 +76,7 @@
                 strAdd = _placemark.postalCode;
             }
         }
-        
+        */
         if ([_placemark.locality length] != 0) {
             if ([strAdd length] != 0) {
                 strAdd = [NSString stringWithFormat:@"%@, %@", strAdd, [_placemark locality]];
@@ -84,7 +84,7 @@
             else
                 strAdd = _placemark.locality;
         }
-        
+        /*
         if ([_placemark.administrativeArea length] != 0)
         {
             if ([strAdd length] != 0)
@@ -92,7 +92,8 @@
             else
                 strAdd = _placemark.administrativeArea;
         }
-        
+        */
+        /*
         if ([_placemark.country length] != 0)
         {
             if ([strAdd length] != 0)
@@ -100,7 +101,7 @@
             else
                 strAdd = _placemark.country;
         }
-
+        */
         
         self.location = [NSString stringWithString:strAdd];
         

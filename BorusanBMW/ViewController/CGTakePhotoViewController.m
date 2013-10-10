@@ -72,13 +72,22 @@
     
     if([UIImagePickerController isSourceTypeAvailable:(UIImagePickerControllerSourceTypeCamera)])
     {
+        NSArray *availableMediaTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeCamera];
+        
+        
         _imagePicker = [[UIImagePickerController alloc] init];
         _imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
-        NSArray *availableMediaTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeCamera];
+        _imagePicker.cameraDevice = UIImagePickerControllerCameraDeviceRear;
         _imagePicker.mediaTypes = [NSArray arrayWithArray:availableMediaTypes];
-        
+        _imagePicker.showsCameraControls = NO;
+        _imagePicker.navigationBarHidden = YES;
+        _imagePicker.wantsFullScreenLayout = YES;
         _imagePicker.delegate = self;
         
+
+        _imagePicker.cameraOverlayView = [[CGCameraOverlayView alloc] init];
+        ((CGCameraOverlayView*)(_imagePicker.cameraOverlayView)).delegate = self;
+        _imagePicker.delegate = self;
         
         //MBB
         /*
@@ -109,6 +118,12 @@
         [self presentViewController:_imagePicker animated:YES completion:^{
             NSLog(@"LOGLOG");
         }];
+        /*
+        [self presentViewController:_imagePicker animated:YES completion:^{
+            NSLog(@"LOGLOG");
+        }];
+        */
+
     }
 
 }
@@ -136,6 +151,7 @@
 
 - (void)newAction:(id)sender
 {
+    //
     [self presentViewController:_imagePicker animated:YES completion:^{
         
     }];
@@ -160,6 +176,7 @@
 #pragma mark UIImagePickerControlDelegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
+    
     UIImage *image;
     image = [info objectForKey:	UIImagePickerControllerOriginalImage];
     
@@ -173,14 +190,36 @@
     //MBB
     [_imageList addObject:imageView];
     
-    NSLog(@"Took Picture");
     [self dismissViewControllerAnimated:YES completion:nil];
+    UIImage *orginalImage = info[UIImagePickerControllerOriginalImage];
+    
+    if( !orginalImage )
+    {
+        return;
+    
+    }
+    
+    //NSLog(@"Took Picture");
+    //[self dismissViewControllerAnimated:YES completion:nil];
+    
+    
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
     
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+#pragma mark CGTakePhotoViewController
+- (void) takeOverlayPhoto
+{
+    [_imagePicker takePicture];
+}
+
+- (void) continueToMenu
+{
+    UIViewController *vc = [[CGTakePhotoViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 
