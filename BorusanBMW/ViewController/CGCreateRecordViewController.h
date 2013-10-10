@@ -15,11 +15,12 @@
 #import "LocationManager.h"
 #import "Base64.h"
 
-@interface CGCreateRecordViewController : CGBaseViewController<UITextFieldDelegate, UITextViewDelegate >
+@interface CGCreateRecordViewController : CGBaseViewController<UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate, UITextViewDelegate>
 {
     NSArray *_imageList;
     
     UIScrollView *_groupScrollView;
+    
     UIImageView *_locationIcon;
     CGLabel     *_dataLabel;
     CGLabel     *_addressLabel;
@@ -29,6 +30,9 @@
     CGTextField *_notificationType;
     CGUIView *_description;
     
+    //Photo Picker
+    UIPickerView *_imagePicker;
+    NSArray* _notificationTypeList;
     UIButton    *_sendButton;
 }
 

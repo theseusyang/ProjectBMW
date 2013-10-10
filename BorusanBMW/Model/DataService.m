@@ -8,6 +8,8 @@
 
 #import "DataService.h"
 
+#define kMaxVehicleCapacity 600
+
 @implementation DataService
 
 + (DataService*)shared
@@ -26,7 +28,9 @@
     if (self) {
         
         _vehiclePageIndex = 1;
-        _vehicleDataList = [NSMutableArray arrayWithCapacity:200];
+        
+        _vehicleDataList = [NSMutableArray arrayWithCapacity:kMaxVehicleCapacity];
+        
        self.isLastPageReached = NO;
     }
     

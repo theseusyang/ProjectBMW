@@ -14,7 +14,9 @@
 #import "LoginResponse.h"
 #import "LoginRequest.h"
 #import "RecordResponse.h"
+#import "UpdateResponse.h"
 #import "VehicleListResponse.h"
+#import "NotificationTypeResponse.h"
 #import "DataService.h"
 
 typedef NS_ENUM(NSInteger, kNotificationType){
@@ -62,6 +64,7 @@ typedef NS_ENUM(NSInteger, kNotificationType){
                      pageIndex:(int)pageIndex
                        success:(void (^)(RKObjectRequestOperation *operation, RKMappingResult *mappingResult))success
                        failure:(void (^)(RKObjectRequestOperation *operation, NSError *error))failure;
-
+- (void)getNotificationTypesWithSuccess:(void (^)(RKObjectRequestOperation *operation, RKMappingResult *mappingResult))success
+                                failure:(void (^)(RKObjectRequestOperation *operation, NSError *error))failure;
 @end
 

@@ -14,6 +14,11 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        _footerImage = [[UIImageView alloc] initWithImage:kApplicationImage(kResContentFooter)];
+        _footerImage.frame = CGRectMake(0, 361, 320, 55);
+        [self addSubview:_footerImage];
+
+        
         _newButton = [[UIButton alloc] initWithFrame:CGRectMake(6, 366, 93, 48)];
         [_newButton setBackgroundImage:kApplicationImage(kResButtonSmall) forState:UIControlStateNormal];
         [_newButton setTitle:@"Yeni" forState:UIControlStateNormal];
@@ -40,6 +45,9 @@
 {
     self = [super initWithFrame:CGRectMake(0, 0, 320, 460)];
     if (self) {
+        _footerImage = [[UIImageView alloc] initWithImage:kApplicationImage(kResContentFooter)];
+        _footerImage.frame = CGRectMake(0, 361, 320, 55);
+        [self addSubview:_footerImage];
         
         _newButton = [[UIButton alloc] initWithFrame:CGRectMake(6, 366, 93, 48)];
         [_newButton setBackgroundImage:kApplicationImage(kResButtonSmall) forState:UIControlStateNormal];

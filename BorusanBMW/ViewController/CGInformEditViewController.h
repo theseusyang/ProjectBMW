@@ -17,7 +17,7 @@
 #import "CGUtilHelper.h"
 #import "CGPhotoGalleryView.h"
 
-@interface CGInformEditViewController : CGBaseViewController<UITextFieldDelegate, UIScrollViewDelegate, UITextViewDelegate>
+@interface CGInformEditViewController : CGBaseViewController<UITextFieldDelegate, UIScrollViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UITextViewDelegate>
 {
     CGPhotoGalleryView *_photoGallery;
     UIView *_photoListView;
@@ -37,6 +37,10 @@
     
     // Dynamic data
     VehicleListResponse *_vehicle;
+    
+    //Photo Picker
+    UIPickerView *_imagePicker;
+    NSArray* _notificationTypeList;
     
 }
 

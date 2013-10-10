@@ -23,6 +23,7 @@
 #define kResButtonSmallPressed @"ButtonSmallPressed.png"
 #define kResButtonSquare @"ButtonSquare.png"
 #define kResButtonSquarePressed @"ButtonSquarePressed.png"
+#define kResButtonLoadMore @"ButtonLoadMore.png"
 
 #define kResCaptureGuide @"CaptureGuide.png"
 #define kResContentFooter @"ContentFooter.png"

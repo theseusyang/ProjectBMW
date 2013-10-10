@@ -25,6 +25,13 @@
     self = [super init];
     if (self) {
         NSLog(@"Init the BMW project.");
+        
+        // Get the notification type list beginning of the app and assign to the list of DataService
+        [[Server shared] getNotificationTypesWithSuccess:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+            [DataService shared].notificationTypeList = [NSArray arrayWithArray:[mappingResult array]];
+        } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+            NSLog(@"Failure");
+        }];
     }
     
     return self;
@@ -228,7 +235,5 @@
     [_groupScrollView setContentOffset:CGPointMake(0, 0) animated:YES];
     _groupScrollView.scrollEnabled = NO;
 }
-
-#pragma mark UITextFieldTraits
 
 @end

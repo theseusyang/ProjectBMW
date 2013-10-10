@@ -18,6 +18,8 @@
 
 @interface CGCameraOverlayView : UIView
 {
+    UIView *_footerImage;
+    
     UIButton *_newButton;
     UIButton *_captureButton;
     UIButton *_continueButton;

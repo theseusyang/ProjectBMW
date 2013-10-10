@@ -115,7 +115,7 @@
         */
         //[[NSBundle mainBundle] loadNibNamed:@"OverlayView" owner:self options:nil];
         
-        [self presentViewController:_imagePicker animated:YES completion:^{
+        [self presentViewController:_imagePicker animated:NO completion:^{
             NSLog(@"LOGLOG");
         }];
         /*
@@ -145,6 +145,15 @@
 
 - (void)continueAction:(id)sender
 {
+    /*
+    UIImageView *imageView = _imageList[0];
+    UIGraphicsBeginImageContext(CGSizeMake(70, 70));
+    [imageView.image drawInRect:CGRectMake(0,0,70,70)];
+    UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    imageView.image = newImage;
+    */
     UIViewController *vc = [[CGPhotoManagementViewController alloc] initWithImageList:_imageList];
     [self.navigationController pushViewController:vc animated:YES];
 }
@@ -177,27 +186,21 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     
-    UIImage *image;
+    UIImage *image = [[UIImage alloc] init];
     image = [info objectForKey:	UIImagePickerControllerOriginalImage];
-    
     
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 365)];
     imageView.image =image;
+    
+    
     
     [_photoView addSubview:imageView];
     //UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
     
     //MBB
-    [_imageList addObject:imageView];
+    [_imageList addObject:imageView.image];
     
     [self dismissViewControllerAnimated:YES completion:nil];
-    UIImage *orginalImage = info[UIImagePickerControllerOriginalImage];
-    
-    if( !orginalImage )
-    {
-        return;
-    
-    }
     
     //NSLog(@"Took Picture");
     //[self dismissViewControllerAnimated:YES completion:nil];
@@ -218,8 +221,9 @@
 
 - (void) continueToMenu
 {
-    UIViewController *vc = [[CGTakePhotoViewController alloc] init];
+    UIViewController *vc = [[CGPhotoManagementViewController alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 
