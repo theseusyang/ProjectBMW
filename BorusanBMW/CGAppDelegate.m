@@ -42,6 +42,7 @@
 	else {
 		[navController.navigationBar insertSubview:[[UIImageView alloc] initWithImage:navbarBg] atIndex:0];
     }
+    
 
     self.window.rootViewController = navController;
     [self.window makeKeyAndVisible];

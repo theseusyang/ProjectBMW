@@ -18,8 +18,9 @@
 {
     self = [super init];
     if (self) {
-        if ([self respondsToSelector:@selector(edgesForExtendedLayout)]) {
+        if ([self respondsToSelector:@selector(edgesForExtendedLayout)]){
             self.edgesForExtendedLayout = UIRectEdgeNone;
+            self.automaticallyAdjustsScrollViewInsets = YES;
         }
     }
     return self;

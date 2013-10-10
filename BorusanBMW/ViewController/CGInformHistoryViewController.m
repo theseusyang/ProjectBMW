@@ -18,7 +18,9 @@
 {
     self = [super init];
     if (self) {
-        // Custom initialization
+        if([[[UIDevice currentDevice] systemVersion] floatValue] >= 7){
+            self.navigationController.edgesForExtendedLayout = UIRectEdgeRight;
+        }
     }
     return self;
 }

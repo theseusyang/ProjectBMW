@@ -221,7 +221,7 @@
 
 - (void) continueToMenu
 {
-    UIViewController *vc = [[CGPhotoManagementViewController alloc] init];
+    UIViewController *vc = [[CGPhotoManagementViewController alloc] initWithImageList:_imageList];
     [self.navigationController pushViewController:vc animated:YES];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
