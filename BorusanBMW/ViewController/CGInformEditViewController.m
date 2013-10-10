@@ -60,9 +60,9 @@
     _addressLabel = [[CGLabel alloc] initWithFrame:CGRectMake(107, 256, 200, 20)];
     _addressLabel.backgroundColor = [UIColor clearColor];
     _addressLabel.font = kApplicationFont(13.0f);
-    [_addressLabel setNumberOfLines:1];
+    [_addressLabel setNumberOfLines:2];
     [_addressLabel setText:_vehicle.location];
-    //[_addressLabel sizeToFit];
+    [_addressLabel sizeToFit];
     [_groupView  addSubview:_addressLabel];
     
     // UITextFields

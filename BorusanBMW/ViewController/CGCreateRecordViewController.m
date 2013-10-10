@@ -68,7 +68,7 @@
     [_dateLabel sizeToFit];
     [_groupScrollView addSubview:_dateLabel];
     
-    _addressLabel = [[CGLabel alloc] initWithFrame:CGRectMake(107, 63, 200, 60)];
+    _addressLabel = [[CGLabel alloc] initWithFrame:CGRectMake(107, 58, 180, 40)];
     
     _addressLabel.font = kApplicationFont(13.0f);
     _addressLabel.lineBreakMode = NSLineBreakByWordWrapping;

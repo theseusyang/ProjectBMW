@@ -18,7 +18,9 @@
 {
     self = [super init];
     if (self) {
-        
+        if ([self respondsToSelector:@selector(edgesForExtendedLayout)]) {
+            self.edgesForExtendedLayout = UIRectEdgeNone;
+        }
     }
     return self;
 }
@@ -33,7 +35,6 @@
     _spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     _spinner.center = self.view.center;
     [self.view addSubview:_spinner];
-    
     
     _leftButtonView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 120, 54)];
     _leftButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 8, 120, 50)];

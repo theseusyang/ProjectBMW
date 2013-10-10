@@ -8,9 +8,10 @@
 
 #import "CGBaseViewController.h"
 #import "CGMenuViewController.h"
+#import "CGCameraOverlayView.h"
 #import "Tesseract.h"
 
-@interface CGTakePhotoViewController : CGBaseViewController<UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+@interface CGTakePhotoViewController : CGBaseViewController<UINavigationControllerDelegate, UIImagePickerControllerDelegate, CGCameraOverlayProtocol>
 {
     UIView *_photoView;
     UIImageView *_captureGuide;

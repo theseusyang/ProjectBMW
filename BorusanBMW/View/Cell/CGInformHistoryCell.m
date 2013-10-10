@@ -59,7 +59,7 @@
         
         
         _addressView = [[UITextView alloc] initWithFrame:CGRectMake(135,40,155,40)];
-        //_addressView.backgroundColor = kColorBlue;
+        _addressView.backgroundColor = [UIColor clearColor];
         _addressView.font = kApplicationFont(9.0f);
         _addressView.text = vehicleListResponse.location;
         [_addressView setUserInteractionEnabled:NO];

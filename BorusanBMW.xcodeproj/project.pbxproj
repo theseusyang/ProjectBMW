@@ -169,6 +169,7 @@
 		62FFD65C17E1BBFB00438CA0 /* LabelEditPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 62FFD65A17E1BBFA00438CA0 /* LabelEditPressed.png */; };
 		62FFD65D17E1BBFB00438CA0 /* LabelEditPressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 62FFD65B17E1BBFA00438CA0 /* LabelEditPressed@2x.png */; };
 		AF0B3975180408B7004E4C31 /* CGUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = AF0B3974180408B7004E4C31 /* CGUIView.m */; };
+		AF206EB41805355F00D87D0C /* CGCameraOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = AF206EB31805355F00D87D0C /* CGCameraOverlayView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -551,6 +552,8 @@
 		62FFD65B17E1BBFA00438CA0 /* LabelEditPressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LabelEditPressed@2x.png"; sourceTree = "<group>"; };
 		AF0B3973180408B7004E4C31 /* CGUIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CGUIView.h; path = UI/CGUIView.h; sourceTree = "<group>"; };
 		AF0B3974180408B7004E4C31 /* CGUIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CGUIView.m; path = UI/CGUIView.m; sourceTree = "<group>"; };
+		AF206EB21805355F00D87D0C /* CGCameraOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CGCameraOverlayView.h; path = View/CGCameraOverlayView.h; sourceTree = "<group>"; };
+		AF206EB31805355F00D87D0C /* CGCameraOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CGCameraOverlayView.m; path = View/CGCameraOverlayView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -856,6 +859,8 @@
 				62C905EB17DF1742009E1253 /* CGInformHistoryTableView.m */,
 				62CEEB8717FD94F50074638C /* CGPhotoGalleryView.h */,
 				62CEEB8817FD94F50074638C /* CGPhotoGalleryView.m */,
+				AF206EB21805355F00D87D0C /* CGCameraOverlayView.h */,
+				AF206EB31805355F00D87D0C /* CGCameraOverlayView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -1382,6 +1387,7 @@
 				62B7C53B17D6151A00257C95 /* main.m in Sources */,
 				62E988BB18054C6D000F3C8D /* UpdateResponse.m in Sources */,
 				62B7C53F17D6151A00257C95 /* CGAppDelegate.m in Sources */,
+				AF206EB41805355F00D87D0C /* CGCameraOverlayView.m in Sources */,
 				621F1D5A1802E054003356EC /* CGMoreCell.m in Sources */,
 				62B7C67A17D6239500257C95 /* CGMainViewController.m in Sources */,
 				629B0BA817D74A8A009595F9 /* CGBaseViewController.m in Sources */,

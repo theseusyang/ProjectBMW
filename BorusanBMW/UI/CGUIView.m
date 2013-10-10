@@ -23,17 +23,17 @@
         UIImage *iconImage = [UIImage imageNamed:iconT];
         UIImage *backgroundImage =[UIImage imageNamed:backgroundT];
         
-        //icon =[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, backgroundImage.size.width, backgroundImage.size.height )];
         icon = [[UIImageView alloc] initWithImage:iconImage];
         icon.frame = CGRectMake(12, 14, iconImage.size.width, iconImage.size.height);
         
         background = [[UIImageView alloc]initWithImage:backgroundImage];
         background.frame = CGRectMake(0, 0, backgroundImage.size.width, backgroundImage.size.height);
         
-        textView = [[UITextView alloc] initWithFrame:CGRectMake( iconImage.size.width+10, 0, frame.size.width-iconImage.size.width-10, frame.size.height )];
+        textView = [[UITextView alloc] initWithFrame:CGRectMake( iconImage.size.width+20, 0, frame.size.width-iconImage.size.width-10, frame.size.height )];
         textView.backgroundColor = [UIColor clearColor];
         textView.font = kApplicationFont(19.0);
         textView.textColor = kTextColor;
+        
         
         [self addSubview: background];
         

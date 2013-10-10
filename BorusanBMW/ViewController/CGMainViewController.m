@@ -76,13 +76,6 @@
     [_enteranceButton.titleLabel setFont:kApplicationFontBold(19.0f)];
     [_enteranceButton addTarget:self action:@selector(enterance_button:) forControlEvents:UIControlEventTouchUpInside];
     [_groupScrollView addSubview:_enteranceButton];
-    
-    bool hasPin = [[NSUserDefaults standardUserDefaults] boolForKey:@"hasPin"];
-    if(hasPin){
-        _emailTextField.text = [[NSUserDefaults standardUserDefaults] stringForKey:@"userName"];
-        _passwordTextField.text = [[NSUserDefaults standardUserDefaults] stringForKey:@"password"];
-        [self enterance_button:nil];
-    }
 }
 
 - (void)viewDidLoad
@@ -92,6 +85,14 @@
     // Init Base64 starting point of the app.
     [Base64 initialize];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onKeyboardWillShown:) name:UIKeyboardWillShowNotification object:nil];
+    
+    bool hasPin = [[NSUserDefaults standardUserDefaults] boolForKey:@"hasPin"];
+    
+    if(hasPin){
+        _emailTextField.text = [[NSUserDefaults standardUserDefaults] stringForKey:@"userName"];
+        _passwordTextField.text = [[NSUserDefaults standardUserDefaults] stringForKey:@"password"];
+        [self enterance_button:nil];
+    }
 }
     
 - (void)onKeyboardWillShown:(NSNotification *)notif

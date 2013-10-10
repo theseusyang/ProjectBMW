@@ -35,6 +35,7 @@
             elementView.backgroundColor = kColorGray;
             
             UIImage *image = imageList[i];
+            
             UIImageView *photo = [[UIImageView alloc] initWithImage:image];
             photo.frame = CGRectMake(5, 5, 160, 160);
             
@@ -71,7 +72,6 @@
 
 - (void)swipeRight:(UISwipeGestureRecognizer *)sender
 {
-    
     if (_pageIndex >= 0) {
         return;
     }

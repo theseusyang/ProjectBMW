@@ -72,11 +72,21 @@
     
     if([UIImagePickerController isSourceTypeAvailable:(UIImagePickerControllerSourceTypeCamera)])
     {
+        NSArray *availableMediaTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeCamera];
+        
+        
         _imagePicker = [[UIImagePickerController alloc] init];
         _imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
-        NSArray *availableMediaTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeCamera];
+        _imagePicker.cameraDevice = UIImagePickerControllerCameraDeviceRear;
         _imagePicker.mediaTypes = [NSArray arrayWithArray:availableMediaTypes];
+        _imagePicker.showsCameraControls = NO;
+        _imagePicker.navigationBarHidden = YES;
+        _imagePicker.wantsFullScreenLayout = YES;
+        _imagePicker.delegate = self;
         
+
+        _imagePicker.cameraOverlayView = [[CGCameraOverlayView alloc] init];
+        ((CGCameraOverlayView*)(_imagePicker.cameraOverlayView)).delegate = self;
         _imagePicker.delegate = self;
         
         //MBB
@@ -105,9 +115,15 @@
         */
         //[[NSBundle mainBundle] loadNibNamed:@"OverlayView" owner:self options:nil];
         
+        [self presentViewController:_imagePicker animated:NO completion:^{
+            NSLog(@"LOGLOG");
+        }];
+        /*
         [self presentViewController:_imagePicker animated:YES completion:^{
             NSLog(@"LOGLOG");
         }];
+        */
+
     }
 
 }
@@ -129,12 +145,22 @@
 
 - (void)continueAction:(id)sender
 {
+    /*
+    UIImageView *imageView = _imageList[0];
+    UIGraphicsBeginImageContext(CGSizeMake(70, 70));
+    [imageView.image drawInRect:CGRectMake(0,0,70,70)];
+    UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    imageView.image = newImage;
+    */
     UIViewController *vc = [[CGPhotoManagementViewController alloc] initWithImageList:_imageList];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)newAction:(id)sender
 {
+    //
     [self presentViewController:_imagePicker animated:YES completion:^{
         
     }];
@@ -159,26 +185,44 @@
 #pragma mark UIImagePickerControlDelegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    UIImage *image;
-    image = [info objectForKey:	UIImagePickerControllerOriginalImage];
     
+    UIImage *image = [[UIImage alloc] init];
+    image = [info objectForKey:	UIImagePickerControllerOriginalImage];
     
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 365)];
     imageView.image =image;
+    
+    
     
     [_photoView addSubview:imageView];
     //UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
     
     //MBB
-    [_imageList addObject:imageView];
+    [_imageList addObject:imageView.image];
     
-    NSLog(@"Took Picture");
     [self dismissViewControllerAnimated:YES completion:nil];
+    
+    //NSLog(@"Took Picture");
+    //[self dismissViewControllerAnimated:YES completion:nil];
+    
+    
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
     
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+#pragma mark CGTakePhotoViewController
+- (void) takeOverlayPhoto
+{
+    [_imagePicker takePicture];
+}
+
+- (void) continueToMenu
+{
+    UIViewController *vc = [[CGPhotoManagementViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
