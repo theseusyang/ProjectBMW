@@ -29,7 +29,6 @@
 {
     [super loadView];
 
-    
     _contentImageView = [[UIImageView alloc] initWithImage:kApplicationImage(kResContentImage)];
     [self.view addSubview:_contentImageView];
     
