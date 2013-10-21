@@ -23,7 +23,6 @@ static char decodingTable[128];
 	}
 }
 
-
 + (NSString*) encode:(const uint8_t*) input length:(NSInteger) length {
     NSMutableData* data = [NSMutableData dataWithLength:((length + 2) / 3) * 4];
     uint8_t* output = (uint8_t*)data.mutableBytes;
