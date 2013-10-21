@@ -42,7 +42,7 @@
 {
     [super loadView];
 
-    _groupScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, kWindowWidth, kWindowHeight)];
+    _groupScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, kWindowWidth, kWindowHeightWithStatus)];
     _groupScrollView.contentSize = CGSizeMake(kWindowWidth, kWindowWidth + kScrollHeight);
     _groupScrollView.scrollEnabled = FALSE;
     [self.view addSubview:_groupScrollView];
@@ -77,7 +77,6 @@
     [_enteranceButton.titleLabel setFont:kApplicationFontBold(19.0f)];
     [_enteranceButton addTarget:self action:@selector(enterance_button:) forControlEvents:UIControlEventTouchUpInside];
     [_groupScrollView addSubview:_enteranceButton];
-    
 }
 
 - (void)viewDidLoad
@@ -95,8 +94,6 @@
         _passwordTextField.text = [[NSUserDefaults standardUserDefaults] stringForKey:@"password"];
         [self enterance_button:nil];
     }
-    
-    
 }
     
 - (void)onKeyboardWillShown:(NSNotification *)notif

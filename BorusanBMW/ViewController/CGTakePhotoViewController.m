@@ -229,7 +229,6 @@
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
-    
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 #pragma mark CGTakePhotoViewController

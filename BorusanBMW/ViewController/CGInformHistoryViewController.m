@@ -12,9 +12,6 @@
 
 @end
 
-// Dummy Data - Resources for table list pic
-#define kCarList [[NSArray alloc] initWithObjects:@"Element1.png", @"Element2.png", @"Element3.png", nil]
-
 @implementation CGInformHistoryViewController
 
 - (id)init
@@ -36,18 +33,19 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
     _vehicleList = [[DataService shared] getVehicleList];
     
+    /*
     if (![self isLastPageReached]) {
         _moreCell = [[CGMoreCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"MoreCellIdentifier"];
         _moreCell.textLabel.text = @"See More...";
     }
-    
+    */
     /*
     _refreshControl = [[UIRefreshControl alloc] init];
     [_refreshControl addTarget:self action:@selector(refreshTable) forControlEvents:UIControlEventValueChanged];
-     */
+    */
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -124,8 +122,6 @@
     if (![self isLastPageReached]) {
         additionalCell++;
     }
-    
-    
     // Rows number in section
     return (_vehicleList.count + additionalCell);
 }
@@ -182,6 +178,10 @@
 #pragma mark UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if ([self isMoreCell:indexPath]) {
+        // Height for More row
+        return 45.0f;
+    }
     // Height for row
     return 92.0f;
 }
@@ -198,6 +198,7 @@
         UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
         [cell setSelected:NO animated:YES];
         [self moreCellTouched];
+        
         return;
     }
     

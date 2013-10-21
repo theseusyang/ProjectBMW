@@ -72,7 +72,6 @@
 
 - (void)swipeRight:(UISwipeGestureRecognizer *)sender
 {
-    
     if (_pageIndex >= 0) {
         return;
     }

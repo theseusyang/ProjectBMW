@@ -17,7 +17,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
     // Override point for customization after application launch.
     //self.viewController = [[CGViewController alloc] initWithNibName:@"CGViewController" bundle:nil];
     CGFloat screenWidth  = [[UIScreen mainScreen] bounds].size.width * [[UIScreen mainScreen] scale];
@@ -31,13 +33,21 @@
     CGMainViewController *mainViewController = [[CGMainViewController alloc] init];
     
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:mainViewController];
-    
+
     UIImage *navbarBg = [UIImage imageNamed:@"ContentHeader.png"];
-	
+
     if ([navController.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)])
 	{
-		[navController.navigationBar setBackgroundImage:navbarBg
-                                          forBarMetrics:UIBarMetricsDefault];
+        // iOS 7 Navigation Image implementation
+        if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
+
+            [navController.navigationBar insertSubview:[[UIImageView alloc] initWithImage:navbarBg] atIndex:1];
+            //navController.navigationBar.translucent = TRUE;
+        }
+        // iOS 6 Navigation Image implementation
+        else
+            [navController.navigationBar setBackgroundImage:navbarBg
+                                              forBarMetrics:UIBarMetricsDefault];
 	}
 	else {
 		[navController.navigationBar insertSubview:[[UIImageView alloc] initWithImage:navbarBg] atIndex:0];
@@ -57,7 +67,6 @@
     // Log debugging info about Core Data
     RKLogConfigureByName("RestKit/CoreData", RKLogLevelDebug);
 
-    
     return YES;
 }
 
@@ -87,5 +96,6 @@
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
 
 @end

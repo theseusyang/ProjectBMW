@@ -73,10 +73,10 @@
     _locationIcon.frame = CGRectMake(35, 37, 61, 46);
     [_groupScrollView addSubview:_locationIcon];
 
-    _dataLabel = [[CGLabel alloc] initWithFrame:CGRectMake(107, 40, 100, 20)];
-    [_dataLabel setText:currentDateString];
-    [_dataLabel sizeToFit];
-    [_groupScrollView addSubview:_dataLabel];
+    _dateLabel = [[CGLabel alloc] initWithFrame:CGRectMake(107, 45, 100, 20)];
+    [_dateLabel setText:currentDateString];
+    [_dateLabel sizeToFit];
+    [_groupScrollView addSubview:_dateLabel];
     
     _addressLabel = [[CGLabel alloc] initWithFrame:CGRectMake(107, 58, 180, 40)];
     
@@ -303,7 +303,6 @@
         }
     }
     
-    
     [[Server shared] insertVehicleWithPlate:licencePlate
                                 serviceType:serviceName
                            notificationType:notifID
@@ -312,6 +311,9 @@
                                   imageList:imageListFinal
                                     success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
                                         
+                                        
+                                        VehicleListResponse *vehicle = [mappingResult array][0];
+                                        [[DataService shared] addRecord:vehicle];
                                         UIViewController *vc = [[CGTransitionViewController alloc] initWith:[CGMenuViewController class]];
                                         [self.navigationController pushViewController:vc animated:YES];
 
@@ -408,6 +410,11 @@
     } completion:^(BOOL finished) {
         _imagePicker.hidden = YES;
     }];
+}
+
+- (void)insertVehicleRecordClientSide
+{
+    
 }
 
 @end

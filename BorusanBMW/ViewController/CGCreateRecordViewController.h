@@ -24,13 +24,13 @@
     UIScrollView *_groupScrollView;
     
     UIImageView *_locationIcon;
-    CGLabel     *_dataLabel;
+    CGLabel     *_dateLabel;
     CGLabel     *_addressLabel;
     
     CGTextField *_licensePlate;
     CGTextField *_serviceName;
     CGTextField *_notificationType;
-    CGUIView *_description;
+    CGUIView   *_description;
     
     //Photo Picker
     UIPickerView *_imagePicker;
