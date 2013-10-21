@@ -204,7 +204,7 @@
     if([tesseract recognize]){
         NSLog(@"%@",[tesseract recognizedText]);
         if( !_plateNumber ){
-            //NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@" options:<#(NSRegularExpressionOptions)#> error:<#(NSError *__autoreleasing *)#>]
+            //NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\\W-?2? options:<#(NSRegularExpressionOptions)#> error:<#(NSError *__autoreleasing *)#>]
             _plateNumber = [tesseract recognizedText];
         }
     } else {
