@@ -303,6 +303,20 @@
         }
     }
     
+    RecordEntity *insertRecord = [RecordEntity new];
+    insertRecord.licencePlate = licencePlate;
+    insertRecord.serviceName = serviceName;
+    insertRecord.notificationID = notifID;
+    insertRecord.description = description;
+    insertRecord.location = location;
+    insertRecord.imageList = imageListFinal;
+    insertRecord.ID = [NSNumber numberWithInt:-1];
+    
+    
+    UIViewController *vc = [[CGTransitionViewController alloc] initWith:[CGMenuViewController class] recordEntity:insertRecord];
+    [self.navigationController pushViewController:vc animated:YES];
+    
+    /*
     [[Server shared] insertVehicleWithPlate:licencePlate
                                 serviceType:serviceName
                            notificationType:notifID
@@ -311,10 +325,10 @@
                                   imageList:imageListFinal
                                     success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
                                         
-                                        
                                         VehicleListResponse *vehicle = [mappingResult array][0];
                                         [[DataService shared] addRecord:vehicle];
                                         UIViewController *vc = [[CGTransitionViewController alloc] initWith:[CGMenuViewController class]];
+ 
                                         [self.navigationController pushViewController:vc animated:YES];
 
                                     }
@@ -323,7 +337,7 @@
                                         NSLog(@"sendAction is Failure!");
                                     }];
     
-    
+    */
 }
 
 #pragma mark UIPickerViewDataSource

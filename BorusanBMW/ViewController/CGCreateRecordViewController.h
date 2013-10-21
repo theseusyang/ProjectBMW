@@ -8,12 +8,14 @@
 
 #import "CGBaseViewController.h"
 #import "CGMenuViewController.h"
+#import "CGTransitionViewController.h"
 #import "CGTextField.h"
 #import "CGUIView.h"
 #import "CGLabel.h"
 #import "CGUtilHelper.h"
 #import "LocationManager.h"
 #import "Base64.h"
+#import "RecordEntity.h"
 
 @interface CGCreateRecordViewController : CGBaseViewController<UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate, UITextViewDelegate>
 {

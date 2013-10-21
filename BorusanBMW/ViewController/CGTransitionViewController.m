@@ -25,6 +25,32 @@
     return self;
 }
 
+- (id)initWith:(Class)classType recordEntity:(RecordEntity *)entity;
+{
+    self = [super init];
+    if (self) {
+        _classTypeToTurnBack = classType;
+        _entity = entity;
+        _transitionType = TransitionTypeInsert;
+        
+    }
+    
+    return self;
+}
+
+- (id)initWith:(Class)classType editEntity:(RecordEntity *)entity vehicleResponse:(VehicleListResponse *)response;
+{
+    self = [super init];
+    if (self) {
+        _classTypeToTurnBack = classType;
+        _entity = entity;
+        _vehicle = response;
+        _transitionType = TransitionTypeEdit;
+    }
+    
+    return self;
+}
+
 - (void)loadView
 {
     [super loadView];
@@ -55,19 +81,19 @@
     [_bottomLabel sizeToFit];
     [self.view addSubview:_bottomLabel];
     
-    NSNumber *value = [NSNumber numberWithInt:TransitionStateSucceeded];
-    id state = value;
-    
     if( !_timer.isValid ){
         _timer = [NSTimer timerWithTimeInterval:0.06f target:self selector:(@selector(rotateImage:)) userInfo:(nil) repeats:YES];
     }
-    _count = 0;
-    
+
     NSRunLoop *runner =[NSRunLoop currentRunLoop];
     [runner addTimer:_timer forMode:NSDefaultRunLoopMode];
     
+    if (_transitionType == TransitionTypeInsert) {
+        [self insertRecord];
+    }else if(_transitionType == TransitionTypeEdit){
+        [self editRecord];
+    }
     
-    [self performSelector:@selector(changeTransitionState:) withObject:state afterDelay:2.0f];
 }
 
 - (void)viewDidLoad
@@ -91,37 +117,81 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)insertRecord
+{
+    [[Server shared] insertVehicleWithPlate:_entity.licencePlate
+                                serviceType:_entity.serviceName
+                           notificationType:_entity.notificationID
+                                description:_entity.description
+                                   location:_entity.location
+                                  imageList:_entity.imageList
+                                    success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+                                        
+                                        VehicleListResponse *vehicle = [mappingResult array][0];
+                                        [[DataService shared] addRecord:vehicle];
+                                        [self changeTransitionState:TransitionStateSucceeded];
+                                        
+                                    }
+                                    failure:^(RKObjectRequestOperation *operation, NSError *error)
+                                    {
+                                        NSLog(@"sendAction is Failure!");
+                                    }];
+}
+
+- (void)editRecord
+{
+
+    [[Server shared] updateVehicleWithPlate:_entity.licencePlate
+                                serviceType:_entity.serviceName
+                           notificationType:_entity.notificationID
+                                description:_entity.description
+                                   location:_entity.location
+                                         ID:_entity.ID
+                                    success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+                                        
+                                        [self updateClientData];
+                                        [self changeTransitionState:TransitionStateSucceeded];
+
+                                    } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+                                        NSLog(@"Failure");
+                                    }];
+
+}
+
 - (void)rotateImage:(id)sender
 {
     _loadingImage.transform = CGAffineTransformMakeRotation(_count * M_PI/6);
     _count++;
 }
 
+- (void)updateClientData
+{
+    // Update the client-side vehicle data
+    _vehicle.licensePlate     = _entity.licencePlate;
+    _vehicle.serviceType      = _entity.serviceName;
+    _vehicle.notificationType = _entity.notificationID;
+    _vehicle.description      = _entity.description;
+}
 
 #pragma mark Change Transition State
-- (void)changeTransitionState:(id)transitionState
+- (void)changeTransitionState:(TransitionState)transitionState
 {
-    int state = [transitionState intValue];
-    switch (state) {
-        case TransitionStateLoader:
-            _topLabel.frame = CGRectMake(_centerX - 30, _centerY + 80, 120, 16);
-            _topLabel.text = @"Bildiri Gönderiliyor...";
-            _bottomLabel.frame = CGRectMake(_centerX - 30, _centerY + 100, 140, 14);
-            _bottomLabel.text = @"Lütfen bekleyiniz.";
-            [_topLabel sizeToFit];
-            [_bottomLabel sizeToFit];
-            break;
-        case TransitionStateSucceeded:
-            _topLabel.frame = CGRectMake(_centerX - 20, _centerY + 80, 120, 16);
-            _topLabel.text = @"Bildiri Gönderildi!";
-            _bottomLabel.frame = CGRectMake(_centerX + 10, _centerY + 104, 140, 14);
-            _bottomLabel.text = @"Teşekkürler.";
-            [_topLabel sizeToFit];
-            [_bottomLabel sizeToFit];
-       
-            break;
-    }
     
+    if (transitionState == TransitionStateSucceeded) {
+        _topLabel.frame = CGRectMake(_centerX - 30, _centerY + 80, 120, 16);
+        _topLabel.text = @"Bildiri Gönderiliyor...";
+        _bottomLabel.frame = CGRectMake(_centerX - 30, _centerY + 100, 140, 14);
+        _bottomLabel.text = @"Lütfen bekleyiniz.";
+        [_topLabel sizeToFit];
+        [_bottomLabel sizeToFit];
+    }else{
+        _topLabel.frame = CGRectMake(_centerX - 20, _centerY + 80, 120, 16);
+        _topLabel.text = @"Bildiri Gönderildi!";
+        _bottomLabel.frame = CGRectMake(_centerX + 10, _centerY + 104, 140, 14);
+        _bottomLabel.text = @"Teşekkürler.";
+        [_topLabel sizeToFit];
+        [_bottomLabel sizeToFit];
+    }
     
     [_timer invalidate];
     _timer = nil;
@@ -130,7 +200,6 @@
     [_iconSucceededImage setHidden:!_iconSucceededImage.isHidden];
     
     [self performSelector:@selector(backToMenu) withObject:nil afterDelay:2.0f];
-    
 }
 
 - (void)backToMenu

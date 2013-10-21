@@ -110,6 +110,8 @@
 		62989A1D17DA2A3D0067BCF6 /* CGTransitionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62989A1C17DA2A3D0067BCF6 /* CGTransitionViewController.m */; };
 		629B0BA817D74A8A009595F9 /* CGBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 629B0BA717D74A8A009595F9 /* CGBaseViewController.m */; };
 		629EF8F418155A8E0045205F /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = 629EF8F318155A8E0045205F /* tessdata */; };
+		629EF8F8181562F80045205F /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 629EF8F7181562F80045205F /* Default-568h@2x.png */; };
+		629EF8FE181569C40045205F /* RecordEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 629EF8FD181569C40045205F /* RecordEntity.m */; };
 		62A70B3417F9A2FB00098F47 /* LoginRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 62A70B3317F9A2FB00098F47 /* LoginRequest.m */; };
 		62A70B3C17F9C53000098F47 /* iPhoneIcon-568.png in Resources */ = {isa = PBXBuildFile; fileRef = 62A70B3917F9C53000098F47 /* iPhoneIcon-568.png */; };
 		62A70B3D17F9C53000098F47 /* iPhoneIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 62A70B3A17F9C53000098F47 /* iPhoneIcon.png */; };
@@ -171,7 +173,6 @@
 		62FFD65D17E1BBFB00438CA0 /* LabelEditPressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 62FFD65B17E1BBFA00438CA0 /* LabelEditPressed@2x.png */; };
 		AF0B3975180408B7004E4C31 /* CGUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = AF0B3974180408B7004E4C31 /* CGUIView.m */; };
 		AF206EB41805355F00D87D0C /* CGCameraOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = AF206EB31805355F00D87D0C /* CGCameraOverlayView.m */; };
-		AF9250EC18153606003A3814 /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = AF9250EB18153606003A3814 /* tessdata */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -327,6 +328,9 @@
 		629B0BA617D74A8A009595F9 /* CGBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CGBaseViewController.h; path = ViewController/CGBaseViewController.h; sourceTree = "<group>"; };
 		629B0BA717D74A8A009595F9 /* CGBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CGBaseViewController.m; path = ViewController/CGBaseViewController.m; sourceTree = "<group>"; };
 		629EF8F318155A8E0045205F /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = "<group>"; };
+		629EF8F7181562F80045205F /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		629EF8FC181569C40045205F /* RecordEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RecordEntity.h; path = Model/Entity/RecordEntity.h; sourceTree = "<group>"; };
+		629EF8FD181569C40045205F /* RecordEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RecordEntity.m; path = Model/Entity/RecordEntity.m; sourceTree = "<group>"; };
 		62A70B3217F9A2FB00098F47 /* LoginRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginRequest.h; path = Model/Entity/LoginRequest.h; sourceTree = "<group>"; };
 		62A70B3317F9A2FB00098F47 /* LoginRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginRequest.m; path = Model/Entity/LoginRequest.m; sourceTree = "<group>"; };
 		62A70B3917F9C53000098F47 /* iPhoneIcon-568.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhoneIcon-568.png"; sourceTree = "<group>"; };
@@ -702,6 +706,8 @@
 				621F1D5E1803F0F3003356EC /* NotificationTypeResponse.m */,
 				62E988B918054C6D000F3C8D /* UpdateResponse.h */,
 				62E988BA18054C6D000F3C8D /* UpdateResponse.m */,
+				629EF8FC181569C40045205F /* RecordEntity.h */,
+				629EF8FD181569C40045205F /* RecordEntity.m */,
 			);
 			name = Entity;
 			sourceTree = "<group>";
@@ -709,6 +715,7 @@
 		62B7C52217D6151A00257C95 = {
 			isa = PBXGroup;
 			children = (
+				629EF8F7181562F80045205F /* Default-568h@2x.png */,
 				62CEEE2D17F327FA00A00F81 /* Base64 */,
 				62B7C60A17D61A0B00257C95 /* Resources */,
 				62B7C53417D6151A00257C95 /* BorusanBMW */,
@@ -1280,6 +1287,7 @@
 				622444F517D8D1E7002A2482 /* ButtonSmall.png in Resources */,
 				622444F617D8D1E7002A2482 /* ButtonSmall@2x.png in Resources */,
 				622444F717D8D1E7002A2482 /* ButtonSmallPressed.png in Resources */,
+				629EF8F8181562F80045205F /* Default-568h@2x.png in Resources */,
 				622444F817D8D1E7002A2482 /* ButtonSmallPressed@2x.png in Resources */,
 				622444F917D8D1E7002A2482 /* ButtonSquare.png in Resources */,
 				622444FA17D8D1E7002A2482 /* ButtonSquare@2x.png in Resources */,
@@ -1404,6 +1412,7 @@
 				6245CBD817EC4CFE009A2630 /* DataService.m in Sources */,
 				62CEEE3017F327FB00A00F81 /* Base64.m in Sources */,
 				AF0B3975180408B7004E4C31 /* CGUIView.m in Sources */,
+				629EF8FE181569C40045205F /* RecordEntity.m in Sources */,
 				6245CBE117EC917C009A2630 /* RecordResponse.m in Sources */,
 				62A70B3417F9A2FB00098F47 /* LoginRequest.m in Sources */,
 				62D22EFE17D9CE0900A6BAFE /* CGPhotoManagementViewController.m in Sources */,

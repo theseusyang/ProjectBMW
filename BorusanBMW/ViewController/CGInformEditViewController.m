@@ -243,6 +243,18 @@
         }
     }
     
+    RecordEntity *editRecord = [RecordEntity new];
+    editRecord.licencePlate = _licensePlate.text;
+    editRecord.serviceName = _serviceName.text;
+    editRecord.notificationID = notifID;
+    editRecord.description = _description.textView.text;
+    editRecord.location = _addressLabel.text;
+    editRecord.ID = _vehicle.ID;
+    
+    UIViewController *vc = [[CGTransitionViewController alloc] initWith:[CGInformHistoryViewController class] editEntity:editRecord vehicleResponse:_vehicle];
+    [self.navigationController pushViewController:vc animated:YES];
+    
+    /*
     [[Server shared] updateVehicleWithPlate:_licensePlate.text
                                 serviceType:_serviceName.text
                            notificationType:notifID
@@ -259,7 +271,7 @@
                                         NSLog(@"Failure");
                                     }];
     
-    
+   */
 }
 
 #pragma mark UIPickerViewDataSource

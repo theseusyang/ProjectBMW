@@ -36,12 +36,12 @@
 
     _vehicleList = [[DataService shared] getVehicleList];
     
-    /*
+    
     if (![self isLastPageReached]) {
         _moreCell = [[CGMoreCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"MoreCellIdentifier"];
         _moreCell.textLabel.text = @"See More...";
     }
-    */
+    
     /*
     _refreshControl = [[UIRefreshControl alloc] init];
     [_refreshControl addTarget:self action:@selector(refreshTable) forControlEvents:UIControlEventValueChanged];

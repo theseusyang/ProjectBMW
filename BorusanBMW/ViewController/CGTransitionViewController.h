@@ -9,11 +9,26 @@
 #import "CGBaseViewController.h"
 #import "CGMenuViewController.h"
 #import "CGLabel.h"
+#import "RecordEntity.h"
+#import "Server.h"
+#import <RestKit/RestKit.h>
+#import "NotificationTypeResponse.h"
+
+typedef enum{
+    TransitionStateLoader = 0,
+    TransitionStateSucceeded
+} TransitionState;
+
+typedef enum{
+    TransitionTypeInsert = 0,
+    TransitionTypeEdit
+} TransitionType;
 
 @interface CGTransitionViewController : CGBaseViewController
 {
     NSTimer *_timer;
     int _count;
+    TransitionType _transitionType;
     
     UIImageView *_loadingImage;
     UIImageView *_iconSucceededImage;
@@ -24,15 +39,13 @@
     int _centerY;
     
     Class _classTypeToTurnBack;
+    
+    RecordEntity *_entity;
+    VehicleListResponse *_vehicle;
 }
-
 - (id)initWith:(Class)classType;
-
-typedef enum{
-    TransitionStateLoader = 0,
-    TransitionStateSucceeded
-} TransitionState;
-
+- (id)initWith:(Class)classType recordEntity:(RecordEntity *)entity;
+- (id)initWith:(Class)classType editEntity:(RecordEntity *)entity vehicleResponse:(VehicleListResponse *)response;
 @end
 
 
