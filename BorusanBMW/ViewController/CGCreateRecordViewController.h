@@ -18,6 +18,8 @@
 @interface CGCreateRecordViewController : CGBaseViewController<UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate, UITextViewDelegate>
 {
     NSArray *_imageList;
+    //Tesseract Plate Number
+    NSString *_plateNumber;
     
     UIScrollView *_groupScrollView;
     
@@ -37,5 +39,6 @@
 }
 
 - (id)initWithImageList:(NSArray *)imageList;
+- (id)initWithImageList:(NSArray *)imageList andPlateNumber: (NSString*)plateNumber;
 
 @end

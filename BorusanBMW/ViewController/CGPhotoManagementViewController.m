@@ -35,6 +35,20 @@
     return self;
 }
 
+- (id)initWithImageList:(NSArray*)imageList andPlateNumber: (NSString*)plateNumber
+{
+    self = [super init];
+    if (self) {
+        
+        _imageList = [NSArray arrayWithArray:imageList];
+        _plateNumber = plateNumber;
+        
+    }
+    
+    return self;
+}
+
+
 - (void)loadView
 {
     [super loadView];
@@ -93,7 +107,7 @@
 
 - (void)continueAction:(id)sender
 {
-    UIViewController *vc = [[CGCreateRecordViewController alloc] initWithImageList:_imageList];
+    UIViewController *vc = [[CGCreateRecordViewController alloc] initWithImageList:_imageList andPlateNumber:_plateNumber];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

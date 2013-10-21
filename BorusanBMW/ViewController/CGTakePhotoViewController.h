@@ -18,6 +18,8 @@
     
     //MBB
     NSMutableArray *_imageList;
+    //Plate
+    NSString *_plateNumber;
     
     //Footer
     UIView *_footerView;

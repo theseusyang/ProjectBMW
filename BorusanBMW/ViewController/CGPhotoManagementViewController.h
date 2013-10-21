@@ -18,6 +18,8 @@
     
     //MBB
     NSArray *_imageList;
+    //Tesseract Plate Number
+    NSString *_plateNumber;
     
     UIView *_photoListView;
     UIButton *_addPhotoButton;
@@ -25,5 +27,6 @@
 }
 
 - (id)initWithImageList:(NSArray*)imageLlist;
+- (id)initWithImageList:(NSArray *)imageList andPlateNumber: (NSString*)plateNumber;
 
 @end

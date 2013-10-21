@@ -154,7 +154,7 @@
     
     imageView.image = newImage;
     */
-    UIViewController *vc = [[CGPhotoManagementViewController alloc] initWithImageList:_imageList];
+    UIViewController *vc = [[CGPhotoManagementViewController alloc] initWithImageList:_imageList andPlateNumber:_plateNumber];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -192,7 +192,26 @@
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 365)];
     imageView.image =image;
     
+    // Make small the pic
+    UIGraphicsBeginImageContext(CGSizeMake(400, 400));
+    [image drawInRect:CGRectMake(0,0,400,400)];
+    UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
     
+    //Tesseract needs opencv image preprocessing
+    Tesseract *tesseract = [[Tesseract alloc] initWithDataPath:@"tessdata" language:@"eng"];
+    [tesseract setImage:newImage];
+    if([tesseract recognize]){
+        NSLog(@"%@",[tesseract recognizedText]);
+        if( !_plateNumber ){
+            //NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@" options:<#(NSRegularExpressionOptions)#> error:<#(NSError *__autoreleasing *)#>]
+            _plateNumber = [tesseract recognizedText];
+        }
+    } else {
+        NSLog(@"Couldnt read.");
+    }
+    [tesseract clear];
+    //End of tesseract
     
     [_photoView addSubview:imageView];
     //UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
@@ -221,7 +240,7 @@
 
 - (void) continueToMenu
 {
-    UIViewController *vc = [[CGPhotoManagementViewController alloc] initWithImageList:_imageList];
+    UIViewController *vc = [[CGPhotoManagementViewController alloc] initWithImageList:_imageList andPlateNumber:_plateNumber];
     [self.navigationController pushViewController:vc animated:YES];
     [self dismissViewControllerAnimated:YES completion:nil];
 }

@@ -46,6 +46,16 @@
     return self;
 }
 
+- (id)initWithImageList:(NSArray *)imageList andPlateNumber: (NSString*)plateNumber
+{
+    self = [super init];
+    if (self) {
+        _imageList = [NSArray arrayWithArray:imageList];
+        _plateNumber = plateNumber;
+    }
+    return self;
+}
+
 - (void)loadView
 {
     [super loadView];
@@ -80,7 +90,13 @@
     
     // UITextFields
     _licensePlate = [[CGTextField alloc] initWithFrame:CGRectMake(35, 98, 250, 46)];
-    _licensePlate.placeholder = @"34 UM 55"; //TODO: Dummy data
+    if( !_plateNumber )
+        _licensePlate.placeholder = @"Plaka giriniz"; //TODO: Dummy data
+    else
+    {
+        _licensePlate.text = _plateNumber;
+        _licensePlate.placeholder = _plateNumber;
+    }
     _licensePlate.leftView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"IconLicensePlateDark.png"]];
     _licensePlate.leftView.frame  = CGRectMake(14, 14, 24, 19);
     _licensePlate.leftViewMode = UITextFieldViewModeAlways;
