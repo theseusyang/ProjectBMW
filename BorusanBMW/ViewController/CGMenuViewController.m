@@ -29,6 +29,7 @@
 {
     [super loadView];
 
+    
     _contentImageView = [[UIImageView alloc] initWithImage:kApplicationImage(kResContentImage)];
     [self.view addSubview:_contentImageView];
     
@@ -58,13 +59,14 @@
     [super viewDidLoad];
     
 	// Do any additional setup after loading the view.
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     
-    [self.navigationController setNavigationBarHidden:YES];
+    
 }
 
 - (void)didReceiveMemoryWarning

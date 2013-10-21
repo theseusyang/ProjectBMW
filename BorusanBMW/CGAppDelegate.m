@@ -40,9 +40,8 @@
 	{
         // iOS 7 Navigation Image implementation
         if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
-
             [navController.navigationBar insertSubview:[[UIImageView alloc] initWithImage:navbarBg] atIndex:1];
-            //navController.navigationBar.translucent = TRUE;
+            navController.navigationBar.translucent = YES;
         }
         // iOS 6 Navigation Image implementation
         else
@@ -53,7 +52,6 @@
 		[navController.navigationBar insertSubview:[[UIImageView alloc] initWithImage:navbarBg] atIndex:0];
     }
     
-
     self.window.rootViewController = navController;
     [self.window makeKeyAndVisible];
     
