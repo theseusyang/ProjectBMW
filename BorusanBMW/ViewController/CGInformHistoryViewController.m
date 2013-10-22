@@ -18,9 +18,7 @@
 {
     self = [super init];
     if (self) {
-        if([[[UIDevice currentDevice] systemVersion] floatValue] >= 7){
-            self.navigationController.edgesForExtendedLayout = UIRectEdgeRight;
-        }
+        
     }
     return self;
 }
@@ -34,8 +32,8 @@
 {
     [super viewDidLoad];
 
+    _vehicleList = [NSMutableArray array];
     _vehicleList = [[DataService shared] getVehicleList];
-    
     
     if (![self isLastPageReached]) {
         _moreCell = [[CGMoreCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"MoreCellIdentifier"];
@@ -61,8 +59,9 @@
         [[DataService shared] getVehicleListWithSuccess:^(NSArray *vehicleList) {
             
             _vehicleImageList = [NSMutableArray array];
-            _vehicleList = [NSArray arrayWithArray:vehicleList];
+            _vehicleList = [NSMutableArray arrayWithArray:vehicleList];
             
+            [self sortListWithDate];
             [self setVehicleImageList];
             [self stopSpinner];
             [self createTableView];
@@ -72,7 +71,12 @@
         }];
     }else
     {
+        if (_vehicleImageList == nil) {
+            _vehicleImageList = [NSMutableArray array];
+        }
         // Data is already in DataService
+        [self sortListWithDate];
+        [self setVehicleImageList]; // ?
         [self stopSpinner];
         [self createTableView];
     }
@@ -138,14 +142,24 @@
     
     CGInformHistoryCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     cell = [[CGInformHistoryCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier vehicleListResponse:vehicle];
-
+    
+    //TODO: Memory leak problemi var, bu yüzden bi netten araştırma yap
+    /*
+    if (!cell) {
+     
+        
+    }
+     */
+    
+    
     if ([vehicle.imageList count] > 0) {
-       
+        
         UIImage *image = vehicle.imageList[0];
         UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
         imageView.frame = CGRectMake(0, 0, 70, 70);
         
         [cell.pic addSubview:imageView];
+        
     }
 
     return cell;
@@ -224,6 +238,7 @@
         
         _vehicleList = [[DataService shared] getVehicleList];
         
+        [self sortListWithDate];
         [self setVehicleImageList];
         [_moreCell stopAnimation];
         [_informHistoryTableView reloadData];
@@ -231,5 +246,35 @@
         NSLog(@"Error: %@", error);
     }];
 }
-     
+
+- (void)sortListWithDate
+{
+    for (int i = 0; i < _vehicleList.count; ++i) {
+        
+        VehicleListResponse *vehicle = _vehicleList[i];
+        NSDate *vehicleRecordDate = [CGUtilHelper dateFormatFromJSONString:vehicle.createdDate];
+        
+        for (int j = i + 1; j < _vehicleList.count; ++j) {
+            
+            VehicleListResponse *nextVehicle = _vehicleList[j];
+            NSDate *nextVehicleRecordDate = [CGUtilHelper dateFormatFromJSONString:nextVehicle.createdDate];
+            
+            if ([vehicleRecordDate compare:nextVehicleRecordDate] == NSOrderedAscending) {
+                
+                if(![_vehicleList respondsToSelector:@selector(exchangeObjectAtIndex:withObjectAtIndex:)])
+                {
+                    NSLog(@"Not responding to exchange method");
+                    return;
+                }else{
+                    [_vehicleList exchangeObjectAtIndex:i withObjectAtIndex:j];
+                    vehicle = _vehicleList[i];
+                }
+                
+                
+            }
+        }
+        
+    }
+}
+
 @end

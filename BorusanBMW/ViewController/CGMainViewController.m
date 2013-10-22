@@ -30,9 +30,10 @@
         [[Server shared] getNotificationTypesWithSuccess:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
             [DataService shared].notificationTypeList = [NSArray arrayWithArray:[mappingResult array]];
         } failure:^(RKObjectRequestOperation *operation, NSError *error) {
-            NSLog(@"Failure");
+            [self stopSpinner];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Login" message:@"Server is not responding.." delegate:self cancelButtonTitle:@"cancel" otherButtonTitles:nil, nil];
+            [alert show];
         }];
-        
     }
     
     return self;
@@ -178,8 +179,6 @@
     // Set data that will be send to backend
     NSString *username = _emailTextField.text;
     NSString *password = _passwordTextField.text;
-    
-    
     
     [self startSpinner];
     

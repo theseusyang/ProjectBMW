@@ -13,5 +13,6 @@
 + (void)showAvailableFonts;
 + (NSString*)dateFromJSONStringWith:(NSString*)date;
 + (NSString *)currentDate;
++ (NSDate *)dateFormatFromJSONString:(NSString *)string;
 
 @end

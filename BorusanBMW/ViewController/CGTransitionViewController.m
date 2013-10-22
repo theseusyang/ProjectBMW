@@ -171,6 +171,7 @@
     _vehicle.serviceType      = _entity.serviceName;
     _vehicle.notificationType = _entity.notificationID;
     _vehicle.description      = _entity.description;
+    //_vehicle.imageList        = [_entity.imageList copy];
 }
 
 #pragma mark Change Transition State

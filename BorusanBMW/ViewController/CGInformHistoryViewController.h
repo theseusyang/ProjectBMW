@@ -13,7 +13,7 @@
 #import "CGMenuViewController.h"
 #import "VehicleListResponse.h"
 #import "CGMoreCell.h"
-
+#import "CGUtilHelper.h"
 #import "Server.h"
 #import "DataService.h"
 #import "Base64.h"
@@ -21,7 +21,7 @@
 @interface CGInformHistoryViewController : CGBaseViewController<UITableViewDataSource, UITableViewDelegate>
 {
     CGInformHistoryTableView *_informHistoryTableView;
-    NSArray *_vehicleList;
+    NSMutableArray *_vehicleList;
     NSMutableArray *_vehicleImageList;
     UIRefreshControl *_refreshControl;
     CGMoreCell *_moreCell;

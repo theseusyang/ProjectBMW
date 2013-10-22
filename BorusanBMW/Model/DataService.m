@@ -67,7 +67,6 @@
 - (NSMutableArray*)updateVehicleListWithSuccess:(void (^)(NSArray *vehicleList))success
                                      failure:(void (^)(NSError* error))failure
 {
-    
     [[Server shared] getVehicleListWithHash:[self getHash] pageIndex:_vehiclePageIndex success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
         
         if (!_vehicleDataList || _vehicleDataList.count <= 0) {
@@ -75,7 +74,7 @@
         }
         else{
             NSArray *array = [mappingResult array];
-            _vehicleDataList = (NSMutableArray*)[_vehicleDataList arrayByAddingObjectsFromArray:array];
+            _vehicleDataList = [[_vehicleDataList arrayByAddingObjectsFromArray:array] mutableCopy];
         }
         
         if ([mappingResult array].count < kDataPackageSize) {

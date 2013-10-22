@@ -20,7 +20,15 @@
 {
     self = [super init];
     if (self) {
-        // Custom initialization
+        
+        [[DataService shared] getVehicleListWithSuccess:^(NSArray *vehicleList) {
+            
+            NSLog(@"Application is opening and getting first packet of data package whose size is 20.");
+            
+        } failure:^(NSError *error) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Login" message:@"Server is not responding.." delegate:self cancelButtonTitle:@"cancel" otherButtonTitles:nil, nil];
+            [alert show];
+        }];
     }
     return self;
 }

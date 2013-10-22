@@ -37,4 +37,5 @@
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 vehicleListResponse:(VehicleListResponse*)vehicleListResponse;
 
+- (void)setCellWith:(VehicleListResponse*)vehicleListResponse;
 @end
