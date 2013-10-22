@@ -253,25 +253,6 @@
     
     UIViewController *vc = [[CGTransitionViewController alloc] initWith:[CGInformHistoryViewController class] editEntity:editRecord vehicleResponse:_vehicle];
     [self.navigationController pushViewController:vc animated:YES];
-    
-    /*
-    [[Server shared] updateVehicleWithPlate:_licensePlate.text
-                                serviceType:_serviceName.text
-                           notificationType:notifID
-                                description:_description.textView.text
-                                   location:_addressLabel.text
-                                         ID:_vehicle.ID
-                                    success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
-                                        
-                                        [self updateClientData: notifID];
-                                        UIViewController *vc = [[CGTransitionViewController alloc] initWith:[CGInformHistoryViewController class]];
-                                        [self.navigationController pushViewController:vc animated:YES];
-                                        
-                                    } failure:^(RKObjectRequestOperation *operation, NSError *error) {
-                                        NSLog(@"Failure");
-                                    }];
-    
-   */
 }
 
 #pragma mark UIPickerViewDataSource

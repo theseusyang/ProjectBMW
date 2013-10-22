@@ -312,32 +312,8 @@
     insertRecord.imageList = imageListFinal;
     insertRecord.ID = [NSNumber numberWithInt:-1];
     
-    
     UIViewController *vc = [[CGTransitionViewController alloc] initWith:[CGMenuViewController class] recordEntity:insertRecord];
     [self.navigationController pushViewController:vc animated:YES];
-    
-    /*
-    [[Server shared] insertVehicleWithPlate:licencePlate
-                                serviceType:serviceName
-                           notificationType:notifID
-                                description:description
-                                   location:location
-                                  imageList:imageListFinal
-                                    success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
-                                        
-                                        VehicleListResponse *vehicle = [mappingResult array][0];
-                                        [[DataService shared] addRecord:vehicle];
-                                        UIViewController *vc = [[CGTransitionViewController alloc] initWith:[CGMenuViewController class]];
- 
-                                        [self.navigationController pushViewController:vc animated:YES];
-
-                                    }
-                                    failure:^(RKObjectRequestOperation *operation, NSError *error)
-                                    {
-                                        NSLog(@"sendAction is Failure!");
-                                    }];
-    
-    */
 }
 
 #pragma mark UIPickerViewDataSource
@@ -375,20 +351,6 @@
     return rowView;
 }
 
-/*
-- (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component
-{
-    return kPickerViewWidth;
-}
-*/
-/*
-- (NSString*)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
-{
-    NotificationTypeResponse* notificationType = (NotificationTypeResponse*)[_notificationTypeList objectAtIndex:row];
-    
-    return notificationType.notificationType;
-}
-*/
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
     UIView *view = [pickerView viewForRow:row forComponent:component];
@@ -424,11 +386,6 @@
     } completion:^(BOOL finished) {
         _imagePicker.hidden = YES;
     }];
-}
-
-- (void)insertVehicleRecordClientSide
-{
-    
 }
 
 @end

@@ -193,8 +193,8 @@
     imageView.image =image;
     
     // Make small the pic
-    UIGraphicsBeginImageContext(CGSizeMake(400, 400));
-    [image drawInRect:CGRectMake(0,0,400,400)];
+    UIGraphicsBeginImageContext(CGSizeMake(640, 460));
+    [image drawInRect:CGRectMake(0,0,640,460)];
     UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     
@@ -203,9 +203,10 @@
     [tesseract setImage:newImage];
     if([tesseract recognize]){
         NSLog(@"%@",[tesseract recognizedText]);
+        _plateNumber = [tesseract recognizedText];
         if( !_plateNumber ){
             //NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\\W-?2? options:<#(NSRegularExpressionOptions)#> error:<#(NSError *__autoreleasing *)#>]
-            _plateNumber = [tesseract recognizedText];
+            
         }
     } else {
         NSLog(@"Couldnt read.");
