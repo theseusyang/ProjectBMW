@@ -9,7 +9,9 @@
 #import "CGBaseViewController.h"
 #import "CGMenuViewController.h"
 #import "CGCameraOverlayView.h"
-#import "Tesseract.h"
+
+#import "ImageProcessingImplementation.h"
+#import "UIImage+operation.h"
 
 @interface CGTakePhotoViewController : CGBaseViewController<UINavigationControllerDelegate, UIImagePickerControllerDelegate, CGCameraOverlayProtocol>
 {
@@ -30,5 +32,8 @@
     
     //Photo Picker
     UIImagePickerController *_imagePicker;
+    
+    //Image Processer
+    id <ImageProcessingProtocol> imageProcessor;
 }
 @end

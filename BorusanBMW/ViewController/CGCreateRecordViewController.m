@@ -276,10 +276,11 @@
         UIImage *image = [_imageList objectAtIndex:i];
         UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
         
-        // Make small the pic
+
+        // Make small the pic - UIGraphics~
         UIGraphicsBeginImageContext(CGSizeMake(70, 70));
-        [imageView.image drawInRect:CGRectMake(0,0,70,70)];
-        UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
+            [imageView.image drawInRect:CGRectMake(0,0,70,70)];
+            UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
         
         NSData *imageData = UIImagePNGRepresentation(newImage);
@@ -310,7 +311,7 @@
     insertRecord.description = description;
     insertRecord.location = location;
     insertRecord.imageList = imageListFinal;
-    insertRecord.ID = [NSNumber numberWithInt:-1];
+    insertRecord.ID = [NSNumber numberWithInt:-1]; // Not used for this data.
     
     UIViewController *vc = [[CGTransitionViewController alloc] initWith:[CGMenuViewController class] recordEntity:insertRecord];
     [self.navigationController pushViewController:vc animated:YES];
