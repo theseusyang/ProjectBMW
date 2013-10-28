@@ -69,68 +69,36 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    [super viewDidLoad];
     imageProcessor = [ImageProcessingImplementation new];
-    
-    if([UIImagePickerController isSourceTypeAvailable:(UIImagePickerControllerSourceTypeCamera)])
-    {
-        NSArray *availableMediaTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeCamera];
         
-        _imagePicker = [[UIImagePickerController alloc] init];
-        _imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+    UIImagePickerControllerSourceType sourceType;
+    if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
+        sourceType = UIImagePickerControllerSourceTypeCamera;
+    else
+        sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        
+    NSArray *availableMediaTypes = [UIImagePickerController availableMediaTypesForSourceType:sourceType];
+        
+    _imagePicker = [[UIImagePickerController alloc] init];
+    _imagePicker.sourceType = sourceType;
+    if (sourceType == UIImagePickerControllerSourceTypeCamera) {
         _imagePicker.cameraDevice = UIImagePickerControllerCameraDeviceRear;
-        _imagePicker.mediaTypes = [NSArray arrayWithArray:availableMediaTypes];
-        
         _imagePicker.showsCameraControls = NO;
-        _imagePicker.navigationBarHidden = YES;
-        _imagePicker.wantsFullScreenLayout = YES;
-        
-         _imagePicker.delegate = self;
-        
         
         _imagePicker.cameraOverlayView = [[CGCameraOverlayView alloc] init];
         ((CGCameraOverlayView*)(_imagePicker.cameraOverlayView)).delegate = self;
         _imagePicker.delegate = self;
-        
-        
-        //MBB
-        /*
-        UIView *_newView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 365) ];
-        
-        _newButton = [[UIButton alloc] initWithFrame:CGRectMake(6, 366, 93, 48)];
-        [_newButton setBackgroundImage:kApplicationImage(kResButtonSmall) forState:UIControlStateNormal];
-        [_newButton setTitle:@"Yeni" forState:UIControlStateNormal];
-        [_newButton.titleLabel setFont:kApplicationFontBold(17.0f)];
-        [_newButton addTarget:self action:@selector(newAction:) forControlEvents:UIControlEventTouchUpInside];
-        [_newView addSubview:_newButton];
-        
-        _continueButton = [[UIButton alloc] initWithFrame:CGRectMake(221, 366, 93, 48)];
-        [_continueButton setBackgroundImage:kApplicationImage(kResButtonSmall) forState:UIControlStateNormal];
-        [_continueButton setTitle:@"Devam" forState:UIControlStateNormal];
-        [_continueButton.titleLabel setFont:kApplicationFontBold(17.0f)];
-        [_continueButton addTarget:self action:@selector(continueAction:) forControlEvents:UIControlEventTouchUpInside];
-        [_newView addSubview:_continueButton];
-        
-        _captureButton = [[UIButton alloc] initWithFrame:CGRectMake(105, 333, 110, 83)];
-        [_captureButton setBackgroundImage:kApplicationImage(kResButtonCapture) forState:UIControlStateNormal];
-        [_newView addSubview:_captureButton];
-        
-        _imagePicker.cameraOverlayView = _newView;
-        */
-        //[[NSBundle mainBundle] loadNibNamed:@"OverlayView" owner:self options:nil];
-        
-        [self presentViewController:_imagePicker animated:NO completion:^{
-            NSLog(@"LOGLOG");
-        }];
-        /*
-        [self presentViewController:_imagePicker animated:YES completion:^{
-            NSLog(@"LOGLOG");
-        }];
-        */
-
     }
-
+    _imagePicker.mediaTypes = [NSArray arrayWithArray:availableMediaTypes];
+    _imagePicker.navigationBarHidden = YES;
+    _imagePicker.wantsFullScreenLayout = YES;
+    _imagePicker.delegate = self;
+    
+#if TEST_MODE == 1
+    // Test Case code Block
+#endif
+    
+    [self presentViewController:_imagePicker animated:NO completion:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
