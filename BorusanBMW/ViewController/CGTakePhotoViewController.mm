@@ -64,6 +64,11 @@
     
     _imageList =  [NSMutableArray new];
     
+    //Gizmos
+    _processedImage = [[UIImageView alloc]init];
+    [_processedImage setFrame:CGRectMake(180, 80, 138, 96)];
+    _plate = [[UITextView alloc] init];
+    [_plate setFrame:CGRectMake(180, 220, 138, 30)];
 }
 
 - (void)viewDidLoad
@@ -225,7 +230,13 @@
     NSTimeInterval elapsedTime = [[NSDate date] timeIntervalSince1970] - currentTime;
     NSLog(@"Elapsed time for image processing: %f", elapsedTime);
     NSLog(@"License Plate: %@", _plateNumber);
-
+    
+    //Gizmos
+    _processedImage.image = processedImage;
+    _plate.text = _plateNumber;
+    [self.view addSubview:_processedImage];
+    [self.view addSubview:_plate];
+    _processedImage.contentMode = UIViewContentModeScaleAspectFit;
     /*
     // Make small the pic
     UIGraphicsBeginImageContext(CGSizeMake(640, 460));

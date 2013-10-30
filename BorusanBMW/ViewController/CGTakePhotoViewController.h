@@ -18,6 +18,10 @@
     UIView *_photoView;
     UIImageView *_captureGuide;
     
+    //Gizmos
+    UIImageView *_processedImage;
+    UITextView *_plate;
+    
     //MBB
     NSMutableArray *_imageList;
     //Plate
