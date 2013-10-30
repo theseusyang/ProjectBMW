@@ -45,6 +45,6 @@
 #define kCurrentTime [[NSDate date] timeIntervalSince1970]
 
 // TEST CASES
-#define TEST_MODE 0
+#define TEST_MODE 1
 
 #endif

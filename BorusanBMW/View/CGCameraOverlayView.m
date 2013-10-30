@@ -37,6 +37,18 @@
         [_continueButton.titleLabel setFont:kApplicationFontBold(17.0f)];
         [_continueButton addTarget:self action:@selector(continueAction:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:_continueButton];
+        
+        //Capture Guide
+        /*
+        CGColorSpaceRef colorSpace = CGColorSpaceCreateWithName(kCGColorSpaceModelMonochrome);
+        CGContextRef contextRef =  CGBitmapContextCreate(NULL,
+                                                         size.width,
+                                                         size.height,
+                                                         8,
+                                                         4 * size.width,
+                                                         colorSpace,
+                                                         kCGImageAlphaPremultipliedLast);
+         */
     }
     return self;
 }

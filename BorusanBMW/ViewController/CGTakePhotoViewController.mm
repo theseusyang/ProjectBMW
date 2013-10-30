@@ -68,6 +68,17 @@
     
     _imageList =  [NSMutableArray new];
     
+    //Gizmos
+    _processedImage = [[UIImageView alloc]init];
+    [_processedImage setFrame:CGRectMake(180, 80, 138, 96)];
+    _totalCost = [[UITextView alloc] init];
+    [_totalCost setFrame:CGRectMake(10, 80, 138, 30)];
+    _ocrCost = [[UITextView alloc] init];
+    [_ocrCost setFrame:CGRectMake(10, 120, 138, 30)];
+    _imageProcessingCost = [[UITextView alloc] init];
+    [_imageProcessingCost setFrame:CGRectMake(10, 160, 138, 30)];
+    _plate = [[UITextView alloc] init];
+    [_plate setFrame:CGRectMake(180, 220, 138, 30)];
 }
 
 - (void)viewDidLoad
@@ -77,13 +88,13 @@
     
     UIImagePickerControllerSourceType sourceType;
     
-    /*
+    
     if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
         sourceType = UIImagePickerControllerSourceTypeCamera;
     else
         sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-*/
-    sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+
+    //sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     _imagePicker = [[UIImagePickerController alloc] init];
     //[_imagePicker setAllowsEditing:YES];
     
@@ -177,34 +188,43 @@
     
     CGImageRef ref = CGImageCreateWithImageInRect(rotatedCorrectly.CGImage, croppedRect);
     rotatedCorrectly = [UIImage imageWithCGImage:ref];
-    
-    
-    //Performans Artımı sağlıyor fakat başarı oranı çok düşüyor.
-    /*
-    [Profiler start:@"resizedImageToSize:"];
-    
-    rotatedCorrectly = [rotatedCorrectly resizedImageToSize:CGSizeMake(3020 / 5 , 1140 / 5)];
-    
-    [Profiler stop];
-    */
-    
-    NSLog(@"Height %f", rotatedCorrectly.size.height);
-    NSLog(@"Width %f", rotatedCorrectly.size.width);
 
+    //NSLog(@"Size of JPG image: %ul", imageData.length);
+    
+#if TEST_MODE == 1
     [Profiler start:@"Image Processing"];
     
-    rotatedCorrectly = [self imageProcess:rotatedCorrectly];
+    UIImage *processedImage = [self imageProcess:rotatedCorrectly];
     
-    [Profiler stop];
+    _imageProcessingCost.text = [[Profiler stop] stringByAppendingString:@" Image Process"];
     
     [Profiler start:@"OCR Process"];
     
-        _plateNumber = [self OCR:rotatedCorrectly];
+        _plateNumber = [self OCR:processedImage];
     
-    [Profiler stop];
+    _ocrCost.text = [[Profiler stop] stringByAppendingString:@" OCR Process"];
     
-    NSLog(@"Total Cost: %@", [Profiler totalTime]);
+    _totalCost.text = [[Profiler totalTime] stringByAppendingString:@" Total"];
     
+    [self.view addSubview:_imageProcessingCost];
+    [self.view addSubview:_ocrCost];
+    [self.view addSubview:_totalCost];
+#endif
+    
+    
+    
+    NSLog(@"%@", _plateNumber);
+    
+    NSLog(@"Total Time: %@", [Profiler totalTime]);
+    
+#if TEST_MODE == 1
+    //Gizmos
+    _plate.text = _plateNumber;
+    _processedImage.image = processedImage;
+    _processedImage.contentMode = UIViewContentModeScaleAspectFit;
+    [self.view addSubview:_plate];
+    [self.view addSubview:_processedImage];
+#endif
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 365)];
     imageView.image = rotatedCorrectly;
     imageView.contentMode = UIViewContentModeScaleAspectFit;

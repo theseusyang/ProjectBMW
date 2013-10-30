@@ -27,6 +27,7 @@ static NSTimeInterval _totalTime = 0;
     NSTimeInterval elapsedTime = kCurrentTime - _currentTime;
     _totalTime += elapsedTime;
     NSLog(@"%@ result is: %f", _profileName, elapsedTime);
+    _totalTime += elapsedTime;
     return [NSString stringWithFormat:@"%f", elapsedTime];
 }
 
