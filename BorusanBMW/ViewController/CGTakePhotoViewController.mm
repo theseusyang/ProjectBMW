@@ -9,6 +9,9 @@
 #import "CGTakePhotoViewController.h"
 #import "CGPhotoManagementViewController.h"
 
+#define IMAGE_OFFSET_Y 540.0
+#define IMAGE_OFFSET_X 244.0
+#define IMAGE_CROP_HEIGHT 1140.0
 
 @interface CGTakePhotoViewController ()
 
@@ -70,29 +73,29 @@
 {
     [super viewDidLoad];
     imageProcessor = [ImageProcessingImplementation new];
-        
+    
     UIImagePickerControllerSourceType sourceType;
+    
+    /*
     if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
         sourceType = UIImagePickerControllerSourceTypeCamera;
     else
         sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-        
-    NSArray *availableMediaTypes = [UIImagePickerController availableMediaTypesForSourceType:sourceType];
-        
+*/
+    sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     _imagePicker = [[UIImagePickerController alloc] init];
+    //[_imagePicker setAllowsEditing:YES];
+    
     _imagePicker.sourceType = sourceType;
     if (sourceType == UIImagePickerControllerSourceTypeCamera) {
         _imagePicker.cameraDevice = UIImagePickerControllerCameraDeviceRear;
-        _imagePicker.showsCameraControls = NO;
-        
+        _imagePicker.showsCameraControls = NO; // To provide our own custom controls
         _imagePicker.cameraOverlayView = [[CGCameraOverlayView alloc] init];
         ((CGCameraOverlayView*)(_imagePicker.cameraOverlayView)).delegate = self;
-        _imagePicker.delegate = self;
     }
-    _imagePicker.mediaTypes = [NSArray arrayWithArray:availableMediaTypes];
     _imagePicker.navigationBarHidden = YES;
     _imagePicker.wantsFullScreenLayout = YES;
-    _imagePicker.delegate = self;
+    [_imagePicker setDelegate:self];
     
 #if TEST_MODE == 1
     // Test Case code Block
@@ -158,77 +161,80 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     [self dismissViewControllerAnimated:YES completion:nil];
+
+    UIImage *originalImage= [info objectForKey: UIImagePickerControllerOriginalImage];
+    CGRect croppedRect = CGRectMake(IMAGE_OFFSET_X, IMAGE_OFFSET_Y, originalImage.size.width - IMAGE_OFFSET_X, IMAGE_CROP_HEIGHT);
+   
+    NSLog(@"Height %f", originalImage.size.height);
+    NSLog(@"Width %f", originalImage.size.width);
     
-    UIImage *image = [[UIImage alloc] init];
-    image = [info objectForKey:	UIImagePickerControllerOriginalImage];
-    //image = [UIImage imageNamed:@"IMG_1238.JPG"];
-    CGRect croppedRect = CGRectMake(0, 0, image.size.width, image.size.height);
+    
+    UIImage *rotatedCorrectly;
+    if (originalImage.imageOrientation!=UIImageOrientationUp)
+        rotatedCorrectly = [originalImage rotate:originalImage.imageOrientation];
+    else
+        rotatedCorrectly = originalImage;
+    
+    CGImageRef ref = CGImageCreateWithImageInRect(rotatedCorrectly.CGImage, croppedRect);
+    rotatedCorrectly = [UIImage imageWithCGImage:ref];
+    
+    NSLog(@"Height %f", rotatedCorrectly.size.height);
+    NSLog(@"Width %f", rotatedCorrectly.size.width);
+    /*
+    [Profiler start:@"Make it JPEG:"];
+    
+    NSData *imageData = UIImageJPEGRepresentation(rotatedCorrectly, 0);
+    rotatedCorrectly = [UIImage imageWithData:imageData];
+    
+    [Profiler stop];
+    
+    NSLog(@"Size of JPG image: %ul", imageData.length);
+    
+    */
+    [Profiler start:@"Image Processing"];
+    
+    rotatedCorrectly = [self imageProcess:rotatedCorrectly];
+    
+    [Profiler stop];
+    
+    [Profiler start:@"OCR Process"];
+    
+        _plateNumber = [self OCR:rotatedCorrectly];
+    
+    [Profiler stop];
     
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 365)];
+    imageView.image = rotatedCorrectly;
     imageView.contentMode = UIViewContentModeScaleAspectFit;
-    imageView.image =image;
+
+    [_photoView addSubview:imageView];
+    [_imageList addObject:imageView.image];
     
+     //UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil); // If you wanna save pic to Lib, uncomment this line
+}
+
+- (UIImage *)imageProcess:(UIImage *)image
+{
     // Make small the pic - UIGraphics~
     /*
     UIGraphicsBeginImageContext(CGSizeMake(image.size.width / 5, image.size.height / 5));
-        [image drawInRect:CGRectMake(0,0,image.size.width / 5, image.size.height / 5)];
-        image = UIGraphicsGetImageFromCurrentImageContext();
+    [image drawInRect:CGRectMake(0,0,image.size.width / 5, image.size.height / 5)];
+    image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     */
     
-    UIImage *rotatedCorrectly;
-    if (image.imageOrientation!=UIImageOrientationUp)
-        rotatedCorrectly = [image rotate:image.imageOrientation];
-    else
-        rotatedCorrectly = image;
     
-    //CGImageRef ref= CGImageCreateWithImageInRect(rotatedCorrectly.CGImage, croppedRect);
-    //UIImage *takenImage= [UIImage imageWithCGImage:ref];
     UIImage *takenImage = image;
-    
     UIImage *processedImage;
-    NSTimeInterval currentTime = [[NSDate date] timeIntervalSince1970];
-        processedImage = [imageProcessor processImage:takenImage];
-        _plateNumber = [imageProcessor OCRImage:processedImage];
-    NSTimeInterval elapsedTime = [[NSDate date] timeIntervalSince1970] - currentTime;
-    NSLog(@"Elapsed time for image processing: %f", elapsedTime);
-    NSLog(@"License Plate: %@", _plateNumber);
 
-    /*
-    // Make small the pic
-    UIGraphicsBeginImageContext(CGSizeMake(640, 460));
-    [image drawInRect:CGRectMake(0,0,640,460)];
-    UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    */
-    
-    /*
-    //Tesseract needs opencv image preprocessing
-    Tesseract *tesseract = [[Tesseract alloc] initWithDataPath:@"tessdata" language:@"eng"];
-    [tesseract setImage:newImage];
-    if([tesseract recognize]){
-        NSLog(@"%@",[tesseract recognizedText]);
-        _plateNumber = [tesseract recognizedText];
-        if( !_plateNumber ){
-            //NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\\W-?2? options:<#(NSRegularExpressionOptions)#> error:<#(NSError *__autoreleasing *)#>]
-            
-        }
-    } else {
-        NSLog(@"Couldnt read.");
-    }
-    [tesseract clear];
-    //End of tesseract
-    */
-    
-    [_photoView addSubview:imageView];
-    //UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
-    
-    //MBB
-    [_imageList addObject:imageView.image];
-    
-    //NSLog(@"Took Picture");
-    //[self dismissViewControllerAnimated:YES completion:nil];
-    
+    processedImage = [imageProcessor processImage:takenImage];
+
+    return processedImage;
+}
+
+- (NSString *)OCR: (UIImage *)processedImage
+{
+   return [imageProcessor OCRImage:processedImage];
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker

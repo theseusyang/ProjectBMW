@@ -12,6 +12,7 @@
 
 #import "ImageProcessingImplementation.h"
 #import "UIImage+operation.h"
+#import "Profiler.h"
 
 @interface CGTakePhotoViewController : CGBaseViewController<UINavigationControllerDelegate, UIImagePickerControllerDelegate, CGCameraOverlayProtocol>
 {

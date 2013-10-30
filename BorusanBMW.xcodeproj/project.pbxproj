@@ -137,6 +137,7 @@
 		629703D017F175C6000D159F /* VehicleListResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 629703CF17F175C6000D159F /* VehicleListResponse.m */; };
 		62989A1D17DA2A3D0067BCF6 /* CGTransitionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62989A1C17DA2A3D0067BCF6 /* CGTransitionViewController.m */; };
 		629B0BA817D74A8A009595F9 /* CGBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 629B0BA717D74A8A009595F9 /* CGBaseViewController.m */; };
+		629B208418210F5A00A85CDA /* Profiler.m in Sources */ = {isa = PBXBuildFile; fileRef = 629B208318210F5A00A85CDA /* Profiler.m */; };
 		629EF8FE181569C40045205F /* RecordEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 629EF8FD181569C40045205F /* RecordEntity.m */; };
 		62A70B3417F9A2FB00098F47 /* LoginRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 62A70B3317F9A2FB00098F47 /* LoginRequest.m */; };
 		62A70B3C17F9C53000098F47 /* iPhoneIcon-568.png in Resources */ = {isa = PBXBuildFile; fileRef = 62A70B3917F9C53000098F47 /* iPhoneIcon-568.png */; };
@@ -386,6 +387,8 @@
 		62989A1C17DA2A3D0067BCF6 /* CGTransitionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CGTransitionViewController.m; path = ViewController/CGTransitionViewController.m; sourceTree = "<group>"; };
 		629B0BA617D74A8A009595F9 /* CGBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CGBaseViewController.h; path = ViewController/CGBaseViewController.h; sourceTree = "<group>"; };
 		629B0BA717D74A8A009595F9 /* CGBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CGBaseViewController.m; path = ViewController/CGBaseViewController.m; sourceTree = "<group>"; };
+		629B208218210F5A00A85CDA /* Profiler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Profiler.h; path = Utils/Profiler.h; sourceTree = "<group>"; };
+		629B208318210F5A00A85CDA /* Profiler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Profiler.m; path = Utils/Profiler.m; sourceTree = "<group>"; };
 		629EF8FC181569C40045205F /* RecordEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RecordEntity.h; path = Model/Entity/RecordEntity.h; sourceTree = "<group>"; };
 		629EF8FD181569C40045205F /* RecordEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RecordEntity.m; path = Model/Entity/RecordEntity.m; sourceTree = "<group>"; };
 		62A70B3217F9A2FB00098F47 /* LoginRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginRequest.h; path = Model/Entity/LoginRequest.h; sourceTree = "<group>"; };
@@ -1013,6 +1016,8 @@
 				62C9060117E05FAB009E1253 /* AppInfo.h */,
 				62C9060517E07199009E1253 /* CGUtilHelper.h */,
 				62C9060617E07199009E1253 /* CGUtilHelper.m */,
+				629B208218210F5A00A85CDA /* Profiler.h */,
+				629B208318210F5A00A85CDA /* Profiler.m */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -1516,6 +1521,7 @@
 				629703D017F175C6000D159F /* VehicleListResponse.m in Sources */,
 				6218D7E8181AA2490093C86D /* ImageProcessor.cpp in Sources */,
 				62B7C53B17D6151A00257C95 /* main.m in Sources */,
+				629B208418210F5A00A85CDA /* Profiler.m in Sources */,
 				6218D7EA181AA2490093C86D /* UIImage+operation.m in Sources */,
 				62E988BB18054C6D000F3C8D /* UpdateResponse.m in Sources */,
 				62B7C53F17D6151A00257C95 /* CGAppDelegate.m in Sources */,
