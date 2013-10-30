@@ -9,6 +9,9 @@
 #import "CGTakePhotoViewController.h"
 #import "CGPhotoManagementViewController.h"
 
+#define IMAGE_OFFSET_Y 540.0
+#define IMAGE_OFFSET_X 244.0
+#define IMAGE_CROP_HEIGHT 1140.0
 
 @interface CGTakePhotoViewController ()
 
@@ -67,6 +70,12 @@
     //Gizmos
     _processedImage = [[UIImageView alloc]init];
     [_processedImage setFrame:CGRectMake(180, 80, 138, 96)];
+    _totalCost = [[UITextView alloc] init];
+    [_totalCost setFrame:CGRectMake(10, 80, 138, 30)];
+    _ocrCost = [[UITextView alloc] init];
+    [_ocrCost setFrame:CGRectMake(10, 120, 138, 30)];
+    _imageProcessingCost = [[UITextView alloc] init];
+    [_imageProcessingCost setFrame:CGRectMake(10, 160, 138, 30)];
     _plate = [[UITextView alloc] init];
     [_plate setFrame:CGRectMake(180, 220, 138, 30)];
 }
@@ -74,68 +83,36 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    [super viewDidLoad];
     imageProcessor = [ImageProcessingImplementation new];
     
-    if([UIImagePickerController isSourceTypeAvailable:(UIImagePickerControllerSourceTypeCamera)])
-    {
-        NSArray *availableMediaTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeCamera];
-        
-        _imagePicker = [[UIImagePickerController alloc] init];
-        _imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+    UIImagePickerControllerSourceType sourceType;
+    
+    
+    if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
+        sourceType = UIImagePickerControllerSourceTypeCamera;
+    else
+        sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+
+    //sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    _imagePicker = [[UIImagePickerController alloc] init];
+    //[_imagePicker setAllowsEditing:YES];
+    
+    _imagePicker.sourceType = sourceType;
+    if (sourceType == UIImagePickerControllerSourceTypeCamera) {
         _imagePicker.cameraDevice = UIImagePickerControllerCameraDeviceRear;
-        _imagePicker.mediaTypes = [NSArray arrayWithArray:availableMediaTypes];
-        
-        _imagePicker.showsCameraControls = NO;
-        _imagePicker.navigationBarHidden = YES;
-        _imagePicker.wantsFullScreenLayout = YES;
-        
-         _imagePicker.delegate = self;
-        
-        
+        _imagePicker.showsCameraControls = NO; // To provide our own custom controls
         _imagePicker.cameraOverlayView = [[CGCameraOverlayView alloc] init];
         ((CGCameraOverlayView*)(_imagePicker.cameraOverlayView)).delegate = self;
-        _imagePicker.delegate = self;
-        
-        
-        //MBB
-        /*
-        UIView *_newView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 365) ];
-        
-        _newButton = [[UIButton alloc] initWithFrame:CGRectMake(6, 366, 93, 48)];
-        [_newButton setBackgroundImage:kApplicationImage(kResButtonSmall) forState:UIControlStateNormal];
-        [_newButton setTitle:@"Yeni" forState:UIControlStateNormal];
-        [_newButton.titleLabel setFont:kApplicationFontBold(17.0f)];
-        [_newButton addTarget:self action:@selector(newAction:) forControlEvents:UIControlEventTouchUpInside];
-        [_newView addSubview:_newButton];
-        
-        _continueButton = [[UIButton alloc] initWithFrame:CGRectMake(221, 366, 93, 48)];
-        [_continueButton setBackgroundImage:kApplicationImage(kResButtonSmall) forState:UIControlStateNormal];
-        [_continueButton setTitle:@"Devam" forState:UIControlStateNormal];
-        [_continueButton.titleLabel setFont:kApplicationFontBold(17.0f)];
-        [_continueButton addTarget:self action:@selector(continueAction:) forControlEvents:UIControlEventTouchUpInside];
-        [_newView addSubview:_continueButton];
-        
-        _captureButton = [[UIButton alloc] initWithFrame:CGRectMake(105, 333, 110, 83)];
-        [_captureButton setBackgroundImage:kApplicationImage(kResButtonCapture) forState:UIControlStateNormal];
-        [_newView addSubview:_captureButton];
-        
-        _imagePicker.cameraOverlayView = _newView;
-        */
-        //[[NSBundle mainBundle] loadNibNamed:@"OverlayView" owner:self options:nil];
-        
-        [self presentViewController:_imagePicker animated:NO completion:^{
-            NSLog(@"LOGLOG");
-        }];
-        /*
-        [self presentViewController:_imagePicker animated:YES completion:^{
-            NSLog(@"LOGLOG");
-        }];
-        */
-
     }
-
+    _imagePicker.navigationBarHidden = YES;
+    _imagePicker.wantsFullScreenLayout = YES;
+    [_imagePicker setDelegate:self];
+    
+#if TEST_MODE == 1
+    // Test Case code Block
+#endif
+    
+    [self presentViewController:_imagePicker animated:NO completion:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -195,83 +172,91 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     [self dismissViewControllerAnimated:YES completion:nil];
+
+    UIImage *originalImage= [info objectForKey: UIImagePickerControllerOriginalImage];
+    CGRect croppedRect = CGRectMake(IMAGE_OFFSET_X, IMAGE_OFFSET_Y, originalImage.size.width - IMAGE_OFFSET_X, IMAGE_CROP_HEIGHT);
+   
+    NSLog(@"Height %f", originalImage.size.height);
+    NSLog(@"Width %f", originalImage.size.width);
     
-    UIImage *image = [[UIImage alloc] init];
-    image = [info objectForKey:	UIImagePickerControllerOriginalImage];
-    //image = [UIImage imageNamed:@"IMG_1238.JPG"];
-    CGRect croppedRect = CGRectMake(0, 0, image.size.width, image.size.height);
     
+    UIImage *rotatedCorrectly;
+    if (originalImage.imageOrientation!=UIImageOrientationUp)
+        rotatedCorrectly = [originalImage rotate:originalImage.imageOrientation];
+    else
+        rotatedCorrectly = originalImage;
+    
+    CGImageRef ref = CGImageCreateWithImageInRect(rotatedCorrectly.CGImage, croppedRect);
+    rotatedCorrectly = [UIImage imageWithCGImage:ref];
+
+    //NSLog(@"Size of JPG image: %ul", imageData.length);
+    
+#if TEST_MODE == 1
+    [Profiler start:@"Image Processing"];
+    
+    UIImage *processedImage = [self imageProcess:rotatedCorrectly];
+    
+    _imageProcessingCost.text = [[Profiler stop] stringByAppendingString:@" Image Process"];
+    
+    [Profiler start:@"OCR Process"];
+    
+        _plateNumber = [self OCR:processedImage];
+    
+    _ocrCost.text = [[Profiler stop] stringByAppendingString:@" OCR Process"];
+    
+    _totalCost.text = [[Profiler totalTime] stringByAppendingString:@" Total"];
+    
+    [self.view addSubview:_imageProcessingCost];
+    [self.view addSubview:_ocrCost];
+    [self.view addSubview:_totalCost];
+#endif
+    
+    
+    
+    NSLog(@"%@", _plateNumber);
+    
+    NSLog(@"Total Time: %@", [Profiler totalTime]);
+    
+#if TEST_MODE == 1
+    //Gizmos
+    _plate.text = _plateNumber;
+    _processedImage.image = processedImage;
+    _processedImage.contentMode = UIViewContentModeScaleAspectFit;
+    [self.view addSubview:_plate];
+    [self.view addSubview:_processedImage];
+#endif
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 365)];
+    imageView.image = rotatedCorrectly;
     imageView.contentMode = UIViewContentModeScaleAspectFit;
-    imageView.image =image;
+
+    [_photoView addSubview:imageView];
+    [_imageList addObject:imageView.image];
     
+     //UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil); // If you wanna save pic to Lib, uncomment this line
+}
+
+- (UIImage *)imageProcess:(UIImage *)image
+{
     // Make small the pic - UIGraphics~
     /*
     UIGraphicsBeginImageContext(CGSizeMake(image.size.width / 5, image.size.height / 5));
-        [image drawInRect:CGRectMake(0,0,image.size.width / 5, image.size.height / 5)];
-        image = UIGraphicsGetImageFromCurrentImageContext();
+    [image drawInRect:CGRectMake(0,0,image.size.width / 5, image.size.height / 5)];
+    image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     */
     
-    UIImage *rotatedCorrectly;
-    if (image.imageOrientation!=UIImageOrientationUp)
-        rotatedCorrectly = [image rotate:image.imageOrientation];
-    else
-        rotatedCorrectly = image;
     
-    //CGImageRef ref= CGImageCreateWithImageInRect(rotatedCorrectly.CGImage, croppedRect);
-    //UIImage *takenImage= [UIImage imageWithCGImage:ref];
     UIImage *takenImage = image;
-    
     UIImage *processedImage;
-    NSTimeInterval currentTime = [[NSDate date] timeIntervalSince1970];
-        processedImage = [imageProcessor processImage:takenImage];
-        _plateNumber = [imageProcessor OCRImage:processedImage];
-    NSTimeInterval elapsedTime = [[NSDate date] timeIntervalSince1970] - currentTime;
-    NSLog(@"Elapsed time for image processing: %f", elapsedTime);
-    NSLog(@"License Plate: %@", _plateNumber);
-    
-    //Gizmos
-    _processedImage.image = processedImage;
-    _plate.text = _plateNumber;
-    [self.view addSubview:_processedImage];
-    [self.view addSubview:_plate];
-    _processedImage.contentMode = UIViewContentModeScaleAspectFit;
-    /*
-    // Make small the pic
-    UIGraphicsBeginImageContext(CGSizeMake(640, 460));
-    [image drawInRect:CGRectMake(0,0,640,460)];
-    UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    */
-    
-    /*
-    //Tesseract needs opencv image preprocessing
-    Tesseract *tesseract = [[Tesseract alloc] initWithDataPath:@"tessdata" language:@"eng"];
-    [tesseract setImage:newImage];
-    if([tesseract recognize]){
-        NSLog(@"%@",[tesseract recognizedText]);
-        _plateNumber = [tesseract recognizedText];
-        if( !_plateNumber ){
-            //NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\\W-?2? options:<#(NSRegularExpressionOptions)#> error:<#(NSError *__autoreleasing *)#>]
-            
-        }
-    } else {
-        NSLog(@"Couldnt read.");
-    }
-    [tesseract clear];
-    //End of tesseract
-    */
-    
-    [_photoView addSubview:imageView];
-    //UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
-    
-    //MBB
-    [_imageList addObject:imageView.image];
-    
-    //NSLog(@"Took Picture");
-    //[self dismissViewControllerAnimated:YES completion:nil];
-    
+
+    processedImage = [imageProcessor processImage:takenImage];
+
+    return processedImage;
+}
+
+- (NSString *)OCR: (UIImage *)processedImage
+{
+   return [imageProcessor OCRImage:processedImage];
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker

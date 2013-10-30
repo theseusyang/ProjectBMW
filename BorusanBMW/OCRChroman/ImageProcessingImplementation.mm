@@ -34,7 +34,7 @@
 - (NSString*)OCRImage:(UIImage*)src
 {
     tesseract::TessBaseAPI *tesseract = new tesseract::TessBaseAPI();
-    tesseract->Init([[self pathToLanguageFile] cStringUsingEncoding:NSUTF8StringEncoding], "lpl");
+    tesseract->Init([[self pathToLanguageFile] cStringUsingEncoding:NSUTF8StringEncoding], "plt");
     NSString *whiteList = kWhiteList;
     tesseract->SetVariable("tessedit_char_whitelist", [whiteList UTF8String]);
     tesseract->SetPageSegMode(tesseract::PSM_SINGLE_WORD);
@@ -62,16 +62,12 @@
     
     cv::Mat img_gray;
     cv::cvtColor(source, img_gray, CV_BGR2GRAY);
-    
     blur(img_gray, img_gray, cv::Size(5,5));
     //medianBlur(img_gray, img_gray, 9);
-    
     cv::Mat img_sobel;
     cv::Sobel(img_gray, img_sobel, CV_8U, 1, 0, 3, 1, 0, cv::BORDER_DEFAULT);
-    
     cv::Mat img_threshold;
     threshold(img_gray, img_threshold, 0, 255, CV_THRESH_OTSU+CV_THRESH_BINARY);
-    
     cv::Mat element = getStructuringElement(cv::MORPH_RECT, cv::Size(3, 3) );
     morphologyEx(img_threshold, img_threshold, CV_MOP_CLOSE, element);
     
@@ -146,60 +142,59 @@
     }
     
     /* Get Region Of Interest ROI */
+    
     cv::RotatedRect box = minAreaRect( cv::Mat(largestContour[0]));
     cv::Rect box2 = cv::RotatedRect(box.center, box.size, box.angle).boundingRect();
     
-    // Chroman Code
     /*
-    box2.x += box2.width * 0.028;
-    box2.width -= box2.width * 0.05;
-    box2.y += box2.height * 0.25;
-    box2.height -= box2.height * 0.55;
-    */
-    
+     box2.x += box2.width * 0.028;
+     box2.width -= box2.width * 0.05;
+     box2.y += box2.height * 0.25;
+     box2.height -= box2.height * 0.55;
+     */
     // My Code
     
     box2.x += box2.width * 0.008;
     box2.width -= box2.width * 0.03;
     box2.y += box2.height * 0.08;
     box2.height -= box2.height * 0.16;
-   
+    
+    
     cv::Mat cvMat = img_threshold(box2).clone();
-
     
     /* Experimental
-    
-    cv::Point2f pts[4];
-    
-    std::vector<cv::Point> shape;
-    
-    shape.push_back(largestContour[0][3]);
-    shape.push_back(largestContour[0][2]);
-    shape.push_back(largestContour[0][1]);
-    shape.push_back(largestContour[0][0]);
-    
-    cv::RotatedRect boxx = minAreaRect(cv::Mat(shape));
-    
-    box.points(pts);
-    
-    cv::Point2f src_vertices[3];
-    src_vertices[0] = shape[0];
-    src_vertices[1] = shape[1];
-    src_vertices[2] = shape[3];
-    
-    cv::Point2f dst_vertices[3];
-    dst_vertices[0] = cv::Point(0, 0);
-    dst_vertices[1] = cv::Point(boxx.boundingRect().width-1, 0);
-    dst_vertices[2] = cv::Point(0, boxx.boundingRect().height-1);
-    
-    cv::Mat warpAffineMatrix = getAffineTransform(src_vertices, dst_vertices);
-    
-    cv::Mat rotated;
-    cv::Size size(boxx.boundingRect().width, boxx.boundingRect().height);
-    cv::warpAffine(source, rotated, warpAffineMatrix, size, cv::INTER_LINEAR, cv::BORDER_CONSTANT);
      
-    */
+     cv::Point2f pts[4];
      
+     std::vector<cv::Point> shape;
+     
+     shape.push_back(largestContour[0][3]);
+     shape.push_back(largestContour[0][2]);
+     shape.push_back(largestContour[0][1]);
+     shape.push_back(largestContour[0][0]);
+     
+     cv::RotatedRect boxx = minAreaRect(cv::Mat(shape));
+     
+     box.points(pts);
+     
+     cv::Point2f src_vertices[3];
+     src_vertices[0] = shape[0];
+     src_vertices[1] = shape[1];
+     src_vertices[2] = shape[3];
+     
+     cv::Point2f dst_vertices[3];
+     dst_vertices[0] = cv::Point(0, 0);
+     dst_vertices[1] = cv::Point(boxx.boundingRect().width-1, 0);
+     dst_vertices[2] = cv::Point(0, boxx.boundingRect().height-1);
+     
+     cv::Mat warpAffineMatrix = getAffineTransform(src_vertices, dst_vertices);
+     
+     cv::Mat rotated;
+     cv::Size size(boxx.boundingRect().width, boxx.boundingRect().height);
+     cv::warpAffine(source, rotated, warpAffineMatrix, size, cv::INTER_LINEAR, cv::BORDER_CONSTANT);
+     
+     */
+    
     UIImage *filtered=[UIImage imageWithCVMat:cvMat];
     return filtered;
 }

@@ -12,6 +12,7 @@
 
 #import "ImageProcessingImplementation.h"
 #import "UIImage+operation.h"
+#import "Profiler.h"
 
 @interface CGTakePhotoViewController : CGBaseViewController<UINavigationControllerDelegate, UIImagePickerControllerDelegate, CGCameraOverlayProtocol>
 {
@@ -21,6 +22,9 @@
     //Gizmos
     UIImageView *_processedImage;
     UITextView *_plate;
+    UITextView *_totalCost;
+    UITextView *_ocrCost;
+    UITextView *_imageProcessingCost;
     
     //MBB
     NSMutableArray *_imageList;
