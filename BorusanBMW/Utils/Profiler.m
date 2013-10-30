@@ -14,6 +14,7 @@
 
 static NSString *_profileName = @"";
 static NSTimeInterval _currentTime = -1;
+static NSTimeInterval _totalTime = 0;
 
 + (void)start:(NSString *)profileName{
     
@@ -24,8 +25,16 @@ static NSTimeInterval _currentTime = -1;
 + (NSString*)stop{
     
     NSTimeInterval elapsedTime = kCurrentTime - _currentTime;
+    _totalTime += elapsedTime;
     NSLog(@"%@ result is: %f", _profileName, elapsedTime);
     return [NSString stringWithFormat:@"%f", elapsedTime];
+}
+
++ (NSString *)totalTime
+{
+    float total = _totalTime;
+    _totalTime = 0;
+    return [NSString stringWithFormat:@"%f", total];
 }
 
 @end

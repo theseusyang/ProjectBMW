@@ -12,5 +12,6 @@
 
 + (void)start:(NSString *)profileName;
 + (NSString*)stop;
++ (NSString *)totalTime;
 
 @end

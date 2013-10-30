@@ -52,7 +52,6 @@
 - (void)loadView
 {
     [super loadView];
-
     
     _photoGallery = [[CGPhotoGalleryView alloc] initWithPoint:CGPointMake(0, 53) andList:_imageList];
     [self.view addSubview:_photoGallery];

@@ -10,7 +10,8 @@
 #import "CGPhotoManagementViewController.h"
 
 #define IMAGE_OFFSET_Y 540.0
-#define IMAGE_OFFSET_X 244.0
+#define IMAGE_OFFSET_X 200.0//244.0
+
 #define IMAGE_CROP_HEIGHT 1140.0
 
 @interface CGTakePhotoViewController ()
@@ -168,7 +169,6 @@
     NSLog(@"Height %f", originalImage.size.height);
     NSLog(@"Width %f", originalImage.size.width);
     
-    
     UIImage *rotatedCorrectly;
     if (originalImage.imageOrientation!=UIImageOrientationUp)
         rotatedCorrectly = [originalImage rotate:originalImage.imageOrientation];
@@ -178,19 +178,19 @@
     CGImageRef ref = CGImageCreateWithImageInRect(rotatedCorrectly.CGImage, croppedRect);
     rotatedCorrectly = [UIImage imageWithCGImage:ref];
     
-    NSLog(@"Height %f", rotatedCorrectly.size.height);
-    NSLog(@"Width %f", rotatedCorrectly.size.width);
-    /*
-    [Profiler start:@"Make it JPEG:"];
     
-    NSData *imageData = UIImageJPEGRepresentation(rotatedCorrectly, 0);
-    rotatedCorrectly = [UIImage imageWithData:imageData];
+    //Performans Artımı sağlıyor fakat başarı oranı çok düşüyor.
+    /*
+    [Profiler start:@"resizedImageToSize:"];
+    
+    rotatedCorrectly = [rotatedCorrectly resizedImageToSize:CGSizeMake(3020 / 5 , 1140 / 5)];
     
     [Profiler stop];
-    
-    NSLog(@"Size of JPG image: %ul", imageData.length);
-    
     */
+    
+    NSLog(@"Height %f", rotatedCorrectly.size.height);
+    NSLog(@"Width %f", rotatedCorrectly.size.width);
+
     [Profiler start:@"Image Processing"];
     
     rotatedCorrectly = [self imageProcess:rotatedCorrectly];
@@ -202,6 +202,8 @@
         _plateNumber = [self OCR:rotatedCorrectly];
     
     [Profiler stop];
+    
+    NSLog(@"Total Cost: %@", [Profiler totalTime]);
     
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 365)];
     imageView.image = rotatedCorrectly;
@@ -222,7 +224,6 @@
     image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     */
-    
     
     UIImage *takenImage = image;
     UIImage *processedImage;
