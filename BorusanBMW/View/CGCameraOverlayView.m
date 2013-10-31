@@ -13,54 +13,6 @@
 
 @synthesize _useImageProcessSwitch;
 
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        //_footerImage = [[UIImageView alloc] initWithImage:kApplicationImage(kResContentFooter)];
-        //_footerImage.frame = CGRectMake(0, 0, 320, 55);
-        //[self addSubview:_footerImage];
-
-        
-        _newButton = [[UIButton alloc] initWithFrame:CGRectMake(6, 366, 93, 48)];
-        [_newButton setBackgroundImage:kApplicationImage(kResButtonSmall) forState:UIControlStateNormal];
-        [_newButton setTitle:@"Yeni" forState:UIControlStateNormal];
-        [_newButton.titleLabel setFont:kApplicationFontBold(17.0f)];
-        [_newButton addTarget:self action:@selector(newAction:) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:_newButton];
-        
-        _captureButton = [[UIButton alloc] initWithFrame:CGRectMake(105, 333, 110, 83)];
-        [_captureButton setBackgroundImage:kApplicationImage(kResButtonCapture) forState:UIControlStateNormal];
-        [_captureButton addTarget:self action:@selector(takePhoto:) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:_captureButton];
-        
-        _continueButton = [[UIButton alloc] initWithFrame:CGRectMake(221, 366, 93, 48)];
-        [_continueButton setBackgroundImage:kApplicationImage(kResButtonSmall) forState:UIControlStateNormal];
-        [_continueButton setTitle:@"Devam" forState:UIControlStateNormal];
-        [_continueButton.titleLabel setFont:kApplicationFontBold(17.0f)];
-        [_continueButton addTarget:self action:@selector(continueAction:) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:_continueButton];
-        
-        _useImageProcessSwitch = [[UISwitch alloc] initWithFrame:CGRectMake(10, 40, 40, 40)];
-        [_useImageProcessSwitch setOn:NO];
-        useImageProcessing = NO;
-        [_useImageProcessSwitch addTarget:self action:@selector(switchValueChanged) forControlEvents:UIControlEventValueChanged];
-        [self addSubview:_useImageProcessSwitch];
-        
-        //Capture Guide
-        /*
-        CGColorSpaceRef colorSpace = CGColorSpaceCreateWithName(kCGColorSpaceModelMonochrome);
-        CGContextRef contextRef =  CGBitmapContextCreate(NULL,
-                                                         size.width,
-                                                         size.height,
-                                                         8,
-                                                         4 * size.width,
-                                                         colorSpace,
-                                                         kCGImageAlphaPremultipliedLast);
-         */
-    }
-    return self;
-}
 
 - (id) init
 {
@@ -96,6 +48,7 @@
         _useImageProcessSwitch = [[UISwitch alloc] initWithFrame:CGRectMake( 10, 20, 40, 40)];
         [_useImageProcessSwitch setOn:NO];
         useImageProcessing = NO;
+        _captureGuide.hidden = YES;
         [_useImageProcessSwitch addTarget:self action:@selector(switchValueChanged) forControlEvents:UIControlEventValueChanged];
         [self addSubview:_useImageProcessSwitch];
         
@@ -114,6 +67,7 @@
     NSLog(@"Photo taken %hhd", useImageProcessing);
     if (self.delegate) {
         [self.delegate takeOverlayPhotoWithImageProcessing: useImageProcessing];
+        [self setSwitchTo:NO];
     }
     
 }
@@ -123,6 +77,7 @@
     NSLog(@"Photo taken %hhd", useImageProcessing);
     if (self.delegate) {
         [self.delegate takeOverlayPhotoWithImageProcessing: useImageProcessing];
+        [self setSwitchTo:NO];
     }
 
 }
@@ -130,6 +85,7 @@
 -(IBAction) continueAction :(id)sender
 {
     if (self.delegate) {
+        [self setSwitchTo:NO];
         [self.delegate continueToMenu];
     }
 }
@@ -147,8 +103,10 @@
 {
     if(_useImageProcessSwitch.on){
         useImageProcessing = YES;
+        _captureGuide.hidden = NO;
     }else{
         useImageProcessing = NO;
+        _captureGuide.hidden = YES;
     }
     NSLog(@"%hhd", useImageProcessing);
 }
@@ -181,5 +139,12 @@
         default:
             break;
     }
+}
+
+-(void) setSwitchTo:(BOOL)state
+{
+    _captureGuide.hidden = !state;
+    _useImageProcessSwitch.on = state;
+    useImageProcessing = state;
 }
 @end
