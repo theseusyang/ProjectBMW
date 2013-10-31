@@ -10,6 +10,9 @@
 
 @implementation CGCameraOverlayView
 
+
+@synthesize _useImageProcessSwitch;
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -37,6 +40,12 @@
         [_continueButton.titleLabel setFont:kApplicationFontBold(17.0f)];
         [_continueButton addTarget:self action:@selector(continueAction:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:_continueButton];
+        
+        _useImageProcessSwitch = [[UISwitch alloc] initWithFrame:CGRectMake(10, 40, 40, 40)];
+        [_useImageProcessSwitch setOn:NO];
+        useImageProcessing = NO;
+        [_useImageProcessSwitch addTarget:self action:@selector(switchValueChanged) forControlEvents:UIControlEventValueChanged];
+        [self addSubview:_useImageProcessSwitch];
         
         //Capture Guide
         /*
@@ -68,6 +77,10 @@
         [_newButton addTarget:self action:@selector(newAction:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:_newButton];
         
+        _captureGuide = [[UIView alloc] initWithFrame:CGRectMake(0, 190, 460, 80)];
+        [_captureGuide setBackgroundColor:[UIColor colorWithRed:0.9 green:0.3 blue:0.3 alpha:0.3]];
+        [self addSubview:_captureGuide];
+        
         _captureButton = [[UIButton alloc] initWithFrame:CGRectMake(105, 397, 110, 83)];
         [_captureButton setBackgroundImage:kApplicationImage(kResButtonCapture) forState:UIControlStateNormal];
         [_captureButton addTarget:self action:@selector(takePhoto:) forControlEvents:UIControlEventTouchUpInside];
@@ -80,22 +93,36 @@
         [_continueButton addTarget:self action:@selector(continueAction:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:_continueButton];
         
+        _useImageProcessSwitch = [[UISwitch alloc] initWithFrame:CGRectMake( 10, 20, 40, 40)];
+        [_useImageProcessSwitch setOn:NO];
+        useImageProcessing = NO;
+        [_useImageProcessSwitch addTarget:self action:@selector(switchValueChanged) forControlEvents:UIControlEventValueChanged];
+        [self addSubview:_useImageProcessSwitch];
+        
+        [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(oriantationChanged:) name:UIDeviceOrientationDidChangeNotification object:[UIDevice currentDevice]];
+        
+        
+        
+        
     }
     return self;
 }
 
 -(IBAction) takePhoto : (id)sender
 {
+    NSLog(@"Photo taken %hhd", useImageProcessing);
     if (self.delegate) {
-        [self.delegate takeOverlayPhoto];
+        [self.delegate takeOverlayPhotoWithImageProcessing: useImageProcessing];
     }
     
 }
 
 -(IBAction) newAction :(id)sender
 {
+    NSLog(@"Photo taken %hhd", useImageProcessing);
     if (self.delegate) {
-        [self.delegate takeOverlayPhoto];
+        [self.delegate takeOverlayPhotoWithImageProcessing: useImageProcessing];
     }
 
 }
@@ -116,4 +143,43 @@
 }
 */
 
+-(IBAction)switchValueChanged
+{
+    if(_useImageProcessSwitch.on){
+        useImageProcessing = YES;
+    }else{
+        useImageProcessing = NO;
+    }
+    NSLog(@"%hhd", useImageProcessing);
+}
+
+-(void) oriantationChanged:(NSNotification*) note
+{
+    UIDevice *device = note.object;
+    
+    switch (device.orientation) {
+        case UIDeviceOrientationPortrait:
+            NSLog(@"Portrait");
+            _captureGuide.frame = CGRectMake(0, 200, 320, 60);
+            break;
+            
+        case UIDeviceOrientationPortraitUpsideDown:
+            NSLog(@"Portrait");
+            _captureGuide.frame = CGRectMake(0, 200, 320, 60);
+            break;
+        
+        case UIDeviceOrientationLandscapeLeft:
+            NSLog(@"Landscape");
+            _captureGuide.frame = CGRectMake( 106, 0, 108, 480);
+            break;
+            
+        case UIDeviceOrientationLandscapeRight:
+            NSLog(@"Landscape");
+            _captureGuide.frame = CGRectMake( 106, 0, 108, 480);
+            break;
+            
+        default:
+            break;
+    }
+}
 @end

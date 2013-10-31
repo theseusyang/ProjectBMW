@@ -20,12 +20,19 @@
     UIView *_photoView;
     UIImageView *_captureGuide;
     
+    UIImageView *imageView;
+    
     //Gizmos
+    BOOL useImageProcessing;
     UIImageView *_processedImage;
     UITextView *_plate;
     UITextView *_totalCost;
     UITextView *_ocrCost;
     UITextView *_imageProcessingCost;
+    
+    UIImageView *_rotated;
+    UIImageView *_corped;
+    UIImageView *_processed;
     
     //MBB
     NSMutableArray *_imageList;
