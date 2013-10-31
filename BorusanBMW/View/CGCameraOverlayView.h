@@ -12,6 +12,7 @@
 @protocol CGCameraOverlayProtocol <NSObject>
 
 - (void)takeOverlayPhoto;
+- (void)takeOverlayPhotoWithImageProcessing:(BOOL) used;
 - (void)continueToMenu;
 
 @end
@@ -19,7 +20,10 @@
 @interface CGCameraOverlayView : UIView
 {
     UIView *_footerImage;
-    UIImageView *_captureGuide;
+    UIView *_captureGuide;
+    
+    UISwitch *_useImageProcessSwitch;
+    BOOL useImageProcessing;
     
     UIButton *_newButton;
     UIButton *_captureButton;
@@ -27,5 +31,6 @@
 }
 
 @property (nonatomic, strong) id<CGCameraOverlayProtocol> delegate;
+@property (nonatomic, retain) IBOutlet UISwitch *_useImageProcessSwitch;
 
 @end
