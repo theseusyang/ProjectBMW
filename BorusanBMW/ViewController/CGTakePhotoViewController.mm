@@ -9,10 +9,13 @@
 #import "CGTakePhotoViewController.h"
 #import "CGPhotoManagementViewController.h"
 
+// Landscape
 #define IMAGE_OFFSET_Y 540.0
 #define IMAGE_OFFSET_X 200.0//244.0
 
 #define IMAGE_CROP_HEIGHT 1140.0
+
+// Portrait
 
 @interface CGTakePhotoViewController ()
 
@@ -94,9 +97,7 @@
     else
         sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
 
-    //sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     _imagePicker = [[UIImagePickerController alloc] init];
-    //[_imagePicker setAllowsEditing:YES];
     
     _imagePicker.sourceType = sourceType;
     if (sourceType == UIImagePickerControllerSourceTypeCamera) {
@@ -175,21 +176,26 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 
     UIImage *originalImage= [info objectForKey: UIImagePickerControllerOriginalImage];
-    CGRect croppedRect = CGRectMake(IMAGE_OFFSET_X, IMAGE_OFFSET_Y, originalImage.size.width - IMAGE_OFFSET_X, IMAGE_CROP_HEIGHT);
+    
+    CGRect croppedRect;
    
     NSLog(@"Height %f", originalImage.size.height);
     NSLog(@"Width %f", originalImage.size.width);
     
     UIImage *rotatedCorrectly;
-    if (originalImage.imageOrientation!=UIImageOrientationUp)
-        rotatedCorrectly = [originalImage rotate:originalImage.imageOrientation];
-    else
-        rotatedCorrectly = originalImage;
+    if (originalImage.imageOrientation != UIImageOrientationUp)
+    {
+        croppedRect  = CGRectMake(IMAGE_OFFSET_X, IMAGE_OFFSET_Y, originalImage.size.width - IMAGE_OFFSET_X, IMAGE_CROP_HEIGHT); // Landscape Crop
+        rotatedCorrectly = [originalImage rotate:originalImage.imageOrientation]; //Portrait
+    }
+        else {
+        croppedRect  = CGRectMake(IMAGE_OFFSET_X, IMAGE_OFFSET_Y, originalImage.size.width - IMAGE_OFFSET_X, IMAGE_CROP_HEIGHT); // Landscape Crop
+        rotatedCorrectly = originalImage; //Landscape
+    }
+    
     
     CGImageRef ref = CGImageCreateWithImageInRect(rotatedCorrectly.CGImage, croppedRect);
     rotatedCorrectly = [UIImage imageWithCGImage:ref];
-
-    //NSLog(@"Size of JPG image: %ul", imageData.length);
     
 #if TEST_MODE == 1
     [Profiler start:@"Image Processing"];
@@ -211,8 +217,6 @@
     [self.view addSubview:_totalCost];
 #endif
     
-    
-    
     NSLog(@"%@", _plateNumber);
     
     NSLog(@"Total Time: %@", [Profiler totalTime]);
@@ -225,8 +229,9 @@
     [self.view addSubview:_plate];
     [self.view addSubview:_processedImage];
 #endif
+    
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 365)];
-    imageView.image = rotatedCorrectly;
+    imageView.image = processedImage;
     imageView.contentMode = UIViewContentModeScaleAspectFit;
 
     [_photoView addSubview:imageView];
@@ -247,7 +252,7 @@
     
     UIImage *takenImage = image;
     UIImage *processedImage;
-
+    
     processedImage = [imageProcessor processImage:takenImage];
 
     return processedImage;
