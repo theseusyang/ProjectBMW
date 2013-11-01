@@ -38,6 +38,7 @@
             
             UIImageView *photo = [[UIImageView alloc] initWithImage:image];
             photo.frame = CGRectMake(5, 5, 160, 160);
+            [photo setContentMode:UIViewContentModeScaleAspectFit];
             
             [elementView addSubview:photo];
             [_bgView addSubview:elementView];

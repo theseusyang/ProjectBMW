@@ -367,6 +367,9 @@
 		622444E417D8D1E7002A2482 /* TextboxFocused@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TextboxFocused@2x.png"; sourceTree = "<group>"; };
 		6224454517D8D578002A2482 /* CGTakePhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CGTakePhotoViewController.h; path = ViewController/CGTakePhotoViewController.h; sourceTree = "<group>"; };
 		6224454617D8D578002A2482 /* CGTakePhotoViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = CGTakePhotoViewController.mm; path = ViewController/CGTakePhotoViewController.mm; sourceTree = "<group>"; usesTabs = 0; };
+		6235E8621823ADB200054816 /* AppInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppInfo.h; path = Utils/AppInfo.h; sourceTree = "<group>"; };
+		6235E8631823ADB200054816 /* Colors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Colors.h; path = Utils/Colors.h; sourceTree = "<group>"; };
+		6235E8641823ADB200054816 /* Resources.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Resources.h; path = Utils/Resources.h; sourceTree = "<group>"; };
 		6245CBD617EC4CFE009A2630 /* DataService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataService.h; path = Model/DataService.h; sourceTree = "<group>"; };
 		6245CBD717EC4CFE009A2630 /* DataService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataService.m; path = Model/DataService.m; sourceTree = "<group>"; };
 		6245CBDF17EC917C009A2630 /* RecordResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RecordResponse.h; path = Model/Entity/RecordResponse.h; sourceTree = "<group>"; };
@@ -415,9 +418,6 @@
 		62C905EB17DF1742009E1253 /* CGInformHistoryTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CGInformHistoryTableView.m; path = View/CGInformHistoryTableView.m; sourceTree = "<group>"; };
 		62C905F017DF3E6F009E1253 /* CGInformEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CGInformEditViewController.h; path = ViewController/CGInformEditViewController.h; sourceTree = "<group>"; };
 		62C905F117DF3E6F009E1253 /* CGInformEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CGInformEditViewController.m; path = ViewController/CGInformEditViewController.m; sourceTree = "<group>"; };
-		62C9060117E05FAB009E1253 /* AppInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppInfo.h; sourceTree = "<group>"; };
-		62C9060217E05FE6009E1253 /* Colors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Colors.h; sourceTree = "<group>"; };
-		62C9060317E05FE6009E1253 /* Resources.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Resources.h; sourceTree = "<group>"; };
 		62C9060517E07199009E1253 /* CGUtilHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CGUtilHelper.h; path = Utils/CGUtilHelper.h; sourceTree = "<group>"; };
 		62C9060617E07199009E1253 /* CGUtilHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CGUtilHelper.m; path = Utils/CGUtilHelper.m; sourceTree = "<group>"; };
 		62C9060C17E095A5009E1253 /* CGLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CGLabel.h; path = UI/CGLabel.h; sourceTree = "<group>"; };
@@ -1007,9 +1007,9 @@
 		62B7C67617D6225400257C95 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				62C9060217E05FE6009E1253 /* Colors.h */,
-				62C9060317E05FE6009E1253 /* Resources.h */,
-				62C9060117E05FAB009E1253 /* AppInfo.h */,
+				6235E8621823ADB200054816 /* AppInfo.h */,
+				6235E8631823ADB200054816 /* Colors.h */,
+				6235E8641823ADB200054816 /* Resources.h */,
 				62C9060517E07199009E1253 /* CGUtilHelper.h */,
 				62C9060617E07199009E1253 /* CGUtilHelper.m */,
 				629B208218210F5A00A85CDA /* Profiler.h */,

@@ -28,7 +28,12 @@
     UIButton *_newButton;
     UIButton *_captureButton;
     UIButton *_continueButton;
+    
+    
 }
+
+
+-(void) setSwitchTo:(BOOL) state;
 
 @property (nonatomic, strong) id<CGCameraOverlayProtocol> delegate;
 @property (nonatomic, retain) IBOutlet UISwitch *_useImageProcessSwitch;

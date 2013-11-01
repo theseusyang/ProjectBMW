@@ -13,12 +13,14 @@
 #define IMAGE_OFFSET_X 200.0//244.0
 
 #define PIMAGE_OFFSET_Y 1270.0
+#define PIMAGE_OFFSET_Y_IOS6 1474.0
+
 #define PIMAGE_OFFSET_X 280.0
 
 #define IMAGE_CROP_HEIGHT 1140.0
-#define PIMAGE_CROP_HEIGHT 540.0
+#define PIMAGE_CROP_HEIGHT 580.0
 
-#define PIMAGE_CROP_WIDTH 100.0
+#define PIMAGE_CROP_WIDTH 10.0
 
 @interface CGTakePhotoViewController ()
 
@@ -138,6 +140,7 @@
     [self.navigationController setNavigationBarHidden:NO];
     [self setLeftButtonHidden:YES];
     [self setCancelButton];
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -252,8 +255,16 @@
     
     UIImage *rotatedCorrectly;
     if (originalImage.imageOrientation != UIImageOrientationUp){
+        if(SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0"))
+        {
+            croppedRect = CGRectMake(PIMAGE_OFFSET_X, PIMAGE_OFFSET_Y, originalImage.size.width - PIMAGE_OFFSET_X + PIMAGE_CROP_WIDTH, PIMAGE_CROP_HEIGHT); //Portrait
+        }
+        else{
+            croppedRect = CGRectMake(PIMAGE_OFFSET_X, PIMAGE_OFFSET_Y_IOS6, originalImage.size.width - PIMAGE_OFFSET_X + PIMAGE_CROP_WIDTH, PIMAGE_CROP_HEIGHT); //Portrait
+        }
+        
         rotatedCorrectly = [originalImage rotate:originalImage.imageOrientation];
-        croppedRect = CGRectMake(PIMAGE_OFFSET_X, PIMAGE_OFFSET_Y, originalImage.size.width - PIMAGE_OFFSET_X + PIMAGE_CROP_WIDTH, PIMAGE_CROP_HEIGHT); //Portrait
+        
     }
     
     else{
@@ -261,43 +272,43 @@
         croppedRect = CGRectMake(IMAGE_OFFSET_X, IMAGE_OFFSET_Y, originalImage.size.width - IMAGE_OFFSET_X, IMAGE_CROP_HEIGHT); //Landscape
     }
     
-    
     CGImageRef ref = CGImageCreateWithImageInRect(rotatedCorrectly.CGImage, croppedRect);
     rotatedCorrectly = [UIImage imageWithCGImage:ref];
-    
+    if(useImageProcessing)
+    {
 #if TEST_MODE == 1
-    [Profiler start:@"Image Processing"];
+        [Profiler start:@"Image Processing"];
 #endif
-    UIImage *processedImage = [self imageProcess:rotatedCorrectly];
+        UIImage *processedImage = [self imageProcess:rotatedCorrectly];
 #if TEST_MODE == 1
-    _imageProcessingCost.text = [[Profiler stop] stringByAppendingString:@" Image Process"];
-    
-    [Profiler start:@"OCR Process"];
+        _imageProcessingCost.text = [[Profiler stop] stringByAppendingString:@" Image Process"];
+        
+        [Profiler start:@"OCR Process"];
 #endif
-    _plateNumber = [self OCR:processedImage];
+        _plateNumber = [self OCR:processedImage];
 #if TEST_MODE == 1
-    _ocrCost.text = [[Profiler stop] stringByAppendingString:@" OCR Process"];
-    
-    _totalCost.text = [[Profiler totalTime] stringByAppendingString:@" Total"];
-    
-    [self.view addSubview:_imageProcessingCost];
-    [self.view addSubview:_ocrCost];
-    [self.view addSubview:_totalCost];
+        _ocrCost.text = [[Profiler stop] stringByAppendingString:@" OCR Process"];
+        
+        _totalCost.text = [[Profiler totalTime] stringByAppendingString:@" Total"];
+        
+        [self.view addSubview:_imageProcessingCost];
+        [self.view addSubview:_ocrCost];
+        [self.view addSubview:_totalCost];
 #endif
-    
-    NSLog(@"%@", _plateNumber);
+        
+        NSLog(@"%@", _plateNumber);
 #if TEST_MODE == 1
-    NSLog(@"Total Time: %@", [Profiler totalTime]);
-    
+        NSLog(@"Total Time: %@", [Profiler totalTime]);
+        
 
-    //Gizmos
-    _plate.text = _plateNumber;
-    _processedImage.image = rotatedCorrectly;
-    _processedImage.contentMode = UIViewContentModeScaleAspectFit;
-    [self.view addSubview:_plate];
-    [self.view addSubview:_processedImage];
+        //Gizmos
+        _plate.text = _plateNumber;
+        _processedImage.image = rotatedCorrectly;
+        _processedImage.contentMode = UIViewContentModeScaleAspectFit;
+        [self.view addSubview:_plate];
+        [self.view addSubview:_processedImage];
 #endif
-    
+    }
     //UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 365)];
     imageView.image = rotatedCorrectly;
     imageView.contentMode = UIViewContentModeScaleAspectFit;
