@@ -29,8 +29,8 @@
         [_newButton addTarget:self action:@selector(newAction:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:_newButton];
         
-        _captureGuide = [[UIView alloc] initWithFrame:CGRectMake(0, 190, 460, 80)];
-        [_captureGuide setBackgroundColor:[UIColor colorWithRed:0.9 green:0.3 blue:0.3 alpha:0.3]];
+        _captureGuide = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"PlateCaptureGuideVertical.png"]];
+        _captureGuide.frame = CGRectMake(0, 0, 320, 425);
         [self addSubview:_captureGuide];
         
         _captureButton = [[UIButton alloc] initWithFrame:CGRectMake(105, 397, 110, 83)];
@@ -45,18 +45,30 @@
         [_continueButton addTarget:self action:@selector(continueAction:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:_continueButton];
         
-        _useImageProcessSwitch = [[UISwitch alloc] initWithFrame:CGRectMake( 10, 20, 40, 40)];
-        [_useImageProcessSwitch setOn:NO];
-        useImageProcessing = NO;
-        _captureGuide.hidden = YES;
-        [_useImageProcessSwitch addTarget:self action:@selector(switchValueChanged) forControlEvents:UIControlEventValueChanged];
-        [self addSubview:_useImageProcessSwitch];
+        _useFlashButton = [[UIButton alloc] initWithFrame:CGRectMake(231, 20, 79, 28)];
+        [_useFlashButton setImage:[UIImage imageNamed:@"SwitchButtonFlashOff.png"] forState:UIControlStateNormal];
+        [_useFlashButton addTarget:self action:@selector(changeFlashState:) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:_useFlashButton];
+        
+        _useImageProcessButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 20, 79, 28)];
+        [_useImageProcessButton setImage:[UIImage imageNamed:@"SwitchButtonCar.png"] forState:UIControlStateNormal];
+        [_useImageProcessButton addTarget:self action:@selector(changeImageProcessState:) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:_useImageProcessButton];
+        
+        //_useImageProcessSwitch = [[UISwitch alloc] initWithFrame:CGRectMake( 10, 20, 40, 40)];
+        //[_useImageProcessSwitch setOn:NO];
+        //_useImageProcessSwitch.onImage = [UIImage imageNamed:@"IconPlateMode.png"];
+        //_useImageProcessSwitch.offImage = [UIImage imageNamed:@"IconCarMode.png"];
+        
+        //[_useImageProcessSwitch addTarget:self action:@selector(switchValueChanged) forControlEvents:UIControlEventValueChanged];
+        //[self addSubview:_useImageProcessSwitch];
         
         [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(oriantationChanged:) name:UIDeviceOrientationDidChangeNotification object:[UIDevice currentDevice]];
         
-        
-        
+        useImageProcessing = NO;
+        _captureGuide.hidden = YES;
+        useFlash = NO;
         
     }
     return self;
@@ -66,7 +78,8 @@
 {
     NSLog(@"Photo taken %hhd", useImageProcessing);
     if (self.delegate) {
-        [self.delegate takeOverlayPhotoWithImageProcessing: useImageProcessing];
+        //FLASHADD
+        [self.delegate takeOverlayPhotoWithImageProcessing: useImageProcessing and: useFlash];
         [self setSwitchTo:NO];
     }
     
@@ -74,20 +87,26 @@
 
 -(IBAction) newAction :(id)sender
 {
+    //Disabled
+    /*
     NSLog(@"Photo taken %hhd", useImageProcessing);
     if (self.delegate) {
         [self.delegate takeOverlayPhotoWithImageProcessing: useImageProcessing];
         [self setSwitchTo:NO];
     }
+    */
 
 }
 
 -(IBAction) continueAction :(id)sender
 {
+    //Disabled
+    /*
     if (self.delegate) {
         [self setSwitchTo:NO];
         [self.delegate continueToMenu];
     }
+    */
 }
 
 /*
@@ -118,22 +137,26 @@
     switch (device.orientation) {
         case UIDeviceOrientationPortrait:
             NSLog(@"Portrait");
-            _captureGuide.frame = CGRectMake(0, 200, 320, 60);
+            _captureGuide.image = [UIImage imageNamed:@"PlateCaptureGuideVertical.png"];
+            _captureGuide.frame = CGRectMake(0, 0, 320, 425);
             break;
             
         case UIDeviceOrientationPortraitUpsideDown:
             NSLog(@"Portrait");
-            _captureGuide.frame = CGRectMake(0, 200, 320, 60);
+            _captureGuide.image = [UIImage imageNamed:@"PlateCaptureGuideVertical.png"];
+            //_captureGuide.frame = CGRectMake(0, 0, 320, 425);
             break;
         
         case UIDeviceOrientationLandscapeLeft:
             NSLog(@"Landscape");
-            _captureGuide.frame = CGRectMake( 106, 0, 108, 480);
+            _captureGuide.image = [UIImage imageNamed:@"PlateCaptureGuideHorizontal.png"];
+            //_captureGuide.frame = CGRectMake( 0, 0, 108, 480);
             break;
             
         case UIDeviceOrientationLandscapeRight:
             NSLog(@"Landscape");
-            _captureGuide.frame = CGRectMake( 106, 0, 108, 480);
+            _captureGuide.image = [UIImage imageNamed:@"PlateCaptureGuideHorizontal.png"];
+            //_captureGuide.frame = CGRectMake( 106, 0, 108, 480);
             break;
             
         default:
@@ -146,5 +169,34 @@
     _captureGuide.hidden = !state;
     _useImageProcessSwitch.on = state;
     useImageProcessing = state;
+}
+
+-(IBAction)changeFlashState:(id)sender
+{
+    if(useFlash)
+    {
+        useFlash = NO;
+        [_useFlashButton setImage:[UIImage imageNamed:@"SwitchButtonFlashOff.png"] forState:UIControlStateNormal];
+    }
+    else
+    {
+        useFlash = YES;
+        [_useFlashButton setImage:[UIImage imageNamed:@"SwitchButtonFlashOn.png"] forState:UIControlStateNormal];
+    }
+}
+
+-(IBAction)changeImageProcessState:(id)sender
+{
+    if(useImageProcessing)
+    {
+        useImageProcessing = NO;
+        _captureGuide.hidden = YES;
+        [_useImageProcessButton setImage:[UIImage imageNamed:@"SwitchButtonCar.png"] forState:UIControlStateNormal];
+    }
+    else{
+        useImageProcessing = YES;
+        _captureGuide.hidden = NO;
+        [_useImageProcessButton setImage:[UIImage imageNamed:@"SwitchButtonPlate.png"] forState:UIControlStateNormal];
+    }
 }
 @end

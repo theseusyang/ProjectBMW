@@ -124,7 +124,7 @@
     [_notificationType setDelegate:self];
     [_groupScrollView addSubview:_notificationType];
     
-    _description = [[CGUIView alloc] initWithFrame:CGRectMake(35, 248, 250, 86) andBackground:@"TextArea.png" andIcon:@"IconCommentDark.png" andText:Nil];
+    _description = [[CGUIView alloc] initWithFrame:CGRectMake(35, 248, 240, 86) andBackground:@"TextArea.png" andIcon:@"IconCommentDark.png" andText:Nil];
     [_description.textView setDelegate:self];
     [_groupScrollView addSubview:_description];
     

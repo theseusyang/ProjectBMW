@@ -101,7 +101,7 @@
     [_groupView addSubview:_notificationType];
     
     
-    _description = [[CGUIView alloc] initWithFrame:CGRectMake(35, 439, 250, 86) andBackground:@"TextArea.png" andIcon:@"IconCommentDark.png" andText:Nil];
+    _description = [[CGUIView alloc] initWithFrame:CGRectMake(35, 439, 240, 86) andBackground:@"TextArea.png" andIcon:@"IconCommentDark.png" andText:Nil];
     [_description.textView setDelegate:self];
     _description.textView.text = _vehicle.description;
     [_groupView addSubview:_description];

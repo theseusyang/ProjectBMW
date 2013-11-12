@@ -200,6 +200,22 @@
 		62FFD65D17E1BBFB00438CA0 /* LabelEditPressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 62FFD65B17E1BBFA00438CA0 /* LabelEditPressed@2x.png */; };
 		AF0B3975180408B7004E4C31 /* CGUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = AF0B3974180408B7004E4C31 /* CGUIView.m */; };
 		AF206EB41805355F00D87D0C /* CGCameraOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = AF206EB31805355F00D87D0C /* CGCameraOverlayView.m */; };
+		AFD3AF161832574D0072F554 /* PlateCaptureGuideVertical.png in Resources */ = {isa = PBXBuildFile; fileRef = AFD3AF121832574D0072F554 /* PlateCaptureGuideVertical.png */; };
+		AFD3AF171832574D0072F554 /* PlateCaptureGuideVertical@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AFD3AF131832574D0072F554 /* PlateCaptureGuideVertical@2x.png */; };
+		AFD3AF2018325AD20072F554 /* IconCarMode.png in Resources */ = {isa = PBXBuildFile; fileRef = AFD3AF1C18325AD20072F554 /* IconCarMode.png */; };
+		AFD3AF2118325AD20072F554 /* IconCarMode@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AFD3AF1D18325AD20072F554 /* IconCarMode@2x.png */; };
+		AFD3AF2218325AD20072F554 /* IconPlateMode.png in Resources */ = {isa = PBXBuildFile; fileRef = AFD3AF1E18325AD20072F554 /* IconPlateMode.png */; };
+		AFD3AF2318325AD20072F554 /* IconPlateMode@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AFD3AF1F18325AD20072F554 /* IconPlateMode@2x.png */; };
+		AFD3AF2818327A6E0072F554 /* SwitchButtonFlashOff.png in Resources */ = {isa = PBXBuildFile; fileRef = AFD3AF2418327A6E0072F554 /* SwitchButtonFlashOff.png */; };
+		AFD3AF2918327A6E0072F554 /* SwitchButtonFlashOff@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AFD3AF2518327A6E0072F554 /* SwitchButtonFlashOff@2x.png */; };
+		AFD3AF2A18327A6E0072F554 /* SwitchButtonFlashOn.png in Resources */ = {isa = PBXBuildFile; fileRef = AFD3AF2618327A6E0072F554 /* SwitchButtonFlashOn.png */; };
+		AFD3AF2B18327A6E0072F554 /* SwitchButtonFlashOn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AFD3AF2718327A6E0072F554 /* SwitchButtonFlashOn@2x.png */; };
+		AFD3AF2E18327F460072F554 /* SwitchButtonCar.png in Resources */ = {isa = PBXBuildFile; fileRef = AFD3AF2C18327F460072F554 /* SwitchButtonCar.png */; };
+		AFD3AF2F18327F460072F554 /* SwitchButtonCar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AFD3AF2D18327F460072F554 /* SwitchButtonCar@2x.png */; };
+		AFD3AF3218327FAF0072F554 /* SwitchButtonPlate.png in Resources */ = {isa = PBXBuildFile; fileRef = AFD3AF3018327FAF0072F554 /* SwitchButtonPlate.png */; };
+		AFD3AF3318327FAF0072F554 /* SwitchButtonPlate@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AFD3AF3118327FAF0072F554 /* SwitchButtonPlate@2x.png */; };
+		AFD3AF36183284B80072F554 /* PlateCaptureGuideHorizontal.png in Resources */ = {isa = PBXBuildFile; fileRef = AFD3AF34183284B80072F554 /* PlateCaptureGuideHorizontal.png */; };
+		AFD3AF37183284B80072F554 /* PlateCaptureGuideHorizontal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AFD3AF35183284B80072F554 /* PlateCaptureGuideHorizontal@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -615,6 +631,22 @@
 		AF206EB21805355F00D87D0C /* CGCameraOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CGCameraOverlayView.h; path = View/CGCameraOverlayView.h; sourceTree = "<group>"; };
 		AF206EB31805355F00D87D0C /* CGCameraOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CGCameraOverlayView.m; path = View/CGCameraOverlayView.m; sourceTree = "<group>"; };
 		AFBE0BFD18211D78002F9360 /* RestKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RestKit.xcodeproj; path = RestKit/RestKit.xcodeproj; sourceTree = "<group>"; };
+		AFD3AF121832574D0072F554 /* PlateCaptureGuideVertical.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlateCaptureGuideVertical.png; sourceTree = "<group>"; };
+		AFD3AF131832574D0072F554 /* PlateCaptureGuideVertical@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PlateCaptureGuideVertical@2x.png"; sourceTree = "<group>"; };
+		AFD3AF1C18325AD20072F554 /* IconCarMode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IconCarMode.png; sourceTree = "<group>"; };
+		AFD3AF1D18325AD20072F554 /* IconCarMode@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "IconCarMode@2x.png"; sourceTree = "<group>"; };
+		AFD3AF1E18325AD20072F554 /* IconPlateMode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IconPlateMode.png; sourceTree = "<group>"; };
+		AFD3AF1F18325AD20072F554 /* IconPlateMode@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "IconPlateMode@2x.png"; sourceTree = "<group>"; };
+		AFD3AF2418327A6E0072F554 /* SwitchButtonFlashOff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SwitchButtonFlashOff.png; sourceTree = "<group>"; };
+		AFD3AF2518327A6E0072F554 /* SwitchButtonFlashOff@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SwitchButtonFlashOff@2x.png"; sourceTree = "<group>"; };
+		AFD3AF2618327A6E0072F554 /* SwitchButtonFlashOn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SwitchButtonFlashOn.png; sourceTree = "<group>"; };
+		AFD3AF2718327A6E0072F554 /* SwitchButtonFlashOn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SwitchButtonFlashOn@2x.png"; sourceTree = "<group>"; };
+		AFD3AF2C18327F460072F554 /* SwitchButtonCar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SwitchButtonCar.png; sourceTree = "<group>"; };
+		AFD3AF2D18327F460072F554 /* SwitchButtonCar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SwitchButtonCar@2x.png"; sourceTree = "<group>"; };
+		AFD3AF3018327FAF0072F554 /* SwitchButtonPlate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SwitchButtonPlate.png; sourceTree = "<group>"; };
+		AFD3AF3118327FAF0072F554 /* SwitchButtonPlate@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SwitchButtonPlate@2x.png"; sourceTree = "<group>"; };
+		AFD3AF34183284B80072F554 /* PlateCaptureGuideHorizontal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlateCaptureGuideHorizontal.png; sourceTree = "<group>"; };
+		AFD3AF35183284B80072F554 /* PlateCaptureGuideHorizontal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PlateCaptureGuideHorizontal@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -888,6 +920,22 @@
 		62B7C60A17D61A0B00257C95 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				AFD3AF34183284B80072F554 /* PlateCaptureGuideHorizontal.png */,
+				AFD3AF35183284B80072F554 /* PlateCaptureGuideHorizontal@2x.png */,
+				AFD3AF3018327FAF0072F554 /* SwitchButtonPlate.png */,
+				AFD3AF3118327FAF0072F554 /* SwitchButtonPlate@2x.png */,
+				AFD3AF2C18327F460072F554 /* SwitchButtonCar.png */,
+				AFD3AF2D18327F460072F554 /* SwitchButtonCar@2x.png */,
+				AFD3AF2418327A6E0072F554 /* SwitchButtonFlashOff.png */,
+				AFD3AF2518327A6E0072F554 /* SwitchButtonFlashOff@2x.png */,
+				AFD3AF2618327A6E0072F554 /* SwitchButtonFlashOn.png */,
+				AFD3AF2718327A6E0072F554 /* SwitchButtonFlashOn@2x.png */,
+				AFD3AF1C18325AD20072F554 /* IconCarMode.png */,
+				AFD3AF1D18325AD20072F554 /* IconCarMode@2x.png */,
+				AFD3AF1E18325AD20072F554 /* IconPlateMode.png */,
+				AFD3AF1F18325AD20072F554 /* IconPlateMode@2x.png */,
+				AFD3AF121832574D0072F554 /* PlateCaptureGuideVertical.png */,
+				AFD3AF131832574D0072F554 /* PlateCaptureGuideVertical@2x.png */,
 				6218D7EC181AA9790093C86D /* License Plate Images */,
 				629ABD4717E6E3DC00A0F0F6 /* Icons */,
 				629ABD4617E6E3D500A0F0F6 /* Buttons */,
@@ -1364,8 +1412,10 @@
 				62B7C53917D6151A00257C95 /* InfoPlist.strings in Resources */,
 				622444E517D8D1E7002A2482 /* Background.png in Resources */,
 				622444E617D8D1E7002A2482 /* Background@2x.png in Resources */,
+				AFD3AF2A18327A6E0072F554 /* SwitchButtonFlashOn.png in Resources */,
 				622444E717D8D1E7002A2482 /* BadgePending.png in Resources */,
 				622444E817D8D1E7002A2482 /* BadgePending@2x.png in Resources */,
+				AFD3AF3318327FAF0072F554 /* SwitchButtonPlate@2x.png in Resources */,
 				62E988C6180585DE000F3C8D /* Default~iphone.png in Resources */,
 				622444E917D8D1E7002A2482 /* BadgeSent.png in Resources */,
 				6218D806181AA9790093C86D /* IMG_1240.JPG in Resources */,
@@ -1373,14 +1423,17 @@
 				622444EB17D8D1E7002A2482 /* ButtonBlue.png in Resources */,
 				62118D9518067BC7008E8069 /* Default-568h.png in Resources */,
 				6218D801181AA9790093C86D /* IMG_1235.JPG in Resources */,
+				AFD3AF2118325AD20072F554 /* IconCarMode@2x.png in Resources */,
 				622444EC17D8D1E7002A2482 /* ButtonBlue@2x.png in Resources */,
 				622444ED17D8D1E7002A2482 /* ButtonCapture.png in Resources */,
 				622444EE17D8D1E7002A2482 /* ButtonCapture@2x.png in Resources */,
 				6218D80B181AA9790093C86D /* IMG_1245.JPG in Resources */,
 				622444EF17D8D1E7002A2482 /* ButtonCapturePressed.png in Resources */,
 				622444F017D8D1E7002A2482 /* ButtonCapturePressed@2x.png in Resources */,
+				AFD3AF2B18327A6E0072F554 /* SwitchButtonFlashOn@2x.png in Resources */,
 				6218D813181AA9790093C86D /* IMG_1253.JPG in Resources */,
 				622444F117D8D1E7002A2482 /* ButtonDark.png in Resources */,
+				AFD3AF36183284B80072F554 /* PlateCaptureGuideHorizontal.png in Resources */,
 				622444F217D8D1E7002A2482 /* ButtonDark@2x.png in Resources */,
 				622444F317D8D1E7002A2482 /* ButtonPressed.png in Resources */,
 				622444F417D8D1E7002A2482 /* ButtonPressed@2x.png in Resources */,
@@ -1397,6 +1450,7 @@
 				62A70B3E17F9C53000098F47 /* iPhoneIcon@2x.png in Resources */,
 				622444FC17D8D1E7002A2482 /* ButtonSquarePressed@2x.png in Resources */,
 				622444FD17D8D1E7002A2482 /* CaptureGuide.png in Resources */,
+				AFD3AF171832574D0072F554 /* PlateCaptureGuideVertical@2x.png in Resources */,
 				622444FE17D8D1E7002A2482 /* CaptureGuide@2x.png in Resources */,
 				622444FF17D8D1E7002A2482 /* ContentFooter.png in Resources */,
 				6218D80D181AA9790093C86D /* IMG_1247.JPG in Resources */,
@@ -1404,12 +1458,15 @@
 				6224450117D8D1E7002A2482 /* ContentHeader.png in Resources */,
 				6224450217D8D1E7002A2482 /* ContentHeader@2x.png in Resources */,
 				6224450317D8D1E7002A2482 /* ContentImage.png in Resources */,
+				AFD3AF2318325AD20072F554 /* IconPlateMode@2x.png in Resources */,
 				6224450417D8D1E7002A2482 /* ContentImage@2x.png in Resources */,
 				6224450517D8D1E7002A2482 /* IconAdd.png in Resources */,
+				AFD3AF2218325AD20072F554 /* IconPlateMode.png in Resources */,
 				6224450617D8D1E7002A2482 /* IconAdd@2x.png in Resources */,
 				6224450717D8D1E7002A2482 /* IconArrowBlue.png in Resources */,
 				6218D80C181AA9790093C86D /* IMG_1246.JPG in Resources */,
 				6224450817D8D1E7002A2482 /* IconArrowBlue@2x.png in Resources */,
+				AFD3AF161832574D0072F554 /* PlateCaptureGuideVertical.png in Resources */,
 				6224450917D8D1E7002A2482 /* IconArrowDark.png in Resources */,
 				6218D802181AA9790093C86D /* IMG_1236.JPG in Resources */,
 				6224450A17D8D1E7002A2482 /* IconArrowDark@2x.png in Resources */,
@@ -1428,6 +1485,7 @@
 				6224451517D8D1E7002A2482 /* IconLicensePlateLight.png in Resources */,
 				6224451617D8D1E7002A2482 /* IconLicensePlateLight@2x.png in Resources */,
 				6224451717D8D1E7002A2482 /* IconLocationBlue.png in Resources */,
+				AFD3AF3218327FAF0072F554 /* SwitchButtonPlate.png in Resources */,
 				6224451817D8D1E7002A2482 /* IconLocationBlue@2x.png in Resources */,
 				6224451917D8D1E7002A2482 /* IconLocationDark.png in Resources */,
 				6224451A17D8D1E7002A2482 /* IconLocationDark@2x.png in Resources */,
@@ -1443,8 +1501,11 @@
 				6224452217D8D1E7002A2482 /* IconNotificationHistory@2x.png in Resources */,
 				6224452317D8D1E7002A2482 /* IconNotificationTypeDark.png in Resources */,
 				6224452417D8D1E7002A2482 /* IconNotificationTypeDark@2x.png in Resources */,
+				AFD3AF2018325AD20072F554 /* IconCarMode.png in Resources */,
 				6224452517D8D1E7002A2482 /* IconNotificationTypeLight.png in Resources */,
+				AFD3AF37183284B80072F554 /* PlateCaptureGuideHorizontal@2x.png in Resources */,
 				6224452617D8D1E7002A2482 /* IconNotificationTypeLight@2x.png in Resources */,
+				AFD3AF2E18327F460072F554 /* SwitchButtonCar.png in Resources */,
 				6224452717D8D1E7002A2482 /* IconServiceNameDark.png in Resources */,
 				6224452817D8D1E7002A2482 /* IconServiceNameDark@2x.png in Resources */,
 				6224452917D8D1E7002A2482 /* IconServiceNameLight.png in Resources */,
@@ -1456,6 +1517,7 @@
 				6218D803181AA9790093C86D /* IMG_1237.JPG in Resources */,
 				6224452F17D8D1E7002A2482 /* LabelCancel.png in Resources */,
 				62E988C5180585DE000F3C8D /* Default.png in Resources */,
+				AFD3AF2F18327F460072F554 /* SwitchButtonCar@2x.png in Resources */,
 				6224453017D8D1E7002A2482 /* LabelCancel@2x.png in Resources */,
 				6218D814181AA9790093C86D /* IMG_1254.JPG in Resources */,
 				6224453117D8D1E7002A2482 /* LabelEdit.png in Resources */,
@@ -1473,6 +1535,7 @@
 				6224453917D8D1E7002A2482 /* TextAreaFocused.png in Resources */,
 				6224453A17D8D1E7002A2482 /* TextAreaFocused@2x.png in Resources */,
 				6224453B17D8D1E7002A2482 /* Textbox.png in Resources */,
+				AFD3AF2818327A6E0072F554 /* SwitchButtonFlashOff.png in Resources */,
 				6218D80E181AA9790093C86D /* IMG_1248.JPG in Resources */,
 				6224453C17D8D1E7002A2482 /* Textbox@2x.png in Resources */,
 				62E988C1180585A3000F3C8D /* ButtonLoadMore.png in Resources */,
@@ -1483,6 +1546,7 @@
 				62FFD64017E1960700438CA0 /* Element1.png in Resources */,
 				62FFD64117E1960700438CA0 /* Element2.png in Resources */,
 				62FFD64217E1960700438CA0 /* Element3.png in Resources */,
+				AFD3AF2918327A6E0072F554 /* SwitchButtonFlashOff@2x.png in Resources */,
 				62FFD64317E1960700438CA0 /* Element4.png in Resources */,
 				62FFD64717E1960F00438CA0 /* Photo1.png in Resources */,
 				62FFD64817E1960F00438CA0 /* Photo2.png in Resources */,
@@ -1643,11 +1707,10 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/bahadirboge/Development/ProjectBMW,
-					/Users/barisyilmaz/Development/ProjectBMW,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BorusanBMW/BorusanBMW-Prefix.pch";
-				HEADER_SEARCH_PATHS = "\"$(BUILT_PRODUCTS_DIR)/../../Headers\"/**";
+				HEADER_SEARCH_PATHS = "\"$(BUILT_PRODUCTS_DIR)/../../Headers\"";
 				INFOPLIST_FILE = "BorusanBMW/BorusanBMW-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
@@ -1678,11 +1741,10 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/bahadirboge/Development/ProjectBMW,
-					/Users/barisyilmaz/Development/ProjectBMW,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BorusanBMW/BorusanBMW-Prefix.pch";
-				HEADER_SEARCH_PATHS = "\"$(BUILT_PRODUCTS_DIR)/../../Headers\"/**";
+				HEADER_SEARCH_PATHS = "\"$(BUILT_PRODUCTS_DIR)/../../Headers\"";
 				INFOPLIST_FILE = "BorusanBMW/BorusanBMW-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
