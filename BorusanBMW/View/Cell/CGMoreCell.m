@@ -36,7 +36,7 @@
 {
     [super layoutSubviews];
     
-    self.textLabel.frame = CGRectMake(self.frame.size.width/2 - 50, self.frame.size.height/2 - 20, 0, 0);
+    self.textLabel.frame = CGRectMake(self.frame.size.width/2 - 50, self.frame.size.height/2 - 13, 0, 0);
     [self.textLabel sizeToFit];
     _activityIndicator.frame = CGRectMake(160 - 7, 22 - 7, 15, 15);
 }

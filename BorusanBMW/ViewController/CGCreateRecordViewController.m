@@ -91,7 +91,7 @@
     // UITextFields
     _licensePlate = [[CGTextField alloc] initWithFrame:CGRectMake(35, 98, 250, 46)];
     if( !_plateNumber )
-        _licensePlate.placeholder = @"Plaka giriniz"; //TODO: Dummy data
+        _licensePlate.placeholder = @"Araç Plakası"; //TODO: Dummy data
     else
     {
         _licensePlate.text = _plateNumber;
@@ -101,7 +101,7 @@
     _licensePlate.leftView.frame  = CGRectMake(14, 14, 24, 19);
     _licensePlate.leftViewMode = UITextFieldViewModeAlways;
     _licensePlate.paddingX = kTextFieldPaddingX;
-    _licensePlate.backgroundColor = kColorBlue;
+    _licensePlate.backgroundColor = kColorClear;
     [_licensePlate setDelegate:self];
     [_groupScrollView addSubview:_licensePlate];
     
@@ -126,7 +126,18 @@
     
     _description = [[CGUIView alloc] initWithFrame:CGRectMake(35, 248, 240, 86) andBackground:@"TextArea.png" andIcon:@"IconCommentDark.png" andText:Nil];
     [_description.textView setDelegate:self];
+    _defaultDescription = @" Açıklama";
+    _defaultDescriptionTextColor = [UIColor colorWithCGColor:_description.textView.textColor.CGColor];
+    _placeholderDescriptionTextColor =[UIColor colorWithRed:203.0/255.0 green:203.0/255.0 blue:203.0/255.0 alpha:1];
+    _description.textView.textColor = _placeholderDescriptionTextColor;
+    _description.textView.text = _defaultDescription;
     [_groupScrollView addSubview:_description];
+    
+    _errorLabel = [[CGLabel alloc] initWithFrame:CGRectMake(35, 330, 250, 46)];
+    _errorLabel.textColor = kColorRed;
+    _errorLabel.text = @"Lütfen bütün kısımları doldurunuz.";
+    _errorLabel.hidden = YES;
+    [_groupScrollView addSubview:_errorLabel];
     
     /*
     _description = [[CGTextField alloc] initWithFrame:CGRectMake(35, 248, 250, 86)];
@@ -202,6 +213,8 @@
 
 - (void)textViewDidBeginEditing:(UITextView *)textView
 {
+    _description.textView.text = @"";
+    _description.textView.textColor = _defaultDescriptionTextColor;
     _groupScrollView.scrollEnabled = YES;
     [_groupScrollView setContentOffset:CGPointMake(0, textView.superview.frame.origin.y - kTextTopScrollGap) animated:YES];
 }
@@ -262,7 +275,10 @@
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
     _groupScrollView.scrollEnabled = NO;
-    [_groupScrollView setContentOffset:CGPointMake(0, 0) animated:YES];
+    if(_errorLabel.hidden)
+        [_groupScrollView setContentOffset:CGPointMake(0, 0) animated:YES];
+    else
+        [_groupScrollView setContentOffset:CGPointMake(0, 20) animated:YES];
 }
 
 #pragma mark Button Actions
@@ -294,6 +310,43 @@
     NSString *licencePlate     = _licensePlate.text;
     NSString *serviceName      = _serviceName.text;
     NSString *description      = _description.textView.text;
+    
+    if( [location isEqualToString:@""] || [licencePlate isEqualToString:@""] || [serviceName isEqualToString:@""] || [description isEqualToString:@""] || [location isEqualToString:Nil] || [licencePlate isEqualToString:Nil] || [serviceName isEqualToString:Nil] || [description isEqualToString:Nil])
+    {
+        if(_errorLabel.hidden){
+            [UIView animateWithDuration:0.3
+                                  delay:0
+                                options:UIViewAnimationOptionCurveEaseOut
+                             animations:^{
+                                 CGRect frame = _sendButton.frame;
+                                 frame.origin.y += 20;
+                                 _sendButton.frame = frame;
+                             }completion:^(BOOL finished){
+                                 _errorLabel.hidden = NO;
+                                 
+                             }];
+        }
+        [_sendButton addTarget:self action:@selector(sendAction:) forControlEvents:UIControlEventTouchUpInside];
+        [_groupScrollView setContentOffset:CGPointMake(0, 20) animated:YES];
+        return;
+    }
+    
+    if(!_errorLabel.hidden)
+    {
+        [UIView animateWithDuration:0.3
+                              delay:0
+                            options:UIViewAnimationOptionCurveEaseOut
+                         animations:^{
+                             CGRect frame = _sendButton.frame;
+                             frame.origin.y -= 20;
+                             _sendButton.frame = frame;
+                         }completion:^(BOOL finished){
+                             _errorLabel.hidden = YES;
+                             
+                         }];
+    }
+    
+    
     
     NSNumber *notifID;
     

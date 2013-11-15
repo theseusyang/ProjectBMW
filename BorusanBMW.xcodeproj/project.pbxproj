@@ -200,6 +200,7 @@
 		62FFD65D17E1BBFB00438CA0 /* LabelEditPressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 62FFD65B17E1BBFA00438CA0 /* LabelEditPressed@2x.png */; };
 		AF0B3975180408B7004E4C31 /* CGUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = AF0B3974180408B7004E4C31 /* CGUIView.m */; };
 		AF206EB41805355F00D87D0C /* CGCameraOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = AF206EB31805355F00D87D0C /* CGCameraOverlayView.m */; };
+		AF90C9BF183364F30039BD3B /* AppIconSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = AF90C9BE183364F30039BD3B /* AppIconSmall.png */; };
 		AFD3AF161832574D0072F554 /* PlateCaptureGuideVertical.png in Resources */ = {isa = PBXBuildFile; fileRef = AFD3AF121832574D0072F554 /* PlateCaptureGuideVertical.png */; };
 		AFD3AF171832574D0072F554 /* PlateCaptureGuideVertical@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AFD3AF131832574D0072F554 /* PlateCaptureGuideVertical@2x.png */; };
 		AFD3AF2018325AD20072F554 /* IconCarMode.png in Resources */ = {isa = PBXBuildFile; fileRef = AFD3AF1C18325AD20072F554 /* IconCarMode.png */; };
@@ -216,6 +217,8 @@
 		AFD3AF3318327FAF0072F554 /* SwitchButtonPlate@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AFD3AF3118327FAF0072F554 /* SwitchButtonPlate@2x.png */; };
 		AFD3AF36183284B80072F554 /* PlateCaptureGuideHorizontal.png in Resources */ = {isa = PBXBuildFile; fileRef = AFD3AF34183284B80072F554 /* PlateCaptureGuideHorizontal.png */; };
 		AFD3AF37183284B80072F554 /* PlateCaptureGuideHorizontal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AFD3AF35183284B80072F554 /* PlateCaptureGuideHorizontal@2x.png */; };
+		AFD3AF3A183289440072F554 /* ButtonSmallDeactive.png in Resources */ = {isa = PBXBuildFile; fileRef = AFD3AF38183289440072F554 /* ButtonSmallDeactive.png */; };
+		AFD3AF3B183289440072F554 /* ButtonSmallDeactive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AFD3AF39183289440072F554 /* ButtonSmallDeactive@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -409,7 +412,7 @@
 		62AA873A1821682D004048F7 /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
 		62B0A44B17E9C2240042F199 /* Server.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Server.h; path = Model/Server.h; sourceTree = "<group>"; };
 		62B0A44C17E9C2240042F199 /* Server.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Server.m; path = Model/Server.m; sourceTree = "<group>"; };
-		62B7C52B17D6151A00257C95 /* BorusanBMW.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BorusanBMW.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		62B7C52B17D6151A00257C95 /* weCare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = weCare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		62B7C52E17D6151A00257C95 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		62B7C53017D6151A00257C95 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		62B7C53217D6151A00257C95 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -630,6 +633,7 @@
 		AF0B3974180408B7004E4C31 /* CGUIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CGUIView.m; path = UI/CGUIView.m; sourceTree = "<group>"; };
 		AF206EB21805355F00D87D0C /* CGCameraOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CGCameraOverlayView.h; path = View/CGCameraOverlayView.h; sourceTree = "<group>"; };
 		AF206EB31805355F00D87D0C /* CGCameraOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CGCameraOverlayView.m; path = View/CGCameraOverlayView.m; sourceTree = "<group>"; };
+		AF90C9BE183364F30039BD3B /* AppIconSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIconSmall.png; sourceTree = "<group>"; };
 		AFBE0BFD18211D78002F9360 /* RestKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RestKit.xcodeproj; path = RestKit/RestKit.xcodeproj; sourceTree = "<group>"; };
 		AFD3AF121832574D0072F554 /* PlateCaptureGuideVertical.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlateCaptureGuideVertical.png; sourceTree = "<group>"; };
 		AFD3AF131832574D0072F554 /* PlateCaptureGuideVertical@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PlateCaptureGuideVertical@2x.png"; sourceTree = "<group>"; };
@@ -647,6 +651,8 @@
 		AFD3AF3118327FAF0072F554 /* SwitchButtonPlate@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SwitchButtonPlate@2x.png"; sourceTree = "<group>"; };
 		AFD3AF34183284B80072F554 /* PlateCaptureGuideHorizontal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlateCaptureGuideHorizontal.png; sourceTree = "<group>"; };
 		AFD3AF35183284B80072F554 /* PlateCaptureGuideHorizontal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PlateCaptureGuideHorizontal@2x.png"; sourceTree = "<group>"; };
+		AFD3AF38183289440072F554 /* ButtonSmallDeactive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ButtonSmallDeactive.png; sourceTree = "<group>"; };
+		AFD3AF39183289440072F554 /* ButtonSmallDeactive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ButtonSmallDeactive@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -860,7 +866,7 @@
 		62B7C52C17D6151A00257C95 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				62B7C52B17D6151A00257C95 /* BorusanBMW.app */,
+				62B7C52B17D6151A00257C95 /* weCare.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -920,6 +926,9 @@
 		62B7C60A17D61A0B00257C95 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				AF90C9BE183364F30039BD3B /* AppIconSmall.png */,
+				AFD3AF38183289440072F554 /* ButtonSmallDeactive.png */,
+				AFD3AF39183289440072F554 /* ButtonSmallDeactive@2x.png */,
 				AFD3AF34183284B80072F554 /* PlateCaptureGuideHorizontal.png */,
 				AFD3AF35183284B80072F554 /* PlateCaptureGuideHorizontal@2x.png */,
 				AFD3AF3018327FAF0072F554 /* SwitchButtonPlate.png */,
@@ -1332,7 +1341,7 @@
 			);
 			name = BorusanBMW;
 			productName = BorusanBMW;
-			productReference = 62B7C52B17D6151A00257C95 /* BorusanBMW.app */;
+			productReference = 62B7C52B17D6151A00257C95 /* weCare.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -1414,6 +1423,7 @@
 				622444E617D8D1E7002A2482 /* Background@2x.png in Resources */,
 				AFD3AF2A18327A6E0072F554 /* SwitchButtonFlashOn.png in Resources */,
 				622444E717D8D1E7002A2482 /* BadgePending.png in Resources */,
+				AF90C9BF183364F30039BD3B /* AppIconSmall.png in Resources */,
 				622444E817D8D1E7002A2482 /* BadgePending@2x.png in Resources */,
 				AFD3AF3318327FAF0072F554 /* SwitchButtonPlate@2x.png in Resources */,
 				62E988C6180585DE000F3C8D /* Default~iphone.png in Resources */,
@@ -1483,6 +1493,7 @@
 				6224451317D8D1E7002A2482 /* IconLicensePlateDark.png in Resources */,
 				6224451417D8D1E7002A2482 /* IconLicensePlateDark@2x.png in Resources */,
 				6224451517D8D1E7002A2482 /* IconLicensePlateLight.png in Resources */,
+				AFD3AF3B183289440072F554 /* ButtonSmallDeactive@2x.png in Resources */,
 				6224451617D8D1E7002A2482 /* IconLicensePlateLight@2x.png in Resources */,
 				6224451717D8D1E7002A2482 /* IconLocationBlue.png in Resources */,
 				AFD3AF3218327FAF0072F554 /* SwitchButtonPlate.png in Resources */,
@@ -1549,6 +1560,7 @@
 				AFD3AF2918327A6E0072F554 /* SwitchButtonFlashOff@2x.png in Resources */,
 				62FFD64317E1960700438CA0 /* Element4.png in Resources */,
 				62FFD64717E1960F00438CA0 /* Photo1.png in Resources */,
+				AFD3AF3A183289440072F554 /* ButtonSmallDeactive.png in Resources */,
 				62FFD64817E1960F00438CA0 /* Photo2.png in Resources */,
 				62FFD64917E1960F00438CA0 /* Photo3.png in Resources */,
 				62FFD64E17E1B7EB00438CA0 /* ThumbnailContainer.png in Resources */,
@@ -1721,7 +1733,7 @@
 					"-force_load",
 					"$(BUILT_PRODUCTS_DIR)/libRestKit.a",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = weCare;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "armv7 armv7s";
@@ -1755,7 +1767,7 @@
 					"-force_load",
 					"$(BUILT_PRODUCTS_DIR)/libRestKit.a",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = weCare;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "armv7 armv7s";
