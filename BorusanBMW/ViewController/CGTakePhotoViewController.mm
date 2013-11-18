@@ -42,6 +42,7 @@
     [super loadView];
     
     imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 365)];
+    imageView.contentMode = UIViewContentModeScaleAspectFit;
     
     _photoView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 365)];
     _photoView.backgroundColor = kColorBlack;
@@ -78,10 +79,9 @@
     
     [self.view addSubview:_captureButton];
     
-    //Bug check
-    //if(!_imageList){
-        _imageList =  [NSMutableArray new];
-    //}
+
+    _imageList =  [NSMutableArray new];
+    
     //Gizmos
     _processedImage = [[UIImageView alloc]init];
     [_processedImage setFrame:CGRectMake(180, 80, 138, 96)];
@@ -251,13 +251,7 @@
         rotatedCorrectly = originalImage;
     }
     
-    //UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 365)];
     imageView.image = rotatedCorrectly;
-    imageView.contentMode = UIViewContentModeScaleAspectFit;
-    
-    //[_photoView addSubview:imageView];
-    
-
 }
 
 - (UIImage *)imageProcess:(UIImage *)image
