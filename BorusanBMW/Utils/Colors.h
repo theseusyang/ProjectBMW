@@ -19,5 +19,6 @@
 #define kColorYellow [UIColor yellowColor]
 #define kColorGreen [UIColor greenColor]
 #define kColorBlue [UIColor blueColor]
+#define kColorGray [UIColor grayColor]
 
 #endif

@@ -45,6 +45,7 @@
     
     _photoView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 365)];
     _photoView.backgroundColor = kColorBlack;
+    _photoView.contentMode = UIViewContentModeScaleAspectFit;
     [_photoView addSubview:imageView];
     //[_photoView addSubview:[[UIImageView alloc] initWithImage:kApplicationImage(@"TakePhoto.png")]];
     [self.view addSubview:_photoView];
@@ -115,9 +116,7 @@
     else
         sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
 
-    //sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     _imagePicker = [[UIImagePickerController alloc] init];
-    //[_imagePicker setAllowsEditing:YES];
     
     _imagePicker.sourceType = sourceType;
     if (sourceType == UIImagePickerControllerSourceTypeCamera) {
@@ -129,14 +128,8 @@
     _imagePicker.navigationBarHidden = YES;
     _imagePicker.wantsFullScreenLayout = YES;
     [_imagePicker setDelegate:self];
-    
-#if TEST_MODE == 1
-    // Test Case code Block
-#endif
-    
-    
+
     [self presentViewController:_imagePicker animated:NO completion:nil];
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -190,7 +183,6 @@
 
 -(void)capture:(id)sender
 {
-    
     [self presentViewController:_imagePicker animated:YES completion:^{
         
     }];
@@ -205,59 +197,6 @@
 #pragma mark UIImagePickerControlDelegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    /*
-     UIImage *rotatedCorrectly;
-     if (originalImage.imageOrientation != UIImageOrientationUp)
-     rotatedCorrectly = [originalImage rotate:originalImage.imageOrientation];
-     else
-     rotatedCorrectly = originalImage;
-     
-     CGImageRef ref = CGImageCreateWithImageInRect(rotatedCorrectly.CGImage, croppedRect);
-     rotatedCorrectly = [UIImage imageWithCGImage:ref];
-     
-     #if TEST_MODE == 1
-     [Profiler start:@"Image Processing"];
-     
-     UIImage *processedImage = [self imageProcess:rotatedCorrectly];
-     
-     _imageProcessingCost.text = [[Profiler stop] stringByAppendingString:@" Image Process"];
-     
-     [Profiler start:@"OCR Process"];
-     
-     _plateNumber = [self OCR:processedImage];
-     
-     _ocrCost.text = [[Profiler stop] stringByAppendingString:@" OCR Process"];
-     
-     _totalCost.text = [[Profiler totalTime] stringByAppendingString:@" Total"];
-     
-     [self.view addSubview:_imageProcessingCost];
-     [self.view addSubview:_ocrCost];
-     [self.view addSubview:_totalCost];
-     #endif
-     
-     NSLog(@"%@", _plateNumber);
-     
-     NSLog(@"Total Time: %@", [Profiler totalTime]);
-     
-     #if TEST_MODE == 1
-     //Gizmos
-     _plate.text = _plateNumber;
-     _processedImage.image = processedImage;
-     _processedImage.contentMode = UIViewContentModeScaleAspectFit;
-     [self.view addSubview:_plate];
-     [self.view addSubview:_processedImage];
-     #endif
-     
-     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 365)];
-     imageView.image = rotatedCorrectly;
-     imageView.contentMode = UIViewContentModeScaleAspectFit;
-     
-     [_photoView addSubview:imageView];
-     [_imageList addObject:imageView.image];
-     
-     //UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil); // If you wanna save pic to Lib, uncomment this line
-
-    */
     [self dismissViewControllerAnimated:YES completion:nil];
     enablePhotoPicker = NO;
 
@@ -265,11 +204,11 @@
     
     //corpedRect must use rotatedCorrectly instead of originalImage
     CGRect croppedRect;
-    
+
     UIImage *rotatedCorrectly;
     if(useImageProcessing)
     {
-        
+        /* Image operations */
         if (originalImage.imageOrientation != UIImageOrientationUp){
             if(SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0"))
             {
@@ -279,8 +218,7 @@
                 croppedRect = CGRectMake(PIMAGE_OFFSET_X, PIMAGE_OFFSET_Y_IOS6, originalImage.size.width - PIMAGE_OFFSET_X + PIMAGE_CROP_WIDTH, PIMAGE_CROP_HEIGHT); //Portrait
             }
             
-            rotatedCorrectly = [originalImage rotate:originalImage.imageOrientation];
-            
+            //rotatedCorrectly = [originalImage rotate:originalImage.imageOrientation]; // Bellek sıçramasına neden olan buymuş!
         }
         
         else{
@@ -299,7 +237,6 @@
         [Profiler start:@"OCR Process"];
         _plateNumber = [self OCR:processedImage];
         _ocrCost.text = [[Profiler stop] stringByAppendingString:@" OCR Process"];
-        
         _totalCost.text = [[Profiler totalTime] stringByAppendingString:@" Total"];
         
         [self.view addSubview:_imageProcessingCost];
@@ -309,7 +246,6 @@
         NSLog(@"%@", _plateNumber);
         NSLog(@"Total Time: %@", [Profiler totalTime]);
         
-
         //Gizmos
         _plate.text = _plateNumber;
         _processedImage.image = rotatedCorrectly;
@@ -333,17 +269,9 @@
 
 - (UIImage *)imageProcess:(UIImage *)image
 {
-    // Make small the pic - UIGraphics~
-    /*
-    UIGraphicsBeginImageContext(CGSizeMake(image.size.width / 5, image.size.height / 5));
-    [image drawInRect:CGRectMake(0,0,image.size.width / 5, image.size.height / 5)];
-    image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    */
-    
     UIImage *takenImage = image;
     UIImage *processedImage;
-
+    
     processedImage = [imageProcessor processImage:takenImage];
 
     return processedImage;
@@ -358,6 +286,7 @@
 {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
 #pragma mark CGTakePhotoViewController
 - (void) takeOverlayPhoto
 {
