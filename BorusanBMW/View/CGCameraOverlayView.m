@@ -54,10 +54,6 @@
         
         [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(oriantationChanged:) name:UIDeviceOrientationDidChangeNotification object:[UIDevice currentDevice]];
-        
-        
-        
-        
     }
     return self;
 }

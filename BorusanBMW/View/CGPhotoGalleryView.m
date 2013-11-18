@@ -69,6 +69,7 @@
     UISwipeGestureRecognizer *swipeRightGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeRight:)];
     [swipeRightGesture setDirection: UISwipeGestureRecognizerDirectionRight];
     [self addGestureRecognizer:swipeRightGesture];
+    
 }
 
 - (void)swipeRight:(UISwipeGestureRecognizer *)sender
