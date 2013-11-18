@@ -78,8 +78,10 @@
     
     [self.view addSubview:_captureButton];
     
-    _imageList =  [NSMutableArray new];
-    
+    //Bug check
+    //if(!_imageList){
+        _imageList =  [NSMutableArray new];
+    //}
     //Gizmos
     _processedImage = [[UIImageView alloc]init];
     [_processedImage setFrame:CGRectMake(180, 80, 138, 96)];
@@ -196,8 +198,9 @@
 #pragma mark UIImagePickerControlDelegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    [self dismissViewControllerAnimated:YES completion:nil];
     enablePhotoPicker = NO;
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
 
     UIImage *originalImage= [info objectForKey: UIImagePickerControllerOriginalImage];
     
@@ -217,7 +220,7 @@
                 croppedRect = CGRectMake(PIMAGE_OFFSET_X, PIMAGE_OFFSET_Y_IOS6, originalImage.size.width - PIMAGE_OFFSET_X + PIMAGE_CROP_WIDTH, PIMAGE_CROP_HEIGHT); //Portrait
             }
             
-            //rotatedCorrectly = [originalImage rotate:originalImage.imageOrientation]; // Bellek sıçramasına neden olan buymuş!
+            rotatedCorrectly = [originalImage rotate:originalImage.imageOrientation]; // Bellek sıçramasına neden olan buymuş!
         }
         
         else{
@@ -238,19 +241,10 @@
         _ocrCost.text = [[Profiler stop] stringByAppendingString:@" OCR Process"];
         _totalCost.text = [[Profiler totalTime] stringByAppendingString:@" Total"];
         
-        [self.view addSubview:_imageProcessingCost];
-        [self.view addSubview:_ocrCost];
-        [self.view addSubview:_totalCost];
-        
         NSLog(@"%@", _plateNumber);
         NSLog(@"Total Time: %@", [Profiler totalTime]);
         
-        //Gizmos
-        _plate.text = _plateNumber;
-        _processedImage.image = rotatedCorrectly;
-        _processedImage.contentMode = UIViewContentModeScaleAspectFit;
-        [self.view addSubview:_plate];
-        [self.view addSubview:_processedImage];
+
     }
     else
     {
