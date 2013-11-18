@@ -103,6 +103,7 @@
 #pragma mark Button Actions
 - (void)addPhotoAction:(id)sender
 {
+    
     [self.navigationController popViewControllerAnimated:YES];
 }
 

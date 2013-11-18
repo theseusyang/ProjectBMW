@@ -13,6 +13,7 @@
 
 - (void)takeOverlayPhoto;
 - (void)takeOverlayPhotoWithImageProcessing:(BOOL) used;
+- (void)takeOverlayPhotoWithImageProcessing:(BOOL) used and: (BOOL) flash;
 - (void)continueToMenu;
 
 @end
@@ -20,11 +21,14 @@
 @interface CGCameraOverlayView : UIView
 {
     UIView *_footerImage;
-    UIView *_captureGuide;
+    UIImageView *_captureGuide;
     
-    UISwitch *_useImageProcessSwitch;
+    UIButton *_useFlashButton;
+    UIButton *_useImageProcessButton;
+    //UISwitch *_useImageProcessSwitch;
+    
     BOOL useImageProcessing;
-    
+    BOOL useFlash;
     UIButton *_newButton;
     UIButton *_captureButton;
     UIButton *_continueButton;

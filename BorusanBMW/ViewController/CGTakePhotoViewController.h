@@ -51,5 +51,7 @@
     
     //Image Processer
     id <ImageProcessingProtocol> imageProcessor;
+    
+    BOOL enablePhotoPicker;
 }
 @end

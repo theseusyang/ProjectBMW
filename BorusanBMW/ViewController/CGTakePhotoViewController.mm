@@ -45,14 +45,14 @@
     
     _photoView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 365)];
     _photoView.backgroundColor = kColorBlack;
+    _photoView.contentMode = UIViewContentModeScaleAspectFit;
     [_photoView addSubview:imageView];
-    
     //[_photoView addSubview:[[UIImageView alloc] initWithImage:kApplicationImage(@"TakePhoto.png")]];
     [self.view addSubview:_photoView];
     
-    _captureGuide = [[UIImageView alloc] initWithFrame:CGRectMake(80, 89, 153, 153)];
-    [_captureGuide setImage:kApplicationImage(kResCaptureGuide)];
-    [self.view addSubview:_captureGuide];
+    //_captureGuide = [[UIImageView alloc] initWithFrame:CGRectMake(80, 89, 153, 153)];
+    //[_captureGuide setImage:kApplicationImage(kResCaptureGuide)];
+    //[self.view addSubview:_captureGuide];
     
     _footerImage = [[UIImageView alloc] initWithImage:kApplicationImage(kResContentFooter)];
     _footerImage.frame = CGRectMake(0, 361, 320, 55);
@@ -67,7 +67,7 @@
 
     _continueButton = [[UIButton alloc] initWithFrame:CGRectMake(221, 366, 93, 48)];
     [_continueButton setBackgroundImage:kApplicationImage(kResButtonSmall) forState:UIControlStateNormal];
-    [_continueButton setTitle:@"Devam" forState:UIControlStateNormal];
+    [_continueButton setTitle:@"Kullan" forState:UIControlStateNormal];
     [_continueButton.titleLabel setFont:kApplicationFontBold(17.0f)];
     [_continueButton addTarget:self action:@selector(continueAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_continueButton];
@@ -127,10 +127,8 @@
     _imagePicker.navigationBarHidden = YES;
     _imagePicker.wantsFullScreenLayout = YES;
     [_imagePicker setDelegate:self];
-    
-    
+
     [self presentViewController:_imagePicker animated:NO completion:nil];
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -140,6 +138,11 @@
     [self.navigationController setNavigationBarHidden:NO];
     [self setLeftButtonHidden:YES];
     [self setCancelButton];
+    
+    if(enablePhotoPicker){
+        imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 365)];
+        [self presentViewController:_imagePicker animated:NO completion:nil];
+    }
 
 }
 
@@ -151,6 +154,18 @@
 
 - (void)continueAction:(id)sender
 {
+    /*
+    UIImageView *imageView = _imageList[0];
+    UIGraphicsBeginImageContext(CGSizeMake(70, 70));
+    [imageView.image drawInRect:CGRectMake(0,0,70,70)];
+    UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    imageView.image = newImage;
+    */
+    //Enable Taking photo for next call to this VC
+    enablePhotoPicker = YES;
+    
     [_imageList addObject:imageView.image];
     UIViewController *vc = [[CGPhotoManagementViewController alloc] initWithImageList:_imageList andPlateNumber:_plateNumber];
     [self.navigationController pushViewController:vc animated:YES];
@@ -167,7 +182,6 @@
 
 -(void)capture:(id)sender
 {
-    
     [self presentViewController:_imagePicker animated:YES completion:^{
         
     }];
@@ -183,6 +197,8 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     [self dismissViewControllerAnimated:YES completion:nil];
+    enablePhotoPicker = NO;
+
     UIImage *originalImage= [info objectForKey: UIImagePickerControllerOriginalImage];
     
     //corpedRect must use rotatedCorrectly instead of originalImage
@@ -190,7 +206,7 @@
     UIImage *rotatedCorrectly;
     if(useImageProcessing)
     {
-        CGRect croppedRect;
+        /* Image operations */
         if (originalImage.imageOrientation != UIImageOrientationUp){
             if(SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0"))
             {
@@ -200,18 +216,18 @@
                 croppedRect = CGRectMake(PIMAGE_OFFSET_X, PIMAGE_OFFSET_Y_IOS6, originalImage.size.width - PIMAGE_OFFSET_X + PIMAGE_CROP_WIDTH, PIMAGE_CROP_HEIGHT); //Portrait
             }
             
-            rotatedCorrectly = [originalImage rotate:originalImage.imageOrientation];
-            
+            //rotatedCorrectly = [originalImage rotate:originalImage.imageOrientation]; // Bellek sıçramasına neden olan buymuş!
         }
         
         else{
             rotatedCorrectly = originalImage;
             croppedRect = CGRectMake(IMAGE_OFFSET_X, IMAGE_OFFSET_Y, originalImage.size.width - IMAGE_OFFSET_X, IMAGE_CROP_HEIGHT); //Landscape
         }
-        
+
+        //Below 2 lines was put here to correct corped image bug
         CGImageRef ref = CGImageCreateWithImageInRect(rotatedCorrectly.CGImage, croppedRect);
         rotatedCorrectly = [UIImage imageWithCGImage:ref];
-
+        
         [Profiler start:@"Image Processing"];
         UIImage *processedImage = [self imageProcess:rotatedCorrectly];
         _imageProcessingCost.text = [[Profiler stop] stringByAppendingString:@" Image Process"];
@@ -219,7 +235,6 @@
         [Profiler start:@"OCR Process"];
         _plateNumber = [self OCR:processedImage];
         _ocrCost.text = [[Profiler stop] stringByAppendingString:@" OCR Process"];
-        
         _totalCost.text = [[Profiler totalTime] stringByAppendingString:@" Total"];
         
         [self.view addSubview:_imageProcessingCost];
@@ -235,18 +250,19 @@
         _processedImage.contentMode = UIViewContentModeScaleAspectFit;
         [self.view addSubview:_plate];
         [self.view addSubview:_processedImage];
-         
     }
     else
     {
         rotatedCorrectly = originalImage;
     }
     
+    //UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 365)];
     imageView.image = rotatedCorrectly;
     imageView.contentMode = UIViewContentModeScaleAspectFit;
     
     //[_photoView addSubview:imageView];
-    //[_imageList addObject:imageView.image];
+    
+
 }
 
 - (UIImage *)imageProcess:(UIImage *)image
@@ -281,8 +297,21 @@
     [_imagePicker takePicture];
 }
 
+-(void)takeOverlayPhotoWithImageProcessing:(BOOL)used and:(BOOL) flash
+{
+    useImageProcessing = used;
+    if(flash)
+        _imagePicker.cameraFlashMode = UIImagePickerControllerCameraFlashModeOn;
+    else
+        _imagePicker.cameraFlashMode = UIImagePickerControllerCameraFlashModeOff;
+    [_imagePicker takePicture];
+}
+
 - (void) continueToMenu
 {
+    //Enable Taking photo for next call to this VC
+    enablePhotoPicker = YES;
+    
     UIViewController *vc = [[CGPhotoManagementViewController alloc] initWithImageList:_imageList andPlateNumber:_plateNumber];
     [self.navigationController pushViewController:vc animated:YES];
     [self dismissViewControllerAnimated:YES completion:nil];

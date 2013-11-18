@@ -38,6 +38,13 @@
     UIPickerView *_imagePicker;
     NSArray* _notificationTypeList;
     UIButton    *_sendButton;
+    
+    NSString *_defaultDescription;
+    UIColor *_defaultDescriptionTextColor;
+    UIColor *_placeholderDescriptionTextColor;
+    
+    CGLabel *_errorLabel;
+    
 }
 
 - (id)initWithImageList:(NSArray *)imageList;
