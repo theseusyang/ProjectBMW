@@ -203,6 +203,7 @@
     
     //corpedRect must use rotatedCorrectly instead of originalImage
     
+    CGRect croppedRect;
     UIImage *rotatedCorrectly;
     if(useImageProcessing)
     {
