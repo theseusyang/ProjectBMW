@@ -141,19 +141,13 @@
     VehicleListResponse *vehicle = (VehicleListResponse*)[_vehicleList objectAtIndex:[indexPath row]];
     
     CGInformHistoryCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    //if (!cell) {
+    if (!cell) {
         
         cell = [[CGInformHistoryCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier vehicleListResponse:vehicle];
 
-    //}
-    
-    //TODO: Memory leak problemi var, bu yüzden bi netten araştırma yap
-    /*
-    if (!cell) {
-     
-        
     }
-     */
+    
+    [cell setCellWith:vehicle];
     
     if ([vehicle.imageList count] > 0) {
         
