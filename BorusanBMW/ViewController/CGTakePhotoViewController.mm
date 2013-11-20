@@ -142,7 +142,7 @@
     [self setCancelButton];
     
     if(enablePhotoPicker){
-        imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 365)];
+        //imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 365)];
         [self presentViewController:_imagePicker animated:NO completion:nil];
     }
 
