@@ -14,7 +14,9 @@
     UIImageView *_contentImageView;
     UIImageView *_logoView;
     UIButton    *_newInformButton;
+    UIImageView *_newInformButtonImage;
     UIButton    *_informHistory;
+    UIImageView *_informHistoryImage;
     
     //Photo Picker
     UIImagePickerController *_imagePicker;

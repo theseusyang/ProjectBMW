@@ -90,42 +90,100 @@
     
     // UITextFields
     _licensePlate = [[CGTextField alloc] initWithFrame:CGRectMake(35, 98, 250, 46)];
+    
+    if( !(_plateNumber == (id)[NSNull null] || _plateNumber.length == 0) )
+    {
+        //Regex
+        //Set uppercase
+        _plateNumber = [NSString stringWithString:[_plateNumber uppercaseString]];
+        //Set expression
+        NSString *regExTest = @"[0-8,B,D,S][0-9][A-Z]{1,4}[0-9]{2,4}";
+        NSRegularExpression *plateTest = [NSRegularExpression regularExpressionWithPattern:regExTest options:0 error:nil];
+        //Get first matching string
+        NSTextCheckingResult *result = [plateTest firstMatchInString:_plateNumber options:0 range:NSMakeRange(0, _plateNumber.length)];
+        NSString *resultString = [_plateNumber substringWithRange:[result range]];
+        //Check for null string
+        if( !(resultString == (id)[NSNull null] || resultString.length == 0) )
+        {
+            if( [[resultString substringWithRange:NSMakeRange(0, 1)] isEqual:@"B"])
+            {
+                resultString = [@"3" stringByAppendingString:[resultString substringWithRange:NSMakeRange(1, resultString.length-1)]];
+            }
+        }
+        NSLog(@"%@", resultString);
+        _plateNumber = [NSString stringWithString:resultString];
+    }
+    /*
+    NSString *regExText = @"([0-8,B][0-9][A-Z]{1,3}[0-9]{2,4})";
+    _plateNumber = [NSString stringWithString:[_plateNumber uppercaseString]];
+    
+    NSLog(@"%@", _plateNumber);
+    
+    _plateTest = [NSRegularExpression regularExpressionWithPattern:regExText options:0 error:nil];
+    NSTextCheckingResult  *result = [_plateTest firstMatchInString:_plateNumber options:0 range:NSMakeRange(0, _plateNumber.length)];
+    if(!(_plateNumber == nil)){
+    _plateNumber = [_plateNumber substringWithRange:[result range]];
+    if([[_plateNumber substringWithRange:NSMakeRange(0, 1)] isEqualToString:@"B"])
+    {
+        _plateNumber = [@"3" stringByAppendingString:[_plateNumber substringWithRange:NSMakeRange(0, _plateNumber.length)]];
+    
+    }
+    }
+    
+    NSLog(@"%@", _plateNumber);
+    */
+    
+    /*
+    if(![plateTest evaluateWithObject:_plateNumber])
+        _plateNumber = nil;
+    
     if( !_plateNumber )
         _licensePlate.placeholder = @"Araç Plakası"; //TODO: Dummy data
     else
     {
-        _licensePlate.text = _plateNumber;
-        _licensePlate.placeholder = _plateNumber;
-    }
+    */
+    _licensePlate.text = _plateNumber;
+    
+    
+    
+    
     _licensePlate.leftView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"IconLicensePlateDark.png"]];
     _licensePlate.leftView.frame  = CGRectMake(14, 14, 24, 19);
+    _licensePlate.defaultPlaceholder = @"Araç Plakası";
+    _licensePlate.placeholder = _licensePlate.defaultPlaceholder;
     _licensePlate.leftViewMode = UITextFieldViewModeAlways;
     _licensePlate.paddingX = kTextFieldPaddingX;
     _licensePlate.backgroundColor = kColorClear;
+    [_licensePlate addTarget:self action:@selector(didSellectCGTextView:) forControlEvents:UIControlEventEditingDidBegin];
     [_licensePlate setDelegate:self];
     [_groupScrollView addSubview:_licensePlate];
     
     _serviceName = [[CGTextField alloc] initWithFrame:CGRectMake(35, 148, 250, 46)];
-    _serviceName.placeholder = @"Servis Adı"; //TODO: Dummy data
+    _serviceName.defaultPlaceholder = @"Servis Adı";
+    _serviceName.placeholder = _serviceName.defaultPlaceholder;
     _serviceName.leftView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"IconServiceNameDark.png"]];
     _serviceName.leftView.frame  = CGRectMake(14, 10, 24, 26);
     _serviceName.leftViewMode = UITextFieldViewModeAlways;
     _serviceName.paddingX = kTextFieldPaddingX;
+    [_serviceName addTarget:self action:@selector(didSellectCGTextView:) forControlEvents:UIControlEventEditingDidBegin];
     [_serviceName setDelegate:self];
     [_groupScrollView addSubview:_serviceName];
     
     // TODO: When touched, UIPickerWheel should appear.
     _notificationType = [[CGTextField alloc] initWithFrame:CGRectMake(35, 200, 250, 46)];
-    _notificationType.placeholder = @"Bildirim Tipi"; //TODO: Dummy data
+    _notificationType.defaultPlaceholder = @"Bildirim Tipi";
+    _notificationType.placeholder = _notificationType.defaultPlaceholder;
     _notificationType.leftView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"IconNotificationTypeDark.png"]];
     _notificationType.leftView.frame  = CGRectMake(14, 10, 20, 24);
     _notificationType.leftViewMode = UITextFieldViewModeAlways;
     _notificationType.paddingX = kTextFieldPaddingX;
+    [_notificationType addTarget:self action:@selector(didSellectCGTextView:) forControlEvents:UIControlEventEditingDidBegin];
     [_notificationType setDelegate:self];
     [_groupScrollView addSubview:_notificationType];
     
     _description = [[CGUIView alloc] initWithFrame:CGRectMake(35, 248, 240, 86) andBackground:@"TextArea.png" andIcon:@"IconCommentDark.png" andText:Nil];
     [_description.textView setDelegate:self];
+    //Return for fix
     _defaultDescription = @" Açıklama";
     _defaultDescriptionTextColor = [UIColor colorWithCGColor:_description.textView.textColor.CGColor];
     _placeholderDescriptionTextColor =[UIColor colorWithRed:203.0/255.0 green:203.0/255.0 blue:203.0/255.0 alpha:1];
@@ -178,6 +236,10 @@
     _imagePicker.dataSource = self;
     _imagePicker.showsSelectionIndicator = YES;
     _imagePicker.hidden = NO;
+    
+    _errorAlert = [[UIAlertView alloc]initWithTitle:@"" message:@"Lütfen bütün kısımları doldurunuz" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];    
+    [_groupScrollView addSubview:_errorAlert];
+    
     
 
     [self.view addSubview:_imagePicker];
@@ -244,6 +306,11 @@
 }
 */
 
+-(void)didSellectCGTextView:(id)sender
+{
+    //((CGTextField*)sender).placeholder = nil;
+}
+
 #pragma mark UITextFieldDelegete
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
@@ -253,8 +320,14 @@
     return YES;
 }
 
+
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
+    if([textField.text isEqualToString:@""])
+    {
+        textField.placeholder = nil;
+    }
+    
     if ([textField isEqual:_notificationType]) {
         [self performSelector:@selector(hideKeyboard:) withObject:textField afterDelay:0.1f];
     }
@@ -274,6 +347,8 @@
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
+    if([textField.text isEqual:@""])
+        textField.placeholder = ((CGTextField*)textField).defaultPlaceholder;
     _groupScrollView.scrollEnabled = NO;
     if(_errorLabel.hidden)
         [_groupScrollView setContentOffset:CGPointMake(0, 0) animated:YES];
@@ -313,6 +388,9 @@
     
     if( [location isEqualToString:@""] || [licencePlate isEqualToString:@""] || [serviceName isEqualToString:@""] || [description isEqualToString:@""] || [location isEqualToString:Nil] || [licencePlate isEqualToString:Nil] || [serviceName isEqualToString:Nil] || [description isEqualToString:Nil])
     {
+        [_errorAlert show];
+        return;
+        /*
         if(_errorLabel.hidden){
             [UIView animateWithDuration:0.3
                                   delay:0
@@ -329,8 +407,9 @@
         [_sendButton addTarget:self action:@selector(sendAction:) forControlEvents:UIControlEventTouchUpInside];
         [_groupScrollView setContentOffset:CGPointMake(0, 20) animated:YES];
         return;
+        */
     }
-    
+    /*
     if(!_errorLabel.hidden)
     {
         [UIView animateWithDuration:0.3
@@ -345,6 +424,7 @@
                              
                          }];
     }
+    */
     
     
     
@@ -441,5 +521,12 @@
         _imagePicker.hidden = YES;
     }];
 }
+
+#pragma mark UIAlertViewDelegate
+-(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    [_sendButton addTarget:self action:@selector(sendAction:) forControlEvents:UIControlEventTouchUpInside];
+}
+
 
 @end

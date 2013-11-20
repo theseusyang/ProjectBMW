@@ -70,13 +70,13 @@
     
     _topLabel = [[CGLabel alloc] initWithFrame:CGRectMake(_centerX - 30, _centerY + 80, 120, 16)];
     _topLabel.text = @"Bildiri Gönderiliyor...";
-    _topLabel.textAlignment = NSTextAlignmentLeft;
+    _topLabel.textAlignment = NSTextAlignmentCenter;
     [_topLabel sizeToFit];
     [self.view addSubview:_topLabel];
     
     _bottomLabel = [[CGLabel alloc] initWithFrame:CGRectMake(_centerX - 4, _centerY + 100, 140, 14)];
     _bottomLabel.text = @"Lütfen bekleyiniz.";
-    _bottomLabel.textAlignment = NSTextAlignmentLeft;
+    _bottomLabel.textAlignment = NSTextAlignmentCenter;
     _bottomLabel.font = kApplicationFont(13.0f);
     [_bottomLabel sizeToFit];
     [self.view addSubview:_bottomLabel];

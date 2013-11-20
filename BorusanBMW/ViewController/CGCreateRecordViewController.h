@@ -17,7 +17,7 @@
 #import "Base64.h"
 #import "RecordEntity.h"
 
-@interface CGCreateRecordViewController : CGBaseViewController<UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate, UITextViewDelegate>
+@interface CGCreateRecordViewController : CGBaseViewController<UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate, UITextViewDelegate, UIAlertViewDelegate>
 {
     NSArray *_imageList;
     //Tesseract Plate Number
@@ -44,6 +44,7 @@
     UIColor *_placeholderDescriptionTextColor;
     
     CGLabel *_errorLabel;
+    UIAlertView *_errorAlert;
     
 }
 
