@@ -32,10 +32,7 @@
     UIButton *_newButton;
     UIButton *_captureButton;
     UIButton *_continueButton;
-    
-    
 }
-
 
 -(void) setSwitchTo:(BOOL) state;
 

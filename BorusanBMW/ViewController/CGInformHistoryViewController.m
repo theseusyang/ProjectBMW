@@ -61,7 +61,7 @@
             _vehicleImageList = [NSMutableArray array];
             _vehicleList = [NSMutableArray arrayWithArray:vehicleList];
             
-            [self sortListWithDate];
+            //[self sortListWithDate];
             [self setVehicleImageList];
             [self stopSpinner];
             [self createTableView];
@@ -75,7 +75,7 @@
             _vehicleImageList = [NSMutableArray array];
         }
         // Data is already in DataService
-        [self sortListWithDate];
+        //[self sortListWithDate];
         [self setVehicleImageList]; // ?
         [self stopSpinner];
         [self createTableView];
@@ -141,24 +141,22 @@
     VehicleListResponse *vehicle = (VehicleListResponse*)[_vehicleList objectAtIndex:[indexPath row]];
     
     CGInformHistoryCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    cell = [[CGInformHistoryCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier vehicleListResponse:vehicle];
-    
-    //TODO: Memory leak problemi var, bu yüzden bi netten araştırma yap
-    /*
     if (!cell) {
-     
         
+        cell = [[CGInformHistoryCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier vehicleListResponse:vehicle];
+
     }
-     */
     
+    [cell setCellWith:vehicle];
     
     if ([vehicle.imageList count] > 0) {
         
         UIImage *image = vehicle.imageList[0];
+        /*
         UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
         imageView.frame = CGRectMake(0, 0, 70, 70);
-        
-        [cell.pic addSubview:imageView];
+        */
+        cell.pic.image = image;
         
     }
 
@@ -238,7 +236,7 @@
         
         _vehicleList = [[DataService shared] getVehicleList];
         
-        [self sortListWithDate];
+        //[self sortListWithDate];
         [self setVehicleImageList];
         [_moreCell stopAnimation];
         [_informHistoryTableView reloadData];

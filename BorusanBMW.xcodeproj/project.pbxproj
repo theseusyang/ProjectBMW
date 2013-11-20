@@ -123,7 +123,6 @@
 		62A70B3C17F9C53000098F47 /* iPhoneIcon-568.png in Resources */ = {isa = PBXBuildFile; fileRef = 62A70B3917F9C53000098F47 /* iPhoneIcon-568.png */; };
 		62A70B3D17F9C53000098F47 /* iPhoneIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 62A70B3A17F9C53000098F47 /* iPhoneIcon.png */; };
 		62A70B3E17F9C53000098F47 /* iPhoneIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 62A70B3B17F9C53000098F47 /* iPhoneIcon@2x.png */; };
-		62AA873B1821682D004048F7 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62AA873A1821682D004048F7 /* opencv2.framework */; };
 		62B0A44D17E9C2240042F199 /* Server.m in Sources */ = {isa = PBXBuildFile; fileRef = 62B0A44C17E9C2240042F199 /* Server.m */; };
 		62B7C52F17D6151A00257C95 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62B7C52E17D6151A00257C95 /* UIKit.framework */; };
 		62B7C53117D6151A00257C95 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62B7C53017D6151A00257C95 /* Foundation.framework */; };
@@ -145,6 +144,7 @@
 		62CEEE3017F327FB00A00F81 /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 62CEEE2F17F327FA00A00F81 /* Base64.m */; };
 		62D22EFE17D9CE0900A6BAFE /* CGPhotoManagementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62D22EFD17D9CE0900A6BAFE /* CGPhotoManagementViewController.m */; };
 		62D22F0417D9FDD400A6BAFE /* CGCreateRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62D22F0317D9FDD400A6BAFE /* CGCreateRecordViewController.m */; };
+		62D2E19B183A1964007CC181 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62D2E19A183A1964007CC181 /* opencv2.framework */; };
 		62D78F1617E72BC200BDB445 /* liblept.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 62D78F1217E72BC200BDB445 /* liblept.a */; };
 		62D78F1717E72BC200BDB445 /* libtesseract_all.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 62D78F1317E72BC200BDB445 /* libtesseract_all.a */; };
 		62D78F1817E72BC200BDB445 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 62D78F1417E72BC200BDB445 /* README.md */; };
@@ -363,7 +363,6 @@
 		62A70B3917F9C53000098F47 /* iPhoneIcon-568.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhoneIcon-568.png"; sourceTree = "<group>"; };
 		62A70B3A17F9C53000098F47 /* iPhoneIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iPhoneIcon.png; sourceTree = "<group>"; };
 		62A70B3B17F9C53000098F47 /* iPhoneIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhoneIcon@2x.png"; sourceTree = "<group>"; };
-		62AA873A1821682D004048F7 /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
 		62B0A44B17E9C2240042F199 /* Server.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Server.h; path = Model/Server.h; sourceTree = "<group>"; };
 		62B0A44C17E9C2240042F199 /* Server.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Server.m; path = Model/Server.m; sourceTree = "<group>"; };
 		62B7C52B17D6151A00257C95 /* weCare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = weCare.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -403,6 +402,7 @@
 		62D22EFD17D9CE0900A6BAFE /* CGPhotoManagementViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CGPhotoManagementViewController.m; path = ViewController/CGPhotoManagementViewController.m; sourceTree = "<group>"; };
 		62D22F0217D9FDD400A6BAFE /* CGCreateRecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CGCreateRecordViewController.h; path = ViewController/CGCreateRecordViewController.h; sourceTree = "<group>"; };
 		62D22F0317D9FDD400A6BAFE /* CGCreateRecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CGCreateRecordViewController.m; path = ViewController/CGCreateRecordViewController.m; sourceTree = "<group>"; };
+		62D2E19A183A1964007CC181 /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
 		62D78E8117E72BC100BDB445 /* allheaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = allheaders.h; sourceTree = "<group>"; };
 		62D78E8217E72BC100BDB445 /* alltypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = alltypes.h; sourceTree = "<group>"; };
 		62D78E8317E72BC100BDB445 /* array.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = array.h; sourceTree = "<group>"; };
@@ -602,7 +602,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				62AA873B1821682D004048F7 /* opencv2.framework in Frameworks */,
+				62D2E19B183A1964007CC181 /* opencv2.framework in Frameworks */,
 				6218D7D2181A8A9C0093C86D /* libc++.dylib in Frameworks */,
 				6218D7CE181A876A0093C86D /* ImageIO.framework in Frameworks */,
 				62CEEE2617F1BD1400A00F81 /* CoreLocation.framework in Frameworks */,
@@ -781,7 +781,7 @@
 		62B7C52D17D6151A00257C95 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				62AA873A1821682D004048F7 /* opencv2.framework */,
+				62D2E19A183A1964007CC181 /* opencv2.framework */,
 				AFBE0BFD18211D78002F9360 /* RestKit.xcodeproj */,
 				6218D7D1181A8A9C0093C86D /* libc++.dylib */,
 				6218D7CD181A876A0093C86D /* ImageIO.framework */,
@@ -852,7 +852,6 @@
 				AFD3AF1F18325AD20072F554 /* IconPlateMode@2x.png */,
 				AFD3AF121832574D0072F554 /* PlateCaptureGuideVertical.png */,
 				AFD3AF131832574D0072F554 /* PlateCaptureGuideVertical@2x.png */,
-				6218D7EC181AA9790093C86D /* License Plate Images */,
 				629ABD4717E6E3DC00A0F0F6 /* Icons */,
 				629ABD4617E6E3D500A0F0F6 /* Buttons */,
 				6224448B17D8D1E7002A2482 /* Background.png */,
@@ -1305,7 +1304,6 @@
 				622444EA17D8D1E7002A2482 /* BadgeSent@2x.png in Resources */,
 				622444EB17D8D1E7002A2482 /* ButtonBlue.png in Resources */,
 				62118D9518067BC7008E8069 /* Default-568h.png in Resources */,
-				6218D801181AA9790093C86D /* IMG_1235.JPG in Resources */,
 				AFD3AF2118325AD20072F554 /* IconCarMode@2x.png in Resources */,
 				622444EC17D8D1E7002A2482 /* ButtonBlue@2x.png in Resources */,
 				622444ED17D8D1E7002A2482 /* ButtonCapture.png in Resources */,
@@ -1313,7 +1311,6 @@
 				622444EF17D8D1E7002A2482 /* ButtonCapturePressed.png in Resources */,
 				622444F017D8D1E7002A2482 /* ButtonCapturePressed@2x.png in Resources */,
 				AFD3AF2B18327A6E0072F554 /* SwitchButtonFlashOn@2x.png in Resources */,
-				6218D813181AA9790093C86D /* IMG_1253.JPG in Resources */,
 				622444F117D8D1E7002A2482 /* ButtonDark.png in Resources */,
 				AFD3AF36183284B80072F554 /* PlateCaptureGuideHorizontal.png in Resources */,
 				622444F217D8D1E7002A2482 /* ButtonDark@2x.png in Resources */,
@@ -1407,21 +1404,12 @@
 				6224453A17D8D1E7002A2482 /* TextAreaFocused@2x.png in Resources */,
 				6224453B17D8D1E7002A2482 /* Textbox.png in Resources */,
 				AFD3AF2818327A6E0072F554 /* SwitchButtonFlashOff.png in Resources */,
-				6218D80E181AA9790093C86D /* IMG_1248.JPG in Resources */,
 				6224453C17D8D1E7002A2482 /* Textbox@2x.png in Resources */,
 				62E988C1180585A3000F3C8D /* ButtonLoadMore.png in Resources */,
 				6224453D17D8D1E7002A2482 /* TextboxFocused.png in Resources */,
 				6224453E17D8D1E7002A2482 /* TextboxFocused@2x.png in Resources */,
-				62FFD63B17E195FC00438CA0 /* TakePhoto.png in Resources */,
-				62FFD64017E1960700438CA0 /* Element1.png in Resources */,
-				62FFD64117E1960700438CA0 /* Element2.png in Resources */,
-				62FFD64217E1960700438CA0 /* Element3.png in Resources */,
 				AFD3AF2918327A6E0072F554 /* SwitchButtonFlashOff@2x.png in Resources */,
-				62FFD64317E1960700438CA0 /* Element4.png in Resources */,
-				62FFD64717E1960F00438CA0 /* Photo1.png in Resources */,
 				AFD3AF3A183289440072F554 /* ButtonSmallDeactive.png in Resources */,
-				62FFD64817E1960F00438CA0 /* Photo2.png in Resources */,
-				62FFD64917E1960F00438CA0 /* Photo3.png in Resources */,
 				62FFD64E17E1B7EB00438CA0 /* ThumbnailContainer.png in Resources */,
 				62FFD64F17E1B7EB00438CA0 /* ThumbnailContainer@2x.png in Resources */,
 				62FFD65017E1B7EB00438CA0 /* ThumbnailContainerPressed.png in Resources */,
@@ -1570,11 +1558,12 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "compiler-default";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Omer Can (L3356M7D57)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/bahadirboge/Development/ProjectBMW,
+					/Users/barisyilmaz/Development/ProjectBMW,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BorusanBMW/BorusanBMW-Prefix.pch";
@@ -1604,11 +1593,12 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "compiler-default";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Omer Can (L3356M7D57)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/bahadirboge/Development/ProjectBMW,
+					/Users/barisyilmaz/Development/ProjectBMW,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BorusanBMW/BorusanBMW-Prefix.pch";

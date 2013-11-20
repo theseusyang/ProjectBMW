@@ -22,6 +22,8 @@
     
     UITextView *_dateView;
     UITextView *_addressView;
+    
+    VehicleListResponse *_vehicleData;
 }
 
 @property (nonatomic, strong) UIImageView *pic;
