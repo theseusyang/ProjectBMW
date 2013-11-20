@@ -201,15 +201,15 @@
     enablePhotoPicker = NO;
     [self dismissViewControllerAnimated:YES completion:nil];
     
-
     UIImage *originalImage= [info objectForKey: UIImagePickerControllerOriginalImage];
     
     //corpedRect must use rotatedCorrectly instead of originalImage
-    
     CGRect croppedRect;
     UIImage *rotatedCorrectly;
     if(useImageProcessing)
     {
+        CGCameraOverlayView *overlay = ((CGCameraOverlayView*)(_imagePicker.cameraOverlayView));
+        
         /* Image operations */
         if (originalImage.imageOrientation != UIImageOrientationUp){
             if(SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0"))
@@ -243,8 +243,8 @@
         
         NSLog(@"%@", _plateNumber);
         NSLog(@"Total Time: %@", [Profiler totalTime]);
-        
 
+        [overlay stopSpinner];
     }
     else
     {
@@ -267,6 +267,11 @@
 - (NSString *)OCR: (UIImage *)processedImage
 {
    return [imageProcessor OCRImage:processedImage];
+}
+
+- (void)thread_performSpinner:(id)object
+{
+
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker

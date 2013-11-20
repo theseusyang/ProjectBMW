@@ -22,7 +22,6 @@
         if ([self respondsToSelector:@selector(edgesForExtendedLayout)]){
             if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
                 self.edgesForExtendedLayout = UIRectEdgeNone;
-                //self.automaticallyAdjustsScrollViewInsets = NO;
             }
         }
     }

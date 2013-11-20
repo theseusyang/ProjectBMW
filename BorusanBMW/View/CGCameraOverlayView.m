@@ -66,6 +66,10 @@
         [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(oriantationChanged:) name:UIDeviceOrientationDidChangeNotification object:[UIDevice currentDevice]];
         
+        _loadingProgress = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+        _loadingProgress.center = self.center;
+        [self addSubview:_loadingProgress];
+        
         useImageProcessing = NO;
         _captureGuide.hidden = YES;
         useFlash = NO;
@@ -76,6 +80,9 @@
 
 -(IBAction) takePhoto : (id)sender
 {
+    if (useImageProcessing)
+        [self startSpinner];
+    
     NSLog(@"Photo taken %hhd", useImageProcessing);
     if (self.delegate) {
         //FLASHADD
@@ -83,6 +90,16 @@
         [self setSwitchTo:NO];
     }
     
+}
+
+- (void)startSpinner
+{
+    [_loadingProgress startAnimating];
+}
+
+- (void)stopSpinner
+{
+    [_loadingProgress stopAnimating];
 }
 
 -(IBAction) newAction :(id)sender

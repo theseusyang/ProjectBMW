@@ -64,12 +64,10 @@
         photo.frame = CGRectMake(5, 5, 160, 160);
         photo.contentMode = UIViewContentModeScaleAspectFit;
         
-        //int posX = ((kImageIterate * i) + kImageWidthGap);
         float resizeValue = 0.0;
         resizeValue = (i * kImageResize);
         photo.frame = CGRectMake(5, 5, 160 - resizeValue, 160 - resizeValue);
         
-        //UIView *elementView = [[UIView alloc] initWithFrame:CGRectMake(posX, 13, 170, 170)];
         UIView *elementView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kImageHeight - resizeValue, kImageHeight - resizeValue)];
         elementView.backgroundColor = kColorGray;
         elementView.center = _bgView.center;
