@@ -19,8 +19,12 @@
     UIImageView *_testPhoto;
     UIView *_bgView;
     
+    NSMutableArray *_positionIndexList;
+    NSInteger _midPositionIndex;
     NSInteger _pageIndex;
     NSInteger _photoCount;
+    
+    int _exchangeIndex;
 }
 
 - (id)initWithPoint:(CGPoint)pos andList:(NSArray*)imageList;
