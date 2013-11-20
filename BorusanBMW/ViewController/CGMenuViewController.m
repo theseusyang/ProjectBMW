@@ -44,6 +44,8 @@
     _logoView.frame = CGRectMake(91, 135, 140, 165);
     [self.view addSubview:_logoView];
     
+    //_informHistoryImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"IconNew"]]
+    
     _newInformButton = [[UIButton alloc] initWithFrame:CGRectMake(31, 326, 258, 53)];
     [_newInformButton setBackgroundImage:kApplicationImage(kResButtonBlue) forState:UIControlStateNormal];
     [_newInformButton setTitle:@"Yeni Bildirim" forState:UIControlStateNormal];

@@ -14,7 +14,7 @@
 {
 
 }
-
+@property (nonatomic) NSString *defaultPlaceholder;
 @property (nonatomic) CGFloat paddingX;
 @property (nonatomic) CGFloat paddingY;
 
