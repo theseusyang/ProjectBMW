@@ -32,9 +32,13 @@
     UIButton *_newButton;
     UIButton *_captureButton;
     UIButton *_continueButton;
+    
+    UIActivityIndicatorView *_loadingProgress;
 }
 
 -(void) setSwitchTo:(BOOL) state;
+- (void)stopSpinner;
+- (void)startSpinner;
 
 @property (nonatomic, strong) id<CGCameraOverlayProtocol> delegate;
 @property (nonatomic, retain) IBOutlet UISwitch *_useImageProcessSwitch;
