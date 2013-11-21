@@ -29,12 +29,17 @@
     UIImageView *_notificationIcon;
     UIImageView *_descriptionIcon;
     
+    UILabel *_dateLabel;
     UILabel *_addressLabel;
     UILabel *_licensePlateLabel;
     UILabel *_serviceLabel;
     UILabel *_notificationType;
     UILabel *_descriptionLabel;
     
+    UIView *_seperator1;
+    UIView *_seperator2;
+    UIView *_seperator3;
+    UIView *_seperator4;
     // Dynamic data
     VehicleListResponse *_vehicle;
 }

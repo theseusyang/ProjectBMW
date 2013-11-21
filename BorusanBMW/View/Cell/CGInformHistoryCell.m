@@ -44,12 +44,20 @@
         [_dateView setUserInteractionEnabled:NO];
         [_groupView addSubview:_dateView];
         
-        _addressView = [[UITextView alloc] initWithFrame:CGRectMake(135,40,155,40)];
+        _addressView = [[UITextView alloc] initWithFrame:CGRectMake(135,40,155,20)]; //height was 40
         _addressView.backgroundColor = [UIColor clearColor];
-        _addressView.font = kApplicationFont(9.0f);
-
+        _addressView.font = kApplicationFont(12.5f);
         [_addressView setUserInteractionEnabled:NO];
         [_groupView addSubview:_addressView];
+        
+        _cityView = [[UITextView alloc] initWithFrame:CGRectMake(135, 53, 155, 20)];
+        _cityView.backgroundColor = [UIColor clearColor];
+        _cityView.font =kApplicationFontBold(12.5f);
+        [_cityView setUserInteractionEnabled:NO];
+        [_groupView addSubview:_cityView];
+        
+        
+        
         
         self.accessoryView = [[UIImageView alloc] initWithImage:kApplicationImage(kResIconArrowDark)];
     }
@@ -62,7 +70,25 @@
     // Just reset datas, do not recreate them.
     _picBg.frame = CGRectMake(18, 6, 80, 80);
     _dateView.text = [CGUtilHelper dateFromJSONStringWith:_vehicleData.createdDate];
-    _addressView.text = _vehicleData.location;
+    
+    NSArray *location = [_vehicleData.location componentsSeparatedByString:@", "];
+    
+    switch (location.count) {
+        case 2:
+            _addressView.text = [location objectAtIndex:0];
+            _cityView.text = [location objectAtIndex:1];
+            break;
+        case 1:
+            _addressView.text = [location objectAtIndex:0];
+            break;
+        case 0:
+            break;
+        default:
+            _addressView.text = [location objectAtIndex:0];
+            break;
+    }
+    
+
     
 }
 

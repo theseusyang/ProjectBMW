@@ -170,6 +170,8 @@
 		62FFD65C17E1BBFB00438CA0 /* LabelEditPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 62FFD65A17E1BBFA00438CA0 /* LabelEditPressed.png */; };
 		62FFD65D17E1BBFB00438CA0 /* LabelEditPressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 62FFD65B17E1BBFA00438CA0 /* LabelEditPressed@2x.png */; };
 		AF0B3975180408B7004E4C31 /* CGUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = AF0B3974180408B7004E4C31 /* CGUIView.m */; };
+		AF1AE735183CD21B002C009B /* SeperatorShadow.png in Resources */ = {isa = PBXBuildFile; fileRef = AF1AE733183CD21B002C009B /* SeperatorShadow.png */; };
+		AF1AE736183CD21B002C009B /* SeperatorShadow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AF1AE734183CD21B002C009B /* SeperatorShadow@2x.png */; };
 		AF206EB41805355F00D87D0C /* CGCameraOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = AF206EB31805355F00D87D0C /* CGCameraOverlayView.m */; };
 		AF90C9BF183364F30039BD3B /* AppIconSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = AF90C9BE183364F30039BD3B /* AppIconSmall.png */; };
 		AFD3AF161832574D0072F554 /* PlateCaptureGuideVertical.png in Resources */ = {isa = PBXBuildFile; fileRef = AFD3AF121832574D0072F554 /* PlateCaptureGuideVertical.png */; };
@@ -573,6 +575,8 @@
 		62FFD65B17E1BBFA00438CA0 /* LabelEditPressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LabelEditPressed@2x.png"; sourceTree = "<group>"; };
 		AF0B3973180408B7004E4C31 /* CGUIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CGUIView.h; path = UI/CGUIView.h; sourceTree = "<group>"; };
 		AF0B3974180408B7004E4C31 /* CGUIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CGUIView.m; path = UI/CGUIView.m; sourceTree = "<group>"; };
+		AF1AE733183CD21B002C009B /* SeperatorShadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SeperatorShadow.png; sourceTree = "<group>"; };
+		AF1AE734183CD21B002C009B /* SeperatorShadow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SeperatorShadow@2x.png"; sourceTree = "<group>"; };
 		AF206EB21805355F00D87D0C /* CGCameraOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CGCameraOverlayView.h; path = View/CGCameraOverlayView.h; sourceTree = "<group>"; };
 		AF206EB31805355F00D87D0C /* CGCameraOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CGCameraOverlayView.m; path = View/CGCameraOverlayView.m; sourceTree = "<group>"; };
 		AF90C9BE183364F30039BD3B /* AppIconSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIconSmall.png; sourceTree = "<group>"; };
@@ -833,6 +837,8 @@
 		62B7C60A17D61A0B00257C95 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				AF1AE733183CD21B002C009B /* SeperatorShadow.png */,
+				AF1AE734183CD21B002C009B /* SeperatorShadow@2x.png */,
 				AF90C9BE183364F30039BD3B /* AppIconSmall.png */,
 				AFD3AF38183289440072F554 /* ButtonSmallDeactive.png */,
 				AFD3AF39183289440072F554 /* ButtonSmallDeactive@2x.png */,
@@ -1361,6 +1367,7 @@
 				6224451617D8D1E7002A2482 /* IconLicensePlateLight@2x.png in Resources */,
 				6224451717D8D1E7002A2482 /* IconLocationBlue.png in Resources */,
 				AFD3AF3218327FAF0072F554 /* SwitchButtonPlate.png in Resources */,
+				AF1AE736183CD21B002C009B /* SeperatorShadow@2x.png in Resources */,
 				6224451817D8D1E7002A2482 /* IconLocationBlue@2x.png in Resources */,
 				6224451917D8D1E7002A2482 /* IconLocationDark.png in Resources */,
 				6224451A17D8D1E7002A2482 /* IconLocationDark@2x.png in Resources */,
@@ -1416,6 +1423,7 @@
 				62FFD65117E1B7EB00438CA0 /* ThumbnailContainerPressed@2x.png in Resources */,
 				62FFD65417E1BBEF00438CA0 /* LabelBackPressed.png in Resources */,
 				62FFD65517E1BBEF00438CA0 /* LabelBackPressed@2x.png in Resources */,
+				AF1AE735183CD21B002C009B /* SeperatorShadow.png in Resources */,
 				62FFD65817E1BBF400438CA0 /* LabelCancelPressed.png in Resources */,
 				62FFD65917E1BBF400438CA0 /* LabelCancelPressed@2x.png in Resources */,
 				62FFD65C17E1BBFB00438CA0 /* LabelEditPressed.png in Resources */,

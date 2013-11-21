@@ -39,9 +39,38 @@
     _photoGallery = [[CGPhotoGalleryView alloc] initWithPoint:CGPointMake(0, kPhotoGalleryHeightGap) andList:[NSArray arrayWithArray:_vehicle.imageList]];
     [_groupView addSubview:_photoGallery];
 
+    //Seperatoors
+    _seperator1 = [[UIView alloc] initWithFrame:CGRectMake(25, 45, 270, 1)];
+    _seperator1.backgroundColor = [UIColor colorWithRed:146.0f/255.0f green:146.0f/255.0f blue:146.0f/255.0f alpha:0.3f];
+    [_textGroupView addSubview:_seperator1];
+    
+    _seperator2 = [[UIView alloc] initWithFrame:CGRectMake(25, 80, 270, 1)];
+    _seperator2.backgroundColor = [UIColor colorWithRed:146.0f/255.0f green:146.0f/255.0f blue:146.0f/255.0f alpha:0.3f];
+    [_textGroupView addSubview:_seperator2];
+    
+    _seperator3 = [[UIView alloc] initWithFrame: CGRectMake(25, 115, 270, 1)];
+    _seperator3.backgroundColor = [UIColor colorWithRed:146.0f/255.0f green:146.0f/255.0f blue:146.0f/255.0f alpha:0.3f];
+    [_textGroupView addSubview:_seperator3];
+    
+    _seperator4 = [[UIView alloc] initWithFrame: CGRectMake(25, 150, 270, 1)];
+    _seperator4.backgroundColor = [UIColor colorWithRed:146.0f/255.0f green:146.0f/255.0f blue:146.0f/255.0f alpha:0.3f];
+    [_textGroupView addSubview:_seperator4];
+    
+    
     // Labels
-    _addressLabel = [[UILabel alloc] initWithFrame:CGRectMake(37, 0, 250, 45)];
+    
+    _dateLabel = [[CGLabel alloc] initWithFrame:CGRectMake(37, 0 , 250, 20)];
+    _dateLabel.text = [CGUtilHelper dateFromJSONStringWith:_vehicle.createdDate];
+    _dateLabel.font = kApplicationFont(16);
+    _dateLabel.textColor = kColorBlack;
+    _dateLabel.backgroundColor = [UIColor clearColor];
+    [_dateLabel sizeToFit];
+    [_textGroupView addSubview:_dateLabel];
+    
+    
+    _addressLabel = [[UILabel alloc] initWithFrame:CGRectMake(37, 20, 250, 20)];
     _addressLabel.text = _vehicle.location;
+    _addressLabel.font = kApplicationFont(16);
     _addressLabel.lineBreakMode = NSLineBreakByWordWrapping;
     _addressLabel.numberOfLines = 0;
     _addressLabel.backgroundColor = [UIColor clearColor];
@@ -50,11 +79,13 @@
     
     _licensePlateLabel = [[UILabel alloc] initWithFrame:CGRectMake(37, 51, 250, 20)];
     _licensePlateLabel.text = _vehicle.licensePlate;
+    _licensePlateLabel.font = kApplicationFont(16);
     _licensePlateLabel.backgroundColor = [UIColor clearColor];
     [_textGroupView addSubview:_licensePlateLabel];
     
     _serviceLabel = [[UILabel alloc] initWithFrame:CGRectMake(37, 87, 250, 20)];
     _serviceLabel.text = _vehicle.serviceType;
+    _serviceLabel.font = kApplicationFont(16);
     _serviceLabel.backgroundColor = [UIColor clearColor];
     [_textGroupView addSubview:_serviceLabel];
 
@@ -67,6 +98,7 @@
             break;
         }
     }
+    _notificationType.font = kApplicationFont(16);
     _notificationType.lineBreakMode = NSLineBreakByWordWrapping;
     _notificationType.numberOfLines = 0;
     _notificationType.backgroundColor = [UIColor clearColor];
@@ -74,6 +106,7 @@
     
     _descriptionLabel = [[UILabel alloc] initWithFrame:CGRectMake(37, 154, 250, 70)];
     _descriptionLabel.text = _vehicle.description;
+    _descriptionLabel.font = kApplicationFont(16);
     //_descriptionLabel.lineBreakMode = NSLineBreakByWordWrapping;
     _descriptionLabel.numberOfLines = 0;
     _descriptionLabel.backgroundColor = [UIColor clearColor];

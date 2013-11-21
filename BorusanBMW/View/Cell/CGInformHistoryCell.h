@@ -22,6 +22,7 @@
     
     UITextView *_dateView;
     UITextView *_addressView;
+    UITextView *_cityView;
     
     VehicleListResponse *_vehicleData;
 }

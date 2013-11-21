@@ -57,6 +57,8 @@
         }
         */
         
+        /*
+        //Cadde Sok
         if ([_placemark.thoroughfare length] != 0) {
             if ([strAdd length] != 0) {
                 strAdd = [NSString stringWithFormat:@"%@, %@", strAdd, [_placemark thoroughfare]];
@@ -66,7 +68,9 @@
                 strAdd = _placemark.thoroughfare;
             }
         }
+        */
         /*
+        //Zipcode
         if ([_placemark.postalCode length] != 0) {
             if ([strAdd length] != 0) {
                 strAdd = [NSString stringWithFormat:@"%@, %@", strAdd, [_placemark postalCode]];
@@ -77,6 +81,9 @@
             }
         }
         */
+        
+        
+        //3 Semt
         if ([_placemark.locality length] != 0) {
             if ([strAdd length] != 0) {
                 strAdd = [NSString stringWithFormat:@"%@, %@", strAdd, [_placemark locality]];
@@ -84,7 +91,10 @@
             else
                 strAdd = _placemark.locality;
         }
-        /*
+        
+        
+        
+        //4 City
         if ([_placemark.administrativeArea length] != 0)
         {
             if ([strAdd length] != 0)
@@ -92,8 +102,9 @@
             else
                 strAdd = _placemark.administrativeArea;
         }
-        */
+        
         /*
+        //5
         if ([_placemark.country length] != 0)
         {
             if ([strAdd length] != 0)

@@ -167,8 +167,10 @@
     */
     //Enable Taking photo for next call to this VC
     enablePhotoPicker = YES;
-    
-    [_imageList addObject:imageView.image];
+    if( imageView.image )
+        [_imageList addObject:imageView.image];
+    else
+        [_imageList addObject:[UIImage imageNamed:@"PlateCaptureGuideVertical.png"]];
     UIViewController *vc = [[CGPhotoManagementViewController alloc] initWithImageList:_imageList andPlateNumber:_plateNumber];
     [self.navigationController pushViewController:vc animated:YES];
 }

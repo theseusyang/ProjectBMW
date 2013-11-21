@@ -164,11 +164,20 @@
     }
 }
 
+
+//This function was supposed to be for state changes but by changing switch structure with button
+//and adding flash option I needed another function just to set states right on exit.
+//Instead of adding a new function I changed this one. Needs testing 20.11.13
 -(void) setSwitchTo:(BOOL)state
 {
     _captureGuide.hidden = !state;
-    _useImageProcessSwitch.on = state;
     useImageProcessing = state;
+    if(state)
+    {
+        [_useImageProcessButton setImage:[UIImage imageNamed:@"SwitchButtonCar.png"] forState:UIControlStateNormal];
+        [_useFlashButton setImage:[UIImage imageNamed:@"SwitchButtonFlashOff.png"] forState:UIControlStateNormal];
+    }
+        
 }
 
 -(IBAction)changeFlashState:(id)sender

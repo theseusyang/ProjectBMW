@@ -37,7 +37,8 @@
     
     if (![self isLastPageReached]) {
         _moreCell = [[CGMoreCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"MoreCellIdentifier"];
-        _moreCell.textLabel.text = @"See More...";
+        _moreCell.textLabel.text = @"daha fazla öğe...";
+        _moreCell.textLabel.font = kApplicationFont(12.5f);
     }
     
     /*

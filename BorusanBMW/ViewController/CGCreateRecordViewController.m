@@ -184,7 +184,7 @@
     _description = [[CGUIView alloc] initWithFrame:CGRectMake(35, 248, 240, 86) andBackground:@"TextArea.png" andIcon:@"IconCommentDark.png" andText:Nil];
     [_description.textView setDelegate:self];
     //Return for fix
-    _defaultDescription = @" Açıklama";
+    _defaultDescription = @"Açıklama";
     _defaultDescriptionTextColor = [UIColor colorWithCGColor:_description.textView.textColor.CGColor];
     _placeholderDescriptionTextColor =[UIColor colorWithRed:203.0/255.0 green:203.0/255.0 blue:203.0/255.0 alpha:1];
     _description.textView.textColor = _placeholderDescriptionTextColor;
@@ -275,15 +275,28 @@
 
 - (void)textViewDidBeginEditing:(UITextView *)textView
 {
-    _description.textView.text = @"";
-    _description.textView.textColor = _defaultDescriptionTextColor;
+    if([textView.text isEqualToString:@"Açıklama"])
+    {
+        _description.textView.text = @"";
+        _description.textView.textColor = _defaultDescriptionTextColor;
+    }
+    
     _groupScrollView.scrollEnabled = YES;
     [_groupScrollView setContentOffset:CGPointMake(0, textView.superview.frame.origin.y - kTextTopScrollGap) animated:YES];
+    
 }
 
 - (void)textViewDidEndEditing:(UITextView *)textView{
+    if( [textView.text isEqualToString:@""])
+     {
+         _description.textView.textColor = _placeholderDescriptionTextColor;
+         _description.textView.text = _defaultDescription;
+     }
     _groupScrollView.scrollEnabled = NO;
     [_groupScrollView setContentOffset:CGPointMake(0, 0) animated:YES];
+    
+    //
+    [self instantHidePickerWheel];
 }
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
@@ -323,13 +336,14 @@
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    if([textField.text isEqualToString:@""])
-    {
-        textField.placeholder = nil;
-    }
     
     if ([textField isEqual:_notificationType]) {
         [self performSelector:@selector(hideKeyboard:) withObject:textField afterDelay:0.1f];
+    }
+    else
+    {
+        [self instantHidePickerWheel];
+        textField.placeholder = nil;
     }
     
     _groupScrollView.scrollEnabled = YES;
@@ -348,12 +362,24 @@
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
     if([textField.text isEqual:@""])
-        textField.placeholder = ((CGTextField*)textField).defaultPlaceholder;
+        if(![((CGTextField*)textField).defaultPlaceholder  isEqual: @"Bildirim Tipi"] )
+            textField.placeholder = ((CGTextField*)textField).defaultPlaceholder;
+    
     _groupScrollView.scrollEnabled = NO;
-    if(_errorLabel.hidden)
+    //Check
+    [_groupScrollView setContentOffset:CGPointMake(0, 0) animated:YES];
+    /*
+    if( ![textField isEqual:_notificationType])
+    {
         [_groupScrollView setContentOffset:CGPointMake(0, 0) animated:YES];
+    }
+    */
+    /*
     else
-        [_groupScrollView setContentOffset:CGPointMake(0, 20) animated:YES];
+    {
+        [self hidePickerWheel];
+    }
+     */
 }
 
 #pragma mark Button Actions
