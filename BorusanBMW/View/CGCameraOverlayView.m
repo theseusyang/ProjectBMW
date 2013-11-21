@@ -85,7 +85,6 @@
     
     NSLog(@"Photo taken %hhd", useImageProcessing);
     if (self.delegate) {
-        //FLASHADD
         [self.delegate takeOverlayPhotoWithImageProcessing: useImageProcessing and: useFlash];
         [self setSwitchTo:NO];
     }
@@ -189,11 +188,27 @@
 {
     _captureGuide.hidden = !state;
     useImageProcessing = state;
+    
+    if(!state)
+    {
+        [_useImageProcessButton setImage:[UIImage imageNamed:@"SwitchButtonCar.png"] forState:UIControlStateNormal];
+        [_useFlashButton setImage:[UIImage imageNamed:@"SwitchButtonFlashOff.png"] forState:UIControlStateNormal];
+    }
+    else
+    {
+        [_useImageProcessButton setImage:[UIImage imageNamed:@"SwitchButtonPlate.png"] forState:UIControlStateNormal];
+        [_useFlashButton setImage:[UIImage imageNamed:@"SwitchButtonFlashOn.png"] forState:UIControlStateNormal];
+    }
+    
+    /*
+    _captureGuide.hidden = !state;
+    useImageProcessing = state;
     if(state)
     {
         [_useImageProcessButton setImage:[UIImage imageNamed:@"SwitchButtonCar.png"] forState:UIControlStateNormal];
         [_useFlashButton setImage:[UIImage imageNamed:@"SwitchButtonFlashOff.png"] forState:UIControlStateNormal];
     }
+    */
         
 }
 

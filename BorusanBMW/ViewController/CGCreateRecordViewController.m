@@ -97,6 +97,7 @@
         //Set uppercase
         _plateNumber = [NSString stringWithString:[_plateNumber uppercaseString]];
         //Set expression
+        NSLog(@"Plate Number %@", _plateNumber);
         NSString *regExTest = @"[0-8,B,D,S][0-9][A-Z]{1,4}[0-9]{2,4}";
         NSRegularExpression *plateTest = [NSRegularExpression regularExpressionWithPattern:regExTest options:0 error:nil];
         //Get first matching string
@@ -110,7 +111,7 @@
                 resultString = [@"3" stringByAppendingString:[resultString substringWithRange:NSMakeRange(1, resultString.length-1)]];
             }
         }
-        NSLog(@"%@", resultString);
+        NSLog(@"Result %@", resultString);
         _plateNumber = [NSString stringWithString:resultString];
     }
     /*
