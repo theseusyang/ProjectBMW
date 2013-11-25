@@ -60,7 +60,6 @@
 
         UIImage *image = imageList[i];
         UIImageView *photo = [[UIImageView alloc] initWithImage:image];
-        photo.contentMode = UIViewContentModeScaleAspectFit;
         photo.frame = CGRectMake(5, 5, 160, 160);
         photo.contentMode = UIViewContentModeScaleAspectFit;
         
@@ -69,14 +68,20 @@
         photo.frame = CGRectMake(5, 5, 160 - resizeValue, 160 - resizeValue);
         
         UIView *elementView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kImageHeight - resizeValue, kImageHeight - resizeValue)];
-        elementView.backgroundColor = kColorGray;
+        elementView.backgroundColor = kColorClear;
         elementView.center = _bgView.center;
         elementView.contentMode = UIViewContentModeScaleAspectFit;
+        
+        UIView *grayBGView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kImageHeight - resizeValue, kImageHeight - resizeValue)];
+        grayBGView.backgroundColor = kColorGray;
+        grayBGView.contentMode = UIViewContentModeScaleAspectFit;
+        grayBGView.alpha = 0.6;
         
         CGRect frame = elementView.frame;
         frame = CGRectMake(frame.origin.x + (i * kImageStep), frame.origin.y, frame.size.width, frame.size.height);
         elementView.frame = frame;
         
+        [elementView addSubview:grayBGView];
         [elementView addSubview:photo];
         
         [_bgView addSubview:elementView];
@@ -143,10 +148,16 @@
                 frame = CGRectMake(frame.origin.x + (kImageStep - kImageResize/2), frame.origin.y - (signValue * kImageResize/2), frame.size.width + (signValue * kImageResize), frame.size.height + (signValue * kImageResize));
             }            elementView.frame = frame;
             
-            UIImageView *photoView = elementView.subviews[0];
+            elementView.frame = frame;
+            
+            UIImageView *bgView    = elementView.subviews[0];
+            bgView.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
+            
+            UIImageView *photoView = elementView.subviews[1];
             frame = photoView.frame;
             frame = CGRectMake(frame.origin.x, frame.origin.y, frame.size.width + (signValue * kImageResize), frame.size.height + (signValue * kImageResize));
             photoView.frame = frame;
+            
         }
     }];
 
@@ -193,7 +204,11 @@
             
             elementView.frame = frame;
             
-            UIImageView *photoView = elementView.subviews[0];
+            UIImageView *bgView    = elementView.subviews[0];
+            bgView.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
+            
+            UIImageView *photoView = elementView.subviews[1];
+
             frame = photoView.frame;
             frame = CGRectMake(frame.origin.x, frame.origin.y, frame.size.width + (signValue * kImageResize), frame.size.height + (signValue * kImageResize));
             photoView.frame = frame;
