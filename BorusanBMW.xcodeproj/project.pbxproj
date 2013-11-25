@@ -174,6 +174,8 @@
 		AF1AE736183CD21B002C009B /* SeperatorShadow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AF1AE734183CD21B002C009B /* SeperatorShadow@2x.png */; };
 		AF206EB41805355F00D87D0C /* CGCameraOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = AF206EB31805355F00D87D0C /* CGCameraOverlayView.m */; };
 		AF90C9BF183364F30039BD3B /* AppIconSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = AF90C9BE183364F30039BD3B /* AppIconSmall.png */; };
+		AF94AA921843B8540098B032 /* iPhoneIcon-29.png in Resources */ = {isa = PBXBuildFile; fileRef = AF94AA901843B8540098B032 /* iPhoneIcon-29.png */; };
+		AF94AA931843B8540098B032 /* iPhoneIcon-29@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AF94AA911843B8540098B032 /* iPhoneIcon-29@2x.png */; };
 		AFD3AF161832574D0072F554 /* PlateCaptureGuideVertical.png in Resources */ = {isa = PBXBuildFile; fileRef = AFD3AF121832574D0072F554 /* PlateCaptureGuideVertical.png */; };
 		AFD3AF171832574D0072F554 /* PlateCaptureGuideVertical@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AFD3AF131832574D0072F554 /* PlateCaptureGuideVertical@2x.png */; };
 		AFD3AF2018325AD20072F554 /* IconCarMode.png in Resources */ = {isa = PBXBuildFile; fileRef = AFD3AF1C18325AD20072F554 /* IconCarMode.png */; };
@@ -580,6 +582,8 @@
 		AF206EB21805355F00D87D0C /* CGCameraOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CGCameraOverlayView.h; path = View/CGCameraOverlayView.h; sourceTree = "<group>"; };
 		AF206EB31805355F00D87D0C /* CGCameraOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CGCameraOverlayView.m; path = View/CGCameraOverlayView.m; sourceTree = "<group>"; };
 		AF90C9BE183364F30039BD3B /* AppIconSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIconSmall.png; sourceTree = "<group>"; };
+		AF94AA901843B8540098B032 /* iPhoneIcon-29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhoneIcon-29.png"; sourceTree = "<group>"; };
+		AF94AA911843B8540098B032 /* iPhoneIcon-29@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhoneIcon-29@2x.png"; sourceTree = "<group>"; };
 		AFBE0BFD18211D78002F9360 /* RestKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RestKit.xcodeproj; path = RestKit/RestKit.xcodeproj; sourceTree = "<group>"; };
 		AFD3AF121832574D0072F554 /* PlateCaptureGuideVertical.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlateCaptureGuideVertical.png; sourceTree = "<group>"; };
 		AFD3AF131832574D0072F554 /* PlateCaptureGuideVertical@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PlateCaptureGuideVertical@2x.png"; sourceTree = "<group>"; };
@@ -837,6 +841,8 @@
 		62B7C60A17D61A0B00257C95 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				AF94AA901843B8540098B032 /* iPhoneIcon-29.png */,
+				AF94AA911843B8540098B032 /* iPhoneIcon-29@2x.png */,
 				AF1AE733183CD21B002C009B /* SeperatorShadow.png */,
 				AF1AE734183CD21B002C009B /* SeperatorShadow@2x.png */,
 				AF90C9BE183364F30039BD3B /* AppIconSmall.png */,
@@ -1371,6 +1377,7 @@
 				6224451817D8D1E7002A2482 /* IconLocationBlue@2x.png in Resources */,
 				6224451917D8D1E7002A2482 /* IconLocationDark.png in Resources */,
 				6224451A17D8D1E7002A2482 /* IconLocationDark@2x.png in Resources */,
+				AF94AA921843B8540098B032 /* iPhoneIcon-29.png in Resources */,
 				6224451B17D8D1E7002A2482 /* IconLocationDarkLarge.png in Resources */,
 				6224451C17D8D1E7002A2482 /* IconLocationDarkLarge@2x.png in Resources */,
 				62F7AEF3181E4AFC003EA46D /* Images.xcassets in Resources */,
@@ -1423,6 +1430,7 @@
 				62FFD65117E1B7EB00438CA0 /* ThumbnailContainerPressed@2x.png in Resources */,
 				62FFD65417E1BBEF00438CA0 /* LabelBackPressed.png in Resources */,
 				62FFD65517E1BBEF00438CA0 /* LabelBackPressed@2x.png in Resources */,
+				AF94AA931843B8540098B032 /* iPhoneIcon-29@2x.png in Resources */,
 				AF1AE735183CD21B002C009B /* SeperatorShadow.png in Resources */,
 				62FFD65817E1BBF400438CA0 /* LabelCancelPressed.png in Resources */,
 				62FFD65917E1BBF400438CA0 /* LabelCancelPressed@2x.png in Resources */,
