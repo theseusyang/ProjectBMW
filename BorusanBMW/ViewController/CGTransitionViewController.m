@@ -25,20 +25,21 @@
     return self;
 }
 
-- (id)initWith:(Class)classType recordEntity:(RecordEntity *)entity;
+- (id)initWith:(Class)classType recordEntity:(RecordEntity *)entity andObject :(id)object;
 {
     self = [super init];
     if (self) {
         _classTypeToTurnBack = classType;
         _entity = entity;
         _transitionType = TransitionTypeInsert;
+        _object = object;
         
     }
     
     return self;
 }
 
-- (id)initWith:(Class)classType editEntity:(RecordEntity *)entity vehicleResponse:(VehicleListResponse *)response;
+- (id)initWith:(Class)classType editEntity:(RecordEntity *)entity vehicleResponse:(VehicleListResponse *)response andObject:(id)object;
 {
     self = [super init];
     if (self) {
@@ -46,6 +47,7 @@
         _entity = entity;
         _vehicle = response;
         _transitionType = TransitionTypeEdit;
+        _object = object;
     }
     
     return self;
@@ -68,17 +70,23 @@
     [_iconSucceededImage setHidden:YES];
     [self.view addSubview:_iconSucceededImage];
     
-    _topLabel = [[CGLabel alloc] initWithFrame:CGRectMake(_centerX - 30, _centerY + 80, 120, 16)];
-    _topLabel.text = @"Bildiri Gönderiliyor...";
+    _topLabel = [[CGLabel alloc] initWithFrame:CGRectMake(10, _centerY + 80, 300, 16)];
+    if( [_object isKindOfClass:[CGCreateRecordViewController class]])
+        _topLabel.text = @"Bildiri Gönderiliyor...";
+    else
+        _topLabel.text = @"Bildiri Güncelleniyor...";
     _topLabel.textAlignment = NSTextAlignmentCenter;
-    [_topLabel sizeToFit];
+    _topLabel.font = kApplicationFontBold(16.0);
+    _topLabel.textColor = kTextColor;
+    //[_topLabel sizeToFit];
     [self.view addSubview:_topLabel];
     
-    _bottomLabel = [[CGLabel alloc] initWithFrame:CGRectMake(_centerX - 4, _centerY + 100, 140, 14)];
-    _bottomLabel.text = @"Lütfen bekleyiniz.";
+    _bottomLabel = [[CGLabel alloc] initWithFrame:CGRectMake( 10, _centerY + 100, 300, 14)];
+    _bottomLabel.text = @"Lütfen bekleyin.";
     _bottomLabel.textAlignment = NSTextAlignmentCenter;
     _bottomLabel.font = kApplicationFont(13.0f);
-    [_bottomLabel sizeToFit];
+    _bottomLabel.textColor = kTextColor;
+    //[_bottomLabel sizeToFit];
     [self.view addSubview:_bottomLabel];
     
     if( !_timer.isValid ){
@@ -179,19 +187,24 @@
 {
     
     if (transitionState == TransitionStateSucceeded) {
-        _topLabel.frame = CGRectMake(_centerX - 30, _centerY + 80, 120, 16);
-        _topLabel.text = @"Bildiri Gönderiliyor...";
-        _bottomLabel.frame = CGRectMake(_centerX - 30, _centerY + 100, 140, 14);
-        _bottomLabel.text = @"Lütfen bekleyiniz.";
-        [_topLabel sizeToFit];
-        [_bottomLabel sizeToFit];
+        //_topLabel.frame = CGRectMake(_centerX - 30, _centerY + 80, 120, 16);
+        if( [_object isKindOfClass:[CGCreateRecordViewController class]])
+            _topLabel.text = @"Bildiri Gönderildi!";
+        else
+            _topLabel.text = @"Bildiri Güncellendi!";
+        //_bottomLabel.frame = CGRectMake(_centerX - 30, _centerY + 100, 140, 14);
+        _bottomLabel.text = @"Teşekkürler";
+        //[_topLabel sizeToFit];
+        //[_bottomLabel sizeToFit];
+        //_topLabel.textAlignment = NSTextAlignmentCenter;
+        //_bottomLabel.textAlignment = NSTextAlignmentCenter;
     }else{
-        _topLabel.frame = CGRectMake(_centerX - 20, _centerY + 80, 120, 16);
-        _topLabel.text = @"Bildiri Gönderildi!";
-        _bottomLabel.frame = CGRectMake(_centerX + 10, _centerY + 104, 140, 14);
-        _bottomLabel.text = @"Teşekkürler.";
-        [_topLabel sizeToFit];
-        [_bottomLabel sizeToFit];
+        //_topLabel.frame = CGRectMake(_centerX - 20, _centerY + 80, 120, 16);
+        _topLabel.text = @"Bir Hata Oluştu!";
+        //_bottomLabel.frame = CGRectMake(_centerX + 10, _centerY + 104, 140, 14);
+        _bottomLabel.text = @"Daha Sonra Tekrar Deneyiniz.";
+        //[_topLabel sizeToFit];
+        //[_bottomLabel sizeToFit];
     }
     
     [_timer invalidate];

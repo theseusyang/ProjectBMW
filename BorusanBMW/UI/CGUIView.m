@@ -24,7 +24,7 @@
         UIImage *backgroundImage =[UIImage imageNamed:backgroundT];
         
         icon = [[UIImageView alloc] initWithImage:iconImage];
-        icon.frame = CGRectMake(12, 14, iconImage.size.width, iconImage.size.height);
+        icon.frame = CGRectMake(14, 10, iconImage.size.width, iconImage.size.height);
         
         background = [[UIImageView alloc]initWithImage:backgroundImage];
         background.frame = CGRectMake(0, 0, backgroundImage.size.width, backgroundImage.size.height);

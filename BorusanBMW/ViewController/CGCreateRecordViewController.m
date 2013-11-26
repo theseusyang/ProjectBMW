@@ -76,11 +76,14 @@
     _dateLabel = [[CGLabel alloc] initWithFrame:CGRectMake(107, 45, 100, 20)];
     [_dateLabel setText:currentDateString];
     [_dateLabel sizeToFit];
+    _dateLabel.font = kApplicationFontBold(13.0);
+    _dateLabel.textColor = kTextColor;
     [_groupScrollView addSubview:_dateLabel];
     
     _addressLabel = [[CGLabel alloc] initWithFrame:CGRectMake(107, 58, 180, 40)];
     
     _addressLabel.font = kApplicationFont(13.0f);
+    _addressLabel.textColor = kTextColor;
     _addressLabel.lineBreakMode = NSLineBreakByWordWrapping;
     _addressLabel.numberOfLines = 2;
     _addressLabel.backgroundColor = [UIColor clearColor];
@@ -114,40 +117,13 @@
         NSLog(@"Result %@", resultString);
         _plateNumber = [NSString stringWithString:resultString];
     }
-    /*
-    NSString *regExText = @"([0-8,B][0-9][A-Z]{1,3}[0-9]{2,4})";
-    _plateNumber = [NSString stringWithString:[_plateNumber uppercaseString]];
-    
-    NSLog(@"%@", _plateNumber);
-    
-    _plateTest = [NSRegularExpression regularExpressionWithPattern:regExText options:0 error:nil];
-    NSTextCheckingResult  *result = [_plateTest firstMatchInString:_plateNumber options:0 range:NSMakeRange(0, _plateNumber.length)];
-    if(!(_plateNumber == nil)){
-    _plateNumber = [_plateNumber substringWithRange:[result range]];
-    if([[_plateNumber substringWithRange:NSMakeRange(0, 1)] isEqualToString:@"B"])
-    {
-        _plateNumber = [@"3" stringByAppendingString:[_plateNumber substringWithRange:NSMakeRange(0, _plateNumber.length)]];
-    
-    }
-    }
-    
-    NSLog(@"%@", _plateNumber);
-    */
-    
-    /*
-    if(![plateTest evaluateWithObject:_plateNumber])
-        _plateNumber = nil;
-    
-    if( !_plateNumber )
-        _licensePlate.placeholder = @"Araç Plakası"; //TODO: Dummy data
-    else
-    {
-    */
+ 
     _licensePlate.text = _plateNumber;
     
     
     
-    
+    _licensePlate.font = kApplicationFontBold(16.0);
+    _licensePlate.textColor = kTextColor;
     _licensePlate.leftView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"IconLicensePlateDark.png"]];
     _licensePlate.leftView.frame  = CGRectMake(14, 14, 24, 19);
     _licensePlate.defaultPlaceholder = @"Araç Plakası";
@@ -160,6 +136,8 @@
     [_groupScrollView addSubview:_licensePlate];
     
     _serviceName = [[CGTextField alloc] initWithFrame:CGRectMake(35, 148, 250, 46)];
+    _serviceName.font = kApplicationFontBold(16.0);
+    _serviceName.textColor = kTextColor;
     _serviceName.defaultPlaceholder = @"Servis Adı";
     _serviceName.placeholder = _serviceName.defaultPlaceholder;
     _serviceName.leftView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"IconServiceNameDark.png"]];
@@ -172,6 +150,8 @@
     
     // TODO: When touched, UIPickerWheel should appear.
     _notificationType = [[CGTextField alloc] initWithFrame:CGRectMake(35, 200, 250, 46)];
+    _notificationType.font = kApplicationFontBold(16.0);
+    _notificationType.textColor = kTextColor;
     _notificationType.defaultPlaceholder = @"Bildirim Tipi";
     _notificationType.placeholder = _notificationType.defaultPlaceholder;
     _notificationType.leftView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"IconNotificationTypeDark.png"]];
@@ -182,12 +162,14 @@
     [_notificationType setDelegate:self];
     [_groupScrollView addSubview:_notificationType];
     
-    _description = [[CGUIView alloc] initWithFrame:CGRectMake(35, 248, 240, 86) andBackground:@"TextArea.png" andIcon:@"IconCommentDark.png" andText:Nil];
+    _description = [[CGUIView alloc] initWithFrame:CGRectMake(35, 248, 230, 86) andBackground:@"TextArea.png" andIcon:@"IconCommentDark.png" andText:Nil];
     [_description.textView setDelegate:self];
     //Return for fix
+    _description.textView.font = kApplicationFontBold(16.0);
+    _description.textView.textColor = kTextColor;
     _defaultDescription = @"Açıklama";
     _defaultDescriptionTextColor = [UIColor colorWithCGColor:_description.textView.textColor.CGColor];
-    _placeholderDescriptionTextColor =[UIColor colorWithRed:203.0/255.0 green:203.0/255.0 blue:203.0/255.0 alpha:1];
+    _placeholderDescriptionTextColor =[UIColor colorWithRed:175.0/255.0 green:175.0/255.0 blue:175.0/255.0 alpha:1];
     _description.textView.textColor = _placeholderDescriptionTextColor;
     _description.textView.text = _defaultDescription;
     [_groupScrollView addSubview:_description];
@@ -238,7 +220,7 @@
     _imagePicker.showsSelectionIndicator = YES;
     _imagePicker.hidden = NO;
     
-    _errorAlert = [[UIAlertView alloc]initWithTitle:@"" message:@"Lütfen bütün kısımları doldurunuz" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];    
+    _errorAlert = [[UIAlertView alloc]initWithTitle:@"" message:@"Lütfen bütün kısımları doldurun." delegate:self cancelButtonTitle:@"Tamam" otherButtonTitles:nil, nil];    
     [_groupScrollView addSubview:_errorAlert];
     
     
@@ -473,7 +455,8 @@
     insertRecord.imageList = imageListFinal;
     insertRecord.ID = [NSNumber numberWithInt:-1]; // Not used for this data.
     
-    UIViewController *vc = [[CGTransitionViewController alloc] initWith:[CGMenuViewController class] recordEntity:insertRecord];
+    UIViewController *vc = [[CGTransitionViewController alloc] initWith:[CGMenuViewController class] recordEntity:insertRecord andObject:self];
+    //UIViewController *vc = [[CGTransitionViewController alloc] ini]
     [self.navigationController pushViewController:vc animated:YES];
 }
 

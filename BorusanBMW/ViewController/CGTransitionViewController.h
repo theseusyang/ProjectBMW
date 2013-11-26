@@ -13,6 +13,8 @@
 #import "Server.h"
 #import <RestKit/RestKit.h>
 #import "NotificationTypeResponse.h"
+#import "CGCreateRecordViewController.h"
+#import "CGInformEditViewController.h"
 
 typedef enum{
     TransitionStateLoader = 0,
@@ -35,6 +37,8 @@ typedef enum{
     CGLabel *_topLabel;
     CGLabel *_bottomLabel;
     
+    id _object;
+    
     int _centerX;
     int _centerY;
     
@@ -44,8 +48,8 @@ typedef enum{
     VehicleListResponse *_vehicle;
 }
 - (id)initWith:(Class)classType;
-- (id)initWith:(Class)classType recordEntity:(RecordEntity *)entity;
-- (id)initWith:(Class)classType editEntity:(RecordEntity *)entity vehicleResponse:(VehicleListResponse *)response;
+- (id)initWith:(Class)classType recordEntity:(RecordEntity *)entity andObject:(id)object;
+- (id)initWith:(Class)classType editEntity:(RecordEntity *)entity vehicleResponse:(VehicleListResponse *)response andObject:(id)object;
 @end
 
 

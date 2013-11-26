@@ -29,6 +29,7 @@
 #define kApplicationImage(imageName) [UIImage imageNamed:imageName]
 #define kFontName @"Helvetica";
 
+#define kTextColorPlaceHolder RGB(146.0f 146.0f 146.0f)
 #define kTextColor RGB(61.0f, 61.0f, 61.0f)
 #define kTextColorLight RGB(92.0f, 92.0f, 92.0f)
 #define kTextboxImage [UIImage imageNamed:kResTextbox];

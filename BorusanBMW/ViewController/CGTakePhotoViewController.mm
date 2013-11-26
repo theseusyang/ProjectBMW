@@ -61,7 +61,7 @@
     
     _newButton = [[UIButton alloc] initWithFrame:CGRectMake(6, 366, 93, 48)];
     [_newButton setBackgroundImage:kApplicationImage(kResButtonSmall) forState:UIControlStateNormal];
-    [_newButton setTitle:@"Yeni" forState:UIControlStateNormal];
+    [_newButton setTitle:@"Tekrar" forState:UIControlStateNormal];
     [_newButton.titleLabel setFont:kApplicationFontBold(17.0f)];
     [_newButton addTarget:self action:@selector(newAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_newButton];

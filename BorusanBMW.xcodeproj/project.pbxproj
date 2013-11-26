@@ -178,6 +178,7 @@
 		AF90C9BF183364F30039BD3B /* AppIconSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = AF90C9BE183364F30039BD3B /* AppIconSmall.png */; };
 		AF94AA921843B8540098B032 /* iPhoneIcon-29.png in Resources */ = {isa = PBXBuildFile; fileRef = AF94AA901843B8540098B032 /* iPhoneIcon-29.png */; };
 		AF94AA931843B8540098B032 /* iPhoneIcon-29@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AF94AA911843B8540098B032 /* iPhoneIcon-29@2x.png */; };
+		AF94AA9B1843BF320098B032 /* iPhoneIcon-568 copy.png in Resources */ = {isa = PBXBuildFile; fileRef = AF94AA9A1843BF320098B032 /* iPhoneIcon-568 copy.png */; };
 		AFD3AF161832574D0072F554 /* PlateCaptureGuideVertical.png in Resources */ = {isa = PBXBuildFile; fileRef = AFD3AF121832574D0072F554 /* PlateCaptureGuideVertical.png */; };
 		AFD3AF171832574D0072F554 /* PlateCaptureGuideVertical@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AFD3AF131832574D0072F554 /* PlateCaptureGuideVertical@2x.png */; };
 		AFD3AF2018325AD20072F554 /* IconCarMode.png in Resources */ = {isa = PBXBuildFile; fileRef = AFD3AF1C18325AD20072F554 /* IconCarMode.png */; };
@@ -373,7 +374,7 @@
 		62A70B3B17F9C53000098F47 /* iPhoneIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhoneIcon@2x.png"; sourceTree = "<group>"; };
 		62B0A44B17E9C2240042F199 /* Server.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Server.h; path = Model/Server.h; sourceTree = "<group>"; };
 		62B0A44C17E9C2240042F199 /* Server.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Server.m; path = Model/Server.m; sourceTree = "<group>"; };
-		62B7C52B17D6151A00257C95 /* weCare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = weCare.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		62B7C52B17D6151A00257C95 /* BMW weCare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "BMW weCare.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		62B7C52E17D6151A00257C95 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		62B7C53017D6151A00257C95 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		62B7C53217D6151A00257C95 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -588,6 +589,7 @@
 		AF90C9BE183364F30039BD3B /* AppIconSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIconSmall.png; sourceTree = "<group>"; };
 		AF94AA901843B8540098B032 /* iPhoneIcon-29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhoneIcon-29.png"; sourceTree = "<group>"; };
 		AF94AA911843B8540098B032 /* iPhoneIcon-29@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhoneIcon-29@2x.png"; sourceTree = "<group>"; };
+		AF94AA9A1843BF320098B032 /* iPhoneIcon-568 copy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhoneIcon-568 copy.png"; sourceTree = "<group>"; };
 		AFBE0BFD18211D78002F9360 /* RestKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RestKit.xcodeproj; path = RestKit/RestKit.xcodeproj; sourceTree = "<group>"; };
 		AFD3AF121832574D0072F554 /* PlateCaptureGuideVertical.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlateCaptureGuideVertical.png; sourceTree = "<group>"; };
 		AFD3AF131832574D0072F554 /* PlateCaptureGuideVertical@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PlateCaptureGuideVertical@2x.png"; sourceTree = "<group>"; };
@@ -787,7 +789,7 @@
 		62B7C52C17D6151A00257C95 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				62B7C52B17D6151A00257C95 /* weCare.app */,
+				62B7C52B17D6151A00257C95 /* BMW weCare.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -849,6 +851,7 @@
 			children = (
 				629ABD4717E6E3DC00A0F0F6 /* Icons */,
 				629ABD4617E6E3D500A0F0F6 /* Buttons */,
+				AF94AA9A1843BF320098B032 /* iPhoneIcon-568 copy.png */,
 				AF94AA901843B8540098B032 /* iPhoneIcon-29.png */,
 				AF94AA911843B8540098B032 /* iPhoneIcon-29@2x.png */,
 				AF1AE733183CD21B002C009B /* SeperatorShadow.png */,
@@ -1232,7 +1235,7 @@
 			);
 			name = BorusanBMW;
 			productName = BorusanBMW;
-			productReference = 62B7C52B17D6151A00257C95 /* weCare.app */;
+			productReference = 62B7C52B17D6151A00257C95 /* BMW weCare.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -1440,6 +1443,7 @@
 				62FFD65517E1BBEF00438CA0 /* LabelBackPressed@2x.png in Resources */,
 				AF94AA931843B8540098B032 /* iPhoneIcon-29@2x.png in Resources */,
 				AF1AE735183CD21B002C009B /* SeperatorShadow.png in Resources */,
+				AF94AA9B1843BF320098B032 /* iPhoneIcon-568 copy.png in Resources */,
 				62FFD65817E1BBF400438CA0 /* LabelCancelPressed.png in Resources */,
 				62FFD65917E1BBF400438CA0 /* LabelCancelPressed@2x.png in Resources */,
 				62FFD65C17E1BBFB00438CA0 /* LabelEditPressed.png in Resources */,
@@ -1542,6 +1546,7 @@
 					"-force_load",
 					"$(BUILT_PRODUCTS_DIR)/libRestKit.a",
 				);
+				PRODUCT_NAME = "BMW weCare";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1570,6 +1575,7 @@
 					"-force_load",
 					"$(BUILT_PRODUCTS_DIR)/libRestKit.a",
 				);
+				PRODUCT_NAME = "BMW weCare";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1602,7 +1608,7 @@
 					"-force_load",
 					"$(BUILT_PRODUCTS_DIR)/libRestKit.a",
 				);
-				PRODUCT_NAME = weCare;
+				PRODUCT_NAME = "BMW weCare";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "armv7 armv7s";
@@ -1637,7 +1643,7 @@
 					"-force_load",
 					"$(BUILT_PRODUCTS_DIR)/libRestKit.a",
 				);
-				PRODUCT_NAME = weCare;
+				PRODUCT_NAME = "BMW weCare";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "armv7 armv7s";
