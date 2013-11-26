@@ -53,7 +53,7 @@
 {
     [super loadView];
     
-    _photoGallery = [[CGPhotoGalleryView alloc] initWithPoint:CGPointMake(0, 53) andList:_imageList];
+    _photoGallery = [[CGPhotoGalleryView alloc] initWithPoint:CGPointMake(0, 53) andList:_imageList andViewController:self];
     [self.view addSubview:_photoGallery];
     
     _addPhotoButton = [[UIButton alloc] initWithFrame:CGRectMake(31, 243 + 36, 258, 53)];

@@ -22,7 +22,7 @@
 
 @implementation CGPhotoGalleryView
 
-- (id)initWithPoint:(CGPoint)pos andList:(NSArray*)imageList
+- (id)initWithPoint:(CGPoint)pos andList:(NSMutableArray*)imageList andViewController: (CGBaseViewController *)vc
 {
     
     self = [super initWithFrame:CGRectMake(pos.x, pos.y, kGalleryWidth, kGalleryHeight)];
@@ -30,28 +30,75 @@
         
         self.backgroundColor = kColorClear;
         
+        _realImageList = [NSMutableArray arrayWithArray:[imageList mutableCopy]];
+        _parentViewController = vc;
+        
         _galleryList = [[NSMutableArray alloc] init];
-        _bgView = [[UIView alloc] initWithFrame:CGRectMake(0 , 0, kGalleryWidth, kGalleryHeight)];
+        _bgView = [[UIView alloc] initWithFrame:CGRectMake(0 , 8, kGalleryWidth, kGalleryHeight)];
         
-        _photoCount = [imageList count];
+        deleteButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 33, 33)];
+        [deleteButton setImage:[UIImage imageNamed:@"ButtonSquare.png"] forState:UIControlStateNormal];
+        [deleteButton addTarget:self action:@selector(deleteButtonAction:) forControlEvents:UIControlEventTouchUpInside];
         
-        _positionIndexList = [NSMutableArray arrayWithCapacity:[imageList count]];
+        UIImageView *deleteIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"IconDelete"]];
+        deleteIcon.center = deleteButton.center;
+        deleteButton.center = self.center;
+        deleteButton.frame = CGRectMake(deleteButton.center.x - deleteButton.frame.size.width/2, 10, deleteButton.frame.size.width, deleteButton.frame.size.height);
+        [deleteButton addSubview:deleteIcon];
+        
+        _photoCount = [_realImageList count];
+        
+        _positionIndexList = [NSMutableArray arrayWithCapacity:[_realImageList count]];
         for (int i=0; i < _photoCount; ++i)
             [_positionIndexList addObject:[[NSNumber alloc] initWithInt:i]];
         
         _pageIndex = 0;
         _exchangeIndex = 0;
         
-        [self createGallery:imageList];
-        
+        [self createGallery:_realImageList];
         [self reverseUIViewArrayIndex:_bgView];
-        
         [self setGallery];
         
         [self addSubview:_bgView];
+        [self addSubview:deleteButton];
+        
+        /*TEEST**/
+        _testImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, kImageHeight, kImageHeight)];
+        _testImage.backgroundColor = kColorRed;
+        _testImage.contentMode = UIViewContentModeScaleAspectFit;
+        //[self addSubview:_testImage];
     }
     
     return self;
+}
+
+- (void)deleteButtonAction:(id)sender
+{
+    UIView *elementView = [_galleryList objectAtIndex:_exchangeIndex];
+    UIImageView *imageView = (UIImage *)elementView.subviews[1];
+    UIImage *image = imageView.image;
+    [_realImageList removeObject:image];
+
+    if (_realImageList.count <= 0) {
+        [_parentViewController leftAction:self];     
+    }
+    else
+        [self reset];
+    
+}
+
+- (void)reset
+{
+    NSArray *viewsToRemove = [_bgView subviews];
+    for (UIView *v in viewsToRemove) {
+        [v removeFromSuperview];
+    }
+
+    [_galleryList removeAllObjects];
+    
+    [self createGallery:_realImageList];
+    [self reverseUIViewArrayIndex:_bgView];
+    [self setGallery];
 }
 
 - (void)createGallery:(NSArray *)imageList

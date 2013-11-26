@@ -7,10 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CGBaseViewController.h"
 #import "Colors.h"
 
 @interface CGPhotoGalleryView : UIView 
 {
+    
+    NSMutableArray *_realImageList;
+    CGBaseViewController *_parentViewController;
     
     NSArray *_photoList;
     NSMutableArray *_galleryList;
@@ -25,9 +29,13 @@
     NSInteger _photoCount;
     
     int _exchangeIndex;
+    UIButton *deleteButton;
+    
+    /* Choosen Image*/
+    UIImageView *_testImage;
 }
 
-- (id)initWithPoint:(CGPoint)pos andList:(NSArray*)imageList;
+- (id)initWithPoint:(CGPoint)pos andList:(NSArray*)imageList andViewController: (CGBaseViewController *)vc;
 - (void)setGallery;
 
 @end
