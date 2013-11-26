@@ -59,7 +59,8 @@
     
     _addressLabel = [[CGLabel alloc] initWithFrame:CGRectMake(107, 256, 200, 20)];
     _addressLabel.backgroundColor = [UIColor clearColor];
-    _addressLabel.font = kApplicationFont(13.0f);
+    _addressLabel.font = kApplicationFontBold(16.0f);
+    _addressLabel.textColor = kTextColor;
     [_addressLabel setNumberOfLines:2];
     [_addressLabel setText:_vehicle.location];
     [_addressLabel sizeToFit];
@@ -69,6 +70,8 @@
     _licensePlate = [[CGTextField alloc] initWithFrame:CGRectMake(35, 289, 250, 46)];
     [_licensePlate setText:_vehicle.licensePlate];
     [_licensePlate setDelegate:self];
+    _licensePlate.font = kApplicationFontBold(16.0f);
+    _licensePlate.textColor = kTextColor;
     _licensePlate.leftView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"IconLicensePlateDark.png"]];
     _licensePlate.leftView.frame  = CGRectMake(14, 14, 24, 19);
     _licensePlate.leftViewMode = UITextFieldViewModeAlways;
@@ -78,6 +81,8 @@
     _serviceName = [[CGTextField alloc] initWithFrame:CGRectMake(35, 339, 250, 46)];
     [_serviceName setText:_vehicle.serviceType];
     [_serviceName setDelegate:self];
+    _serviceName.font = kApplicationFontBold(16.0);
+    _serviceName.textColor = kTextColor;
     _serviceName.leftView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"IconServiceNameDark.png"]];
     _serviceName.leftView.frame  = CGRectMake(14, 10, 24, 26);
     _serviceName.leftViewMode = UITextFieldViewModeAlways;
@@ -85,7 +90,8 @@
     [_groupView  addSubview:_serviceName];
 
     _notificationType = [[CGTextField alloc] initWithFrame:CGRectMake(35, 389, 250, 46)];
-
+    _notificationType.font = kApplicationFontBold(16.0);
+    _notificationType.textColor = kTextColor;
     [_notificationType setDelegate:self];
     NSArray *_list = [DataService shared].notificationTypeList;
     for (NotificationTypeResponse* notif in _list) {
@@ -101,8 +107,10 @@
     [_groupView addSubview:_notificationType];
     
     
-    _description = [[CGUIView alloc] initWithFrame:CGRectMake(35, 439, 240, 86) andBackground:@"TextArea.png" andIcon:@"IconCommentDark.png" andText:Nil];
+    _description = [[CGUIView alloc] initWithFrame:CGRectMake(35, 439, 230, 86) andBackground:@"TextArea.png" andIcon:@"IconCommentDark.png" andText:Nil];
     [_description.textView setDelegate:self];
+    _description.textView.font = kApplicationFontBold(16.0);
+    _description.textView.textColor = kTextColor;
     _description.textView.text = _vehicle.description;
     [_groupView addSubview:_description];
     
@@ -136,7 +144,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    if( _addressLabel.frame.size.height > 20)
+    {
+        [self moveView:_licensePlate verticallyFor:10.0];
+        [self moveView:_serviceName verticallyFor:10.0];
+        [self moveView:_notificationType verticallyFor:10.0];
+        [self moveView:_description verticallyFor:10.0];
+        //Since we will add another button didn't moved this button
+        [self moveView:_saveButton verticallyFor:0.0];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -154,6 +170,11 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)moveView:(UIView*) view verticallyFor:(float) y
+{
+    
+    view.frame = CGRectMake(view.frame.origin.x, view.frame.origin.y + y, view.frame.size.width, view.frame.size.height);
+}
 //Override
 - (void)rightAction:(id)sender
 {
@@ -251,7 +272,7 @@
     editRecord.location = _addressLabel.text;
     editRecord.ID = _vehicle.ID;
     
-    UIViewController *vc = [[CGTransitionViewController alloc] initWith:[CGInformHistoryViewController class] editEntity:editRecord vehicleResponse:_vehicle];
+    UIViewController *vc = [[CGTransitionViewController alloc] initWith:[CGInformHistoryViewController class] editEntity:editRecord vehicleResponse:_vehicle andObject:self];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
