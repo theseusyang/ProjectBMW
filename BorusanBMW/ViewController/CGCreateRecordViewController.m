@@ -69,6 +69,9 @@
     _groupScrollView.scrollEnabled = NO;
     [self.view addSubview:_groupScrollView];
     
+    _tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
+    [_groupScrollView addGestureRecognizer:_tap];
+    
     _locationIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"IconLocationDarkLarge.png"]];
     _locationIcon.frame = CGRectMake(35, 37, 61, 46);
     [_groupScrollView addSubview:_locationIcon];
@@ -79,8 +82,8 @@
     _dateLabel.font = kApplicationFontBold(13.0);
     _dateLabel.textColor = kTextColor;
     [_groupScrollView addSubview:_dateLabel];
-    
-    _addressLabel = [[CGLabel alloc] initWithFrame:CGRectMake(107, 58, 180, 40)];
+
+    _addressLabel = [[CGLabel alloc] initWithFrame:CGRectMake(107, 65, 180, 40)];
     
     _addressLabel.font = kApplicationFont(13.0f);
     _addressLabel.textColor = kTextColor;
@@ -94,12 +97,14 @@
     // UITextFields
     _licensePlate = [[CGTextField alloc] initWithFrame:CGRectMake(35, 98, 250, 46)];
     
+    /*
     if( !(_plateNumber == (id)[NSNull null] || _plateNumber.length == 0) )
     {
         //Regex
         //Set uppercase
         _plateNumber = [NSString stringWithString:[_plateNumber uppercaseString]];
         //Set expression
+        
         NSLog(@"Plate Number %@", _plateNumber);
         NSString *regExTest = @"[0-8,B,D,S][0-9][A-Z]{1,4}[0-9]{2,4}";
         NSRegularExpression *plateTest = [NSRegularExpression regularExpressionWithPattern:regExTest options:0 error:nil];
@@ -117,6 +122,7 @@
         NSLog(@"Result %@", resultString);
         _plateNumber = [NSString stringWithString:resultString];
     }
+    */
  
     _licensePlate.text = _plateNumber;
     
@@ -253,6 +259,15 @@
 {
     [self backToController:[CGMenuViewController class]];
 }
+
+-(void)dismissKeyboard
+{
+    [_licensePlate resignFirstResponder];
+    [_serviceName resignFirstResponder];
+    [self hidePickerWheel];
+    [_description.textView resignFirstResponder];
+}
+
 
 #pragma mark UITextViewDelegate
 

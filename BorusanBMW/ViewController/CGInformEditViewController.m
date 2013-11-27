@@ -47,19 +47,24 @@
     
     _photoGallery = [[CGPhotoGalleryView alloc] initWithPoint:CGPointMake(0, kPhotoGalleryHeightGap) andList:[NSArray arrayWithArray:_vehicle.imageList]];
     [_groupView addSubview:_photoGallery];
-        
+    
+    _tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
+    [_groupView addGestureRecognizer:_tap];
+    
     _locationIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"IconLocationDarkLarge.png"]];
     _locationIcon.frame = CGRectMake(35, 228, 61, 46);
     [_groupView  addSubview:_locationIcon];
     
     _dataLabel = [[CGLabel alloc] initWithFrame:CGRectMake(107, 236, 100, 20)];
+    _dataLabel.font = kApplicationFontBold(16.0);
+    _dataLabel.textColor = kTextColor;
     [_dataLabel setText:[CGUtilHelper dateFromJSONStringWith:_vehicle.createdDate]];
     [_dataLabel sizeToFit];
     [_groupView addSubview:_dataLabel];
     
     _addressLabel = [[CGLabel alloc] initWithFrame:CGRectMake(107, 256, 200, 20)];
     _addressLabel.backgroundColor = [UIColor clearColor];
-    _addressLabel.font = kApplicationFontBold(16.0f);
+    _addressLabel.font = kApplicationFont(13.0f);
     _addressLabel.textColor = kTextColor;
     [_addressLabel setNumberOfLines:2];
     [_addressLabel setText:_vehicle.location];
@@ -179,6 +184,14 @@
 - (void)rightAction:(id)sender
 {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+-(void)dismissKeyboard
+{
+    [_licensePlate resignFirstResponder];
+    [_serviceName resignFirstResponder];
+    [self hidePickerWheel];
+    [_description.textView resignFirstResponder];
 }
 
 #pragma mark UITextViewDelegate

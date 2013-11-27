@@ -48,6 +48,9 @@
     _groupScrollView.scrollEnabled = FALSE;
     [self.view addSubview:_groupScrollView];
     
+    _tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
+    [_groupScrollView addGestureRecognizer:_tap];
+    
     _logoView = [[UIImageView alloc] initWithImage:kApplicationImage(kResLogo)];
     
     _logoView.frame = CGRectMake(91, 40, 140, 165);
@@ -150,6 +153,12 @@
 }
 */
 ////////////////////////////////////////
+
+-(void)dismissKeyboard
+{
+    [_emailTextField resignFirstResponder];
+    [_passwordTextField resignFirstResponder];
+}
 
 #pragma mark Actions
 -(void) enterance_button:(id)sender
