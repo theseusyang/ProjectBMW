@@ -76,8 +76,6 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -109,6 +107,7 @@
 
 - (void)continueAction:(id)sender
 {
+    _imageList = _photoGallery.currentImageList;
     UIViewController *vc = [[CGCreateRecordViewController alloc] initWithImageList:_imageList andPlateNumber:_plateNumber];
     [self.navigationController pushViewController:vc animated:YES];
 }

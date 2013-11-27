@@ -378,8 +378,8 @@
         
 
         // Make small the pic - UIGraphics~
-        UIGraphicsBeginImageContext(CGSizeMake(image.size.width/10, image.size.height/10));
-            [imageView.image drawInRect:CGRectMake(0,0,image.size.width/10, image.size.height/10)];
+        UIGraphicsBeginImageContext(CGSizeMake(image.size.width/20, image.size.height/20));
+            [imageView.image drawInRect:CGRectMake(0,0,image.size.width/20, image.size.height/20)];
             UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
         

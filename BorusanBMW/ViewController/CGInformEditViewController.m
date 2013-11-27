@@ -274,7 +274,11 @@
 
 - (void)deleteAction:(id)sender
 {
-    // TODO: Add server delete method here.
+    RecordEntity *deleteRecord = [RecordEntity new];
+    deleteRecord.ID = _vehicle.ID;
+    
+    UIViewController *vc = [[CGTransitionViewController alloc] initWith:[CGInformHistoryViewController class] deleteEntity:deleteRecord vehicleResponse:_vehicle andObject:self];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark UIPickerViewDataSource

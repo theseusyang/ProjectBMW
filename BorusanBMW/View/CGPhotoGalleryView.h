@@ -12,8 +12,6 @@
 
 @interface CGPhotoGalleryView : UIView 
 {
-    
-    NSMutableArray *_realImageList;
     CGBaseViewController *_parentViewController;
     
     NSArray *_photoList;
@@ -29,11 +27,10 @@
     NSInteger _photoCount;
     
     int _exchangeIndex;
-    UIButton *deleteButton;
-    
-    /* Choosen Image*/
-    UIImageView *_testImage;
 }
+
+@property (nonatomic, strong) UIButton *deleteButton;
+@property (nonatomic, strong) NSMutableArray *currentImageList;
 
 - (id)initWithPoint:(CGPoint)pos andList:(NSArray*)imageList andViewController: (CGBaseViewController *)vc;
 - (void)setGallery;

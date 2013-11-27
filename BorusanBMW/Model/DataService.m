@@ -101,8 +101,17 @@
     _vehicleDataList = (NSMutableArray*)[_vehicleDataList arrayByAddingObjectsFromArray:@[vehicleRecord]];
 }
 
-#pragma mark GETTER & SETTER
+- (void)deleteRecord:(VehicleListResponse *)vehicleRecord
+{
+    if (vehicleRecord == nil) {
+        NSLog(@"[DataService] addRecord: Vehicle is null!");
+        return;
+    }
+    
+    [_vehicleDataList removeObject:vehicleRecord];
+}
 
+#pragma mark GETTER & SETTER
 - (NSMutableArray*)getVehicleList
 {
     return _vehicleDataList;

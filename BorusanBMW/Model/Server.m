@@ -18,14 +18,15 @@
 #define kFuncGetVehicle @"GetVehicle"
 #define kFuncGetVechicleList @"GetVehicleList"
 #define kFuncGetNotificationTypes @"GetNotificationType"
+#define kFuncDeleteVehicle @"DeleteVehicle"
 
 /*Response KeyPaths*/
 #define kPathLoginResponse @"LoginResult"
 #define kPathGetVehicleListResponse @"GetVehicleListResult"
 #define kPathGetNotificationTypeResponse @"GetNotificationTypeResult"
 #define kPathUpdateVehicleResponse @"UpdateVehicleResult"
-
 #define kPathInsertVehicleResponse @"InsertVehicleResult"
+#define kPathDeleteVehicleResponse @"DeleteVehicleResult"
 
 @implementation Server
 
@@ -84,13 +85,19 @@
                                                                                                    keyPath:kPathGetNotificationTypeResponse
                                                                                                statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
     
+    RKResponseDescriptor *deleteRecordDesc = [RKResponseDescriptor responseDescriptorWithMapping:[DeleteResponse objectMapping]
+                                                                                                    method:RKRequestMethodAny
+                                                                                               pathPattern:nil
+                                                                                                   keyPath:kPathDeleteVehicleResponse
+                                                                                               statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
+
     RKResponseDescriptor *updateResponseDec = [RKResponseDescriptor responseDescriptorWithMapping:[UpdateResponse objectMapping]
                                                                                                     method:RKRequestMethodAny
                                                                                                pathPattern:nil
                                                                                                    keyPath:nil
                                                                                                statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
     
-    [_manager addResponseDescriptorsFromArray:@[loginDesc, recordDesc, getVehicleDesc, getVehicleNotificationType, updateResponseDec]];
+    [_manager addResponseDescriptorsFromArray:@[loginDesc, recordDesc, getVehicleDesc, getVehicleNotificationType, updateResponseDec, deleteRecordDesc]];
 }
 
 - (void)insertVehicleWithPlate:(NSString*)plate
@@ -204,6 +211,21 @@
                      failure:(void (^)(RKObjectRequestOperation *operation, NSError *error))failure
 {
     [[RKObjectManager sharedManager] getObjectsAtPath:kFuncGetNotificationTypes parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+        success(operation, mappingResult);
+    } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+        failure(operation, error);
+    }];
+}
+
+- (void)deleteVehicleRecordWithHash:(NSString *)hash ID:(NSNumber *)ID
+                            success:(void (^)(RKObjectRequestOperation *operation, RKMappingResult *mappingResult))success
+                            failure:(void (^)(RKObjectRequestOperation *operation, NSError *error))failure
+{
+    
+    NSDictionary *vehicleDeleteRequest = @{@"Hash": hash,
+                                         @"ID": ID};
+    
+    [[RKObjectManager sharedManager] getObjectsAtPath:kFuncDeleteVehicle parameters:vehicleDeleteRequest success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
         success(operation, mappingResult);
     } failure:^(RKObjectRequestOperation *operation, NSError *error) {
         failure(operation, error);

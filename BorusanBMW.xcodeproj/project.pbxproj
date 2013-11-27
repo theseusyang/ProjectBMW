@@ -112,6 +112,7 @@
 		6224454717D8D578002A2482 /* CGTakePhotoViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6224454617D8D578002A2482 /* CGTakePhotoViewController.mm */; };
 		6245CBD817EC4CFE009A2630 /* DataService.m in Sources */ = {isa = PBXBuildFile; fileRef = 6245CBD717EC4CFE009A2630 /* DataService.m */; };
 		6245CBE117EC917C009A2630 /* RecordResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 6245CBE017EC917C009A2630 /* RecordResponse.m */; };
+		626BA17B1846100C009548F6 /* DeleteResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 626BA17A1846100C009548F6 /* DeleteResponse.m */; };
 		6284CF8217EC38BF00A0EDFA /* LoginResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 6284CF8117EC38BF00A0EDFA /* LoginResponse.m */; };
 		629703D017F175C6000D159F /* VehicleListResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 629703CF17F175C6000D159F /* VehicleListResponse.m */; };
 		62989A1D17DA2A3D0067BCF6 /* CGTransitionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62989A1C17DA2A3D0067BCF6 /* CGTransitionViewController.m */; };
@@ -351,6 +352,8 @@
 		6245CBD717EC4CFE009A2630 /* DataService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataService.m; path = Model/DataService.m; sourceTree = "<group>"; };
 		6245CBDF17EC917C009A2630 /* RecordResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RecordResponse.h; path = Model/Entity/RecordResponse.h; sourceTree = "<group>"; };
 		6245CBE017EC917C009A2630 /* RecordResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RecordResponse.m; path = Model/Entity/RecordResponse.m; sourceTree = "<group>"; };
+		626BA1791846100C009548F6 /* DeleteResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DeleteResponse.h; path = Model/Entity/DeleteResponse.h; sourceTree = "<group>"; };
+		626BA17A1846100C009548F6 /* DeleteResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DeleteResponse.m; path = Model/Entity/DeleteResponse.m; sourceTree = "<group>"; };
 		6284CF8017EC38BF00A0EDFA /* LoginResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginResponse.h; path = Model/Entity/LoginResponse.h; sourceTree = "<group>"; };
 		6284CF8117EC38BF00A0EDFA /* LoginResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginResponse.m; path = Model/Entity/LoginResponse.m; sourceTree = "<group>"; };
 		629703CE17F175C6000D159F /* VehicleListResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VehicleListResponse.h; path = Model/Entity/VehicleListResponse.h; sourceTree = "<group>"; };
@@ -770,6 +773,8 @@
 				62E988BA18054C6D000F3C8D /* UpdateResponse.m */,
 				629EF8FC181569C40045205F /* RecordEntity.h */,
 				629EF8FD181569C40045205F /* RecordEntity.m */,
+				626BA1791846100C009548F6 /* DeleteResponse.h */,
+				626BA17A1846100C009548F6 /* DeleteResponse.m */,
 			);
 			name = Entity;
 			sourceTree = "<group>";
@@ -1471,6 +1476,7 @@
 				62B7C53F17D6151A00257C95 /* CGAppDelegate.m in Sources */,
 				AF206EB41805355F00D87D0C /* CGCameraOverlayView.m in Sources */,
 				621F1D5A1802E054003356EC /* CGMoreCell.m in Sources */,
+				626BA17B1846100C009548F6 /* DeleteResponse.m in Sources */,
 				62B7C67A17D6239500257C95 /* CGMainViewController.m in Sources */,
 				629B0BA817D74A8A009595F9 /* CGBaseViewController.m in Sources */,
 				6224448617D87220002A2482 /* CGMenuViewController.m in Sources */,
