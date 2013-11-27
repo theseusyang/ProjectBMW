@@ -15,7 +15,7 @@
 
 @interface CGMainViewController : CGBaseViewController<UITextFieldDelegate>
 {
-    
+    UIGestureRecognizer *_tap;
     
     UIScrollView *_groupScrollView;
     UIImageView *_logoView;

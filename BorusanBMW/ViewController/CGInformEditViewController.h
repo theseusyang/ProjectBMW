@@ -22,6 +22,8 @@
     CGPhotoGalleryView *_photoGallery;
     UIView *_photoListView;
     
+    UITapGestureRecognizer *_tap;
+    
     UIScrollView *_groupView;
     UIImageView *_locationIcon;
     CGLabel     *_dataLabel;

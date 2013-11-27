@@ -19,6 +19,8 @@
 
 @interface CGCreateRecordViewController : CGBaseViewController<UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate, UITextViewDelegate, UIAlertViewDelegate>
 {
+    UIGestureRecognizer *_tap;
+    
     NSArray *_imageList;
     //Tesseract Plate Number
     NSString *_plateNumber;

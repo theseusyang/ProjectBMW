@@ -217,10 +217,10 @@
         if (originalImage.imageOrientation != UIImageOrientationUp){
             if(SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0"))
             {
-                croppedRect = CGRectMake(PIMAGE_OFFSET_X, PIMAGE_OFFSET_Y, originalImage.size.width - PIMAGE_OFFSET_X + PIMAGE_CROP_WIDTH, PIMAGE_CROP_HEIGHT); //Portrait
+                croppedRect = CGRectMake(PIMAGE_OFFSET_X, PIMAGE_OFFSET_Y - 200, originalImage.size.width - PIMAGE_OFFSET_X + PIMAGE_CROP_WIDTH, PIMAGE_CROP_HEIGHT); //Portrait
             }
             else{
-                croppedRect = CGRectMake(PIMAGE_OFFSET_X, PIMAGE_OFFSET_Y_IOS6, originalImage.size.width - PIMAGE_OFFSET_X + PIMAGE_CROP_WIDTH, PIMAGE_CROP_HEIGHT); //Portrait
+                croppedRect = CGRectMake(PIMAGE_OFFSET_X, PIMAGE_OFFSET_Y_IOS6 - 200, originalImage.size.width - PIMAGE_OFFSET_X + PIMAGE_CROP_WIDTH, PIMAGE_CROP_HEIGHT); //Portrait
             }
             
             rotatedCorrectly = [originalImage rotate:originalImage.imageOrientation]; // Bellek sıçramasına neden olan buymuş!

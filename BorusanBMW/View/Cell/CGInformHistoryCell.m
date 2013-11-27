@@ -44,17 +44,23 @@
         [_dateView setUserInteractionEnabled:NO];
         [_groupView addSubview:_dateView];
         
-        _addressView = [[UITextView alloc] initWithFrame:CGRectMake(135,40,155,20)]; //height was 40
+        _cityView = [[UITextView alloc] initWithFrame:CGRectMake(135, 52, 155, 25)];
+        
+        _cityView.backgroundColor = [UIColor clearColor];
+        _cityView.font =kApplicationFontBold(12.5f);
+        [_cityView setUserInteractionEnabled:NO];
+        [_groupView addSubview:_cityView];
+        
+        _addressView = [[UITextView alloc] initWithFrame:CGRectMake(135,37,155,25)]; //height was 40
         _addressView.backgroundColor = [UIColor clearColor];
         _addressView.font = kApplicationFont(12.5f);
         [_addressView setUserInteractionEnabled:NO];
         [_groupView addSubview:_addressView];
         
-        _cityView = [[UITextView alloc] initWithFrame:CGRectMake(135, 53, 155, 20)];
-        _cityView.backgroundColor = [UIColor clearColor];
-        _cityView.font =kApplicationFontBold(12.5f);
-        [_cityView setUserInteractionEnabled:NO];
-        [_groupView addSubview:_cityView];
+        
+        
+        
+        
         
         self.accessoryView = [[UIImageView alloc] initWithImage:kApplicationImage(kResIconArrowDark)];
     }
@@ -74,14 +80,18 @@
         case 2:
             _addressView.text = [location objectAtIndex:0];
             _cityView.text = [location objectAtIndex:1];
+            [_addressView sizeToFit];
+            [_cityView sizeToFit];
             break;
         case 1:
             _addressView.text = [location objectAtIndex:0];
+            [_addressView sizeToFit];
             break;
         case 0:
             break;
         default:
             _addressView.text = [location objectAtIndex:0];
+            [_addressView sizeToFit];
             break;
     }
     
