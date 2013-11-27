@@ -53,7 +53,7 @@
 {
     [super loadView];
     
-    _photoGallery = [[CGPhotoGalleryView alloc] initWithPoint:CGPointMake(0, 53) andList:_imageList];
+    _photoGallery = [[CGPhotoGalleryView alloc] initWithPoint:CGPointMake(0, 53) andList:_imageList andViewController:self];
     [self.view addSubview:_photoGallery];
     
     _addPhotoButton = [[UIButton alloc] initWithFrame:CGRectMake(31, 243 + 36, 258, 53)];
@@ -76,8 +76,6 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -109,6 +107,7 @@
 
 - (void)continueAction:(id)sender
 {
+    _imageList = _photoGallery.currentImageList;
     UIViewController *vc = [[CGCreateRecordViewController alloc] initWithImageList:_imageList andPlateNumber:_plateNumber];
     [self.navigationController pushViewController:vc animated:YES];
 }

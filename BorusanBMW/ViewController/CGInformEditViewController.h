@@ -36,6 +36,7 @@
     CGUIView *_description;
     
     UIButton    *_saveButton;
+    UIButton    *_deleteButton;
     
     // Dynamic data
     VehicleListResponse *_vehicle;

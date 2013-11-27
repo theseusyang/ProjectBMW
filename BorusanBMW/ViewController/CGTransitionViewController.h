@@ -18,12 +18,14 @@
 
 typedef enum{
     TransitionStateLoader = 0,
-    TransitionStateSucceeded
+    TransitionStateSucceeded,
+    TransitionStateDelete,
 } TransitionState;
 
 typedef enum{
     TransitionTypeInsert = 0,
-    TransitionTypeEdit
+    TransitionTypeEdit,
+    TransitionTypeDelete
 } TransitionType;
 
 @interface CGTransitionViewController : CGBaseViewController
@@ -50,6 +52,7 @@ typedef enum{
 - (id)initWith:(Class)classType;
 - (id)initWith:(Class)classType recordEntity:(RecordEntity *)entity andObject:(id)object;
 - (id)initWith:(Class)classType editEntity:(RecordEntity *)entity vehicleResponse:(VehicleListResponse *)response andObject:(id)object;
+- (id)initWith:(Class)classType deleteEntity:(RecordEntity *)entity vehicleResponse:(VehicleListResponse *)response andObject:(id)object;
 @end
 
 

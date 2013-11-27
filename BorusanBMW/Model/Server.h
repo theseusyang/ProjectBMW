@@ -17,6 +17,7 @@
 #import "UpdateResponse.h"
 #import "VehicleListResponse.h"
 #import "NotificationTypeResponse.h"
+#import "DeleteResponse.h"
 #import "DataService.h"
 
 typedef NS_ENUM(NSInteger, kNotificationType){
@@ -66,5 +67,9 @@ typedef NS_ENUM(NSInteger, kNotificationType){
                        failure:(void (^)(RKObjectRequestOperation *operation, NSError *error))failure;
 - (void)getNotificationTypesWithSuccess:(void (^)(RKObjectRequestOperation *operation, RKMappingResult *mappingResult))success
                                 failure:(void (^)(RKObjectRequestOperation *operation, NSError *error))failure;
+
+- (void)deleteVehicleRecordWithHash:(NSString *)hash ID:(NSNumber *)ID
+                            success:(void (^)(RKObjectRequestOperation *operation, RKMappingResult *mappingResult))success
+                            failure:(void (^)(RKObjectRequestOperation *operation, NSError *error))failure;
 @end
 

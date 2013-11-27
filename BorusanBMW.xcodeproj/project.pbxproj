@@ -112,6 +112,7 @@
 		6224454717D8D578002A2482 /* CGTakePhotoViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6224454617D8D578002A2482 /* CGTakePhotoViewController.mm */; };
 		6245CBD817EC4CFE009A2630 /* DataService.m in Sources */ = {isa = PBXBuildFile; fileRef = 6245CBD717EC4CFE009A2630 /* DataService.m */; };
 		6245CBE117EC917C009A2630 /* RecordResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 6245CBE017EC917C009A2630 /* RecordResponse.m */; };
+		626BA17B1846100C009548F6 /* DeleteResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 626BA17A1846100C009548F6 /* DeleteResponse.m */; };
 		6284CF8217EC38BF00A0EDFA /* LoginResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 6284CF8117EC38BF00A0EDFA /* LoginResponse.m */; };
 		629703D017F175C6000D159F /* VehicleListResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 629703CF17F175C6000D159F /* VehicleListResponse.m */; };
 		62989A1D17DA2A3D0067BCF6 /* CGTransitionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62989A1C17DA2A3D0067BCF6 /* CGTransitionViewController.m */; };
@@ -119,6 +120,8 @@
 		629B208418210F5A00A85CDA /* Profiler.m in Sources */ = {isa = PBXBuildFile; fileRef = 629B208318210F5A00A85CDA /* Profiler.m */; };
 		629B208E18215BEA00A85CDA /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 629B208D18215BEA00A85CDA /* UIImage+Resize.m */; };
 		629EF8FE181569C40045205F /* RecordEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 629EF8FD181569C40045205F /* RecordEntity.m */; };
+		62A1F1B61844CCA9001D4132 /* ButtonRed.png in Resources */ = {isa = PBXBuildFile; fileRef = 62A1F1B41844CCA9001D4132 /* ButtonRed.png */; };
+		62A1F1B71844CCA9001D4132 /* ButtonRed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 62A1F1B51844CCA9001D4132 /* ButtonRed@2x.png */; };
 		62A70B3417F9A2FB00098F47 /* LoginRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 62A70B3317F9A2FB00098F47 /* LoginRequest.m */; };
 		62A70B3C17F9C53000098F47 /* iPhoneIcon-568.png in Resources */ = {isa = PBXBuildFile; fileRef = 62A70B3917F9C53000098F47 /* iPhoneIcon-568.png */; };
 		62A70B3D17F9C53000098F47 /* iPhoneIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 62A70B3A17F9C53000098F47 /* iPhoneIcon.png */; };
@@ -349,6 +352,8 @@
 		6245CBD717EC4CFE009A2630 /* DataService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataService.m; path = Model/DataService.m; sourceTree = "<group>"; };
 		6245CBDF17EC917C009A2630 /* RecordResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RecordResponse.h; path = Model/Entity/RecordResponse.h; sourceTree = "<group>"; };
 		6245CBE017EC917C009A2630 /* RecordResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RecordResponse.m; path = Model/Entity/RecordResponse.m; sourceTree = "<group>"; };
+		626BA1791846100C009548F6 /* DeleteResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DeleteResponse.h; path = Model/Entity/DeleteResponse.h; sourceTree = "<group>"; };
+		626BA17A1846100C009548F6 /* DeleteResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DeleteResponse.m; path = Model/Entity/DeleteResponse.m; sourceTree = "<group>"; };
 		6284CF8017EC38BF00A0EDFA /* LoginResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginResponse.h; path = Model/Entity/LoginResponse.h; sourceTree = "<group>"; };
 		6284CF8117EC38BF00A0EDFA /* LoginResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginResponse.m; path = Model/Entity/LoginResponse.m; sourceTree = "<group>"; };
 		629703CE17F175C6000D159F /* VehicleListResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VehicleListResponse.h; path = Model/Entity/VehicleListResponse.h; sourceTree = "<group>"; };
@@ -363,6 +368,8 @@
 		629B208D18215BEA00A85CDA /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
 		629EF8FC181569C40045205F /* RecordEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RecordEntity.h; path = Model/Entity/RecordEntity.h; sourceTree = "<group>"; };
 		629EF8FD181569C40045205F /* RecordEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RecordEntity.m; path = Model/Entity/RecordEntity.m; sourceTree = "<group>"; };
+		62A1F1B41844CCA9001D4132 /* ButtonRed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ButtonRed.png; sourceTree = "<group>"; };
+		62A1F1B51844CCA9001D4132 /* ButtonRed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ButtonRed@2x.png"; sourceTree = "<group>"; };
 		62A70B3217F9A2FB00098F47 /* LoginRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginRequest.h; path = Model/Entity/LoginRequest.h; sourceTree = "<group>"; };
 		62A70B3317F9A2FB00098F47 /* LoginRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginRequest.m; path = Model/Entity/LoginRequest.m; sourceTree = "<group>"; };
 		62A70B3917F9C53000098F47 /* iPhoneIcon-568.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhoneIcon-568.png"; sourceTree = "<group>"; };
@@ -666,6 +673,8 @@
 		629ABD4617E6E3D500A0F0F6 /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
+				62A1F1B41844CCA9001D4132 /* ButtonRed.png */,
+				62A1F1B51844CCA9001D4132 /* ButtonRed@2x.png */,
 				62E988BF180585A2000F3C8D /* ButtonLoadMore.png */,
 				62E988C0180585A3000F3C8D /* ButtonLoadMore@2x.png */,
 				6224449117D8D1E7002A2482 /* ButtonBlue.png */,
@@ -764,6 +773,8 @@
 				62E988BA18054C6D000F3C8D /* UpdateResponse.m */,
 				629EF8FC181569C40045205F /* RecordEntity.h */,
 				629EF8FD181569C40045205F /* RecordEntity.m */,
+				626BA1791846100C009548F6 /* DeleteResponse.h */,
+				626BA17A1846100C009548F6 /* DeleteResponse.m */,
 			);
 			name = Entity;
 			sourceTree = "<group>";
@@ -843,6 +854,8 @@
 		62B7C60A17D61A0B00257C95 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				629ABD4717E6E3DC00A0F0F6 /* Icons */,
+				629ABD4617E6E3D500A0F0F6 /* Buttons */,
 				AF94AA9A1843BF320098B032 /* iPhoneIcon-568 copy.png */,
 				AF94AA901843B8540098B032 /* iPhoneIcon-29.png */,
 				AF94AA911843B8540098B032 /* iPhoneIcon-29@2x.png */,
@@ -867,8 +880,6 @@
 				AFD3AF1F18325AD20072F554 /* IconPlateMode@2x.png */,
 				AFD3AF121832574D0072F554 /* PlateCaptureGuideVertical.png */,
 				AFD3AF131832574D0072F554 /* PlateCaptureGuideVertical@2x.png */,
-				629ABD4717E6E3DC00A0F0F6 /* Icons */,
-				629ABD4617E6E3D500A0F0F6 /* Buttons */,
 				6224448B17D8D1E7002A2482 /* Background.png */,
 				6224448C17D8D1E7002A2482 /* Background@2x.png */,
 				6224448D17D8D1E7002A2482 /* BadgePending.png */,
@@ -1313,6 +1324,7 @@
 				622444E717D8D1E7002A2482 /* BadgePending.png in Resources */,
 				AF90C9BF183364F30039BD3B /* AppIconSmall.png in Resources */,
 				622444E817D8D1E7002A2482 /* BadgePending@2x.png in Resources */,
+				62A1F1B61844CCA9001D4132 /* ButtonRed.png in Resources */,
 				AFD3AF3318327FAF0072F554 /* SwitchButtonPlate@2x.png in Resources */,
 				62E988C6180585DE000F3C8D /* Default~iphone.png in Resources */,
 				622444E917D8D1E7002A2482 /* BadgeSent.png in Resources */,
@@ -1373,6 +1385,7 @@
 				6224451417D8D1E7002A2482 /* IconLicensePlateDark@2x.png in Resources */,
 				6224451517D8D1E7002A2482 /* IconLicensePlateLight.png in Resources */,
 				AFD3AF3B183289440072F554 /* ButtonSmallDeactive@2x.png in Resources */,
+				62A1F1B71844CCA9001D4132 /* ButtonRed@2x.png in Resources */,
 				6224451617D8D1E7002A2482 /* IconLicensePlateLight@2x.png in Resources */,
 				6224451717D8D1E7002A2482 /* IconLocationBlue.png in Resources */,
 				AFD3AF3218327FAF0072F554 /* SwitchButtonPlate.png in Resources */,
@@ -1463,6 +1476,7 @@
 				62B7C53F17D6151A00257C95 /* CGAppDelegate.m in Sources */,
 				AF206EB41805355F00D87D0C /* CGCameraOverlayView.m in Sources */,
 				621F1D5A1802E054003356EC /* CGMoreCell.m in Sources */,
+				626BA17B1846100C009548F6 /* DeleteResponse.m in Sources */,
 				62B7C67A17D6239500257C95 /* CGMainViewController.m in Sources */,
 				629B0BA817D74A8A009595F9 /* CGBaseViewController.m in Sources */,
 				6224448617D87220002A2482 /* CGMenuViewController.m in Sources */,

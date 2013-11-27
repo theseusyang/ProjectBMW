@@ -25,7 +25,7 @@
     return self;
 }
 
-- (id)initWith:(Class)classType recordEntity:(RecordEntity *)entity andObject :(id)object;
+- (id)initWith:(Class)classType recordEntity:(RecordEntity *)entity andObject :(id)object
 {
     self = [super init];
     if (self) {
@@ -39,7 +39,7 @@
     return self;
 }
 
-- (id)initWith:(Class)classType editEntity:(RecordEntity *)entity vehicleResponse:(VehicleListResponse *)response andObject:(id)object;
+- (id)initWith:(Class)classType editEntity:(RecordEntity *)entity vehicleResponse:(VehicleListResponse *)response andObject:(id)object
 {
     self = [super init];
     if (self) {
@@ -47,6 +47,20 @@
         _entity = entity;
         _vehicle = response;
         _transitionType = TransitionTypeEdit;
+        _object = object;
+    }
+    
+    return self;
+}
+
+- (id)initWith:(Class)classType deleteEntity:(RecordEntity *)entity vehicleResponse:(VehicleListResponse *)response andObject:(id)object
+{
+    self = [super init];
+    if (self) {
+        _classTypeToTurnBack = classType;
+        _entity = entity;
+        _vehicle = response;
+        _transitionType = TransitionTypeDelete;
         _object = object;
     }
     
@@ -100,6 +114,8 @@
         [self insertRecord];
     }else if(_transitionType == TransitionTypeEdit){
         [self editRecord];
+    }else if (_transitionType == TransitionTypeDelete){
+        [self deleteRecord];
     }
     
 }
@@ -164,6 +180,16 @@
                                         NSLog(@"Failure");
                                     }];
 
+}
+
+- (void)deleteRecord
+{
+    [[Server shared] deleteVehicleRecordWithHash:[[DataService shared] getHash] ID:_entity.ID success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+        [[DataService shared] deleteRecord:_vehicle];
+        [self changeTransitionState:TransitionStateSucceeded];
+    } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+        NSLog(@"deleteRecord is failed!");
+    }];
 }
 
 - (void)rotateImage:(id)sender

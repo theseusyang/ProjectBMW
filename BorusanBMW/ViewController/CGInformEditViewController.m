@@ -42,10 +42,10 @@
     [super loadView];
 
     _groupView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 320, 416)];
-    _groupView.contentSize = CGSizeMake(320, 600);
+    _groupView.contentSize = CGSizeMake(320, 660);
     [self.view addSubview:_groupView];
     
-    _photoGallery = [[CGPhotoGalleryView alloc] initWithPoint:CGPointMake(0, kPhotoGalleryHeightGap) andList:[NSArray arrayWithArray:_vehicle.imageList]];
+    _photoGallery = [[CGPhotoGalleryView alloc] initWithPoint:CGPointMake(0, kPhotoGalleryHeightGap) andList:[NSArray arrayWithArray:_vehicle.imageList] andViewController:self];
     [_groupView addSubview:_photoGallery];
     
     _tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
@@ -118,17 +118,6 @@
     _description.textView.textColor = kTextColor;
     _description.textView.text = _vehicle.description;
     [_groupView addSubview:_description];
-    
-    /*
-    _description = [[CGTextField alloc] initWithFrame:CGRectMake(35, 439, 250, 86)];
-    [_description setText:_vehicle.description];
-    [_description setDelegate:self];
-    _description.leftView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"IconCommentDark.png"]];
-    _description.leftView.frame  = CGRectMake(14, 12, 20, 19);
-    _description.leftViewMode = UITextFieldViewModeAlways;
-    _description.paddingX = kTextFieldPaddingX;
-    [_groupView  addSubview:_description];
-    */
      
     _saveButton = [[UIButton alloc] initWithFrame:CGRectMake(31, 540, 258, 52)];
     _saveButton.titleLabel.font = kApplicationFontBold(19.0f);
@@ -136,6 +125,13 @@
     [_saveButton setTitle:@"Kaydet" forState:UIControlStateNormal];
     [_saveButton addTarget:self action:@selector(saveAction:) forControlEvents:UIControlEventTouchUpInside];
     [_groupView addSubview:_saveButton];
+    
+    _deleteButton = [[UIButton alloc] initWithFrame:CGRectMake(31, 600, 258, 53)];
+    _deleteButton.titleLabel.font = kApplicationFontBold(19.0f);
+    [_deleteButton setBackgroundImage:[UIImage imageNamed:@"ButtonRed"] forState:UIControlStateNormal];
+    [_deleteButton setTitle:@"Sil" forState:UIControlStateNormal];
+    [_deleteButton addTarget:self action:@selector(deleteAction:) forControlEvents:UIControlEventTouchUpInside];
+    [_groupView addSubview:_deleteButton];
     
     _imagePicker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, kWindowHeightWithNav, kPickerViewWidth, kPickerViewHeight)];
     _imagePicker.delegate = self;
@@ -286,6 +282,15 @@
     editRecord.ID = _vehicle.ID;
     
     UIViewController *vc = [[CGTransitionViewController alloc] initWith:[CGInformHistoryViewController class] editEntity:editRecord vehicleResponse:_vehicle andObject:self];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)deleteAction:(id)sender
+{
+    RecordEntity *deleteRecord = [RecordEntity new];
+    deleteRecord.ID = _vehicle.ID;
+    
+    UIViewController *vc = [[CGTransitionViewController alloc] initWith:[CGInformHistoryViewController class] deleteEntity:deleteRecord vehicleResponse:_vehicle andObject:self];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
