@@ -180,33 +180,6 @@
     _errorLabel.hidden = YES;
     [_groupScrollView addSubview:_errorLabel];
     
-    /*
-    _description = [[CGTextField alloc] initWithFrame:CGRectMake(35, 248, 250, 86)];
-    _description.placeholder = @"Açıklama"; //TODO: Dummy data
-    
-    _description.leftView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"IconCommentDark.png"]];
-    _description.leftView.frame  = CGRectMake(14, 12, 20, 19);
-    _description.leftViewMode = UITextFieldViewModeAlways;
-    //_description.paddingX = kTextFieldPaddingX;
-    [_description setDelegate:self];
-    [_groupScrollView addSubview:_description];
-    */
-    
-    /*
-    _description = [[UITextView alloc] initWithFrame:CGRectMake(35, 248, 250, 86)];
-    _description.text = @"Açıklama"; //TODO: Dummy data
-    UIImageView *icon =[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"IconCommentDark.png"]];
-    UIImageView *textBackground = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"TextArea@2x.png"]];
-    icon.frame = CGRectMake(14, 12, 20, 19);
-    textBackground.frame = CGRectMake(35, 248, 250, 86);
-    [_description addSubview:icon];
-    [_groupScrollView addSubview:textBackground];
-    _description.backgroundColor = [UIColor clearColor];
-    
-    [_description setDelegate:self];
-    [_groupScrollView addSubview:_description];
-    */
-     
     _sendButton = [[UIButton alloc] initWithFrame:CGRectMake(28, 350, 258, 52)];
     _sendButton.titleLabel.font = kApplicationFontBold(19.0f);
     [_sendButton setBackgroundImage:[UIImage imageNamed:@"ButtonBlue"] forState:UIControlStateNormal];
@@ -222,8 +195,6 @@
     
     _errorAlert = [[UIAlertView alloc]initWithTitle:@"" message:@"Lütfen bütün kısımları doldurun." delegate:self cancelButtonTitle:@"Tamam" otherButtonTitles:nil, nil];    
     [_groupScrollView addSubview:_errorAlert];
-    
-    
 
     [self.view addSubview:_imagePicker];
 }
@@ -291,16 +262,6 @@
     
     return YES;
 }
-/*
-- (BOOL)textViewShouldEndEditing:(UITextView *)textView
-{
-    if(){
-        return YES;
-    } else {
-        return NO;
-    }
-}
-*/
 
 -(void)didSellectCGTextView:(id)sender
 {
@@ -351,18 +312,6 @@
     _groupScrollView.scrollEnabled = NO;
     //Check
     [_groupScrollView setContentOffset:CGPointMake(0, 0) animated:YES];
-    /*
-    if( ![textField isEqual:_notificationType])
-    {
-        [_groupScrollView setContentOffset:CGPointMake(0, 0) animated:YES];
-    }
-    */
-    /*
-    else
-    {
-        [self hidePickerWheel];
-    }
-     */
 }
 
 #pragma mark Button Actions
@@ -375,16 +324,19 @@
         
         UIImage *image = [_imageList objectAtIndex:i];
         UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
-        
 
-        // Make small the pic - UIGraphics~
-        UIGraphicsBeginImageContext(CGSizeMake(image.size.width/20, image.size.height/20));
-            [imageView.image drawInRect:CGRectMake(0,0,image.size.width/20, image.size.height/20)];
-            UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsBeginImageContext(CGSizeMake(imageView.image.size.width/10, imageView.image.size.height/10));
+        [imageView.image drawInRect:CGRectMake(0,0,imageView.image.size.width, imageView.image.size.height)];
+        UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
         
+        size_t width = CGImageGetWidth(newImage.CGImage);
+        size_t height = CGImageGetHeight(newImage.CGImage);
+        
+        //UIImage *newImage = [CGUtilHelper imageWithImage:imageView.image andRect:newRect];
         NSData *imageData = UIImagePNGRepresentation(newImage);
         NSString *imageEncoded = [Base64 encode:imageData];
+        
         [imageList addObject:imageEncoded];
     }
     
@@ -399,45 +351,8 @@
     {
         [_errorAlert show];
         return;
-        /*
-        if(_errorLabel.hidden){
-            [UIView animateWithDuration:0.3
-                                  delay:0
-                                options:UIViewAnimationOptionCurveEaseOut
-                             animations:^{
-                                 CGRect frame = _sendButton.frame;
-                                 frame.origin.y += 20;
-                                 _sendButton.frame = frame;
-                             }completion:^(BOOL finished){
-                                 _errorLabel.hidden = NO;
-                                 
-                             }];
-        }
-        [_sendButton addTarget:self action:@selector(sendAction:) forControlEvents:UIControlEventTouchUpInside];
-        [_groupScrollView setContentOffset:CGPointMake(0, 20) animated:YES];
-        return;
-        */
     }
-    /*
-    if(!_errorLabel.hidden)
-    {
-        [UIView animateWithDuration:0.3
-                              delay:0
-                            options:UIViewAnimationOptionCurveEaseOut
-                         animations:^{
-                             CGRect frame = _sendButton.frame;
-                             frame.origin.y -= 20;
-                             _sendButton.frame = frame;
-                         }completion:^(BOOL finished){
-                             _errorLabel.hidden = YES;
-                             
-                         }];
-    }
-    */
-    
-    
-    
-    NSNumber *notifID;
+       NSNumber *notifID;
     
     for (NotificationTypeResponse* notif in _notificationTypeList) {
         if ([_notificationType.text isEqualToString:notif.notificationType]) {
@@ -456,7 +371,6 @@
     insertRecord.ID = [NSNumber numberWithInt:-1]; // Not used for this data.
     
     UIViewController *vc = [[CGTransitionViewController alloc] initWith:[CGMenuViewController class] recordEntity:insertRecord andObject:self];
-    //UIViewController *vc = [[CGTransitionViewController alloc] ini]
     [self.navigationController pushViewController:vc animated:YES];
 }
 

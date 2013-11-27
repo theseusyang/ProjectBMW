@@ -17,6 +17,7 @@
     NSArray *_photoList;
     NSMutableArray *_galleryList;
     UIButton *_deleteButton;
+    BOOL _isDeleteActive;
     
     UIImageView *_testPhoto;
     UIView *_bgView;
@@ -32,7 +33,7 @@
 @property (nonatomic, strong) UIButton *deleteButton;
 @property (nonatomic, strong) NSMutableArray *currentImageList;
 
-- (id)initWithPoint:(CGPoint)pos andList:(NSArray*)imageList andViewController: (CGBaseViewController *)vc;
+- (id)initWithPoint:(CGPoint)pos andList:(NSArray*)imageList andViewController: (CGBaseViewController *)vc isDeleteActive:(BOOL)isDeleteActive;
 - (void)setGallery;
 
 @end

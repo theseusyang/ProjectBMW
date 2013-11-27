@@ -56,9 +56,6 @@
         [_cityView setUserInteractionEnabled:NO];
         [_groupView addSubview:_cityView];
         
-        
-        
-        
         self.accessoryView = [[UIImageView alloc] initWithImage:kApplicationImage(kResIconArrowDark)];
     }
     
@@ -87,8 +84,6 @@
             _addressView.text = [location objectAtIndex:0];
             break;
     }
-    
-
     
 }
 

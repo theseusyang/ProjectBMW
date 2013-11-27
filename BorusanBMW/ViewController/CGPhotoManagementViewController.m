@@ -53,7 +53,7 @@
 {
     [super loadView];
     
-    _photoGallery = [[CGPhotoGalleryView alloc] initWithPoint:CGPointMake(0, 53) andList:_imageList andViewController:self];
+    _photoGallery = [[CGPhotoGalleryView alloc] initWithPoint:CGPointMake(0, 53) andList:_imageList andViewController:self isDeleteActive:YES];
     [self.view addSubview:_photoGallery];
     
     _addPhotoButton = [[UIButton alloc] initWithFrame:CGRectMake(31, 243 + 36, 258, 53)];
@@ -101,7 +101,6 @@
 #pragma mark Button Actions
 - (void)addPhotoAction:(id)sender
 {
-    
     [self.navigationController popViewControllerAnimated:YES];
 }
 
