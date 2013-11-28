@@ -20,23 +20,26 @@
 #define kImageResize 40
 #define kImageStep 80
 
+#define kDeleteButtonSize 33
+
 @implementation CGPhotoGalleryView
 
-- (id)initWithPoint:(CGPoint)pos andList:(NSMutableArray*)imageList andViewController: (CGBaseViewController *)vc
+- (id)initWithPoint:(CGPoint)pos andList:(NSMutableArray*)imageList andViewController: (CGBaseViewController *)vc isDeleteActive:(BOOL)isDeleteActive
 {
     
     self = [super initWithFrame:CGRectMake(pos.x, pos.y, kGalleryWidth, kGalleryHeight)];
     if (self) {
-        
         self.backgroundColor = kColorClear;
         
-        self.self.currentImageList = [NSMutableArray arrayWithArray:[imageList mutableCopy]];
+        //self.currentImageList = [NSMutableArray arrayWithArray:[imageList mutableCopy]];
+        self.currentImageList = imageList;
         _parentViewController = vc;
         
+        _isDeleteActive = isDeleteActive;
         _galleryList = [[NSMutableArray alloc] init];
         _bgView = [[UIView alloc] initWithFrame:CGRectMake(0 , 8, kGalleryWidth, kGalleryHeight)];
         
-        self.deleteButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 33, 33)];
+        self.deleteButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, kDeleteButtonSize, kDeleteButtonSize)];
         [self.deleteButton setImage:[UIImage imageNamed:@"ButtonSquare.png"] forState:UIControlStateNormal];
         [self.deleteButton addTarget:self action:@selector(deleteButtonAction:) forControlEvents:UIControlEventTouchUpInside];
         
@@ -44,11 +47,12 @@
         _deleteIcon.center = self.deleteButton.center;
         self.deleteButton.center = self.center;
         self.deleteButton.frame = CGRectMake(self.deleteButton.center.x - self.deleteButton.frame.size.width/2, 10, self.deleteButton.frame.size.width, self.deleteButton.frame.size.height);
-        [self.deleteButton addSubview:_deleteIcon];
-
+        [self.deleteButton addSubview:deleteIcon];
+        
         [self reset];
         [self addSubview:_bgView];
-        [self addSubview:self.deleteButton];
+        if (_isDeleteActive)
+            [self addSubview:self.deleteButton];
     }
     
     return self;
@@ -91,9 +95,11 @@
     for (int i = 0; i < [imageList count]; ++i) {
 
         UIImage *image = imageList[i];
+
         UIImageView *photo = [[UIImageView alloc] initWithImage:image];
         photo.frame = CGRectMake(5, 5, 160, 160);
         photo.contentMode = UIViewContentModeScaleAspectFit;
+        photo.backgroundColor = kColorRed;
         
         float resizeValue = 0.0;
         resizeValue = (i * kImageResize);
@@ -102,11 +108,11 @@
         UIView *elementView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kImageHeight - resizeValue, kImageHeight - resizeValue)];
         elementView.backgroundColor = kColorClear;
         elementView.center = _bgView.center;
-        elementView.contentMode = UIViewContentModeScaleAspectFit;
+        //elementView.contentMode = UIViewContentModeScaleAspectFit; Gerekli Değil
         
         UIView *grayBGView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kImageHeight - resizeValue, kImageHeight - resizeValue)];
         grayBGView.backgroundColor = kColorGray;
-        grayBGView.contentMode = UIViewContentModeScaleAspectFit;
+        //grayBGView.contentMode = UIViewContentModeScaleAspectFit;
         grayBGView.alpha = 0.6;
         
         CGRect frame = elementView.frame;

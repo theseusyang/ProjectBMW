@@ -33,6 +33,8 @@
             [self stopSpinner];
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Login" message:@"Server is not responding.." delegate:self cancelButtonTitle:@"cancel" otherButtonTitles:nil, nil];
             [alert show];
+            
+            [self leftAction:self];
         }];
     }
     

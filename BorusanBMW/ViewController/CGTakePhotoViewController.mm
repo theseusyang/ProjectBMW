@@ -161,22 +161,24 @@
 
 - (void)continueAction:(id)sender
 {
-    /*
-    UIImageView *imageView = _imageList[0];
-    UIGraphicsBeginImageContext(CGSizeMake(70, 70));
-    [imageView.image drawInRect:CGRectMake(0,0,70,70)];
-    UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
+    /* Cut the pic to make square with preserving aspect ratio */
     
-    imageView.image = newImage;
-    */
+    if (imageView.image.imageOrientation != UIImageOrientationUp)
+        imageView.image = [imageView.image rotate:imageView.image.imageOrientation];
+    
+    /* Crop the image */
+    CGRect cutRect = [CGUtilHelper imageRectInSquare:imageView.image];
+    UIImage *finalImage = [CGUtilHelper imageWithImage:imageView.image andRect:cutRect];
+    imageView.image = finalImage;
+    
     //Enable Taking photo for next call to this VC
     enablePhotoPicker = YES;
     if( imageView.image )
         [_imageList addObject:imageView.image];
-    else
+    else /* TODO: Bahoooo, delete this else block after your test*/
         [_imageList addObject:[UIImage imageNamed:@"PlateCaptureGuideVertical.png"]];
     UIViewController *vc = [[CGPhotoManagementViewController alloc] initWithImageList:_imageList andPlateNumber:_plateNumber];
+    
     [self.navigationController pushViewController:vc animated:YES];
 }
 

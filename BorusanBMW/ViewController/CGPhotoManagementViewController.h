@@ -17,7 +17,7 @@
     CGPhotoGalleryView *_photoGallery;
     
     //MBB
-    NSArray *_imageList;
+    NSMutableArray *_imageList;
     //Tesseract Plate Number
     NSString *_plateNumber;
     
@@ -26,7 +26,7 @@
     UIButton *_continueButton;
 }
 
-- (id)initWithImageList:(NSArray*)imageLlist;
-- (id)initWithImageList:(NSArray *)imageList andPlateNumber: (NSString*)plateNumber;
+- (id)initWithImageList:(NSMutableArray *)imageLlist;
+- (id)initWithImageList:(NSMutableArray *)imageList andPlateNumber: (NSString*)plateNumber;
 
 @end

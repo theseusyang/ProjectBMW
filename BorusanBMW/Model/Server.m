@@ -198,13 +198,26 @@
     NSDictionary *vehicleListRequest = @{@"Hash": hash,
                                          @"PageIndex": [NSNumber numberWithInt:pageIndex]};
     
+    static BOOL isServerBusy = NO;
+    if (isServerBusy) {
+        NSLog(@"Request is already made!");
+        return;
+    }
+    
+    isServerBusy = YES;
+    NSLog(@"Try to get vehicle list: %@ andPageIndex: %d", hash, pageIndex);
+    
     [[RKObjectManager sharedManager] getObject:nil path:kFuncGetVechicleList parameters:vehicleListRequest success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+        isServerBusy = NO;
         success(operation, mappingResult);
         
     } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+        isServerBusy = NO;
         failure(operation, error);
         NSLog(@"vehicleListRequest is Failure");
     }];
+    
+    
 }
 
 - (void)getNotificationTypesWithSuccess:(void (^)(RKObjectRequestOperation *operation, RKMappingResult *mappingResult))success

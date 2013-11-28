@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <RestKit/ObjectMapping.h>
 #import "Server.h"
+#import "Events.h"
 
 #define kDataPackageSize 20
 

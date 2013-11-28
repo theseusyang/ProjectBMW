@@ -11,6 +11,7 @@
 #import "AppInfo.h"
 #import "Resources.h"
 #import "Server.h"
+#import "Events.h"
 
 @interface CGBaseViewController : UIViewController
 {

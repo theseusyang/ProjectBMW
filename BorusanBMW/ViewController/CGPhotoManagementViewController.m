@@ -23,24 +23,26 @@
     return self;
 }
 
-- (id)initWithImageList:(NSArray*)imageLlist
+- (id)initWithImageList:(NSMutableArray*)imageLlist
 {
     self = [super init];
     if (self) {
         
-        _imageList = [NSArray arrayWithArray:imageLlist];
+        // Just send the reference
+        _imageList = imageLlist;
         
     }
     
     return self;
 }
 
-- (id)initWithImageList:(NSArray*)imageList andPlateNumber: (NSString*)plateNumber
+- (id)initWithImageList:(NSMutableArray*)imageList andPlateNumber: (NSString*)plateNumber
 {
     self = [super init];
     if (self) {
         
-        _imageList = [NSArray arrayWithArray:imageList];
+        //_imageList = [NSArray arrayWithArray:imageList];
+        _imageList = imageList;
         _plateNumber = plateNumber;
         
     }
@@ -48,12 +50,11 @@
     return self;
 }
 
-
 - (void)loadView
 {
     [super loadView];
     
-    _photoGallery = [[CGPhotoGalleryView alloc] initWithPoint:CGPointMake(0, 53) andList:_imageList andViewController:self];
+    _photoGallery = [[CGPhotoGalleryView alloc] initWithPoint:CGPointMake(0, 53) andList:_imageList andViewController:self isDeleteActive:YES];
     [self.view addSubview:_photoGallery];
     
     _addPhotoButton = [[UIButton alloc] initWithFrame:CGRectMake(31, 243 + 36, 258, 53)];
@@ -105,7 +106,6 @@
 #pragma mark Button Actions
 - (void)addPhotoAction:(id)sender
 {
-    
     [self.navigationController popViewControllerAnimated:YES];
 }
 

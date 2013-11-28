@@ -186,33 +186,6 @@
     _errorLabel.hidden = YES;
     [_groupScrollView addSubview:_errorLabel];
     
-    /*
-    _description = [[CGTextField alloc] initWithFrame:CGRectMake(35, 248, 250, 86)];
-    _description.placeholder = @"Açıklama"; //TODO: Dummy data
-    
-    _description.leftView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"IconCommentDark.png"]];
-    _description.leftView.frame  = CGRectMake(14, 12, 20, 19);
-    _description.leftViewMode = UITextFieldViewModeAlways;
-    //_description.paddingX = kTextFieldPaddingX;
-    [_description setDelegate:self];
-    [_groupScrollView addSubview:_description];
-    */
-    
-    /*
-    _description = [[UITextView alloc] initWithFrame:CGRectMake(35, 248, 250, 86)];
-    _description.text = @"Açıklama"; //TODO: Dummy data
-    UIImageView *icon =[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"IconCommentDark.png"]];
-    UIImageView *textBackground = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"TextArea@2x.png"]];
-    icon.frame = CGRectMake(14, 12, 20, 19);
-    textBackground.frame = CGRectMake(35, 248, 250, 86);
-    [_description addSubview:icon];
-    [_groupScrollView addSubview:textBackground];
-    _description.backgroundColor = [UIColor clearColor];
-    
-    [_description setDelegate:self];
-    [_groupScrollView addSubview:_description];
-    */
-     
     _sendButton = [[UIButton alloc] initWithFrame:CGRectMake(28, 350, 258, 52)];
     _sendButton.titleLabel.font = kApplicationFontBold(19.0f);
     [_sendButton setBackgroundImage:[UIImage imageNamed:@"ButtonBlue"] forState:UIControlStateNormal];
@@ -387,17 +360,18 @@
     for (int i=0; i < [_imageList count]; ++i) {
         
         UIImage *image = [_imageList objectAtIndex:i];
-        UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+        int width = image.size.width / 10;
+        int height = image.size.height / 10;
+        CGSize size = CGSizeMake(width, height);
         
-
-        // Make small the pic - UIGraphics~
-        UIGraphicsBeginImageContext(CGSizeMake(image.size.width/20, image.size.height/20));
-            [imageView.image drawInRect:CGRectMake(0,0,image.size.width/20, image.size.height/20)];
+        UIGraphicsBeginImageContextWithOptions(size, YES, 0.0);
+            [image drawInRect:CGRectMake(0,0, size.width, size.height)];
             UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
-        
+
         NSData *imageData = UIImagePNGRepresentation(newImage);
         NSString *imageEncoded = [Base64 encode:imageData];
+        
         [imageList addObject:imageEncoded];
     }
     
@@ -414,11 +388,7 @@
         return;
         
     }
-  
-    
-    
-    
-    NSNumber *notifID;
+       NSNumber *notifID;
     
     for (NotificationTypeResponse* notif in _notificationTypeList) {
         if ([_notificationType.text isEqualToString:notif.notificationType]) {
@@ -437,7 +407,6 @@
     insertRecord.ID = [NSNumber numberWithInt:-1]; // Not used for this data.
     
     UIViewController *vc = [[CGTransitionViewController alloc] initWith:[CGMenuViewController class] recordEntity:insertRecord andObject:self];
-    //UIViewController *vc = [[CGTransitionViewController alloc] ini]
     [self.navigationController pushViewController:vc animated:YES];
 }
 

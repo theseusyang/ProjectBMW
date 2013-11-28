@@ -116,5 +116,54 @@
     return nil;
 }
 
++ (UIImage *)imageWithImage:(UIImage *)image andRect:(CGRect)newRect
+{
+    CGImageRef imageRef = CGImageCreateWithImageInRect(image.CGImage, newRect);
+    UIImage *newImage = [UIImage imageWithCGImage:imageRef];
+    CGImageRelease(imageRef);
+
+    return newImage;
+}
+
++ (CGRect)imageRectInSquare:(UIImage *)image
+{
+    CGRect square;
+    CGPoint cutPoint;
+    
+    float width = image.size.width;
+    float height = image.size.height;
+    
+    float finalWidth = 0.0;
+    float finalHeight = 0.0;
+    
+    if (width > height)
+    {
+        int diff = width - height;
+        int leftCut = diff / 2;
+        
+        finalWidth  = height;
+        finalHeight = height;
+        
+        cutPoint = CGPointMake(leftCut, 0);
+    }else if(height > width)
+    {
+        float diff = height - width;
+        int topCut = diff / 2;
+        
+        finalWidth  = width;
+        finalHeight = width;
+        
+        cutPoint = CGPointMake(0, topCut);
+    }else
+    {
+        finalWidth = width;
+        finalHeight = height;
+        cutPoint = CGPointMake(0, 0);
+    }
+    
+    square = CGRectMake(cutPoint.x, cutPoint.y, finalWidth, finalHeight);
+    return square;
+}
+
 @end
 
