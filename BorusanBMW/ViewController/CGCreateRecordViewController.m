@@ -338,17 +338,15 @@
     for (int i=0; i < [_imageList count]; ++i) {
         
         UIImage *image = [_imageList objectAtIndex:i];
-        UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
-
-        UIGraphicsBeginImageContext(CGSizeMake(imageView.image.size.width/10, imageView.image.size.height/10));
-        [imageView.image drawInRect:CGRectMake(0,0,imageView.image.size.width, imageView.image.size.height)];
-        UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
+        int width = image.size.width / 10;
+        int height = image.size.height / 10;
+        CGSize size = CGSizeMake(width, height);
+        
+        UIGraphicsBeginImageContextWithOptions(size, YES, 0.0);
+            [image drawInRect:CGRectMake(0,0, size.width, size.height)];
+            UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
-        
-        size_t width = CGImageGetWidth(newImage.CGImage);
-        size_t height = CGImageGetHeight(newImage.CGImage);
-        
-        //UIImage *newImage = [CGUtilHelper imageWithImage:imageView.image andRect:newRect];
+
         NSData *imageData = UIImagePNGRepresentation(newImage);
         NSString *imageEncoded = [Base64 encode:imageData];
         

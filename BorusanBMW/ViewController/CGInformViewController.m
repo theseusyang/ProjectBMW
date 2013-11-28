@@ -36,7 +36,7 @@
     _textGroupView = [[UIView alloc] initWithFrame:CGRectMake(17, 217, 320, 205)];
     [_groupView addSubview:_textGroupView];
     
-    _photoGallery = [[CGPhotoGalleryView alloc] initWithPoint:CGPointMake(0, kPhotoGalleryHeightGap) andList:[NSArray arrayWithArray:_vehicle.imageList] andViewController:self isDeleteActive:NO];
+    _photoGallery = [[CGPhotoGalleryView alloc] initWithPoint:CGPointMake(0, kPhotoGalleryHeightGap) andList:_vehicle.imageList andViewController:self isDeleteActive:NO];
     [_groupView addSubview:_photoGallery];
 
     //Seperatoors

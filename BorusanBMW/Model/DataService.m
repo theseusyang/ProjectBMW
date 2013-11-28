@@ -56,7 +56,7 @@
         
         _vehiclePageIndex++;
         success(_vehicleDataList);
-        
+        [[NSNotificationCenter defaultCenter] postNotificationName:kEventGetVehicleList object:_vehicleDataList];
     } failure:^(RKObjectRequestOperation *operation, NSError *error) {
         failure(error);
     }];

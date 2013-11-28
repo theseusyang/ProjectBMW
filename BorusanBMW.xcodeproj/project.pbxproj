@@ -566,6 +566,7 @@
 		62D790BE17E9A09A00BDB445 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		62D790BF17E9A09A00BDB445 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		62D790C017E9A09A00BDB445 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		62E862D118476AD400168AA4 /* Events.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Events.h; path = Utils/Events.h; sourceTree = "<group>"; };
 		62E988B918054C6D000F3C8D /* UpdateResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UpdateResponse.h; path = Model/Entity/UpdateResponse.h; sourceTree = "<group>"; };
 		62E988BA18054C6D000F3C8D /* UpdateResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UpdateResponse.m; path = Model/Entity/UpdateResponse.m; sourceTree = "<group>"; };
 		62E988BF180585A2000F3C8D /* ButtonLoadMore.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ButtonLoadMore.png; sourceTree = "<group>"; };
@@ -1001,6 +1002,7 @@
 				62C9060617E07199009E1253 /* CGUtilHelper.m */,
 				629B208218210F5A00A85CDA /* Profiler.h */,
 				629B208318210F5A00A85CDA /* Profiler.m */,
+				62E862D118476AD400168AA4 /* Events.h */,
 			);
 			name = Utils;
 			sourceTree = "<group>";

@@ -24,14 +24,15 @@
 
 @implementation CGPhotoGalleryView
 
-- (id)initWithPoint:(CGPoint)pos andList:(NSArray*)imageList andViewController: (CGBaseViewController *)vc isDeleteActive:(BOOL)isDeleteActive
+- (id)initWithPoint:(CGPoint)pos andList:(NSMutableArray*)imageList andViewController: (CGBaseViewController *)vc isDeleteActive:(BOOL)isDeleteActive
 {
     
     self = [super initWithFrame:CGRectMake(pos.x, pos.y, kGalleryWidth, kGalleryHeight)];
     if (self) {
         self.backgroundColor = kColorClear;
         
-        self.currentImageList = [NSMutableArray arrayWithArray:[imageList mutableCopy]];
+        //self.currentImageList = [NSMutableArray arrayWithArray:[imageList mutableCopy]];
+        self.currentImageList = imageList;
         _parentViewController = vc;
         
         _isDeleteActive = isDeleteActive;

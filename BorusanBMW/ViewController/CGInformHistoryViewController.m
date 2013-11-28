@@ -82,6 +82,31 @@
         [self stopSpinner];
         [self createTableView];
     }
+    
+    // Sadece ilk açıldığında data ilklenmemiş ise notification aracılığıyla haberdar ediliyor. Daha sonra notif kaldırılıyor.
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateVehicleList:) name:kEventGetVehicleList object:nil];
+}
+
+- (void)updateVehicleList:(id)object
+{
+    _vehicleList = [[DataService shared] getVehicleList];
+    
+    if (_vehicleImageList == nil) {
+        _vehicleImageList = [NSMutableArray array];
+    }
+    
+    [self setVehicleImageList];
+    [_moreCell stopAnimation];
+    if (_informHistoryTableView) {
+        [_informHistoryTableView reloadData];
+    }
+    else
+    {
+        [self setVehicleImageList];
+        [self createTableView];
+    }
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kEventGetVehicleList object:nil];
 }
 
 - (void)setVehicleImageList

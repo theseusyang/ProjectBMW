@@ -161,6 +161,7 @@
     if (imageView.image.imageOrientation != UIImageOrientationUp)
         imageView.image = [imageView.image rotate:imageView.image.imageOrientation];
     
+    /* Crop the image */
     CGRect cutRect = [CGUtilHelper imageRectInSquare:imageView.image];
     UIImage *finalImage = [CGUtilHelper imageWithImage:imageView.image andRect:cutRect];
     imageView.image = finalImage;
