@@ -43,8 +43,8 @@
         [self.deleteButton setImage:[UIImage imageNamed:@"ButtonSquare.png"] forState:UIControlStateNormal];
         [self.deleteButton addTarget:self action:@selector(deleteButtonAction:) forControlEvents:UIControlEventTouchUpInside];
         
-        _deleteIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"IconDelete"]];
-        _deleteIcon.center = self.deleteButton.center;
+        UIImageView *deleteIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"IconDelete"]];
+        deleteIcon.center = self.deleteButton.center;
         self.deleteButton.center = self.center;
         self.deleteButton.frame = CGRectMake(self.deleteButton.center.x - self.deleteButton.frame.size.width/2, 10, self.deleteButton.frame.size.width, self.deleteButton.frame.size.height);
         [self.deleteButton addSubview:deleteIcon];
