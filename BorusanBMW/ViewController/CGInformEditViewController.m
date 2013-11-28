@@ -45,7 +45,7 @@
     _groupView.contentSize = CGSizeMake(320, 660);
     [self.view addSubview:_groupView];
     
-    _photoGallery = [[CGPhotoGalleryView alloc] initWithPoint:CGPointMake(0, kPhotoGalleryHeightGap) andList:[NSArray arrayWithArray:_vehicle.imageList] andViewController:self isDeleteActive:YES];
+    _photoGallery = [[CGPhotoGalleryView alloc] initWithPoint:CGPointMake(0, kPhotoGalleryHeightGap) andList:[NSArray arrayWithArray:_vehicle.imageList] andViewController:self isDeleteActive:NO];
     [_groupView addSubview:_photoGallery];
     
     _tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];

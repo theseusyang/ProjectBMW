@@ -37,7 +37,7 @@
     return self;
 }
 
-- (NSMutableArray*)getVehicleListWithSuccess:(void (^)(NSArray *vehicleList))success
+- (NSMutableArray*)getVehicleListWithSuccess:(void (^)(NSMutableArray *vehicleList))success
                                      failure:(void (^)(NSError* error))failure
 {
     [[Server shared] getVehicleListWithHash:[self getHash] pageIndex:_vehiclePageIndex success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
@@ -64,7 +64,7 @@
     return nil;
 }
 
-- (NSMutableArray*)updateVehicleListWithSuccess:(void (^)(NSArray *vehicleList))success
+- (NSMutableArray*)updateVehicleListWithSuccess:(void (^)(NSMutableArray *vehicleList))success
                                      failure:(void (^)(NSError* error))failure
 {
     [[Server shared] getVehicleListWithHash:[self getHash] pageIndex:_vehiclePageIndex success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {

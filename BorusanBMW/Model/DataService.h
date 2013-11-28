@@ -25,9 +25,9 @@
 
 + (DataService*)shared;
 
-- (NSMutableArray*)getVehicleListWithSuccess:(void (^)(NSArray *vehicleList))success
+- (NSMutableArray*)getVehicleListWithSuccess:(void (^)(NSMutableArray *vehicleList))success
                                      failure:(void (^)(NSError* error))failure;
-- (NSMutableArray*)updateVehicleListWithSuccess:(void (^)(NSArray *vehicleList))success
+- (NSMutableArray*)updateVehicleListWithSuccess:(void (^)(NSMutableArray *vehicleList))success
                                         failure:(void (^)(NSError* error))failure;
 - (void)addRecord:(VehicleListResponse*)vehicleRecord;
 - (void)deleteRecord:(VehicleListResponse *)vehicleRecord;

@@ -58,12 +58,12 @@
     
     if (_vehicleList.count <= 0) {
         // New Get List Method
-        [[DataService shared] getVehicleListWithSuccess:^(NSArray *vehicleList) {
+        [[DataService shared] getVehicleListWithSuccess:^(NSMutableArray *vehicleList) {
             
             _vehicleImageList = [NSMutableArray array];
             _vehicleList = [NSMutableArray arrayWithArray:vehicleList];
             
-            //[self sortListWithDate];
+            [self sortListWithDate];
             [self setVehicleImageList];
             [self stopSpinner];
             [self createTableView];
@@ -77,7 +77,7 @@
             _vehicleImageList = [NSMutableArray array];
         }
         // Data is already in DataService
-        //[self sortListWithDate];
+        [self sortListWithDate];
         [self setVehicleImageList]; // ?
         [self stopSpinner];
         [self createTableView];
@@ -259,11 +259,11 @@
     
 - (void)updateData
 {
-    [[DataService shared] updateVehicleListWithSuccess:^(NSArray *vehicleList) {
+    [[DataService shared] updateVehicleListWithSuccess:^(NSMutableArray *vehicleList) {
         
         _vehicleList = [[DataService shared] getVehicleList];
         
-        //[self sortListWithDate];
+        [self sortListWithDate];
         [self setVehicleImageList];
         [_moreCell stopAnimation];
         [_informHistoryTableView reloadData];
