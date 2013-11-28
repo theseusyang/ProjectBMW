@@ -157,6 +157,9 @@
     if (_pageIndex >= 0) return;
     
     self.deleteButton.hidden = YES;
+    //Fade animation for button
+    self.deleteButton.alpha = 0;
+    
     
     for (int j=0; j < _photoCount; ++j) {
         NSNumber *number = [_positionIndexList objectAtIndex:j];
@@ -200,6 +203,7 @@
         
     } completion:^(BOOL finished) {
         self.deleteButton.hidden = NO;
+        [self fadeInView:self.deleteButton];
     }];
 
     _exchangeIndex--;
@@ -213,6 +217,7 @@
     if (_pageIndex <= -(_photoCount - 1)) return;
     
     self.deleteButton.hidden = YES;
+    self.deleteButton.alpha = 0;
     
     for (int j=0; j < _photoCount; ++j) {
         NSNumber *number = [_positionIndexList objectAtIndex:j];
@@ -257,11 +262,20 @@
         }
     } completion:^(BOOL finished) {
         self.deleteButton.hidden = NO;
+        [self fadeInView: self.deleteButton];
     }];
     
     _exchangeIndex++;
     [_bgView bringSubviewToFront:[_galleryList objectAtIndex:_exchangeIndex]];
     _pageIndex--;
+}
+
+-(void)fadeInView:(UIView*)imageView
+{
+    [UIView animateWithDuration:1.0 animations:^{
+        imageView.alpha = 1.0;
+    }];
+
 }
 
 @end

@@ -17,10 +17,14 @@
 #import "CGUtilHelper.h"
 #import "CGPhotoGalleryView.h"
 
-@interface CGInformEditViewController : CGBaseViewController<UITextFieldDelegate, UIScrollViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UITextViewDelegate>
+#import "AppInfo.h"
+
+@interface CGInformEditViewController : CGBaseViewController<UITextFieldDelegate, UIScrollViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UITextViewDelegate, UIAlertViewDelegate>
 {
     CGPhotoGalleryView *_photoGallery;
     UIView *_photoListView;
+    
+    UIImageView *_pickerViewBackground;
     
     UITapGestureRecognizer *_tap;
     
@@ -44,6 +48,8 @@
     //Photo Picker
     UIPickerView *_imagePicker;
     NSArray* _notificationTypeList;
+    
+    UIAlertView *_deleteAlert;
     
 }
 

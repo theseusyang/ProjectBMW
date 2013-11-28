@@ -33,7 +33,7 @@
     _groupView.contentSize = CGSizeMake(320, 480);
     [self.view addSubview:_groupView];
     
-    _textGroupView = [[UIView alloc] initWithFrame:CGRectMake(17, 217, 320, 205)];
+    _textGroupView = [[UIView alloc] initWithFrame:CGRectMake(17, 227, 320, 205)];
     [_groupView addSubview:_textGroupView];
     
     _photoGallery = [[CGPhotoGalleryView alloc] initWithPoint:CGPointMake(0, kPhotoGalleryHeightGap) andList:_vehicle.imageList andViewController:self isDeleteActive:NO];
@@ -55,7 +55,6 @@
     _seperator4 = [[UIView alloc] initWithFrame: CGRectMake(37, 150, 250, 1)];
     _seperator4.backgroundColor = [UIColor colorWithRed:146.0f/255.0f green:146.0f/255.0f blue:146.0f/255.0f alpha:0.3f];
     [_textGroupView addSubview:_seperator4];
-    
     
     // Labels
     

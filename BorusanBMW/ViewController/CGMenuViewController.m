@@ -48,6 +48,8 @@
     
     _newInformButton = [[UIButton alloc] initWithFrame:CGRectMake(31, 326, 258, 53)];
     [_newInformButton setBackgroundImage:kApplicationImage(kResButtonBlue) forState:UIControlStateNormal];
+    [_newInformButton setBackgroundImage:kApplicationImage(kResButtonPressed) forState:UIControlStateHighlighted];
+    [_newInformButton setTitle:@"Yeni Bildirim" forState:UIControlStateHighlighted];
     [_newInformButton setTitle:@"Yeni Bildirim" forState:UIControlStateNormal];
     [_newInformButton.titleLabel setFont:kApplicationFontBold(19.0f)];
     [self.view addSubview:_newInformButton];
@@ -56,6 +58,8 @@
     
     _informHistory = [[UIButton alloc] initWithFrame:CGRectMake(31, 382, 258, 53)];
     [_informHistory setBackgroundImage:kApplicationImage(kResButtonDark)  forState:UIControlStateNormal];
+    [_informHistory setBackgroundImage:kApplicationImage(kResButtonPressed) forState:UIControlStateHighlighted];
+    [_informHistory setTitle:@"Bildirim Geçmişi" forState:UIControlStateHighlighted];
     [_informHistory setTitle:@"Bildirim Geçmişi" forState:UIControlStateNormal];
     [_informHistory.titleLabel setFont:kApplicationFontBold(19.0f)];
     [self.view addSubview:_informHistory];

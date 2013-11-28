@@ -60,6 +60,8 @@
     _addPhotoButton = [[UIButton alloc] initWithFrame:CGRectMake(31, 243 + 36, 258, 53)];
     [_addPhotoButton setBackgroundImage:kApplicationImage(kResButtonBlue) forState:UIControlStateNormal];
     [_addPhotoButton setTitle:@"Bir Fotograf Daha Ekle" forState:UIControlStateNormal];
+    [_addPhotoButton setBackgroundImage:kApplicationImage(kResButtonPressed) forState:UIControlStateHighlighted];
+    [_addPhotoButton setTitle:@"Bir Fotograf Daha Ekle" forState:UIControlStateHighlighted];
     [_addPhotoButton.titleLabel setFont:kApplicationFontBold(19.0f)];
     [_addPhotoButton addTarget:self action:@selector(addPhotoAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_addPhotoButton];
@@ -67,6 +69,8 @@
     _continueButton = [[UIButton alloc] initWithFrame:CGRectMake(31, 300 + 36, 258, 53)];
     [_continueButton setBackgroundImage:kApplicationImage(kResButtonDark) forState:UIControlStateNormal];
     [_continueButton setTitle:@"Devam Et" forState:UIControlStateNormal];
+    [_continueButton setBackgroundImage:kApplicationImage(kResButtonPressed) forState:UIControlStateHighlighted];
+    [_continueButton setTitle:@"Devam Et" forState:UIControlStateHighlighted];
     [_continueButton.titleLabel setFont:kApplicationFontBold(19.0f)];
     [_continueButton addTarget:self action:@selector(continueAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_continueButton];

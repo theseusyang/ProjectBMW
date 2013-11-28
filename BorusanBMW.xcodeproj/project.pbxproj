@@ -180,6 +180,8 @@
 		AF94AA921843B8540098B032 /* iPhoneIcon-29.png in Resources */ = {isa = PBXBuildFile; fileRef = AF94AA901843B8540098B032 /* iPhoneIcon-29.png */; };
 		AF94AA931843B8540098B032 /* iPhoneIcon-29@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AF94AA911843B8540098B032 /* iPhoneIcon-29@2x.png */; };
 		AF94AA9B1843BF320098B032 /* iPhoneIcon-568 copy.png in Resources */ = {isa = PBXBuildFile; fileRef = AF94AA9A1843BF320098B032 /* iPhoneIcon-568 copy.png */; };
+		AFB2218E184675CD001B3E3A /* PickerViewBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = AFB2218C184675CD001B3E3A /* PickerViewBackground.png */; };
+		AFB2218F184675CD001B3E3A /* PickerViewBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AFB2218D184675CD001B3E3A /* PickerViewBackground@2x.png */; };
 		AFD3AF161832574D0072F554 /* PlateCaptureGuideVertical.png in Resources */ = {isa = PBXBuildFile; fileRef = AFD3AF121832574D0072F554 /* PlateCaptureGuideVertical.png */; };
 		AFD3AF171832574D0072F554 /* PlateCaptureGuideVertical@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AFD3AF131832574D0072F554 /* PlateCaptureGuideVertical@2x.png */; };
 		AFD3AF2018325AD20072F554 /* IconCarMode.png in Resources */ = {isa = PBXBuildFile; fileRef = AFD3AF1C18325AD20072F554 /* IconCarMode.png */; };
@@ -594,6 +596,8 @@
 		AF94AA901843B8540098B032 /* iPhoneIcon-29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhoneIcon-29.png"; sourceTree = "<group>"; };
 		AF94AA911843B8540098B032 /* iPhoneIcon-29@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhoneIcon-29@2x.png"; sourceTree = "<group>"; };
 		AF94AA9A1843BF320098B032 /* iPhoneIcon-568 copy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhoneIcon-568 copy.png"; sourceTree = "<group>"; };
+		AFB2218C184675CD001B3E3A /* PickerViewBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PickerViewBackground.png; sourceTree = "<group>"; };
+		AFB2218D184675CD001B3E3A /* PickerViewBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PickerViewBackground@2x.png"; sourceTree = "<group>"; };
 		AFBE0BFD18211D78002F9360 /* RestKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RestKit.xcodeproj; path = RestKit/RestKit.xcodeproj; sourceTree = "<group>"; };
 		AFD3AF121832574D0072F554 /* PlateCaptureGuideVertical.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlateCaptureGuideVertical.png; sourceTree = "<group>"; };
 		AFD3AF131832574D0072F554 /* PlateCaptureGuideVertical@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PlateCaptureGuideVertical@2x.png"; sourceTree = "<group>"; };
@@ -855,6 +859,8 @@
 		62B7C60A17D61A0B00257C95 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				AFB2218C184675CD001B3E3A /* PickerViewBackground.png */,
+				AFB2218D184675CD001B3E3A /* PickerViewBackground@2x.png */,
 				629ABD4717E6E3DC00A0F0F6 /* Icons */,
 				629ABD4617E6E3D500A0F0F6 /* Buttons */,
 				AF94AA9A1843BF320098B032 /* iPhoneIcon-568 copy.png */,
@@ -1392,6 +1398,7 @@
 				6224451717D8D1E7002A2482 /* IconLocationBlue.png in Resources */,
 				AFD3AF3218327FAF0072F554 /* SwitchButtonPlate.png in Resources */,
 				AF1AE736183CD21B002C009B /* SeperatorShadow@2x.png in Resources */,
+				AFB2218F184675CD001B3E3A /* PickerViewBackground@2x.png in Resources */,
 				6224451817D8D1E7002A2482 /* IconLocationBlue@2x.png in Resources */,
 				6224451917D8D1E7002A2482 /* IconLocationDark.png in Resources */,
 				6224451A17D8D1E7002A2482 /* IconLocationDark@2x.png in Resources */,
@@ -1442,6 +1449,7 @@
 				6224453E17D8D1E7002A2482 /* TextboxFocused@2x.png in Resources */,
 				AFD3AF2918327A6E0072F554 /* SwitchButtonFlashOff@2x.png in Resources */,
 				AFD3AF3A183289440072F554 /* ButtonSmallDeactive.png in Resources */,
+				AFB2218E184675CD001B3E3A /* PickerViewBackground.png in Resources */,
 				62FFD64E17E1B7EB00438CA0 /* ThumbnailContainer.png in Resources */,
 				62FFD64F17E1B7EB00438CA0 /* ThumbnailContainer@2x.png in Resources */,
 				62FFD65017E1B7EB00438CA0 /* ThumbnailContainerPressed.png in Resources */,

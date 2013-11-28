@@ -160,6 +160,8 @@
     _sendButton.titleLabel.font = kApplicationFontBold(19.0f);
     [_sendButton setBackgroundImage:[UIImage imageNamed:@"ButtonBlue"] forState:UIControlStateNormal];
     [_sendButton setTitle:@"Gönder" forState:UIControlStateNormal];
+    [_sendButton setBackgroundImage:kApplicationImage(kResButtonPressed) forState:UIControlStateHighlighted];
+    [_sendButton setTitle:@"Gönder" forState:UIControlStateHighlighted];
     [_sendButton addTarget:self action:@selector(sendAction:) forControlEvents:UIControlEventTouchUpInside];
     [_groupScrollView addSubview:_sendButton];
     
@@ -171,6 +173,20 @@
     
     _errorAlert = [[UIAlertView alloc]initWithTitle:@"" message:@"Lütfen bütün kısımları doldurun." delegate:self cancelButtonTitle:@"Tamam" otherButtonTitles:nil, nil];    
     [_groupScrollView addSubview:_errorAlert];
+    
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    CGFloat screenHeight = screenRect.size.height;
+    UIImage *pickerViewBackgroundImage = kApplicationImage(@"PickerViewBackground.png");
+    _pickerViewBackground = [[UIImageView alloc]initWithFrame:CGRectMake(0, screenHeight - pickerViewBackgroundImage.size.height,
+                                                                         pickerViewBackgroundImage.size.width,
+                                                                         pickerViewBackgroundImage.size.height)];
+    
+    _pickerViewBackground.image = pickerViewBackgroundImage;
+    _pickerViewBackground.hidden = YES;
+    [_groupScrollView addSubview:_pickerViewBackground];
+
+    
+    
 
     [self.view addSubview:_imagePicker];
 }
@@ -231,11 +247,13 @@
          _description.textView.textColor = _placeholderDescriptionTextColor;
          _description.textView.text = _defaultDescription;
      }
-    _groupScrollView.scrollEnabled = NO;
+    [self instantHidePickerWheel];
     [_groupScrollView setContentOffset:CGPointMake(0, 0) animated:YES];
+    _groupScrollView.scrollEnabled = NO;
+    
     
     //
-    [self instantHidePickerWheel];
+    
 }
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
@@ -262,32 +280,35 @@
     return YES;
 }
 
-
-- (void)textFieldDidBeginEditing:(UITextField *)textField
+-(BOOL)textFieldShouldBeginEditing:(UITextField *)textField
 {
-    
-    if ([textField isEqual:_notificationType]) {
-        [self performSelector:@selector(hideKeyboard:) withObject:textField afterDelay:0.1f];
+    if( [textField isEqual:_notificationType] )
+    {
+        [_licensePlate resignFirstResponder];
+        [_serviceName resignFirstResponder];
+        [_description.textView resignFirstResponder];
+        [_groupScrollView setContentOffset:CGPointMake(0, textField.frame.origin.y - kTextTopScrollGap ) animated:YES];
+        _groupScrollView.scrollEnabled = NO;
+        [self showPickerWheel];
+        if( SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0"))
+            _pickerViewBackground.frame = CGRectMake( 0, textField.frame.origin.y - kTextTopScrollGap + _pickerViewBackground.frame.size.height, _pickerViewBackground.frame.size.width, _pickerViewBackground.frame.size.height );
+        return NO;
     }
     else
     {
-        [self instantHidePickerWheel];
-        textField.placeholder = nil;
+        return YES;
     }
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    [self instantHidePickerWheel];
+    textField.placeholder = nil;
     
     _groupScrollView.scrollEnabled = YES;
     [_groupScrollView setContentOffset:CGPointMake(0, textField.frame.origin.y - kTextTopScrollGap) animated:YES];
 }
-
-//TODO: Saçma sapan bir çözüm, nedenini araştır!
--(void)hideKeyboard:(id)sender
-{
-    [self showPickerWheel];
-    UITextField *text = (UITextField*)sender;
-    [self.view endEditing:YES];
-    [text resignFirstResponder];
-}
-
+ 
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
     if([textField.text isEqual:@""])
@@ -297,6 +318,7 @@
     _groupScrollView.scrollEnabled = NO;
     //Check
     [_groupScrollView setContentOffset:CGPointMake(0, 0) animated:YES];
+
 }
 
 #pragma mark Button Actions
@@ -335,6 +357,7 @@
     {
         [_errorAlert show];
         return;
+        
     }
        NSNumber *notifID;
     
@@ -409,25 +432,32 @@
         _imagePicker.frame = CGRectMake(0, kWindowHeightWithNav - kPickerViewHeight, kPickerViewWidth, kPickerViewHeight);
     } completion:^(BOOL finished) {
         _imagePicker.hidden = NO;
+        if( SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0"))
+            _pickerViewBackground.hidden = NO;
     }];
 }
 
 - (void)hidePickerWheel
 {
-    [UIView animateWithDuration:1.0f animations:^{
+    _pickerViewBackground.hidden = YES;
+    [UIView animateWithDuration:0.5f animations:^{
         _imagePicker.frame = CGRectMake(0, kWindowHeightWithNav, kPickerViewWidth, kPickerViewHeight);
+        [_groupScrollView setContentOffset:CGPointMake(0, 0)];
     } completion:^(BOOL finished) {
         _imagePicker.hidden = YES;
     }];
+    
 }
 
 - (void)instantHidePickerWheel
 {
+    _pickerViewBackground.hidden = YES;
     [UIView animateWithDuration:0.1f animations:^{
         _imagePicker.frame = CGRectMake(0, kWindowHeightWithNav, kPickerViewWidth, kPickerViewHeight);
     } completion:^(BOOL finished) {
         _imagePicker.hidden = YES;
     }];
+    _groupScrollView.scrollEnabled = YES;
 }
 
 #pragma mark UIAlertViewDelegate

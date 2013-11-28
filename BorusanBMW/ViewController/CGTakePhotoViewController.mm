@@ -62,6 +62,8 @@
     _newButton = [[UIButton alloc] initWithFrame:CGRectMake(6, 366, 93, 48)];
     [_newButton setBackgroundImage:kApplicationImage(kResButtonSmall) forState:UIControlStateNormal];
     [_newButton setTitle:@"Tekrar" forState:UIControlStateNormal];
+    [_newButton setBackgroundImage:kApplicationImage(kResButtonPressed) forState:UIControlStateHighlighted];
+    [_newButton setTitle:@"Tekrar" forState:UIControlStateHighlighted];
     [_newButton.titleLabel setFont:kApplicationFontBold(17.0f)];
     [_newButton addTarget:self action:@selector(newAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_newButton];
@@ -69,12 +71,15 @@
     _continueButton = [[UIButton alloc] initWithFrame:CGRectMake(221, 366, 93, 48)];
     [_continueButton setBackgroundImage:kApplicationImage(kResButtonSmall) forState:UIControlStateNormal];
     [_continueButton setTitle:@"Kullan" forState:UIControlStateNormal];
+    [_continueButton setBackgroundImage:kApplicationImage(kResButtonPressed) forState:UIControlStateHighlighted];
+    [_continueButton setTitle:@"Kullan" forState:UIControlStateHighlighted];
     [_continueButton.titleLabel setFont:kApplicationFontBold(17.0f)];
     [_continueButton addTarget:self action:@selector(continueAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_continueButton];
     
     _captureButton = [[UIButton alloc] initWithFrame:CGRectMake(105, 333, 110, 83)];
     [_captureButton setBackgroundImage:kApplicationImage(kResButtonCapture) forState:UIControlStateNormal];
+    [_captureButton setBackgroundImage:kApplicationImage(kResButtonCapturePressed) forState:UIControlStateHighlighted];
     [_captureButton addTarget:self action:@selector(capture:) forControlEvents:UIControlEventTouchUpInside];
     
     [self.view addSubview:_captureButton];

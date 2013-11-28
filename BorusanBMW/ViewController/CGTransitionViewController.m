@@ -86,9 +86,19 @@
     
     _topLabel = [[CGLabel alloc] initWithFrame:CGRectMake(10, _centerY + 80, 300, 16)];
     if( [_object isKindOfClass:[CGCreateRecordViewController class]])
-        _topLabel.text = @"Bildiri Gönderiliyor...";
-    else
+    {
+        if(_transitionType == TransitionStateDelete)
+            _topLabel.text = @"Bildiri Siliniyor...";
+        else
+            _topLabel.text = @"Bildiri Gönderiliyor...";
+    }
+    else if( [_object isKindOfClass:[CGInformEditViewController class]])
+    {
+        if(_transitionType == TransitionStateDelete )
+            _topLabel.text = @"Bildiri Siliniyor...";
+        else
         _topLabel.text = @"Bildiri Güncelleniyor...";
+    }
     _topLabel.textAlignment = NSTextAlignmentCenter;
     _topLabel.font = kApplicationFontBold(16.0);
     _topLabel.textColor = kTextColor;
@@ -96,7 +106,7 @@
     [self.view addSubview:_topLabel];
     
     _bottomLabel = [[CGLabel alloc] initWithFrame:CGRectMake( 10, _centerY + 100, 300, 14)];
-    _bottomLabel.text = @"Lütfen bekleyin.";
+    _bottomLabel.text = @"Lütfen bekleyin";
     _bottomLabel.textAlignment = NSTextAlignmentCenter;
     _bottomLabel.font = kApplicationFont(13.0f);
     _bottomLabel.textColor = kTextColor;
@@ -187,6 +197,7 @@
     [[Server shared] deleteVehicleRecordWithHash:[[DataService shared] getHash] ID:_entity.ID success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
         [[DataService shared] deleteRecord:_vehicle];
         [self changeTransitionState:TransitionStateSucceeded];
+        _transitionType = TransitionTypeDelete;
     } failure:^(RKObjectRequestOperation *operation, NSError *error) {
         NSLog(@"deleteRecord is failed!");
     }];
@@ -215,10 +226,19 @@
     if (transitionState == TransitionStateSucceeded) {
         //_topLabel.frame = CGRectMake(_centerX - 30, _centerY + 80, 120, 16);
         if( [_object isKindOfClass:[CGCreateRecordViewController class]])
-            _topLabel.text = @"Bildiri Gönderildi!";
-        else
-            _topLabel.text = @"Bildiri Güncellendi!";
-        //_bottomLabel.frame = CGRectMake(_centerX - 30, _centerY + 100, 140, 14);
+        {
+            if(_transitionType == TransitionTypeDelete)
+                _topLabel.text = @"Bildiri Silindi!";
+            else
+                _topLabel.text = @"Bildiri Gönderildi!";
+        }
+        else if([_object isKindOfClass:[CGInformEditViewController class]])
+        {
+            if(_transitionType == TransitionStateDelete)
+                _topLabel.text = @"Bildiri Silindi!";
+            else
+                _topLabel.text = @"Bildiri Gönderildi!";
+        }
         _bottomLabel.text = @"Teşekkürler";
         //[_topLabel sizeToFit];
         //[_bottomLabel sizeToFit];

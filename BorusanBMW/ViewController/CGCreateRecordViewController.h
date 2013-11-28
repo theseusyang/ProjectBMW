@@ -26,6 +26,7 @@
     NSString *_plateNumber;
     
     UIScrollView *_groupScrollView;
+    UIImageView *_pickerViewBackground;
     
     UIImageView *_locationIcon;
     CGLabel     *_dateLabel;
