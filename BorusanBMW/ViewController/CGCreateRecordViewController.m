@@ -96,38 +96,8 @@
     
     // UITextFields
     _licensePlate = [[CGTextField alloc] initWithFrame:CGRectMake(35, 98, 250, 46)];
-    
-    /*
-    if( !(_plateNumber == (id)[NSNull null] || _plateNumber.length == 0) )
-    {
-        //Regex
-        //Set uppercase
-        _plateNumber = [NSString stringWithString:[_plateNumber uppercaseString]];
-        //Set expression
-        
-        NSLog(@"Plate Number %@", _plateNumber);
-        NSString *regExTest = @"[0-8,B,D,S][0-9][A-Z]{1,4}[0-9]{2,4}";
-        NSRegularExpression *plateTest = [NSRegularExpression regularExpressionWithPattern:regExTest options:0 error:nil];
-        //Get first matching string
-        NSTextCheckingResult *result = [plateTest firstMatchInString:_plateNumber options:0 range:NSMakeRange(0, _plateNumber.length)];
-        NSString *resultString = [_plateNumber substringWithRange:[result range]];
-        //Check for null string
-        if( !(resultString == (id)[NSNull null] || resultString.length == 0) )
-        {
-            if( [[resultString substringWithRange:NSMakeRange(0, 1)] isEqual:@"B"])
-            {
-                resultString = [@"3" stringByAppendingString:[resultString substringWithRange:NSMakeRange(1, resultString.length-1)]];
-            }
-        }
-        NSLog(@"Result %@", resultString);
-        _plateNumber = [NSString stringWithString:resultString];
-    }
-    */
- 
     _licensePlate.text = _plateNumber;
-    
-    
-    
+
     _licensePlate.font = kApplicationFontBold(16.0);
     _licensePlate.textColor = kTextColor;
     _licensePlate.leftView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"IconLicensePlateDark.png"]];
@@ -349,6 +319,7 @@
 
         NSData *imageData = UIImagePNGRepresentation(newImage);
         NSString *imageEncoded = [Base64 encode:imageData];
+        // Zip Base64 data
         
         [imageList addObject:imageEncoded];
     }

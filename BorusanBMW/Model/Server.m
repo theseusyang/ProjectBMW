@@ -169,9 +169,8 @@
     NSDictionary *loginRequest = @{@"Username" : username,
                                    @"Password" : password};
 
-    [[RKObjectManager sharedManager] getObjectsAtPath:kFuncLogin parameters:loginRequest success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+    [[RKObjectManager sharedManager] postObject:nil path:kFuncLogin parameters:loginRequest success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
 
-        
         LoginResponse *loginResponse = (LoginResponse*)[mappingResult array][0];
         [[DataService shared] setHash:loginResponse.hash];
         success(operation, mappingResult);
@@ -207,7 +206,7 @@
     isServerBusy = YES;
     NSLog(@"Try to get vehicle list: %@ andPageIndex: %d", hash, pageIndex);
     
-    [[RKObjectManager sharedManager] getObject:nil path:kFuncGetVechicleList parameters:vehicleListRequest success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+    [[RKObjectManager sharedManager] postObject:nil path:kFuncGetVechicleList parameters:vehicleListRequest success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
         isServerBusy = NO;
         success(operation, mappingResult);
         
@@ -223,7 +222,7 @@
 - (void)getNotificationTypesWithSuccess:(void (^)(RKObjectRequestOperation *operation, RKMappingResult *mappingResult))success
                      failure:(void (^)(RKObjectRequestOperation *operation, NSError *error))failure
 {
-    [[RKObjectManager sharedManager] getObjectsAtPath:kFuncGetNotificationTypes parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+    [[RKObjectManager sharedManager] postObject:nil path:kFuncGetNotificationTypes parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
         success(operation, mappingResult);
     } failure:^(RKObjectRequestOperation *operation, NSError *error) {
         failure(operation, error);
@@ -238,7 +237,7 @@
     NSDictionary *vehicleDeleteRequest = @{@"Hash": hash,
                                          @"ID": ID};
     
-    [[RKObjectManager sharedManager] getObjectsAtPath:kFuncDeleteVehicle parameters:vehicleDeleteRequest success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+    [[RKObjectManager sharedManager] postObject:nil path:kFuncDeleteVehicle parameters:vehicleDeleteRequest success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
         success(operation, mappingResult);
     } failure:^(RKObjectRequestOperation *operation, NSError *error) {
         failure(operation, error);
