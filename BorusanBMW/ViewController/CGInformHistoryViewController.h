@@ -20,11 +20,19 @@
 
 @interface CGInformHistoryViewController : CGBaseViewController<UITableViewDataSource, UITableViewDelegate>
 {
+    NSTimer *_timer;
+    
+    UIImageView *_loadingImage;
+    int _count;
+    
     CGInformHistoryTableView *_informHistoryTableView;
     NSMutableArray *_vehicleList;
     NSMutableArray *_vehicleImageList;
     UIRefreshControl *_refreshControl;
     CGMoreCell *_moreCell;
+    
+    UILabel *_topLabel;
+    UILabel *_bottomLabel;
 }
 
 @end

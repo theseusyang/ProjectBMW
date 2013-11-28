@@ -77,6 +77,8 @@
     
     _enteranceButton = [[UIButton alloc] initWithFrame:CGRectMake(31, 377, 258, 53)];
     [_enteranceButton setBackgroundImage:kApplicationImage(kResButtonBlue) forState:UIControlStateNormal];
+    [_enteranceButton setImage:kApplicationImage(kResButtonPressed) forState:UIControlStateHighlighted];
+    [_enteranceButton setTitle:@"Giriş Yap" forState:UIControlStateHighlighted];
     [_enteranceButton setTitle:@"Giriş Yap" forState:UIControlStateNormal];
     [_enteranceButton.titleLabel setFont:kApplicationFontBold(19.0f)];
     [_enteranceButton addTarget:self action:@selector(enterance_button:) forControlEvents:UIControlEventTouchUpInside];

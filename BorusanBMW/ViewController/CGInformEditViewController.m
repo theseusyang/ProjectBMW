@@ -109,6 +109,8 @@
     _notificationType.leftView.frame  = CGRectMake(14, 10, 20, 24);
     _notificationType.leftViewMode = UITextFieldViewModeAlways;
     _notificationType.paddingX = kTextFieldPaddingX;
+    _notificationType.allowsEditingTextAttributes = NO;
+    
     [_groupView addSubview:_notificationType];
     
     
@@ -123,6 +125,8 @@
     _saveButton.titleLabel.font = kApplicationFontBold(19.0f);
     [_saveButton setBackgroundImage:[UIImage imageNamed:@"ButtonBlue"] forState:UIControlStateNormal];
     [_saveButton setTitle:@"Kaydet" forState:UIControlStateNormal];
+    [_saveButton setBackgroundImage:kApplicationImage(kResButtonPressed) forState:UIControlStateHighlighted];
+    [_saveButton setTitle:@"Kaydet" forState:UIControlStateHighlighted];
     [_saveButton addTarget:self action:@selector(saveAction:) forControlEvents:UIControlEventTouchUpInside];
     [_groupView addSubview:_saveButton];
     
@@ -130,6 +134,8 @@
     _deleteButton.titleLabel.font = kApplicationFontBold(19.0f);
     [_deleteButton setBackgroundImage:[UIImage imageNamed:@"ButtonRed"] forState:UIControlStateNormal];
     [_deleteButton setTitle:@"Sil" forState:UIControlStateNormal];
+    [_deleteButton setBackgroundImage:kApplicationImage(kResButtonPressed) forState:UIControlStateHighlighted];
+    [_deleteButton setTitle:@"Sil" forState:UIControlStateHighlighted];
     [_deleteButton addTarget:self action:@selector(deleteAction:) forControlEvents:UIControlEventTouchUpInside];
     [_groupView addSubview:_deleteButton];
     
@@ -138,6 +144,22 @@
     _imagePicker.dataSource = self;
     _imagePicker.showsSelectionIndicator = YES;
     _imagePicker.hidden = NO;
+    _imagePicker.backgroundColor = kColorClear;
+    
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    CGFloat screenHeight = screenRect.size.height;
+    UIImage *pickerViewBackgroundImage = kApplicationImage(@"PickerViewBackground.png");
+    _pickerViewBackground = [[UIImageView alloc]initWithFrame:CGRectMake(0, screenHeight - pickerViewBackgroundImage.size.height,
+        pickerViewBackgroundImage.size.width,
+        pickerViewBackgroundImage.size.height)];
+    
+    _pickerViewBackground.image = pickerViewBackgroundImage;
+    _pickerViewBackground.hidden = YES;
+    [_groupView addSubview:_pickerViewBackground];
+    
+    
+    _deleteAlert = [[UIAlertView alloc]initWithTitle:Nil message:@"Bildiriyi silmek istediğinizden eminmisiniz?" delegate:self cancelButtonTitle: @"Evet" otherButtonTitles:@"Hayır", nil];
+    
     
     [self.view addSubview:_imagePicker];
 }
@@ -190,6 +212,25 @@
     [_description.textView resignFirstResponder];
 }
 
+#pragma mark UIAlertView
+-(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    if(buttonIndex == 0)
+    {
+        //Delete
+        RecordEntity *deleteRecord = [RecordEntity new];
+        deleteRecord.ID = _vehicle.ID;
+        
+        UIViewController *vc = [[CGTransitionViewController alloc] initWith:[CGInformHistoryViewController class] deleteEntity:deleteRecord vehicleResponse:_vehicle andObject:self];
+        [self.navigationController pushViewController:vc animated:YES];
+        
+    }
+    else if(buttonIndex == 1)
+    {
+        //Cancel
+    }
+}
+
 #pragma mark UITextViewDelegate
 
 - (void)textViewDidBeginEditing:(UITextView *)textView
@@ -223,34 +264,45 @@
     return YES;
 }
 
-- (void)textFieldDidBeginEditing:(UITextField *)textField
+-(BOOL)textFieldShouldBeginEditing:(UITextField *)textField
 {
-    if ([textField isEqual:_notificationType]) {
-        [self performSelector:@selector(hideKeyboard:) withObject:textField afterDelay:0.1f];
-        _groupView.scrollEnabled = YES;
-        [_groupView setContentOffset:CGPointMake(0, 300) animated:YES];
-    }else
+    if( [textField isEqual:_notificationType] )
     {
-        _groupView.scrollEnabled = YES;
-        NSLog(@"Origin.y=%f", textField.frame.origin.y);
-        [_groupView setContentOffset:CGPointMake(0, textField.frame.origin.y - kTextTopScrollGap) animated:YES];
+        [_licensePlate resignFirstResponder];
+        [_serviceName resignFirstResponder];
+        [_description.textView resignFirstResponder];
+        [_groupView setContentOffset:CGPointMake(0, textField.frame.origin.y - kTextTopScrollGap ) animated:YES];
+        _groupView.scrollEnabled = NO;
+        [self showPickerWheel];
+        if( SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0"))
+            _pickerViewBackground.frame = CGRectMake( 0, textField.frame.origin.y - kTextTopScrollGap + _pickerViewBackground.frame.size.height, _pickerViewBackground.frame.size.width, _pickerViewBackground.frame.size.height );
+        return NO;
+    }
+    else
+    {
+        return YES;
     }
 }
 
-//TODO: Saçma sapan bir çözüm, nedenini araştır!
--(void)hideKeyboard:(id)sender
+- (void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    [self showPickerWheel];
-    UITextField *text = (UITextField*)sender;
-    [self.view endEditing:YES];
-    [text resignFirstResponder];
+    [self instantHidePickerWheel];
+    textField.placeholder = nil;
+    
+    _groupView.scrollEnabled = YES;
+    [_groupView setContentOffset:CGPointMake(0, textField.frame.origin.y - kTextTopScrollGap) animated:YES];
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
-    if (![textField isEqual:_notificationType]) {
-        [_groupView setContentOffset:CGPointMake(0, 0) animated:YES];
-    }
+    if([textField.text isEqual:@""])
+        if(![((CGTextField*)textField).defaultPlaceholder  isEqual: @"Bildirim Tipi"] )
+            textField.placeholder = ((CGTextField*)textField).defaultPlaceholder;
+    
+    _groupView.scrollEnabled = YES;
+    //Check
+    [_groupView setContentOffset:CGPointMake(0, 0) animated:YES];
+    
 }
 
 #pragma mark UIScrollViewDelegate
@@ -287,11 +339,7 @@
 
 - (void)deleteAction:(id)sender
 {
-    RecordEntity *deleteRecord = [RecordEntity new];
-    deleteRecord.ID = _vehicle.ID;
-    
-    UIViewController *vc = [[CGTransitionViewController alloc] initWith:[CGInformHistoryViewController class] deleteEntity:deleteRecord vehicleResponse:_vehicle andObject:self];
-    [self.navigationController pushViewController:vc animated:YES];
+    [_deleteAlert show];
 }
 
 #pragma mark UIPickerViewDataSource
@@ -316,7 +364,7 @@
     NotificationTypeResponse* notificationType = (NotificationTypeResponse*)[_notificationTypeList objectAtIndex:row];
     
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(kLabelPaddingX, 0, kPickerViewWidth, kPickerViewRowHeight)];
-    label.textColor         = kTextColorLight;
+    label.textColor         = kTextColor;
     label.font              = kApplicationFontBold(26.0f);
     label.backgroundColor   = kColorClear;
     label.textAlignment     = NSTextAlignmentLeft;
@@ -344,26 +392,37 @@
         _imagePicker.frame = CGRectMake(0, kWindowHeightWithNav - kPickerViewHeight, kPickerViewWidth, kPickerViewHeight);
     } completion:^(BOOL finished) {
         _imagePicker.hidden = NO;
+        if( SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0"))
+            _pickerViewBackground.hidden = NO;
     }];
 }
 
 - (void)hidePickerWheel
 {
-    [UIView animateWithDuration:1.0f animations:^{
+    _pickerViewBackground.hidden = YES;
+    [UIView animateWithDuration:0.5f animations:^{
         _imagePicker.frame = CGRectMake(0, kWindowHeightWithNav, kPickerViewWidth, kPickerViewHeight);
+        [_groupView setContentOffset:CGPointMake(0, 0)];
     } completion:^(BOOL finished) {
         _imagePicker.hidden = YES;
+        _groupView.scrollEnabled = YES;
     }];
+    
 }
 
 - (void)instantHidePickerWheel
 {
+    _pickerViewBackground.hidden = YES;
     [UIView animateWithDuration:0.1f animations:^{
         _imagePicker.frame = CGRectMake(0, kWindowHeightWithNav, kPickerViewWidth, kPickerViewHeight);
     } completion:^(BOOL finished) {
         _imagePicker.hidden = YES;
     }];
+    _groupView.scrollEnabled = YES;
 }
+
+
+
 
 - (void)updateClientData:(NSNumber*)notifID
 {

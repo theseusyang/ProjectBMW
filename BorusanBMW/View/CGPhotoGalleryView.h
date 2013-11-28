@@ -17,6 +17,7 @@
     NSArray *_photoList;
     NSMutableArray *_galleryList;
     UIButton *_deleteButton;
+    UIImageView *_deleteIcon;
     
     UIImageView *_testPhoto;
     UIView *_bgView;

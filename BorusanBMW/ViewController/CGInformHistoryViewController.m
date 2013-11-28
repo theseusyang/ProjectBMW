@@ -35,12 +35,43 @@
     _vehicleList = [NSMutableArray array];
     _vehicleList = [[DataService shared] getVehicleList];
     
+    _loadingImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Loader.png"]];
+    _loadingImage.frame = CGRectMake(118, 130, 84, 84);
+    [self.view addSubview:_loadingImage];
+    
+    _topLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 220, 300, 14)];
+    _topLabel.text = @"Bildiriler Yükleniyor...";
+    _topLabel.textAlignment = NSTextAlignmentCenter;
+    _topLabel.font = kApplicationFontBold(16.0);
+    _topLabel.textColor = kTextColor;
+    //[_topLabel sizeToFit];
+    [self.view addSubview:_topLabel];
+    
+    _bottomLabel = [[UILabel alloc] initWithFrame:CGRectMake( 10, 240, 300, 14)];
+    _bottomLabel.text = @"Lütfen bekleyin";
+    _bottomLabel.textAlignment = NSTextAlignmentCenter;
+    _bottomLabel.font = kApplicationFont(13.0f);
+    _bottomLabel.textColor = kTextColor;
+    //[_bottomLabel sizeToFit];
+    [self.view addSubview:_bottomLabel];
+    
+    if( !_timer.isValid ){
+        _timer = [NSTimer timerWithTimeInterval:0.06f target:self selector:(@selector(rotateImage)) userInfo:(nil) repeats:YES];
+    }
+    
+    
+    NSRunLoop *runner =[NSRunLoop currentRunLoop];
+    [runner addTimer:_timer forMode:NSDefaultRunLoopMode];
+    
     if (![self isLastPageReached]) {
         _moreCell = [[CGMoreCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"MoreCellIdentifier"];
         _moreCell.textLabel.text = @"daha fazla öğe...";
        // _moreCell.textLabel.frame = CGRectMake(_moreCell.frame.origin.x, _moreCell.frame.origin.y, _moreCell.frame.size.width, _moreCell.frame.size.height+30);
         _moreCell.textLabel.font = kApplicationFontBold(12.5f);
     }
+    
+    //Custom Spinner
+    
     
     /*
     _refreshControl = [[UIRefreshControl alloc] init];
@@ -54,7 +85,9 @@
     
     [self.navigationController setNavigationBarHidden:NO];
     [self setRightButtonHidden:YES];
-    [self startSpinner];
+    
+    //Delete below after try
+    //[self startSpinner];
     
     if (_vehicleList.count <= 0) {
         // New Get List Method
@@ -65,7 +98,16 @@
             
             //[self sortListWithDate];
             [self setVehicleImageList];
-            [self stopSpinner];
+            
+            [_loadingImage removeFromSuperview];
+            //Delete below after try
+            //[self stopSpinner];
+            if(_timer.isValid)
+            {
+                [_timer invalidate];
+                _timer = Nil;
+            }
+            
             [self createTableView];
             
         } failure:^(NSError *error) {
@@ -79,7 +121,15 @@
         // Data is already in DataService
         //[self sortListWithDate];
         [self setVehicleImageList]; // ?
-        [self stopSpinner];
+        //[self stopSpinner];
+        
+        
+        if(_timer.isValid)
+        {
+            [_timer invalidate];
+            _timer = Nil;
+        }
+        
         [self createTableView];
     }
 }
@@ -119,6 +169,12 @@
     _informHistoryTableView.delegate = self;
     _informHistoryTableView.dataSource = self;
     [self.view addSubview:_informHistoryTableView];
+}
+
+- (void)rotateImage
+{
+    _loadingImage.transform = CGAffineTransformMakeRotation(_count * M_PI/6);
+    _count++;
 }
 
 #pragma mark UITableViewDataSource
