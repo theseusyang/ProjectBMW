@@ -112,6 +112,7 @@
 		6224454717D8D578002A2482 /* CGTakePhotoViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6224454617D8D578002A2482 /* CGTakePhotoViewController.mm */; };
 		6245CBD817EC4CFE009A2630 /* DataService.m in Sources */ = {isa = PBXBuildFile; fileRef = 6245CBD717EC4CFE009A2630 /* DataService.m */; };
 		6245CBE117EC917C009A2630 /* RecordResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 6245CBE017EC917C009A2630 /* RecordResponse.m */; };
+		6257B299184D37EB00481179 /* libRestKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AFBE0C0518211D79002F9360 /* libRestKit.a */; };
 		626BA17B1846100C009548F6 /* DeleteResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 626BA17A1846100C009548F6 /* DeleteResponse.m */; };
 		6284CF8217EC38BF00A0EDFA /* LoginResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 6284CF8117EC38BF00A0EDFA /* LoginResponse.m */; };
 		629703D017F175C6000D159F /* VehicleListResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 629703CF17F175C6000D159F /* VehicleListResponse.m */; };
@@ -203,6 +204,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		6257B297184D37E000481179 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AFBE0BFD18211D78002F9360 /* RestKit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 25160D1514564E810060A5C5;
+			remoteInfo = RestKit;
+		};
 		AFBE0C0418211D79002F9360 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = AFBE0BFD18211D78002F9360 /* RestKit.xcodeproj */;
@@ -624,6 +632,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6257B299184D37EB00481179 /* libRestKit.a in Frameworks */,
 				62D2E19B183A1964007CC181 /* opencv2.framework in Frameworks */,
 				6218D7D2181A8A9C0093C86D /* libc++.dylib in Frameworks */,
 				6218D7CE181A876A0093C86D /* ImageIO.framework in Frameworks */,
@@ -1245,6 +1254,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				6257B298184D37E000481179 /* PBXTargetDependency */,
 			);
 			name = BorusanBMW;
 			productName = BorusanBMW;
@@ -1519,6 +1529,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		6257B298184D37E000481179 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = RestKit;
+			targetProxy = 6257B297184D37E000481179 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		62B7C53717D6151A00257C95 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
@@ -1604,7 +1622,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "compiler-default";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Omer Can (L3356M7D57)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1623,12 +1641,12 @@
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-force_load",
-					"$(BUILT_PRODUCTS_DIR)/libRestKit.a",
+					"\"$(BUILT_PRODUCTS_DIR)/libRestKit.a\"",
 				);
 				PRODUCT_NAME = "BMW weCare";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
-				VALID_ARCHS = "armv7 armv7s arm64";
+				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1640,7 +1658,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "compiler-default";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Omer Can (L3356M7D57)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1658,13 +1676,14 @@
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
-					"-force_load",
-					"$(BUILT_PRODUCTS_DIR)/libRestKit.a",
+					"-all_load",
+					"-ObjC",
 				);
+				"OTHER_LDFLAGS[arch=*]" = "";
 				PRODUCT_NAME = "BMW weCare";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
-				VALID_ARCHS = "armv7 armv7s arm64";
+				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
