@@ -16,7 +16,6 @@
     UIView *_groupView;
     
     UIImageView *_picBg;
-    UIImageView *_pic;
     UIImageView *_checkIcon;
     UIImageView *_locationIcon;
     
@@ -29,13 +28,13 @@
 
 @property (nonatomic, strong) UIImageView *pic;
 
-@property (nonatomic, copy) NSString *createdDate;
-@property (nonatomic, copy) NSString *description;
-@property (nonatomic, copy) NSString *ID;
-@property (nonatomic, copy) NSString *location;
-@property (nonatomic) NSNumber       *notificationType;
-@property (nonatomic, copy) NSString *licensePlate;
-@property (nonatomic, copy) NSString *serviceType;
+@property (nonatomic, strong) NSString *createdDate;
+@property (nonatomic, strong) NSString *description;
+@property (nonatomic, strong) NSString *ID;
+@property (nonatomic, strong) NSString *location;
+@property (nonatomic, strong) NSNumber       *notificationType;
+@property (nonatomic, strong) NSString *licensePlate;
+@property (nonatomic, strong) NSString *serviceType;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 vehicleListResponse:(VehicleListResponse*)vehicleListResponse;

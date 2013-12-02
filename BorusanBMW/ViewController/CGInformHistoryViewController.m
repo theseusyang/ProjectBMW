@@ -44,7 +44,6 @@
     _topLabel.textAlignment = NSTextAlignmentCenter;
     _topLabel.font = kApplicationFontBold(16.0);
     _topLabel.textColor = kTextColor;
-    //[_topLabel sizeToFit];
     [self.view addSubview:_topLabel];
     
     _bottomLabel = [[UILabel alloc] initWithFrame:CGRectMake( 10, 240, 300, 14)];
@@ -52,13 +51,11 @@
     _bottomLabel.textAlignment = NSTextAlignmentCenter;
     _bottomLabel.font = kApplicationFont(13.0f);
     _bottomLabel.textColor = kTextColor;
-    //[_bottomLabel sizeToFit];
     [self.view addSubview:_bottomLabel];
     
     if( !_timer.isValid ){
         _timer = [NSTimer timerWithTimeInterval:0.06f target:self selector:(@selector(rotateImage)) userInfo:(nil) repeats:YES];
     }
-    
     
     NSRunLoop *runner =[NSRunLoop currentRunLoop];
     [runner addTimer:_timer forMode:NSDefaultRunLoopMode];
@@ -66,17 +63,15 @@
     if (![self isLastPageReached]) {
         _moreCell = [[CGMoreCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"MoreCellIdentifier"];
         _moreCell.textLabel.text = @"daha fazla öğe...";
-       // _moreCell.textLabel.frame = CGRectMake(_moreCell.frame.origin.x, _moreCell.frame.origin.y, _moreCell.frame.size.width, _moreCell.frame.size.height+30);
         _moreCell.textLabel.font = kApplicationFontBold(12.5f);
     }
-    
     //Custom Spinner
-    
-    
     /*
     _refreshControl = [[UIRefreshControl alloc] init];
     [_refreshControl addTarget:self action:@selector(refreshTable) forControlEvents:UIControlEventValueChanged];
     */
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateVehicleList:) name:kEventGetVehicleList object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -108,6 +103,7 @@
                 _timer = Nil;
             }
             
+            [[NSNotificationCenter defaultCenter] removeObserver:self name:kEventGetVehicleList object:nil];
             [self createTableView];
             
         } failure:^(NSError *error) {
@@ -134,7 +130,7 @@
     }
     
     // Sadece ilk açıldığında data ilklenmemiş ise notification aracılığıyla haberdar ediliyor. Daha sonra notif kaldırılıyor.
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateVehicleList:) name:kEventGetVehicleList object:nil];
+    
 }
 
 - (void)updateVehicleList:(id)object
@@ -190,6 +186,9 @@
 
 - (void)createTableView
 {
+    if (_informHistoryTableView)
+        return;
+    
     _informHistoryTableView = [[CGInformHistoryTableView alloc] initWithFrame:CGRectMake(0, 33, 320,  416 - 33)];
     _informHistoryTableView.delegate = self;
     _informHistoryTableView.dataSource = self;

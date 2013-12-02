@@ -56,12 +56,7 @@
         _addressView.font = kApplicationFont(12.5f);
         [_addressView setUserInteractionEnabled:NO];
         [_groupView addSubview:_addressView];
-        
-        
-        
-        
-        
-        
+
         self.accessoryView = [[UIImageView alloc] initWithImage:kApplicationImage(kResIconArrowDark)];
     }
     
@@ -95,16 +90,6 @@
             break;
     }
     
-}
-
-- (void)prepareForReuse
-{
-    [super prepareForReuse];
-}
-
-- (void)layoutSubviews
-{
-    [super layoutSubviews];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated

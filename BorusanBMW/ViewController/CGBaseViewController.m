@@ -89,10 +89,6 @@
     [super viewWillAppear:animated];
     
     [self.navigationController setNavigationBarHidden:YES];
-    
-    //Test View bound specifier
-    UIView *viewBound = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 4)];
-    [self.view addSubview:viewBound];
 }
 
 - (void)didReceiveMemoryWarning

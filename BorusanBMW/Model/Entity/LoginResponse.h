@@ -10,13 +10,10 @@
 #import <RestKit/ObjectMapping.h>
 
 @interface LoginResponse : NSObject
-{
-    NSString* _errorCode;
-}
 
-@property (nonatomic, copy) NSString* errorCode;
-@property (nonatomic, copy) NSString* errorMessage;
-@property (nonatomic, copy) NSString* hash;
+@property (nonatomic, strong) NSString* errorCode;
+@property (nonatomic, strong) NSString* errorMessage;
+@property (nonatomic, strong) NSString* hash;
 @property (nonatomic) NSNumber* status;
 
 + (RKObjectMapping*)objectMapping;

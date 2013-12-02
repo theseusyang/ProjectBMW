@@ -11,8 +11,8 @@
 
 @interface NotificationTypeResponse : NSObject
 
-@property (nonatomic, copy) NSNumber *ID;
-@property (nonatomic, copy) NSString *notificationType;
+@property (nonatomic, strong) NSNumber *ID;
+@property (nonatomic, strong) NSString *notificationType;
 
 + (RKObjectMapping*)objectMapping;
 

@@ -10,7 +10,7 @@
 
 @interface LoginRequest : NSObject
 
-@property (nonatomic, copy) NSString* Username;
-@property (nonatomic, copy) NSString* Password;
+@property (nonatomic, strong) NSString* Username;
+@property (nonatomic, strong) NSString* Password;
 
 @end
