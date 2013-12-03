@@ -135,7 +135,9 @@
     _imagePicker.wantsFullScreenLayout = YES;
     [_imagePicker setDelegate:self];
 
-    [self presentViewController:_imagePicker animated:NO completion:nil];
+    //[self presentViewController:_imagePicker animated:NO completion:nil];
+    
+    enablePhotoPicker = true;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -162,10 +164,10 @@
 - (void)continueAction:(id)sender
 {
     /* Cut the pic to make square with preserving aspect ratio */
-    
+    /*
     if (imageView.image.imageOrientation != UIImageOrientationUp)
         imageView.image = [imageView.image rotate:imageView.image.imageOrientation];
-    
+    */
     /* Crop the image */
     CGRect cutRect = [CGUtilHelper imageRectInSquare:imageView.image];
     UIImage *finalImage = [CGUtilHelper imageWithImage:imageView.image andRect:cutRect];

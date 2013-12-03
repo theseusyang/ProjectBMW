@@ -133,7 +133,7 @@
 {
     [_spinner stopAnimating];
 }
-
+/*
 - (void)backToController:(Class)classType
 {
     NSArray *viewControllerList =  self.navigationController.viewControllers;
@@ -143,6 +143,20 @@
         {
             [self.navigationController popToViewController:vc animated:YES];
             return;
+        }
+    }
+}
+*/
+- (void)backToController:(Class)classType
+{
+    NSArray *viewControllerList =  self.navigationController.viewControllers;
+    for (int i=0; i < viewControllerList.count; ++i) {
+        UIViewController *vc = [viewControllerList objectAtIndex:i];
+        if([vc isMemberOfClass:classType])
+        {
+            for (int j=0; j < i; ++j) {
+                [self.navigationController popViewControllerAnimated:NO];
+            }
         }
     }
 }

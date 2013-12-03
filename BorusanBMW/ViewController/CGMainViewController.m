@@ -103,19 +103,18 @@
         [self enterance_button:nil];
     }
 }
-    
-- (void)onKeyboardWillShown:(NSNotification *)notif
-{
-    // NotificationCenter wil send message to the observers who is listening the UIKeyboardWillShowNotification method.
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
-}
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-
+    
     [self.navigationController setNavigationBarHidden:YES];
+}
 
+- (void)onKeyboardWillShown:(NSNotification *)notif
+{
+    // NotificationCenter wil send message to the observers who is listening the UIKeyboardWillShowNotification method.
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
 }
 
 - (void)loadingHiddenState:(BOOL)hidden

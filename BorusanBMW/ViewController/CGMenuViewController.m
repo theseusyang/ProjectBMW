@@ -79,7 +79,7 @@
 {
     [super viewWillAppear:animated];
     
-    
+     NSArray *viewControllerList =  self.navigationController.viewControllers;
 }
 
 - (void)didReceiveMemoryWarning
