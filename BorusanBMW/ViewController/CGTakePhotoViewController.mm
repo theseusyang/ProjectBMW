@@ -256,6 +256,8 @@
         NSLog(@"%@", _plateNumber);
         NSLog(@"Total Time: %@", [Profiler totalTime]);
 
+        CGImageRelease(ref);
+        
         [overlay stopSpinner];
     }
     else
