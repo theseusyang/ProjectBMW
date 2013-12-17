@@ -328,23 +328,11 @@
     
     NSMutableArray *imageList = [[NSMutableArray alloc] init];
     UIImage  *originalImage;
-    /*
-    UIImage  *scaledImage;
-    CGRect    scaledFrame;
-    UIImage  *croppedImage;
-     */
     NSData   *imageData;
     NSString *imageEncoded;
     for (int i=0; i < [_imageList count]; ++i) {
         
         originalImage = [_imageList objectAtIndex:i];
-        /* Bu işlem artık CGTakePhotoViewController'da yapılıyor.
-        scaledImage   = [CGUtilHelper imageMakeSmaller:originalImage factor:kSizeFactor];
-        scaledFrame   = [CGUtilHelper imageRectInSquare:scaledImage];
-        croppedImage  = [CGUtilHelper imageWithImage:scaledImage andRect:scaledFrame];
-
-        imageData     = UIImagePNGRepresentation(croppedImage);
-         */
         imageData     = UIImagePNGRepresentation(originalImage);
         imageEncoded  = [Base64 encode:imageData];
         // Zip Base64 data

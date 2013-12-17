@@ -100,7 +100,8 @@
         return;
     }
     
-    _vehicleDataList = (NSMutableArray*)[_vehicleDataList arrayByAddingObjectsFromArray:@[vehicleRecord]];
+    [_vehicleDataList insertObject:vehicleRecord atIndex:0];
+    //_vehicleDataList = (NSMutableArray*)[_vehicleDataList arrayByAddingObjectsFromArray:@[vehicleRecord]];
 }
 
 - (void)deleteRecord:(VehicleListResponse *)vehicleRecord

@@ -178,7 +178,6 @@
 
 -(void)moveView:(UIView*) view verticallyFor:(float) y
 {
-    
     view.frame = CGRectMake(view.frame.origin.x, view.frame.origin.y + y, view.frame.size.width, view.frame.size.height);
 }
 

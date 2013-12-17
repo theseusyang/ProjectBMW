@@ -91,7 +91,7 @@
             _vehicleImageList = [NSMutableArray array];
             _vehicleList = [NSMutableArray arrayWithArray:vehicleList];
             
-            [self sortListWithDate];
+            //[self sortListWithDate];
             [self setVehicleImageList];
             
             [_loadingImage removeFromSuperview];
@@ -115,7 +115,7 @@
             _vehicleImageList = [NSMutableArray array];
         }
         // Data is already in DataService
-        [self sortListWithDate];
+        //[self sortListWithDate];
         [self setVehicleImageList]; // ?
         //[self stopSpinner];
         
@@ -318,7 +318,7 @@
         
         _vehicleList = [[DataService shared] getVehicleList];
         
-        [self sortListWithDate];
+        //[self sortListWithDate];
         [self setVehicleImageList];
         [_moreCell stopAnimation];
         [_informHistoryTableView reloadData];

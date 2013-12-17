@@ -421,9 +421,6 @@
     _groupView.scrollEnabled = YES;
 }
 
-
-
-
 - (void)updateClientData:(NSNumber*)notifID
 {
     // Update the client-side vehicle data
