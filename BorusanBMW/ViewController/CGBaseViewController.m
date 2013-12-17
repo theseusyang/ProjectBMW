@@ -154,9 +154,7 @@
         UIViewController *vc = [viewControllerList objectAtIndex:i];
         if([vc isMemberOfClass:classType])
         {
-            for (int j=0; j < i; ++j) {
-                [self.navigationController popViewControllerAnimated:NO];
-            }
+            [self.navigationController popToViewController:vc animated:YES];
         }
     }
 }

@@ -119,7 +119,7 @@
 + (UIImage *)imageWithImage:(UIImage *)image andRect:(CGRect)newRect
 {
     CGImageRef imageRef = CGImageCreateWithImageInRect(image.CGImage, newRect);
-    UIImage *newImage = [UIImage imageWithCGImage:imageRef];
+    UIImage *newImage   = [UIImage imageWithCGImage:imageRef];
     CGImageRelease(imageRef);
 
     return newImage;
@@ -163,6 +163,50 @@
     
     square = CGRectMake(cutPoint.x, cutPoint.y, finalWidth, finalHeight);
     return square;
+}
+
++ (UIImage *)imageMakeSmaller:(UIImage *)image factor:(int)factor
+{
+    NSLog(@"width %f height %f", image.size.width, image.size.height);
+    
+    float widthFloat  = image.size.width/factor;
+    float heightFloat = image.size.height/factor;
+    
+    int width = widthFloat;
+    int height = heightFloat;
+    
+    UIGraphicsBeginImageContext(CGSizeMake(width, height));
+    [image drawInRect:CGRectMake(0,0,width, height)];
+    UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    image = nil;
+    
+    return newImage;
+}
+
+static inline double radians (double degrees) {return degrees * M_PI/180;}
++ (UIImage *)rotateWithFrame:(UIImage *)src orientation:(UIImageOrientation)orientation
+{
+    UIGraphicsBeginImageContext(src.size);
+    
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    if (orientation == UIImageOrientationRight) {
+        CGContextRotateCTM (context, radians(90));
+    } else if (orientation == UIImageOrientationLeft) {
+        CGContextRotateCTM (context, radians(-90));
+    } else if (orientation == UIImageOrientationDown) {
+        // NOTHING
+    } else if (orientation == UIImageOrientationUp) {
+        CGContextRotateCTM (context, radians(90));
+    }
+    
+    [src drawAtPoint:CGPointMake(0, 0)];
+    
+    UIImage *rotatedImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return rotatedImage;
 }
 
 @end

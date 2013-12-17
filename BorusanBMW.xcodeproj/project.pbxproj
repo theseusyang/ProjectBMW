@@ -1268,7 +1268,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = CG;
-				LastUpgradeCheck = 0460;
+				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Baris YILMAZ";
 				TargetAttributes = {
 					62B7C52A17D6151A00257C95 = {
@@ -1618,12 +1618,11 @@
 		62B7C54F17D6151A00257C95 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "compiler-default";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Omer Can (L3356M7D57)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1645,7 +1644,7 @@
 					"\"$(BUILT_PRODUCTS_DIR)/libRestKit.a\"",
 				);
 				PRODUCT_NAME = "BMW weCare";
-				PROVISIONING_PROFILE = "8E5B21E7-2588-4AD9-8B9C-5C8E8C9F921C";
+				PROVISIONING_PROFILE = "71089C90-20A0-4C8D-840F-3101564EC9F8";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
@@ -1655,12 +1654,11 @@
 		62B7C55017D6151A00257C95 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "compiler-default";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Omer Can (L3356M7D57)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1683,7 +1681,7 @@
 				);
 				"OTHER_LDFLAGS[arch=*]" = "";
 				PRODUCT_NAME = "BMW weCare";
-				PROVISIONING_PROFILE = "8E5B21E7-2588-4AD9-8B9C-5C8E8C9F921C";
+				PROVISIONING_PROFILE = "71089C90-20A0-4C8D-840F-3101564EC9F8";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;

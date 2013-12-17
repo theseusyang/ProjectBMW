@@ -25,7 +25,7 @@
     self = [super init];
     if (self) {
         NSLog(@"Init the BMW project.");
-        /*
+        
         // Get the notification type list beginning of the app and assign to the list of DataService
         [[Server shared] getNotificationTypesWithSuccess:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
             [DataService shared].notificationTypeList = [NSArray arrayWithArray:[mappingResult array]];
@@ -36,7 +36,7 @@
             
             [self leftAction:self];
         }];
-    */
+    
     }
     
     return self;

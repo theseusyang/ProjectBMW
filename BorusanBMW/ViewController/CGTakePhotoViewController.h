@@ -16,6 +16,8 @@
 #import "Profiler.h"
 #import "CGUtilHelper.h"
 
+#define kSizeFactor 20
+
 @interface CGTakePhotoViewController : CGBaseViewController<UINavigationControllerDelegate, UIImagePickerControllerDelegate, CGCameraOverlayProtocol>
 {
     UIView *_photoView;

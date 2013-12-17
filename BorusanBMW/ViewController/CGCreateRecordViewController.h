@@ -17,6 +17,8 @@
 #import "Base64.h"
 #import "RecordEntity.h"
 
+#define kSizeFactor 20
+
 @interface CGCreateRecordViewController : CGBaseViewController<UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate, UITextViewDelegate, UIAlertViewDelegate>
 {
     UIGestureRecognizer *_tap;

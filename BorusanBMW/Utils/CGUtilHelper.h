@@ -14,7 +14,8 @@
 + (NSString*)dateFromJSONStringWith:(NSString*)date;
 + (NSString *)currentDate;
 + (NSDate *)dateFormatFromJSONString:(NSString *)string;
-+ (CGRect)imageRectInSquare:(UIImage *)image;
 + (UIImage *)imageWithImage:(UIImage *)image andRect:(CGRect)newRect;
++ (CGRect)imageRectInSquare:(UIImage *)image;
++ (UIImage *)imageMakeSmaller:(UIImage *)image factor:(int)factor;
 
 @end

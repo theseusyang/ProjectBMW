@@ -327,20 +327,26 @@
     [_sendButton removeTarget:self action:@selector(sendAction:) forControlEvents:UIControlEventTouchUpInside];
     
     NSMutableArray *imageList = [[NSMutableArray alloc] init];
+    UIImage  *originalImage;
+    /*
+    UIImage  *scaledImage;
+    CGRect    scaledFrame;
+    UIImage  *croppedImage;
+     */
+    NSData   *imageData;
+    NSString *imageEncoded;
     for (int i=0; i < [_imageList count]; ++i) {
         
-        UIImage *image = [_imageList objectAtIndex:i];
-        int width = image.size.width / 10;
-        int height = image.size.height / 10;
-        CGSize size = CGSizeMake(width, height);
-        
-        UIGraphicsBeginImageContextWithOptions(size, YES, 0.0);
-            [image drawInRect:CGRectMake(0,0, size.width, size.height)];
-            UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
+        originalImage = [_imageList objectAtIndex:i];
+        /* Bu işlem artık CGTakePhotoViewController'da yapılıyor.
+        scaledImage   = [CGUtilHelper imageMakeSmaller:originalImage factor:kSizeFactor];
+        scaledFrame   = [CGUtilHelper imageRectInSquare:scaledImage];
+        croppedImage  = [CGUtilHelper imageWithImage:scaledImage andRect:scaledFrame];
 
-        NSData *imageData = UIImagePNGRepresentation(newImage);
-        NSString *imageEncoded = [Base64 encode:imageData];
+        imageData     = UIImagePNGRepresentation(croppedImage);
+         */
+        imageData     = UIImagePNGRepresentation(originalImage);
+        imageEncoded  = [Base64 encode:imageData];
         // Zip Base64 data
         
         [imageList addObject:imageEncoded];
@@ -359,7 +365,8 @@
         return;
         
     }
-       NSNumber *notifID;
+    
+    NSNumber *notifID;
     
     for (NotificationTypeResponse* notif in _notificationTypeList) {
         if ([_notificationType.text isEqualToString:notif.notificationType]) {

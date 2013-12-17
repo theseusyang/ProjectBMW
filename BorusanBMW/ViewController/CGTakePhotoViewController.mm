@@ -163,24 +163,24 @@
 
 - (void)continueAction:(id)sender
 {
-    /* Cut the pic to make square with preserving aspect ratio */
-    /*
-    if (imageView.image.imageOrientation != UIImageOrientationUp)
-        imageView.image = [imageView.image rotate:imageView.image.imageOrientation];
-    */
-    /* Crop the image */
-    CGRect cutRect = [CGUtilHelper imageRectInSquare:imageView.image];
-    UIImage *finalImage = [CGUtilHelper imageWithImage:imageView.image andRect:cutRect];
-    imageView.image = finalImage;
+    [Profiler start:@"Make my photo smaller"];
+    UIImage *originalImage = imageView.image;
+    UIImage *scaledImage   = [CGUtilHelper imageMakeSmaller:originalImage factor:kSizeFactor];
+    CGRect frame           = [CGUtilHelper imageRectInSquare:scaledImage];
+    UIImage *croppedImage  = [CGUtilHelper imageWithImage:scaledImage andRect:frame];
+    [Profiler stop];
     
     //Enable Taking photo for next call to this VC
     enablePhotoPicker = YES;
-    if( imageView.image )
-        [_imageList addObject:imageView.image];
-    else /* TODO: Bahoooo, delete this else block after your test*/
-        [_imageList addObject:[UIImage imageNamed:@"PlateCaptureGuideVertical.png"]];
+    if(croppedImage)
+        [_imageList addObject:croppedImage];
+    
     UIViewController *vc = [[CGPhotoManagementViewController alloc] initWithImageList:_imageList andPlateNumber:_plateNumber];
     
+    imageView.image = nil;
+    croppedImage    = nil;
+    originalImage   = nil;
+    scaledImage     = nil;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -242,6 +242,7 @@
         //Below 2 lines was put here to correct corped image bug
         CGImageRef ref = CGImageCreateWithImageInRect(rotatedCorrectly.CGImage, croppedRect);
         rotatedCorrectly = [UIImage imageWithCGImage:ref];
+        CGImageRelease(ref);
         
         [Profiler start:@"Image Processing"];
         UIImage *processedImage = [self imageProcess:rotatedCorrectly];
@@ -278,11 +279,6 @@
 - (NSString *)OCR: (UIImage *)processedImage
 {
    return [imageProcessor OCRImage:processedImage];
-}
-
-- (void)thread_performSpinner:(id)object
-{
-
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
